@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularios</title>
+</head>
+<body>
+    <form id="miform" action="" method="">
+        <label for="nombre">    
+            <!--Label: Es para ordenar y se basa en el name-->
+        </label>
+        <br><br>
+        
+        <fieldset>
+                <legend><h1> Datos Personales (Input type text)</h1></legend>
+                <input type="text" name="nombre" placeholder="Ingrese nombre." id="nombre">
+                <br>
+                <input type="text" name="apellido" placeholder="Ingrese apellido." id="apellido">
+                <br>
+                <label for="genero">
+                <h4>Clickee Genero:</h4>
+                <input type="radio" name="genero" value="Femenino"checked>Femenino
+                <!--checked es para que ya pinte el primero por default-->
+                <br>
+                <input type="radio" name="genero" value="Masculino" >Masculino
+
+                <!--el label funnciona con el nombre que coincida no hace falta que este adentro-->
+                </label>
+                <br><br>
+                <label for="seleccionlibreta">
+                    <b>Seleccione:</b>
+                </label>
+                <select name="seleccionlibreta" id="seleccionlibreta">
+                    <!--select lo usamos para que genere un display para que seleccione el usuario-->
+                    <optgroup label="Tipo de Documento">
+                        <!--optgroup pone un titulo en negrita no seleccionable 
+                        para agrupar los option-->
+                    <option value="value1">
+                        <!--option le da las opciones para elegir-->
+                        DNI
+                    </option>
+
+                    <option value="value2">
+                        Libreta Civica
+                    </option>
+                    </optgroup>
+                    </select>  
+                    <br><br>
+                    <h3>Seleccione partido:</h3>
+                <input list="lista" name="lista">    
+                <datalist id="lista">
+                        <option value="Lanus">
+                            Zona Sur
+                        </option>
+                        <option value="Avellaneda">
+                            Zona Sur
+                        </option>
+
+                
+                </datalist>
+                <br><br>
+                <h3>Seleccione Estado civil:</h3>
+                    <input type="checkbox" name="ecivil" value="ecivil" checked>
+                    Soltero
+                    <br>
+                    <input type="checkbox" name="ecivil2" value="ecivil2">
+                    Casado
+                    <br>
+                    <input type="checkbox" name="ecivil3" value="ecivil3">
+                    Viudo
+                
+                
+            </fieldset>       
+            <!--fieldset sirve para darle el marco
+            legend para darle el "nombre a lo que sigue"
+            y ahi dentro ponemos el input
+            -->
+        <fieldset>
+            <legend><h1>Tipo de Botones</h1></legend>
+       
+        <br> <br>
+        <button type="button" name="boton2">Button
+            </button>
+              <br> <br>
+        <button type="submit" name="boton2">Submit
+           </button>
+              <br> <br>
+        <button type="reset" name="boton3">Resetear los campos
+            </button>
+            <br>
+             </fieldset>
+            <fieldset>
+                <legend><h1>Tipos de Input type=""</h1></legend>
+        <input type="color">Seleccione un color
+        <br><br>
+        <input type="date">Seleccione fecha
+        <br><br>
+        <input type="email">Ingrese email
+        <br><br>
+        <input type="url">Ingrese url
+        <br><br>
+        <input type="number"min="0" max="10">Ingrese numero (0-10)
+        <br><br>
+        <input type="password">Ingrese password   
+        <br><br>
+        <h3>Type para Validacion</h3>
+        <br>
+        <input type="text" pattern="[A-Za-z]{3}">
+        <!--Sirve para restringir el tipo de letra y entre {} colocamos el maximo de letras.-->
+        <br><br><br>
+        <button type="submit" name="botonprueba">Prueba
+           </button>
+         </fieldset>
+        
+
+    </form>
+    
+</body>
+</html>

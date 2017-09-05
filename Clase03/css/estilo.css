@@ -1,0 +1,28 @@
+h1{
+    background-color: #0000ff;
+    width: 160px;
+    height: 180px;
+    border: 180px;
+        /*
+            top:  
+            left: 
+            right: 
+            bottom: 
+        */
+    padding: 180px;
+    margin: 180px;
+
+    
+}
+h2{
+     color: green;
+    }
+h2{
+    color: violet;
+    background-color: black;
+    /*va aplicando en forma de cascada*/
+  }
+  #segundap{
+      color:red;
+  }
+
