@@ -1,28 +1,66 @@
+*{
+    box-sizing: border-box;
+}
+/*EL ASTERISCO ES UNIVERSAL PARA TODA LA PAGINA*/
+
+
+
 h1{
     background-color: #0000ff;
-    width: 160px;
-    height: 180px;
-    border: 180px;
+    width: 300px;
+    height: 300px;
+    border: 5px;
+    border-color: orange;
         /*
-            top:  
-            left: 
-            right: 
-            bottom: 
-        */
-    padding: 180px;
-    margin: 180px;
+            border: 180px (TOP) 180px(RIGTH) -->Sentido agujas del reloj;
+            con 1 parametro a todos
+            con 2 parametros son arriba/abajo izq/der
+                border: 0 10px;
+                border: 10px 10px;
+            con 4 parametros en sentido agujas del reloj
+            border-top:  ;     
+            border-left: ; 
+            border-right:; 
+            border-bottom:; 
 
-    
+            border-style
+            DISTINTOS TIPOS DE BORDES (buscar de puntos, guiones)
+        */
+        /*PADDING Y MARGIN, ROBAN DEL WIDTH Y HEIGHT*/
+    padding: 20px;
+        /*
+            EL CONTENIDO CON RESPECTO AL BORDE 
+            
+        */
+    margin: 10px;
+        /*
+          SON LOS MARGENES DEL BORDE HACIA AFUERA (de lo que esta contenido)
+          MISMAS REGLAS QUE BORDER  
+        */
+    float: right;
 }
-h2{
+h3{
      color: green;
+     width: 600px;
+     margin: 0 auto;/*LO DEJA JUSTO EN EL MEDIO*/ 
+        
     }
 h2{
     color: violet;
     background-color: black;
+    border-style: dotted;
+    border-color: aquamarine;
+    position: absolute;
+    float: left;
     /*va aplicando en forma de cascada*/
   }
   #segundap{
       color:red;
   }
+
+#div1
+{
+    color: brown;
+    
+}
 
