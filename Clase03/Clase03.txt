@@ -1,0 +1,14 @@
+PARCIAL
+    AJAX
+    JAVASCRIPT
+    CSS
+    HTML
+
+PARCIAL PASADO
+BLOG
+    LOGIN
+        USER/PASSW
+    BOTON LOGIN
+        EJECUTA JS
+        ENVIA A SERVIDOR 
+    

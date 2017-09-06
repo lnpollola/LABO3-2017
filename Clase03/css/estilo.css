@@ -51,7 +51,7 @@ h2{
     border-style: dotted;
     border-color: aquamarine;
     position: absolute;
-    float: left;
+
     /*va aplicando en forma de cascada*/
   }
   #segundap{
@@ -64,3 +64,19 @@ h2{
     
 }
 
+/*Se aplica el estilo a los li que estan dentro de UL Herencias */
+ul li
+{
+    display: inline;
+    text-align: center;
+}
+
+ul li a
+{
+    text-decoration: none;
+}
+
+ul li a:hover
+{
+    background-color: violet;
+}
