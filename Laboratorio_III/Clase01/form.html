@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body >
+    <!-- action: php method get post-->
+    <form action="" id="miFormulario" method="GET">
+        <fieldset width="100" height="800" controls>
+            <legend>Formulario</legend>
+
+            <label for="nombre">Nombre: </label>
+            <!--lo q ve el usuaro-->
+            <input type="text" name="nombre" id="nombre" placeholder="escribile wacho">
+            <!-- el name lo vemos desde el servidor, el id desde javascript-->
+            <!--el mismo name lleva a que los dos radio sean adicioneales-->
+            <br><br>
+            <fieldset width="100" height="200" controls>
+                <legend>Opciones</legend>
+                <input type="radio" name="genero" id="genero" value="masculino">Masculino
+                <input type="radio" name="genero" id="genero" value="femenino">Femenino
+                <input type="radio" name="genero" id="genero" value="cualquiercosa">Programador
+            </fieldset>
+            <fieldset>
+                <select name="" id="">
+                    <optgroup label= "primeras opciones">
+                    <option value="valor1">pcion 1</option>
+                    <option value="valor2">opcion 2</option>
+                     </optgroup>
+                        <optgroup label= "segundas opciones">
+                    <option value="valor1">pcion 3</option>
+                    <option value="valor2">opcion 4</option>
+                     </optgroup>
+
+                </select>
+            </fieldset>
+            <fieldset>
+                <input list="marcas">
+                <datalist id="marcas">
+                    <option value="Renault"></option>
+                    <option value="Fork"></option>
+                </datalist>
+            </fieldset>
+            <fieldset style="background-color:gray;">
+                <input type="checkbox" name="enteros" value="Informatica">Informatica
+                <input type="checkbox" name="enteros" value="Estadistica">Estadistica
+                <input type="checkbox" name="enteros" value="Metodologia">Metodologia
+            </fieldset>
+            <fieldset  style="background-color:green;">>  
+                <button type="button">Enviar</button>
+            </fieldset>
+            <fieldset>  
+                  <legend>Traducciòn de calendario Maya</legend>
+                <input type="date">
+            </fieldset>
+            <fieldset>  
+                <input type="color">
+            </fieldset>
+            <fieldset>  
+                  <input type="number" name="quantity" min="1" max="3">
+            </fieldset>
+            <fieldset>  
+                <input type="text" pattern="[a-cA-c]{3}" required/>
+            </fieldset>
+
+<!-- input type= color; date, email,url,number,password ; -->
+            <!-- FIN-->
+        </fieldset>
+    </form>
+
+
+</body>
+
+</html>

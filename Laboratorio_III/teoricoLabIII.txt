@@ -1,0 +1,58 @@
+teoricoLaboratorio
+
+
+table secciones semánticas: thead, tbody, tfoot;
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <table width="300px" border="1px">
+        <caption>Nuestros Cursos</caption>
+        <thead align="center">
+            <tr>
+                <th>titulo 1</th>
+                <th>titulo 2</th>
+            </tr>
+        </thead>
+        <tbody align="center">
+            <tr>
+                <td>aa</td>
+                <td>bb</td>
+            </tr>
+            <tr>
+                <td>aa</td>
+                <td>bb</td>
+            </tr>
+            <tr>
+                <td>aa</td>
+                <td>bb</td>
+            </tr>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>pie</td>
+            </tr>
+        </tfoot> 
+
+
+    </table>
+
+</body>
+
+</html>
+
+
+
+video: poner tres opciones de source; itera hasta que uno funcione con el buscador
+
+
+####################
+formularios 
+input: etiqueta vacìa no puede llevar html 
