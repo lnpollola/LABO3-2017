@@ -1,0 +1,2 @@
+btn.getattribute () //puedo ver el value, la accion de onclick, etc.
+btn.setattribute () //lo mismo para setear 
