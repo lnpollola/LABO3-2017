@@ -1,0 +1,209 @@
+******************HTML5******************
+	<header>, <footer>, <article> y <section>
+	
+	<html>
+	<title>
+	<body>
+	<h1> a <h6> encabezados
+	<p> 		parrafo
+	<hr> 		define un cambio temático en el contenido (linea horizontal?)
+	<!- -> 		Comentario
+	
+	//IMG
+	<img>, <map>, <area>, <figure>, <picture>
+	//LINKS
+	<a> hipervínculo
+	<link> define relacion entre documento y recurso externo
+	//AUDIO
+	<audio>* , <video> * , <source> * , <track> *
+	
+	//LISTAS
+	<ul> 		lista desordenada
+	<ol> 		lista ordenada
+	<li> 		item de una lista
+	<dl> 		lista de descripción
+	<dd> 		definicion de un termino de una lista <dl>
+	<menu>
+	<menuitem> * Define 1 item del menu
+	
+	//TABLAS
+	<table>
+	<caption> 	titulo
+	<th> 		celda cabecera 
+	<tr> 		una fila en la tabla
+	<thead> 	agrupa las celdas <th> de la tabla
+	<tbody> 	agrupa el contenido del cuerpo en la tabla
+	<tfoot> 	agrupa el contenido del pie de tabla 
+	
+	//ESTILOS
+	<styles> 	define estilos para un doc.
+	<div> 		define una sección
+	<span> 		define sección in-line en un documento
+	<header> 	encabezado
+	<footer> 	pie para un documento
+	<section> <article> <aside> <details> <dialog> <summary> <data>
+	
+	//PROGRAMACION
+	<scrip> 	define el codigo del  lado del cliente
+	<param>  	parametro para un objeto
+	
+	//FORMS e INPUT
+	<form> , <input> , <textarea> (caja de texto con filas y columnas), <button>, <select> (lista desplegable),
+	<optgroup> (grupo de opciones para una lista desplegable), 
+	<option>	opcion para una lista desplegable
+	<label>		define una etiqueta para los controles <input>
+	<datalist>	especifica una lista de opciones predefinidas para inputs
+	<output>	define el resultado de un calculo 
+	//EJ LISTA DESPLEGABLE
+	<select name=“cboLista” size=“2” id=“cboLista” >
+	<option value=“1”> Opción 1 </option>
+	<option value=“2” selected > Opción 2  </option>
+	</select>
+	//EJ OPCIONES AGRUPADAS
+	<select name=“cboLista” id=“cboLista” >
+	<optgroup label=“Grupo 1”>
+		<option value=“1”> Opción 1 </option>
+		<option value=“2”> Opción 2 </option>
+	</optgroup>
+	<optgroup label=“Grupo 2”>
+		<option value=“3”> Opción 3 </option>
+		<option value=“4”> Opción 4 </option>
+	</optgroup>	
+	</select>
+	//DATALIST
+	<input list=“dlLista” placeholder=“Elija un destino”  />
+	<datalist id=“dlLista” >
+		<option value=“Cuba”>
+		<option value=“Mexico” >
+	</datalist>
+
+	///FORMULARIOS
+	<form method=“[GET|POST]” action=“URL” name=“frm” id=“frm” > 
+	Contenido del formulario
+	</form>
+	
+	<input type=“[TEXT|PASSWORD|CHECKBOX|RADIO|SUBMIT|
+		RESET|FILE|HIDDEN|IMAGE|BUTTON]” 
+	name=“nombre” id=“nombre” value=“valor” /> 
+
+	<input type=“text” name=“txtDni” size=“35” value=“0” id=“txtDni” 
+	maxlength=“8” /> 
+	<input type=“password” name=“txtClave” size=“35” id=“txtClave” 
+	maxlength=“6” /> 
+
+	<input type=“checkbox” name=“chkOp1” value=“0” checked /> 
+	<input type=“checkbox” name=“chkOp2” value=“1” /> 
+	<input type=“checkbox” name=“chkOp3” value=“2” /> 
+
+	<input type=“radio” name=“rdoTipo” value=“dni” checked /> 
+	<input type=“radio” name=“rdoTipo” value=“Li” /> 
+	<input type=“radio” name=“rdoTipo” value=“pass” /> 
+
+	<input type=“hidden” name=“variable” id=“variable” value=“valor” /> 
+	<input type=“submit” value=“Enviar Datos” /> 
+
+	<input type=“image” src=“../Imagenes/miImagen.jpg” /> 
+
+******************JAVASCRIPT******************
+//INCLUIRLO EN HTML5
+-> VA EN EL HEAD
+		<script type=“text/javascript”
+			  src=“Funciones/archivo.js” >
+		</script>
+
+- Variables mediante la palabra VAR
+- No se declara el tipo
+
+//FUNCIONES
+function NombreFuncion([param1, param2, paramN]) 
+{
+	// Código
+	// [return valor;] 
+}    
+
+//VENTANAS
+alert(“Hola mundo!!”);
+nombre = prompt(“Ingrese su nombre”,”Usuario”); //para ingresar datos
+if(confirm(“Desea continuar?”))
+		// Se ejecuta una acción
+	else
+		// Se ejecuta otra acción
+
+//ACCESO A NODOS
+DIRECTO
+	getElementsByTagName()
+	getElementsByName()
+	getElementById()
+
+	//EVENTOS
+	TIPOS (MANEJADORES)
+		onblur			deseleccionar el elemento				(button/input/label/select/textarea/body)
+		onchange		deseleccionar el elemento modificado	(input/select/textarea)
+		+onclick			clickear 1 vez							todos los elementos
+		ondbclik		clickear 2 veces seguidas				todos los elementos
+		onfocus			seleccionar un elemento					(button/input/label/select/textarea/body)
+		onkeydown		pultar una tecla sin soltarla			eventos de form y body
+		onkeypress		pulsar una tecla						eventos de form y body
+		onkeyup			soltar una tecla pulsada				eventos de form y body
+		+onload			al cargar la pagina completamente		body
+		onmousedown		pulsar sin soltar un botoon del mouse	todos los elementos
+		onmousemove		mover el mouse							todos los elementos
+		+onmouseout		el mouse sale del elemento				todos los elementos
+		+onmouseover		el mouse entra en el elemento           todos los elementos
+		onmouseup		soltar el boton que estaba pulsado      todos los elementos
+		onreset			borrar los datos de un formulario		form
+		onresize		se modifico el tamaño de la ventana 	body
+		+onsubmit		enviar el formulario					form
+		onunload		se abandona la pagina					body
+
+	//COMO ATRIBUTOS EN EL HTML
+	<input type=“button” value=“Click Aquí” 
+	onclick=“alert(‘hola mundo!!’);” />
+
+	//COMO FUNCIONES
+	<input type=“button” value=“Click Aquí” 
+	onclick=“MostrarMensaje();” />
+
+******************CSS / BOOTSTRAP ******************
+invocarlo desde html
+	<link type="text/css" rel="stylesheet" href="URL" />
+//AGRUPACION
+	H1,H2,H3,H4 { color : black; }
+	H1 {color:black; font-size:6pt;}
+	H1,H2 {color:black; font-size:6pt;}
+//ATRIBUTO
+	CLASS -> HTML
+		SUB SELECTOR
+		P { color : red; }
+		P.negrita { font-weight : bold; }
+		
+			<p> Párrafo en color rojo </p>
+			<p class=“negrita” > Párrafo en negrita y rojo</p>
+//ID UNICO	
+	#idHTML
+	
+//PSEUDO ELEMENTOS
+	VAN CON :
+		P:first-line{font-style:small-camps;}
+		P:first-letter
+			{font-size:220%;
+			 float:left;
+			}
+
+******************AJAX / JQUERY ******************
+XMLHttpRequest
+	open() y send().
+		xhttp.open("Método", "Url", Async);
+			Método: Especifica el tipo de pedido (GET/POST).
+			Url: Indica la ubicación del archivo en el servidor.
+			Async: true (Asincrónico); false (Sincrónico).
+		xhttp.send(); 			//SI ES GET
+		xhtpp.send("string"); 	//SI ES POST
+		+siempre open y dsp send
+	elemento onreadystatechange 
+		= 4 -> Solicitud terminada y respuesta lista
+		status ->   200 OK
+					404	NO ENCONTRADO
+
+
+	
