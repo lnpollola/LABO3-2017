@@ -3,7 +3,7 @@
 }
 
 body{
-    background-color: grey;
+    background-color: darkred;
 }
 
 table{
@@ -11,26 +11,39 @@ table{
 }
 
 #tablaUsuarios{ 
-    background-color: green;
+    background-color: black;
+    color: white;
     text-align: center;
     border-width: 5px;
-    border-color: black;
+    border-color: darkred;
+    margin: 10px;
+    
+      line-height: 30px;
+      width: 650px;
+      border-width: 500px;
    
 }
 
 
-#btnEnviar, #btnGuardar{
+#btnEnviar, #btnGuardar,#btnBorrar,#btnModificar{
     width: 120px;
 	height:25px;
 	border-radius: 5px;
-    background-color: #CCC90B;	
+    background-color: lightseagreen;
+    color: white;
+   	
+}
+
+h1{
+    color:red;
 }
 
 
 #ingreso{ 
-    background-color: #B9671A;
+    background-color: darkred;
+    color:white;
     width: 70%;
     border: 6px;
-    border-color: black;
+    border-color: white;
    
 }
