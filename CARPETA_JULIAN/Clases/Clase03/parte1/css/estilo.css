@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+    /*Lo que estoy diciendo es que el borde es el borde de la caja*/
+}
+#div1{
+    background-color: blue;
+            width: 600px;
+            height: 300px;
+            /*border: 200px;*/
+            /*es el ancho que tome el pixel*/
+            
+            /*border: 200px 100px;*/
+            /*Se pueden pasarle valores a la propiedad border 
+            los primeros dos son arriba y abajo
+            los otros dos son derecha e izquierda. Si solo pongo un digito
+            se lo aplica a todos. */
+            
+            /*Para seleccionar:*/
+            /*border: 0 10px 0 0;*/
+            border: 10px dotted;
+            float: right;
+            border-color: darkred;
+            margin: 0 auto;
+            position: ;
+            /*border-bottom: 10 px;*/
+
+            padding: 20px;
+            /*centra y da margen*/
+     
+}
+
+#div2{
+    width: 600px;
+    height: 300px;
+    background-color: violet;
+     border: 10px dotted;
+     margin: 0 auto;
+     /*agrega margen*/
+    float: left;
+    position: absolute;
+
+    
+}
+
+/*
+span{
+    background-color: violet;
+    
+}*/

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Video</title>
+</head>
+<body>
+    <table width="300px" border="1px">
+        <caption>Archivo de video</caption>
+        <!--caption: centrar-->
+        <thead>
+            <tr>
+                <!--tr: cada fila-->
+
+                <th>Columna1</th>
+                <th>Columna2</th>
+                <!--th: columnas-->
+            </tr>
+            <!--rowspan
+            columspan 
+            Es para expandir o achicar celda-->
+
+            <tr><td>Otra Fila1</td><td>Otra Fila2</td></tr>
+            <tr><td>Otra FilaA</td><td>Otra FilaB</td></tr>
+              </table>
+              <br><br><br><br>
+        </thead>
+        <tbody>
+            <video  controls width="700" preload="" poster="video/jesu.jpg">
+            <!--controls es para los controles para el video.
+            TAG VIDEO: me deja subir poniendo el path en src(sourse)        
+            POSTER: es la imagen fija antes de darle play al video.
+            AUTOPLAY: en la etiqueta es para que ya arranque el video al cargar la pagina
+            LOOP: claramente es para que se vuelva a reproducir
+            WIDTH: es para darle el tamaño al video.
+            -->
+            Su navegador no admite video. Aca va cuando falla.
+            <source src="video/codigo.ogv" type="video/ogg">
+            <!--TAG SOURCE: para que funcione en distintos navegadores (compatibilidad)-->
+            <source src="video/codigo.mp4" type="video/mp4">
+            <source src="video/codigo.webm" type="video/webm">
+            </video>
+        </tbody>
+  
+</body>
+</html>
