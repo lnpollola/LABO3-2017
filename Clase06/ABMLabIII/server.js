@@ -8,7 +8,11 @@ var Personas = [
     { nombre: 'Juan', apellido: 'Suarez'},
     { nombre: 'Sol', apellido: 'Perez'},
     { nombre: 'Jose', apellido: 'Gomez'},
-    { nombre: 'Valentina', apellido: 'Gimenes'}
+    { nombre: 'Valentina', apellido: 'Gimenes'},
+    { nombre: 'Leandro', apellido: 'Sanchez'},
+    { nombre: 'Nicolas', apellido: 'Gerez'},
+    { nombre: 'Pedro', apellido: 'Picapiedra'},
+    { nombre: 'Roberto', apellido: 'Bolaños'}
 ];
 
 app.use(cors());
@@ -49,8 +53,8 @@ app.post('/eliminarpersona', function (req, res) {
 });
 
 app.post('/modificarpersona', function (req, res) {
-    var indice=req.body.indice;
 
+    var indice=req.body.indice;
     var persona = req.body.persona;   
 
     Personas[indice]= JSON.parse(persona);  

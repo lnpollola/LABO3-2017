@@ -19,7 +19,7 @@ table{
 }
 
 
-#btnEnviar{
+#btnEnviar, #btnGuardar{
     width: 120px;
 	height:25px;
 	border-radius: 5px;
