@@ -1,1 +1,54 @@
 NavBar de Bootstrap
+2do Parcial
+
+Todo local 
+Hacer un ABM
+Funciones de array -> Map - Filter - Reduce
+    Parecidos a las consultas SQL
+    Mostrar o no columnas segun un checkbox -> map
+    Seleccionar un valor de la lista para mostrar valores -> filter
+    Reduce un array a un unico numero, funciones de fila unica (count, avg); tienen que ser 1 solo numero de rta. -> reduce
+
+    MAP -> array.prototype.map()
+        Devuelve un nuevo array sin modificar el base
+        EJ -> Arr.map(callback, thisArg])
+        [1, 2, 3, 4].map( function(valorActual,indice,array{....}))
+        Hace un foreach de un array, y a cada elemnto, del primero al ultimo, se los tira a la funcion callback (1er parametro)
+            hace algo con el elemento y lo retorna, no toca el original
+
+        //EJEMPLO
+        var numeros = [1,2,3,4,5,6];
+        var cuadrados = numeros.map (function (numero) )
+        {
+            return numero*numero;
+        });
+        //[1,4,9,16,25,36]
+
+    FILTER-> array.prototype.filter()
+        En vez de retornar 1 elemento, lo que hace es -> retorna true o false a traves del callback
+            Si el callback es true, el elemento que devuelve pasa al array de salida
+
+        //EJEMPLO
+        var numeros=[1,2,3,4,5,6];
+        var mayoresA3 = numeros.filter( function(numero))
+        {
+            return numero >3;
+        });
+        //[4,5,6]
+
+    REDUCE -> array.prototype.reduce()
+        arr.reduce( function(valorActual, valorAnterior, indiceActual, array{....}))
+        //Metodo tradicional
+            var numeros = [1,2,3,4,5,6];
+            var total = 0;
+            for(var i=0; i<numeros.length; i++)
+            {
+                total +=numeros[i];
+            }
+            //21 
+        //EJEMPLO 
+            
+
+LocalStorage
+    SetItem
+    GetItem
