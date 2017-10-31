@@ -37,7 +37,9 @@ Funciones de array -> Map - Filter - Reduce
         //[4,5,6]
 
     REDUCE -> array.prototype.reduce()
-        arr.reduce( function(valorActual, valorAnterior, indiceActual, array{....}))
+        Convierte al array en un solo valor
+            arr.reduce(callback[ , initValue])
+            arr.reduce( function(valorActual, valorAnterior, indiceActual, array{....}))
         //Metodo tradicional
             var numeros = [1,2,3,4,5,6];
             var total = 0;
@@ -47,7 +49,54 @@ Funciones de array -> Map - Filter - Reduce
             }
             //21 
         //EJEMPLO 
-            
+            var numeros = [1,2,3,4,5,6];
+            var total = numeros.reduce (function (previo,actual)) 
+            {
+                return previo+actual;
+            }, 0);
+            //21
+
+    //ENCADENO Funciones
+        var mascotas = [
+            {nombre: 'bobby',  tipo:'perro',  age:4},
+            {nombre: 'morgan', tipo:'perro',  age:2},
+            {nombre: 'michi',  tipo:'gato',   age:3},
+            {nombre: 'billy',  tipo:'perro',  age:1},
+            {nombre: 'rafael', tipo:'iguana', age:2}
+        ];
+
+        Total de la edad de perros:
+        var TotalEdadPerros = mascotas
+        .filter ( function(mascota) {mascota.tipo == 'perro'} )
+        .map    ( function(mascota) {mascota.edad})
+        .reduce ( function(previo,actual) {previo+actual},0);
+
+        //7
+
+    UNIQUE -> Valores unicos de una respuesta 
+        //CLASICO
+        var vector= [1,3,4,5,2,4,3,5];
+
+        function unique(vec)
+        {   
+            var i;
+            var out= [];
+            var objeto={};
+
+            for(i=0; i<vec.length; i++){
+                objeto[vec[i]]=0;
+            }
+
+            for(i in objeto){    //i in objeto -> devuelve el indice de la primer ocurrencia 
+                out.push(i);
+            }
+            return out;
+        }
+
+        //EJEMPLO
+            array.prototype.unique= function(a){
+                return function(){return this.filter(a)}} (function(a,b,c){return c.indexOf(a,b+1))<0  
+            });   
 
 LocalStorage
     SetItem
