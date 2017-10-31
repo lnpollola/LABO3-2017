@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--<link rel="stylesheet" href="css/estilos.css">-->
+  <script src="js/jquery-3.2.1.js"></script>
+  <!-- ACORDARSE DE BAJAR EL JQUERY. LO PODES SACAR DE INTERNET, SINO NO FUNCIONA LA GILADITA -->
+  <!--<script src="js/script.js"></script>-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Laboratorio III</title>
+</head>
+
+<!-- PRIMERO CONTAINER -->
+<div class="container">
+  <!-- TAB NAV, ES UN OBJETO DE HTML5  -->
+  <nav class="navbar navbar-inverse navbar-fixed-top "> <!--AGREGA MARGEN, ES UNA CLASE DE BOOTSTRAP-->
+   <!-- navbar -> agrega margen / navbar-inverse -> CAMBIA ORDEN COLORES / navbar-fixed-top -> LO CLAVA ARRIBA -->
+    <div class="container-fluid">   <!--  METE EL CONTENIDO PARA ADENTRO -->
+      <div class="navbar-header">
+        <!-- BOTON QUE SE COLAPSA EN PANTALLAS PEQUEÑAS 
+        HACE QUE APAREZCAN Y DESAPAREZCAN LAS OPCIONES -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#miNavbar">
+          <!-- data-target ID DEL LISTA DONDE ESTAN LOS OBJETOS -->
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+        </button>
+
+        <a class="navbar-brand" href="#">Laboratorio III</a>
+        <!-- navbar-brand -->
+      </div>
+      <!-- 
+          SORTED LIST
+          COLLAPSE   
+          PARA QUE LOS ELEMENTOS SE METAN ADENTRO DEL MENU      
+      -->
+      <div class="collapse navbar-collapse" id="miNavbar">
+        <!-- CAMBIA ESTILO DE CADA BOTON, LOS EFECTOS -->
+        <ul class="nav navbar-nav navbar-right">
+          <!-- navbar-nav -> navegacion con el estilo de seleccion pero mejor  
+              navbar-right -> alinea los titulos a la derecha
+          -->
+          <li class=""><a href="#">Home</a></li>
+          <li><a href="#">Descripcion</a></li>
+          <li><a href="#inscripcion">Inscripcion</a></li>
+          <li><a href="#listado">Listado</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+</html>
