@@ -98,6 +98,29 @@ Funciones de array -> Map - Filter - Reduce
                 return function(){return this.filter(a)}} (function(a,b,c){return c.indexOf(a,b+1))<0  
             });   
 
+        soluciones.usuarios = function
+
+//EJEMPLO DE PAISES UNICOS
+$function(){
+    cargarPaises();
+    $("#paises").change(function){
+        cargarCiudades(this.value);
+    }
+}
+
+function cargarPaises(){
+    var paises= data.map(function(p)){
+        return p.pais;
+    })
+    .unique()
+    .sort();
+
+    $.each(paises, function(NULL,pais){
+        $("#paises").append('<option value="'+pais+'"+'"+'<(option>'))
+    }
+}
+
+
 LocalStorage
     SetItem
     GetItem
