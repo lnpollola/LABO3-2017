@@ -1,0 +1,121 @@
+CAMINO Parcial
+1/2 PARCIAL
+    QUE SE CARGUE EL PAIS CON UNIQUE EN UN BOX
+        CAMBIA PAIS, LISTA DE TABLA CON LAS PERSONAS DEL PAIS
+        DATOS CON CHECKBOX QUE ESTEN CHEQUEADOS SE MUESTRAN, EL RESTO NO
+            ID, NOMBRE, APELLIDO, EMAIL, EDAD, DNI
+        BOTON PROMEDIO
+            AL LADO APARECE EL PROMEDIO DE EDAD DE LAS PERSONAS DE ESE PAIS 
+1/2 PARCIAL
+    LOCALSTORAGE
+
+//LOS 3 TS EN EL MISMO NAMESPACE ANIMAL, MASCOTA, ENUMERADO
+//PONER EXPORT EN EL NAMESPACE
+
+//PARCIAL ULT_CLASE
+APP.TS
+
+ID -> COMPLETAR
+NOMBRE -> COMPLETAR
+EDAD -> COMPLETAR
+TIPO ->ENUM TIPO
+CANTIDAD PATAS -> COMPLETAR
+
+AGREGAR MODIFICAR ELIMINAR 
+***LISTA DE MASCOTAS***
+
+ID NUMBER EDAD TIPO PATAS
+
+ANIMAL ABSTRACTA
+ANIMAL.TS
+
+CLASE MASCOTA
+MASCOTA.TS
+    HEREDA DE ANIMAL
+        LE AGREGA AL ANIMAL ID Y TIPO
+            TIPO ENUM   
+            ENUMERADOS.TS
+                TIPOMASCOTA
+                    PERRO
+                    GATO
+                    REPTIL
+                    ROEDOR
+                    PEZ
+                    AVE
+    DE ACUERDO AL TIPO DE ANIMAL SELECCIONADO QUE ME PONGA LA CANTIDAD DE PATAS 
+
+    toJson (todos lo tienen que tener, devuelve un JSON)
+
+//FILTER POR TIPO YMOSTRAR ESO EN UNA TABLA 
+//TRAER ESTILOS
+//JQUERY CARGADO
+//JSON 
+
+//GOOGLEAR
+ABM EN LOCALSTORAGE
+    SET ITEM 
+    GET ITEM 
+    CLEAR 
+CUANDO LO GUARDAMOS, SE GUARDA COMO STRING, ENTONCES VA A TENER QUE HACER UN ARRAY DE JSON STRINGIFY (ESTO LO VIMOS)
+CUANDO VUELVE, LO PARSEO EN UN ARRAY DE MASCOTAS
+arrayMascotas.push (y mando el parse aca)
+
+HAY QUE USAR TYPESCRIPT, BOOTSTRAP
+NO USAR JQUERY 
+
+
+
+//AYUDAS
+mascota 
+    public tipo:tipoMascota; (este es el enumerado)
+    extiende animal
+    export en el namespace
+    constructor
+        llama al padre 
+export enum tipomascota
+
+enumerado 
+app 
+animal
+    namespace
+    export abstract class
+    constructor
+    public tojson 
+    json:string (nombre (this.nombre9)):
+        return json
+
+app
+    function 
+        localstorage.clear
+
+    function agregarMascota
+        creo nueva mascota
+            let id: number = Number ($#txtid).val();
+            let tipo: Clases.tipoMascota = Number ($(selecTipo).val());
+            let nuevaMascota = new Clases.Mascota(Number($('#txtId').val()),string($(),tipo))
+
+            let MascotasString:string|null = localStorage.getItem("Mascotas");
+            //la primera vez no hay nada, las otras veces string
+
+                let MascotasJson : JSON[] = MAscotaString == null ? [] : JSON.parse(MascotaNueva.Json()); // ESTO ES UN IF
+                console.log(nuevaMascota.toJson()); //ver como anda
+
+                MascotassJson.push(Json.parse(nuevaMascota.toJSON()));
+
+                localStorage.setItem("Mascotas",JSON.stringify(MascotasJSON));
+
+                alert ("Mascota guardada");
+
+                mostrarMascotas();
+                    let MascotasJson : Clases.Mascota[i].id
+                    armo la tabla como el primer parcial con el fastix
+                    #divtabla.html(tabla);
+
+                limpiarCampos();
+                    $txtnombred.val("")
+                    a selectipo le da 0
+                    y que ponga foco en txtid
+        
+        armo el json con un array de mascotas
+
+index html 
