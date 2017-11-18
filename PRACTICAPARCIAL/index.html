@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!--<link rel="stylesheet" href="css/estilos.css">-->
   <script src="js/jquery-3.2.1.js"></script>
-  <script src="js/script.js"></script>
+  <!-- <script src="js/script.js"></script> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <title>Laboratorio III</title>
@@ -15,7 +15,8 @@
 
 
 <div class="container">
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- NAVBAR -->
+  <!-- <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -35,64 +36,102 @@
 
       </div>
     </div>
-  </nav>
+  </nav> -->
 
-  <body style="padding-top:65px">
-  
+  <!-- <body style="padding-top:65px"> -->
 
-    <section id="inscripcion" style="background-color:red;padding-top:65px;padding-bottom:45px;">
-
-      <div class="row">
-        <div class="col-md-3 col-md-offset-3">
-          <label for="nombre">Nombre</label>
-          <br>
-          <input type="text" id="nombre" class="sinError form-control" name="nombre" placeholder="Tu nombre.." autocomplete="off" autofocus>
-          <br>
-        </div>
-        <div class="col-md-3">
-          <label for="apellido">Apellido</label>
-          <br>
-          <input type="text" id="apellido" class="sinError form-control" name="apellido" placeholder="Tu apellido.." autocomplete="off">
-          <br>
-        </div>
+    <!-- <section id="inscripcion" style="background-color:red;padding-top:65px;padding-bottom:45px;"> -->
+        <!-- FORMULARIOS ENTRADA -->
+            <!-- ID -> COMPLETAR
+            NOMBRE -> COMPLETAR
+            EDAD -> COMPLETAR
+            TIPO ->ENUM TIPO
+            CANTIDAD PATAS -> COMPLETAR -->
+    <div class"row">        
+            <!-- NOMBRE -->
+                <div class="form-group">
+                <label for="nombre">Nombre</label><br>
+                <input type="text" id="nombre" class="sinError form-control" name="nombre" placeholder="Nombre.." autocomplete="off" autofocus><br>
+                </div>
+            <!-- EDAD -->
+                <div class="form-group">
+                <label for="edad">Edad</label><br>
+                <input type="text" id="edad" class="sinError form-control" name="edad" placeholder="Edad.." autocomplete="off"><br>
+                </div>
+            <!-- TIPO - ENUM TIPO -->
+                <div class="form-group">
+                    <label for="opcion">Elige un tipo:</label>
+                    <select class="form-control" name="" id="opcion">
+                        <!-- ACA TIENE QUE LLAMAR AL ENUM -->
+                        <option value="">Tipo #1</option>
+                        <option value="">Tipo #2</option>
+                        <option value="">Tipo #3</option>
+                    </select>
+                </div>
+            <!-- PATAS -->
+                <div class="form-group">
+                    <label for="opcion">Elige cant. patas:</label>
+                    <select class="form-control" name="" id="opcion">
+                        <!-- ACA TIENE QUE LLAMAR AL ENUM -->
+                        <option value="">PATAS #1</option>
+                        <option value="">PATAS #2</option>
+                        <option value="">PATAS #3</option>
+                    </select>
+                </div>
+      
       </div>
+      
+      <!-- BOTONES -->
 
-      <div class="container row">
-        <div class="col-md-12">
-          <button class='btn btn-success btn-block' type="button" id="btnEnviar" value="Guardar" onclick="agregar();">
-              Guardar
-              <i class="glyphicon glyphicon-save"></i>
-          </button>
-        </div>
+        <!-- AGREGAR -->
+            <div class="container row">
+                <button class='btn btn-success btn-sm' type="button" id="btnEnviar" value="Guardar" onclick="agregar();">
+                    AGREGAR
+                    <i class="glyphicon glyphicon-save"></i>
+                </button>
+            </div>
+         <!-- MODIFICAR -->
+             <div class="container row">
+                <button class='btn btn- btn-warning' type="button" id="btnEnviar" value="Guardar" onclick="agregar();">
+                    MODIFICAR
+                    <i class="glyphicon glyphicon-save"></i>
+                </button>
+              </div>
+         <!-- BORRAR -->
+            <div class="container row">
+                <button class='btn btn-danger btn-sm' type="button" id="btnEnviar" value="Guardar" onclick="agregar();">
+                    BORRAR
+                    <i class="glyphicon glyphicon-save"></i>
+                </button>
+            </div>
 
       </div>
 
     </section>
 
-
+    <!-- EL SPINNER QUE  GIRA CUANDO CARGA -->
     <div id="spinner">
 
+    <!-- TABLA LISTADO -->
     </div>
-
-
     <section id="listado" class="container" style="padding-top: 45px;">
-      <h2>Listado de inscriptos</h2>
+      <h2>Listado de Mascotas</h2>
       <div class="table-responsive">
         <table class="table table-hover" id="tabla">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Accion</th>
+              <th>Edad</th>
+              <th>Tipo</th>
+              <th>Patas</th>
             </tr>
           </thead>
           <tbody id="tCuerpo">
-
           </tbody>
         </table>
       </div>
     </section>
 </div>
 </body>
-
 </html>
