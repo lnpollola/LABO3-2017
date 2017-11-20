@@ -15,30 +15,28 @@ AGREGAR MODIFICAR ELIMINAR
 
 ID NUMBER EDAD TIPO PATAS
 
-ANIMAL ABSTRACTA
-ANIMAL.TS
+--ANIMAL ABSTRACTA
+--ANIMAL.TS
 
 CLASE MASCOTA
 MASCOTA.TS
-    HEREDA DE ANIMAL
-        LE AGREGA AL ANIMAL ID Y TIPO
-            TIPO ENUM   
-            ENUMERADOS.TS
-                TIPOMASCOTA
+    --HEREDA DE ANIMAL
+        --LE AGREGA AL ANIMAL ID Y TIPO
+            --TIPO ENUM   
+            --ENUMERADOS.TS
+                --TIPOMASCOTA
                     PERRO
                     GATO
                     REPTIL
                     ROEDOR
                     PEZ
                     AVE
-    DE ACUERDO AL TIPO DE ANIMAL SELECCIONADO QUE ME PONGA LA CANTIDAD DE PATAS 
-
-    toJson (todos lo tienen que tener, devuelve un JSON)
-
-//FILTER POR TIPO YMOSTRAR ESO EN UNA TABLA 
-//TRAER ESTILOS
-//JQUERY CARGADO
-//JSON 
+??DE ACUERDO AL TIPO DE ANIMAL SELECCIONADO QUE ME PONGA LA CANTIDAD DE PATAS 
+toJson (todos lo tienen que tener, devuelve un JSON)
+FILTER POR TIPO YMOSTRAR ESO EN UNA TABLA 
+TRAER ESTILOS
+JQUERY CARGADO
+JSON 
 
 //GOOGLEAR
 ABM EN LOCALSTORAGE
@@ -55,20 +53,20 @@ NO USAR JQUERY
 
 
 //AYUDAS
-mascota 
-    public tipo:tipoMascota; (este es el enumerado)
-    extiende animal
-    export en el namespace
-    constructor
-        llama al padre 
-export enum tipomascota
+--mascota 
+    --public tipo:tipoMascota; (este es el enumerado)
+    --extiende animal
+    --export en el namespace
+    --constructor
+        --llama al padre 
+--export enum tipomascota
 
-enumerado 
-app 
-animal
-    namespace
-    export abstract class
-    constructor
+--enumerado 
+--app 
+--animal
+    --namespace
+    --export abstract class
+    --constructor
     public tojson 
     json:string (nombre (this.nombre9)):
         return json

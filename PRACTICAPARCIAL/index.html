@@ -46,7 +46,12 @@
             EDAD -> COMPLETAR
             TIPO ->ENUM TIPO
             CANTIDAD PATAS -> COMPLETAR -->
-    <div class"row">        
+    <div class"row">   
+            <!--  ID-->
+            <div class="form-group">
+              <label for="id">ID</label><br>
+              <input type="text" id="id" class="sinError form-control" name="id" placeholder="ID.." autocomplete="off" autofocus><br>
+              </div>
             <!-- NOMBRE -->
                 <div class="form-group">
                 <label for="nombre">Nombre</label><br>
@@ -82,21 +87,21 @@
       
       <!-- BOTONES -->
       <div class="container row">
-        <!-- AGREGAR -->
-            
-                <button class='btn btn-success btn-sm' type="button" id="btnEnviar" value="Guardar" onclick="agregar();">
+        <!-- AGREGAR -->    
+                <button class='btn btn-success btn-sm' type="button" id="btnEnviar" value="Guardar" onclick="agregarMascota()">
                     AGREGAR
                     <i class="glyphicon glyphicon-plus"></i>
                 </button>
             <!-- </div> -->
+        <!-- ESTOS DEBERIAN SER BOTONES DE LA LISTA -->
         <!-- MODIFICAR -->
-                <button class='btn btn- btn-warning' type="button" id="btnEnviar" value="Guardar" onclick="agregar();">
+                <button class='btn btn- btn-warning' type="button" id="btnEnviar" value="Modificar" onclick="eliminarMascota();">
                     MODIFICAR
                     <i class="glyphicon glyphicon-pencil"></i>
                 </button>
               <!-- </div> -->
         <!-- BORRAR -->
-                <button class='btn btn-danger btn-sm' type="button" id="btnEnviar" value="Guardar" onclick="agregar();">
+                <button class='btn btn-danger btn-sm' type="button" id="btnEnviar" value="Eliminar" onclick="modifiarMascota();">
                     BORRAR
                     <i class="glyphicon glyphicon-minus"></i>
                 </button>
@@ -108,7 +113,6 @@
 
     <!-- EL SPINNER QUE  GIRA CUANDO CARGA -->
     <div id="spinner">
-
     <!-- TABLA LISTADO -->
     </div>
     <section id="listado" class="container" style="padding-top: 45px;">
