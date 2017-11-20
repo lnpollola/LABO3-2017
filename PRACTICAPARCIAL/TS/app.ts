@@ -1,3 +1,7 @@
+$(function()){
+    localStorage.clear();
+}
+
 function agregarMascota() 
 {
     let tipo: Clases.tipoMascota = Number($('#tipo').val()); 
@@ -12,15 +16,12 @@ function agregarMascota()
     
     let MascotasString:string|null = localStorage.getItem("Mascotas");
     // //la primera vez no hay nada, las otras veces string
-        let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
-        
-        console.log(nuevaMascota.toJson()); //ver como anda
-        console.log(MascotasJson); //ver como anda
-        
+        // let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
+        let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
         MascotasJson.push( JSON.parse(nuevaMascota.toJson()));
-        
-        // localStorage.setItem("Mascotas",JSON.stringify(MascotasJSON));
-        console.log(MascotasJson);
+        localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
+
+         let devuelve = localStorage.getItem("Mascotas");
     
     console.log(nuevaMascota);
     // alert ("Mascota guardada");

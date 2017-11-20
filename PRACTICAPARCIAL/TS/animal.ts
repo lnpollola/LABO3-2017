@@ -20,18 +20,13 @@ namespace Clases
 
         public animalCompleto() : string 
         {
-         return `${this._nombre}, ${this._edad}, ${this._cantPatas}`;
+         return `${this._nombre},${this._edad},${this._cantPatas}`;
             
         }
             
-
         public toJson():string
         {
             return this.animalCompleto(); 
         }
-
-    
-
-            
-        }
+    }
 }
