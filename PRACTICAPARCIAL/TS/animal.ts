@@ -19,11 +19,12 @@ namespace Clases
         }
             
 
-        public toJson(Nombre:string):string
+        public toJson():string
         {
-            return "respuesta"; 
+            return this.Nombre; 
         }
 
+    
 
             
         }

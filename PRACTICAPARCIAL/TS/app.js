@@ -1,21 +1,17 @@
 function agregarMascota() {
-    var id = Number($('#id').val());
-    var nombre = String($('#nombre').val());
-    var edad = Number($('#edad').val());
-    var patas = Number($('#patas').val());
     var tipo = Number($('#tipo').val());
     // let nuevaMascota = new Clases.Mascota(nombre,edad,patas,id,tipo);
     var nuevaMascota = new Clases.Mascota(String($('#nombre').val()), Number($('#edad').val()), Number($('#patas').val()), Number($('#id').val()), tipo);
-    // let MascotasString:string|null = localStorage.getItem("Mascotas");
+    var MascotasString = localStorage.getItem("Mascotas");
     // //la primera vez no hay nada, las otras veces string
-    //     let MascotasJson : JSON[] = MAscotaString == null ? [] : JSON.parse(MascotaNueva.Json()); // ESTO ES UN IF
-    //     console.log(nuevaMascota.toJson()); //ver como anda
-    //     MascotassJson.push(Json.parse(nuevaMascota.toJSON()));
-    //     localStorage.setItem("Mascotas",JSON.stringify(MascotasJSON));
-    //     alert ("Mascota guardada");
-    // console.log(tipo);
+    var MascotasJson = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
+    console.log(nuevaMascota.toJson()); //ver como anda
+    console.log(MascotasJson); //ver como anda
+    MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
+    // localStorage.setItem("Mascotas",JSON.stringify(MascotasJSON));
+    console.log(MascotasJson);
     console.log(nuevaMascota);
-    // alert (nombre);
+    // alert ("Mascota guardada");
 }
 //         mostrarMascotas();
 //             let MascotasJson : Clases.Mascota[i].id

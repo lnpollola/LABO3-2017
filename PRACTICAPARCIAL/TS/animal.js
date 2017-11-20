@@ -13,8 +13,8 @@ var Clases;
             enumerable: true,
             configurable: true
         });
-        Animal.prototype.toJson = function (Nombre) {
-            return "respuesta";
+        Animal.prototype.toJson = function () {
+            return this.Nombre;
         };
         return Animal;
     }());

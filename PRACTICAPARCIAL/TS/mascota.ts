@@ -11,10 +11,11 @@ namespace Clases
             this._id=id;
             this._tipo=tipo;
         }
-        
-                    // mostrar():string{
-                    //     return `${this._nombre}, ${this._edad}, ${this._cantPatas}`;
-                    // }
+
+        public toJson():string
+        {
+            return JSON.stringify(super.toJson()); 
+        }
     
     }
 }
