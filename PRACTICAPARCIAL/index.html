@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="js/jquery-3.2.1.js"></script>
   <script src="TS/app.js"></script>
+  <script src="TS/animal.js"></script>
+  <script src="TS/mascota.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <title>Laboratorio III - Practica 2Parcial</title>
@@ -65,17 +67,20 @@
             <!-- TIPO - ENUM TIPO -->
                 <div class="form-group">
                     <label for="opcion">Elige un tipo:</label>
-                    <select class="form-control" name="" id="opcion">
+                    <select class="form-control" name="tipo" id="tipo">
                         <!-- ACA TIENE QUE LLAMAR AL ENUM -->
-                        <option value="">Tipo #1</option>
-                        <option value="">Tipo #2</option>
-                        <option value="">Tipo #3</option>
-                    </select>
+                        <option value="0">PERRO</option>
+                        <option value="1">GATO</option>
+                        <option value="2">REPTIL</option>
+                        <option value="3">ROEDOR</option>
+                        <option value="4">PEZ</option>
+                        <option value="5">AVE</option>
+                      </select>
                 </div>
             <!-- PATAS -->
                 <div class="form-group">
                     <label for="opcion">Elige cant. patas:</label>
-                    <select class="form-control" name="" id="opcion">
+                    <select class="form-control" name="" id="patas">
                         <!-- ACA TIENE QUE LLAMAR AL ENUM -->
                         <option value="">PATAS #1</option>
                         <option value="">PATAS #2</option>

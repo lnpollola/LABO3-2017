@@ -19,7 +19,7 @@ namespace Clases
         }
             
 
-        public toJson(json:string):string
+        public toJson(Nombre:string):string
         {
             return "respuesta"; 
         }

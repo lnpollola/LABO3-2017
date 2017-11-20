@@ -1,4 +1,3 @@
-"use strict";
 var Clases;
 (function (Clases) {
     var Animal = /** @class */ (function () {
@@ -14,7 +13,7 @@ var Clases;
             enumerable: true,
             configurable: true
         });
-        Animal.prototype.toJson = function (json) {
+        Animal.prototype.toJson = function (Nombre) {
             return "respuesta";
         };
         return Animal;

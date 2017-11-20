@@ -1,9 +1,18 @@
 function agregarMascota() 
 {
-    let id: number = Number (document.getElementById("id"));
-    console.log(id);
-    // let tipo: Clases.tipoMascota = Number ($(selecTipo).val());
-    // let nuevaMascota = new Clases.Mascota(Number($('#txtId').val()),string($(),tipo))
+    let id: number = Number ($('#id').val());
+    let nombre: string = String ($('#nombre').val());
+    let edad: number = Number ($('#edad').val());
+    let patas: number = Number ($('#patas').val());
+    let tipo: Clases.tipoMascota = Number($('#tipo').val()); 
+    
+    // let nuevaMascota = new Clases.Mascota(nombre,edad,patas,id,tipo);
+    let nuevaMascota = new Clases.Mascota(  String ($('#nombre').val()),
+                                            Number ($('#edad').val()),
+                                            Number ($('#patas').val()),
+                                            Number ($('#id').val()),
+                                            tipo
+                                            );
     
     // let MascotasString:string|null = localStorage.getItem("Mascotas");
     // //la primera vez no hay nada, las otras veces string
@@ -14,7 +23,9 @@ function agregarMascota()
     //     localStorage.setItem("Mascotas",JSON.stringify(MascotasJSON));
     
     //     alert ("Mascota guardada");
-    alert ("Estoy en Agregar Mascota");
+    // console.log(tipo);
+    console.log(nuevaMascota);
+    // alert (nombre);
 }
 
     //         mostrarMascotas();

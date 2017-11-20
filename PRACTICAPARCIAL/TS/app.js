@@ -1,9 +1,11 @@
-"use strict";
 function agregarMascota() {
-    var id = Number(document.getElementById("id"));
-    console.log(id);
-    // let tipo: Clases.tipoMascota = Number ($(selecTipo).val());
-    // let nuevaMascota = new Clases.Mascota(Number($('#txtId').val()),string($(),tipo))
+    var id = Number($('#id').val());
+    var nombre = String($('#nombre').val());
+    var edad = Number($('#edad').val());
+    var patas = Number($('#patas').val());
+    var tipo = Number($('#tipo').val());
+    // let nuevaMascota = new Clases.Mascota(nombre,edad,patas,id,tipo);
+    var nuevaMascota = new Clases.Mascota(String($('#nombre').val()), Number($('#edad').val()), Number($('#patas').val()), Number($('#id').val()), tipo);
     // let MascotasString:string|null = localStorage.getItem("Mascotas");
     // //la primera vez no hay nada, las otras veces string
     //     let MascotasJson : JSON[] = MAscotaString == null ? [] : JSON.parse(MascotaNueva.Json()); // ESTO ES UN IF
@@ -11,7 +13,9 @@ function agregarMascota() {
     //     MascotassJson.push(Json.parse(nuevaMascota.toJSON()));
     //     localStorage.setItem("Mascotas",JSON.stringify(MascotasJSON));
     //     alert ("Mascota guardada");
-    alert("Estoy en Agregar Mascota");
+    // console.log(tipo);
+    console.log(nuevaMascota);
+    // alert (nombre);
 }
 //         mostrarMascotas();
 //             let MascotasJson : Clases.Mascota[i].id

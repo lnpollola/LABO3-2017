@@ -5,7 +5,8 @@ namespace Clases
             private _id:number;
             public _tipo:tipoMascota;
         
-        constructor(nombre:string,edad:number,cantPatas:number,id:number,tipo:tipoMascota) {
+        constructor(nombre:string,edad:number,cantPatas:number,id:number,tipo:tipoMascota) 
+        {
             super(nombre,edad,cantPatas);
             this._id=id;
             this._tipo=tipo;

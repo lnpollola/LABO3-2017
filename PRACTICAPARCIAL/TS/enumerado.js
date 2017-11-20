@@ -1,4 +1,3 @@
-"use strict";
 var Clases;
 (function (Clases) {
     var tipoMascota;
