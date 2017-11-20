@@ -18,6 +18,9 @@ var Clases;
             _this._tipo = tipo;
             return _this;
         }
+        Mascota.prototype.animalCompleto = function () {
+            return _super.prototype.animalCompleto.call(this) + "," + this._id + "," + this._tipo;
+        };
         Mascota.prototype.toJson = function () {
             return JSON.stringify(_super.prototype.toJson.call(this));
         };

@@ -12,6 +12,11 @@ namespace Clases
             this._tipo=tipo;
         }
 
+        public animalCompleto():string
+        {
+            return `${super.animalCompleto()},${this._id},${this._tipo}`;
+        }
+
         public toJson():string
         {
             return JSON.stringify(super.toJson()); 

@@ -17,11 +17,17 @@ namespace Clases
         {
             return this._nombre;
         }
+
+        public animalCompleto() : string 
+        {
+         return `${this._nombre}, ${this._edad}, ${this._cantPatas}`;
+            
+        }
             
 
         public toJson():string
         {
-            return this.Nombre; 
+            return this.animalCompleto(); 
         }
 
     
