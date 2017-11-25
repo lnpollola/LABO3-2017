@@ -35,7 +35,7 @@ function agregarMascota():void
         localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
     console.log(MascotasJson);
     alert ("Mascota guardada");
-    mostrarMascotas();
+    mostrarMascotas(); 
 }
  
 function mostrarMascotas():void

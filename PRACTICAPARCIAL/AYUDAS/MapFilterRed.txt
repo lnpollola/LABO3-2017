@@ -5,7 +5,7 @@ Funciones de array -> Map - Filter - Reduce
     Reduce un array a un unico numero, funciones de fila unica (count, avg); tienen que ser 1 solo numero de rta. -> reduce
 
     MAP -> array.prototype.map()
-        Devuelve un nuevo array sin modificar el base
+        Devuelve un nuevo array sin modifiscar el base
         EJ -> Arr.map(callback, thisArg])
         [1, 2, 3, 4].map( function(valorActual,indice,array{....}))
         Hace un foreach de un array, y a cada elemnto, del primero al ultimo, se los tira a la funcion callback (1er parametro)
