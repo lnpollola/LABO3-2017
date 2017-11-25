@@ -10,6 +10,7 @@ $(function () {
 });
 function limpiarLista() {
     localStorage.clear();
+    mostrarMascotas();
 }
 function agregarMascota() {
     var tipo = Number($('#tipoMasc').val());

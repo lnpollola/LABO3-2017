@@ -10,15 +10,13 @@ $(function(){
     {
         select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
     }
-
     mostrarMascotas();
-
-
 });
 
 function limpiarLista():void
 {
        localStorage.clear();
+       mostrarMascotas();
 }
 function agregarMascota():void
 {
@@ -60,8 +58,6 @@ function mostrarMascotas():void
                         "<td>" + MascotasJson[i].split(',')[2] + "</td></tr>"       
         tabla.append(varAppend); 
    }
-
-
 
     // "${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}"
 }
