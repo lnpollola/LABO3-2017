@@ -7,23 +7,37 @@ $(function () {
     for (var i = 0; i < 6; i++) {
         select.append("<option value=" + i + ">" + Clases.tipoMascota[i] + "</option>");
     }
+    mostrarMascotas();
 });
 function agregarMascota() {
-    // let tipo: Clases.tipoMascota = ($('#tipo').val()); 
-    var tipo = Number($('#tipo').val());
-    // let nuevaMascota = new Clases.Mascota(nombre,edad,patas,id,tipo);
+    var tipo = Number($('#tipoMasc').val());
     var nuevaMascota = new Clases.Mascota(String($('#nombre').val()), Number($('#edad').val()), Number($('#patas').val()), Number($('#id').val()), tipo);
     var MascotasString = localStorage.getItem("Mascotas");
     // //la primera vez no hay nada, las otras veces string
     var MascotasJson = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
     MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
-    var devuelve = localStorage.setItem("Mascotas", JSON.stringify(MascotasJson));
-    // console.log(devuelve);
+    localStorage.setItem("Mascotas", JSON.stringify(MascotasJson));
+    console.log(MascotasJson);
     alert("Mascota guardada");
+    mostrarMascotas();
 }
 function mostrarMascotas() {
-    var arrayMascotas = localStorage.getItem("Mascotas");
-    var objMascotas = JSON.parse(arrayMascotas);
+    var MascotasString = localStorage.getItem("Mascotas");
+    var MascotasJson = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
+    // //la primera vez no hay nada, las otras veces string
+    var tabla = $("#tCuerpo");
+    tabla["0"].innerHTML = "";
+    for (var i = 0; i < MascotasJson.length; i++) {
+        var varAppend = "<tr><td>" + MascotasJson[i].split(',')[0] + "</td>" +
+            "<td>" + MascotasJson[i].split(',')[1] + "</td>" +
+            "<td>" + MascotasJson[i].split(',')[2] + "</td>" +
+            "<td>" + MascotasJson[i].split(',')[3] + "</td>" +
+            "<td>" + MascotasJson[i].split(',')[4] + "</td></tr>";
+        tabla.append(varAppend);
+        console.log(tabla);
+        console.log(tabla[0].childNodes);
+    }
+    // "${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}"
     // var longitud=(objPersonas.length - 1);
     // var tcuerpo = document.getElementById("tablaUsuarios");
     // document.getElementById('tablaUsuarios').children[2].innerHTML="";

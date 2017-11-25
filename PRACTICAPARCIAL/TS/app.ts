@@ -10,15 +10,14 @@ $(function(){
     {
         select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
     }
+
+    mostrarMascotas();
+
+
 });
-
-
-function agregarMascota() 
+function agregarMascota():void
 {
-    // let tipo: Clases.tipoMascota = ($('#tipo').val()); 
-    let tipo: Clases.tipoMascota  = Number($('#tipo').val()); 
-    
-    // let nuevaMascota = new Clases.Mascota(nombre,edad,patas,id,tipo);
+    let tipo: Clases.tipoMascota  = Number($('#tipoMasc').val()); 
     let nuevaMascota = new Clases.Mascota(  String ($('#nombre').val()),
                                             Number ($('#edad').val()),
                                             Number ($('#patas').val()),
@@ -30,17 +29,35 @@ function agregarMascota()
     // //la primera vez no hay nada, las otras veces string
         let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
         MascotasJson.push( JSON.parse(nuevaMascota.toJson()));
-        let devuelve = localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
-    // console.log(devuelve);
+        localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
+    console.log(MascotasJson);
     alert ("Mascota guardada");
+    mostrarMascotas();
 }
 
-function mostrarMascotas()
+function mostrarMascotas():void
 {
-    let arrayMascotas = localStorage.getItem("Mascotas");
+    let MascotasString:string|null = localStorage.getItem("Mascotas");
+    let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
+    // //la primera vez no hay nada, las otras veces string
+  
+    let tabla = $("#tCuerpo");
+    tabla["0"].innerHTML ="";
+    for (var i = 0; i < MascotasJson.length ; i++) 
+    {
+        let varAppend = "<tr><td>" + MascotasJson[i].split(',')[0] + "</td>"+
+                        "<td>" + MascotasJson[i].split(',')[1] + "</td>"+
+                        "<td>" + MascotasJson[i].split(',')[2] + "</td>"+
+                        "<td>" + MascotasJson[i].split(',')[3] + "</td>"+
+                        "<td>" + MascotasJson[i].split(',')[4] + "</td></tr>"       
 
-    var objMascotas = JSON.parse(arrayMascotas);
+        tabla.append(varAppend);
+        console.log(tabla);
+        console.log(tabla[0].childNodes)
+   }
 
+    // "${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}"
+    
     // var longitud=(objPersonas.length - 1);
     // var tcuerpo = document.getElementById("tablaUsuarios");
     // document.getElementById('tablaUsuarios').children[2].innerHTML="";
@@ -58,9 +75,6 @@ function mostrarMascotas()
 
                     
     // }
-
-
-
 }
     //             let MascotasJson : Clases.Mascota[i].id
     //             armo la tabla como el primer parcial con el fastix
