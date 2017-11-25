@@ -1,7 +1,8 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
-namespace Clases{
+// namespace Clases{
+
 $(function(){
-    localStorage.clear();
+    // localStorage.clear();
     var i = 0;
 
     let select = $("#tipoMasc");
@@ -15,7 +16,7 @@ $(function(){
 function agregarMascota() 
 {
     // let tipo: Clases.tipoMascota = ($('#tipo').val()); 
-    let tipo: string  = String ($('#tipo').val()); 
+    let tipo: Clases.tipoMascota  = Number($('#tipo').val()); 
     
     // let nuevaMascota = new Clases.Mascota(nombre,edad,patas,id,tipo);
     let nuevaMascota = new Clases.Mascota(  String ($('#nombre').val()),
@@ -27,15 +28,11 @@ function agregarMascota()
     
     let MascotasString:string|null = localStorage.getItem("Mascotas");
     // //la primera vez no hay nada, las otras veces string
-        // let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
         let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
         MascotasJson.push( JSON.parse(nuevaMascota.toJson()));
-        localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
-
-        
-    
+        let devuelve = localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
     // console.log(devuelve);
-    // alert ("Mascota guardada");
+    alert ("Mascota guardada");
 }
 
 function mostrarMascotas()
@@ -75,4 +72,4 @@ function mostrarMascotas()
     // armo el json con un array de mascotas
     // }
 
-}
+// }

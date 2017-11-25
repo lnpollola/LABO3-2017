@@ -1,6 +1,6 @@
 CLASE011 - preparcial
 
-mandar el objeto como un string al localstorage
+--mandar el objeto como un string al localstorage
 si usamos un json, cuando lo devuelve le hacemos un json.parse 
 
 

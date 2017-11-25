@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="js/jquery-3.2.1.js"></script>
-  <script src="TS/app.js"></script>
+ 
   <script src="TS/animal.js"></script>
   <script src="TS/mascota.js"></script>
   <script src="TS/enumerado.js"></script>
+  <script src="TS/app.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- LINEA DE JQUERY -->
@@ -75,19 +76,19 @@
                 </div>
             <!-- PATAS -->
               <!--EJEMPLO DE UN BOTON CON FUNCION Y EVENTO  -->
-              <h1 class="title" style="display:none">
+              <!-- <h1 class="title" style="display:none">
                 {{title}}
               </h1>
-              <button (click)="toggleTitle()"> clickhere</button>
+              <button (click)="toggleTitle()"> clickhere</button> -->
 
 
                 <div class="form-group">
                     <label for="opcion">Elige cant. patas:</label>
                     <select class="form-control" name="" id="patas"> -->
                         <!-- ACA TIENE QUE LLAMAR AL ENUM -->
-                        <option value="">PATAS #1</option>
-                        <option value="">PATAS #2</option>
-                        <option value="">PATAS #3</option>
+                        <option value="0">Ninguna</option>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
                     </select>
                 </div>
               </div>
