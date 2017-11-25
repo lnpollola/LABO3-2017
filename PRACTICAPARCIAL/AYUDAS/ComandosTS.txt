@@ -17,3 +17,6 @@ INTRODUCCION A TYPESCRIPT -> se TRANSPILA a JAVASCRIPT (js) CTRL+Ñ
         npm install @types/jquery
     EN CADA ARCHIVO TS QUE USE JQUERY, HAY QUE REFERENCIAR AL ARCHIVO DE DEFINICION
     ///<reference path=''/>
+
+//INSTALAR JQUERY 
+npm install --save @types/jquery

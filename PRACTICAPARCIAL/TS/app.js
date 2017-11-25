@@ -1,28 +1,53 @@
-$(function () { });
-{
-    localStorage.clear();
-}
-function agregarMascota() {
-    var tipo = Number($('#tipo').val());
-    // let nuevaMascota = new Clases.Mascota(nombre,edad,patas,id,tipo);
-    var nuevaMascota = new Clases.Mascota(String($('#nombre').val()), Number($('#edad').val()), Number($('#patas').val()), Number($('#id').val()), tipo);
-    var MascotasString = localStorage.getItem("Mascotas");
-    // //la primera vez no hay nada, las otras veces string
-    // let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
-    var MascotasJson = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
-    MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
-    localStorage.setItem("Mascotas", JSON.stringify(MascotasJson));
-    var devuelve = localStorage.getItem("Mascotas");
-    console.log(nuevaMascota);
-    // alert ("Mascota guardada");
-}
-//         mostrarMascotas();
-//             let MascotasJson : Clases.Mascota[i].id
-//             armo la tabla como el primer parcial con el fastix
-//             #divtabla.html(tabla);
-//         limpiarCampos();
-//             $txtnombred.val("")
-//             a selectipo le da 0
-//             y que ponga foco en txtid
-// armo el json con un array de mascotas
-// } 
+///<reference path="../node_modules/@types/jquery/index.d.ts" />
+var Clases;
+(function (Clases) {
+    $(function () {
+        localStorage.clear();
+        var i = 0;
+        var select = $("#tipoMasc");
+        for (var i = 0; i < 6; i++) {
+            select.append("<option value=" + i + ">" + Clases.tipoMascota[i] + "</option>");
+        }
+    });
+    function agregarMascota() {
+        // let tipo: Clases.tipoMascota = ($('#tipo').val()); 
+        var tipo = String($('#tipo').val());
+        // let nuevaMascota = new Clases.Mascota(nombre,edad,patas,id,tipo);
+        var nuevaMascota = new Clases.Mascota(String($('#nombre').val()), Number($('#edad').val()), Number($('#patas').val()), Number($('#id').val()), tipo);
+        var MascotasString = localStorage.getItem("Mascotas");
+        // //la primera vez no hay nada, las otras veces string
+        // let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
+        var MascotasJson = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
+        MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
+        localStorage.setItem("Mascotas", JSON.stringify(MascotasJson));
+        // console.log(devuelve);
+        // alert ("Mascota guardada");
+    }
+    function mostrarMascotas() {
+        var arrayMascotas = localStorage.getItem("Mascotas");
+        var objMascotas = JSON.parse(arrayMascotas);
+        // var longitud=(objPersonas.length - 1);
+        // var tcuerpo = document.getElementById("tablaUsuarios");
+        // document.getElementById('tablaUsuarios').children[2].innerHTML="";
+        // for (i = 0; i < objPersonas.length; i++) 
+        // { 
+        //     tcuerpo.children[2].innerHTML = 
+        //     tcuerpo.children[2].innerHTML + 
+        //     "<tr>" + 
+        //         "<td>"+ objPersonas[i].nombre +      "</td>" + 
+        //         "<td>"+ objPersonas[i].apellido +    "</td>" + 
+        //         "<td>"+ "<input type='button' value='Borrar' onclick='borrar("+i+")' /> " + "</td>"+  
+        //         "<td>"+ "<input type='button' value='Modificar' id='btnModif' onclick='modificar("+i+")'/>" + "</td>" 
+        //     "</tr>"
+        // }
+    }
+    //             let MascotasJson : Clases.Mascota[i].id
+    //             armo la tabla como el primer parcial con el fastix
+    //             #divtabla.html(tabla);
+    //         limpiarCampos();
+    //             $txtnombred.val("")
+    //             a selectipo le da 0
+    //             y que ponga foco en txtid
+    // armo el json con un array de mascotas
+    // }
+})(Clases || (Clases = {}));
