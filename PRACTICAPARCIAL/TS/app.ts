@@ -4,10 +4,12 @@
 $(function(){
  
     //prueba
-    $("#checkItems").change(function() {
+    $("#checkFORM :checkbox").change(function() {
         // boxChange();
+        
+        var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
+        //     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
         alert("estoy aaca");
-        boxChange("not");
     });
 
     var i = 0;
@@ -68,17 +70,17 @@ function mostrarMascotas():void
     // "${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}"
 }
 
-function boxChange(type)
-{
-    var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
-    var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
+// function boxChange(type)
+// {
+//     var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
+//     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
 
-  if(type == "not"){
-        return uncheckedValues;
-    } else {
-        return checkedValues;
-    } 
-}
+//   if(type == "not"){
+//         return uncheckedValues;
+//     } else {
+//         return checkedValues;
+//     } 
+// }
 
 // $(":checkbox").change(function() {
 // $("#checkItems").change(function() {

@@ -123,28 +123,30 @@
     <!-- EL SPINNER QUE  GIRA CUANDO CARGA -->
     <div id="spinner">
       <!-- CHECKBOX  -->
-      <!— CHECKBOX —>
-      <div class="checkbox">
-        <caption><h2>Filtrar listado por:</h2></caption>
-        <label>
-            <input type="checkbox" class="checkItems" name="idfiltro" id="idfiltro" value="ID">ID
-        </label>
+      <!-- <!— CHECKBOX —> -->
+      <form id="checkFORM">
+          <div class="checkbox">
+            <caption><h2>Filtrar listado por:</h2></caption>
+            <label>
+                <input type="checkbox" class="checkItems" name="idfiltro" id="idfiltro" value="ID">ID
+            </label>
 
-        <label>
-            <input type="checkbox" class="checkItems" name="nombrefiltro" id="nombrefiltro" value="NOMBRE">NOMBRE
-        </label>
+            <label>
+                <input type="checkbox" class="checkItems" name="nombrefiltro" id="nombrefiltro" value="NOMBRE">NOMBRE
+            </label>
 
-        <label>
-           <input type="checkbox" class="checkItems" name="edadfiltro" id="edadfiltro" value="EDAD">EDAD
-        </label>
+            <label>
+              <input type="checkbox" class="checkItems" name="edadfiltro" id="edadfiltro" value="EDAD">EDAD
+            </label>
 
-        <label>
-            <input type="checkbox" class="checkItems" name="tipofiltro" id="tipofiltro" value="TIPO">TIPO
-        </label>
-        <label>
-          <input type="checkbox" class="checkItems" name="cantPatasfiltro" id="cantPatasfiltro" value="CANTPATAS">CANT. PATAS
-      </label>
-    </div>
+            <label>
+                <input type="checkbox" class="checkItems" name="tipofiltro" id="tipofiltro" value="TIPO">TIPO
+            </label>
+            <label>
+              <input type="checkbox" class="checkItems" name="cantPatasfiltro" id="cantPatasfiltro" value="CANTPATAS">CANT. PATAS
+          </label>
+        </div>
+      </form>
     <!-- TABLA LISTADO -->
     </div>
     <section id="listado" class="container" style="padding-top: 45px;">

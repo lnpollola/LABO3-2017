@@ -1,6 +1,13 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
 // namespace Clases{
 $(function () {
+    //prueba
+    $("#checkFORM :checkbox").change(function () {
+        // boxChange();
+        var checkedValues = $('input:checkbox:checked.checkItems').map(function () { return this.value; }).get();
+        //     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
+        alert("estoy aaca");
+    });
     var i = 0;
     var select = $("#tipoMasc");
     for (var i = 0; i < 6; i++) {
@@ -42,22 +49,22 @@ function mostrarMascotas() {
     }
     // "${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}"
 }
-function boxChange(type) {
-    var checkedValues = $('input:checkbox:checked.checkItems').map(function () { return this.value; }).get();
-    var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function () { return this.value; }).get();
-    if (type == "not") {
-        return uncheckedValues;
-    }
-    else {
-        return checkedValues;
-    }
-}
+// function boxChange(type)
+// {
+//     var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
+//     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
+//   if(type == "not"){
+//         return uncheckedValues;
+//     } else {
+//         return checkedValues;
+//     } 
+// }
 // $(":checkbox").change(function() {
-$("#checkItems").change(function () {
-    // boxChange();
-    alert("estoy aaca");
-    boxChange("not");
-});
+// $("#checkItems").change(function() {
+//     // boxChange();
+//     alert("estoy aaca");
+//     boxChange("not");
+// });
 // // Only Needed For Buttons
 // $("body").on("click", "button#chk1", function() {
 //     alert (boxChange());
