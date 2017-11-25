@@ -5,8 +5,6 @@ $(function(){
  
     //prueba
     $("#checkFORM :checkbox").change(function() {
-        // boxChange();
-        
         var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
         //     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
         alert("estoy aaca");
