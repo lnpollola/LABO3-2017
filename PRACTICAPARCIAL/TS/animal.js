@@ -23,3 +23,4 @@ var Clases;
     }());
     Clases.Animal = Animal;
 })(Clases || (Clases = {}));
+ 
