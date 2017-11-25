@@ -1,7 +1,7 @@
 namespace Clases
 {
     export class Mascota extends Animal 
-    {
+    { 
             private _id:number; 
             public _tipo:tipoMascota; 
         

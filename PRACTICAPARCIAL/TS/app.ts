@@ -36,7 +36,7 @@ function agregarMascota():void
     console.log(MascotasJson);
     alert ("Mascota guardada");
     mostrarMascotas(); 
-}
+} 
  
 function mostrarMascotas():void
 {

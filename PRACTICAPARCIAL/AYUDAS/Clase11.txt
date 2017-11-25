@@ -14,7 +14,7 @@ lo que esta en el localstorage hace un filter y carga la tabla .
 pide filtrar por (aver) etc y si toco en calcular promedio me aparece el predio de edad
 hay que hacer el promedio de edad
 nos cago a pedos 4 mil veces porque esto tendrìa que estar echo hace un mes
- 
+  
  
 ${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}
 asi voy llamando uno por x uno, va asi de frente mantecol los td

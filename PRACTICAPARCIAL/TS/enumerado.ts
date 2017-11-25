@@ -4,7 +4,7 @@ namespace Clases{
         "GATO",
         "REPTIL",
         "ROEDOR",
-        "PEZ", 
+        "PEZ",  
         "AVE"
     }
   }
