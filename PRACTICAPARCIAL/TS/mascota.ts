@@ -13,7 +13,7 @@ namespace Clases
         }
 
         public animalCompleto():string
-        {
+        { 
             return `${super.animalCompleto()},${this._id},${this._tipo}`;
         }
 
