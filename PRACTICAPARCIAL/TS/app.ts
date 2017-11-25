@@ -61,3 +61,31 @@ function mostrarMascotas():void
 
     // "${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}"
 }
+
+function boxChange(type)
+{
+    var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
+    var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
+
+  if(type == "not"){
+        return uncheckedValues;
+    } else {
+        return checkedValues;
+    }
+}
+
+$(":checkbox").change(function() {
+    // boxChange();
+    alert("estoy aaca");
+    boxChange("not");
+});
+
+// // Only Needed For Buttons
+
+// $("body").on("click", "button#chk1", function() {
+//     alert (boxChange());
+// });
+
+// $("body").on("click", "button#chk2", function() {
+//     alert (boxChange("not"));
+// });
