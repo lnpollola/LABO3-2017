@@ -37,7 +37,7 @@ function agregarMascota():void
     alert ("Mascota guardada");
     mostrarMascotas();
 }
-
+ 
 function mostrarMascotas():void
 {
     let MascotasString:string|null = localStorage.getItem("Mascotas");

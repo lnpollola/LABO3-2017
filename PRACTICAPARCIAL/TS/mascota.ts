@@ -2,7 +2,7 @@ namespace Clases
 {
     export class Mascota extends Animal 
     {
-            private _id:number;
+            private _id:number; 
             public _tipo:tipoMascota;
         
         constructor(nombre:string,edad:number,cantPatas:number,id:number,tipo:tipoMascota) 

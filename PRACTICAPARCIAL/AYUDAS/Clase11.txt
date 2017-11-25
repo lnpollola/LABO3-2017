@@ -15,7 +15,7 @@ pide filtrar por (aver) etc y si toco en calcular promedio me aparece el predio 
 hay que hacer el promedio de edad
 nos cago a pedos 4 mil veces porque esto tendrìa que estar echo hace un mes
 
-
+ 
 ${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}
 asi voy llamando uno por x uno, va asi de frente mantecol los td
 tipo va a venir como un numero, asique si quiero la otra parte se lo a tipo mascota y me lo convierte en perro/ave etc

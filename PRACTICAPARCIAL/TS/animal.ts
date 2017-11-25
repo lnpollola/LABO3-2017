@@ -4,7 +4,7 @@ namespace Clases
     {
         private _nombre:string;
         private _edad:number;
-        private _cantPatas:number;
+        private _cantPatas:number; 
 
         constructor(nombre:string,edad:number,cantPatas:number) 
         {
