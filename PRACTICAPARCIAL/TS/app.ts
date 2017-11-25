@@ -50,40 +50,8 @@ function mostrarMascotas():void
                         "<td>" + MascotasJson[i].split(',')[2] + "</td>"+
                         "<td>" + MascotasJson[i].split(',')[3] + "</td>"+
                         "<td>" + MascotasJson[i].split(',')[4] + "</td></tr>"       
-
         tabla.append(varAppend);
-        console.log(tabla);
-        console.log(tabla[0].childNodes)
    }
 
     // "${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}"
-    
-    // var longitud=(objPersonas.length - 1);
-    // var tcuerpo = document.getElementById("tablaUsuarios");
-    // document.getElementById('tablaUsuarios').children[2].innerHTML="";
-    // for (i = 0; i < objPersonas.length; i++) 
-    // { 
-    
-    //     tcuerpo.children[2].innerHTML = 
-    //     tcuerpo.children[2].innerHTML + 
-    //     "<tr>" + 
-    //         "<td>"+ objPersonas[i].nombre +      "</td>" + 
-    //         "<td>"+ objPersonas[i].apellido +    "</td>" + 
-    //         "<td>"+ "<input type='button' value='Borrar' onclick='borrar("+i+")' /> " + "</td>"+  
-    //         "<td>"+ "<input type='button' value='Modificar' id='btnModif' onclick='modificar("+i+")'/>" + "</td>" 
-    //     "</tr>"
-
-                    
-    // }
 }
-    //             let MascotasJson : Clases.Mascota[i].id
-    //             armo la tabla como el primer parcial con el fastix
-    //             #divtabla.html(tabla);
-    //         limpiarCampos();
-    //             $txtnombred.val("")
-    //             a selectipo le da 0
-    //             y que ponga foco en txtid
-    // armo el json con un array de mascotas
-    // }
-
-// }
