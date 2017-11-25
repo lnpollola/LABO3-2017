@@ -1,7 +1,6 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
 // namespace Clases{
 $(function () {
-    // localStorage.clear();
     var i = 0;
     var select = $("#tipoMasc");
     for (var i = 0; i < 6; i++) {
@@ -9,6 +8,9 @@ $(function () {
     }
     mostrarMascotas();
 });
+function limpiarLista() {
+    localStorage.clear();
+}
 function agregarMascota() {
     var tipo = Number($('#tipoMasc').val());
     var nuevaMascota = new Clases.Mascota(String($('#nombre').val()), Number($('#edad').val()), Number($('#patas').val()), Number($('#id').val()), tipo);
@@ -28,11 +30,13 @@ function mostrarMascotas() {
     var tabla = $("#tCuerpo");
     tabla["0"].innerHTML = "";
     for (var i = 0; i < MascotasJson.length; i++) {
-        var varAppend = "<tr><td>" + MascotasJson[i].split(',')[0] + "</td>" +
-            "<td>" + MascotasJson[i].split(',')[1] + "</td>" +
-            "<td>" + MascotasJson[i].split(',')[2] + "</td>" +
+        var miTipo = Clases.tipoMascota[MascotasJson[i].split(',')[4]];
+        var twoAsString = Clases.tipoMascota[miTipo]; // twoAsString == "two"
+        var varAppend = "<tr><td>" + MascotasJson[i].split(',')[1] + "</td>" +
+            "<td>" + MascotasJson[i].split(',')[0] + "</td>" +
             "<td>" + MascotasJson[i].split(',')[3] + "</td>" +
-            "<td>" + MascotasJson[i].split(',')[4] + "</td></tr>";
+            "<td>" + Clases.tipoMascota[MascotasJson[i].split(',')[4]] + "</td>" +
+            "<td>" + MascotasJson[i].split(',')[2] + "</td></tr>";
         tabla.append(varAppend);
     }
     // "${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}"

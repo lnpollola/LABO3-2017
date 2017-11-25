@@ -75,13 +75,6 @@
                     </select>
                 </div>
             <!-- PATAS -->
-              <!--EJEMPLO DE UN BOTON CON FUNCION Y EVENTO  -->
-              <!-- <h1 class="title" style="display:none">
-                {{title}}
-              </h1>
-              <button (click)="toggleTitle()"> clickhere</button> -->
-
-
                 <div class="form-group">
                     <label for="opcion">Elige cant. patas:</label>
                     <select class="form-control" name="" id="patas"> -->
@@ -115,6 +108,12 @@
                     BORRAR
                     <i class="glyphicon glyphicon-minus"></i>
                 </button>
+        <!-- LIMPIAR LISTA -->
+              <!--EJEMPLO DE UN BOTON CON FUNCION Y EVENTO  -->
+              <button class='btn btn-ok btn-sm' type="button" id="borrarLista" onclick="limpiarLista();">
+                  LIMPIAR LISTA
+                  <i class="glyphicon glyphicon-minus"></i>
+              </button>
     </div>
 
       </div>
@@ -123,6 +122,29 @@
 
     <!-- EL SPINNER QUE  GIRA CUANDO CARGA -->
     <div id="spinner">
+      <!-- CHECKBOX  -->
+      <!— CHECKBOX —>
+      <div class="checkbox">
+        <caption><h2>Filtrar listado por:</h2></caption>
+        <label>
+            <input type="checkbox" name="idfiltro" id="idfiltro">ID
+        </label>
+
+        <label>
+            <input type="checkbox" name="nombrefiltro" id="nombrefiltro">NOMBRE
+        </label>
+
+        <label>
+           <input type="checkbox" name="edadfiltro" id="edadfiltro">EDAD
+        </label>
+
+        <label>
+            <input type="checkbox" name="tipofiltro" id="tipofiltro">TIPO
+        </label>
+        <label>
+          <input type="checkbox" name="cantPatasfiltro" id="cantPatasfiltro">CANT. PATAS
+      </label>
+    </div>
     <!-- TABLA LISTADO -->
     </div>
     <section id="listado" class="container" style="padding-top: 45px;">
