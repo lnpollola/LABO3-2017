@@ -52,7 +52,8 @@ function boxChange(type) {
         return checkedValues;
     }
 }
-$(":checkbox").change(function () {
+// $(":checkbox").change(function() {
+$("#checkItems").change(function () {
     // boxChange();
     alert("estoy aaca");
     boxChange("not");

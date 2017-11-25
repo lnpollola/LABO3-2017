@@ -3,8 +3,14 @@
 
 $(function(){
  
-    var i = 0;
+    //prueba
+    $("#checkItems").change(function() {
+        // boxChange();
+        alert("estoy aaca");
+        boxChange("not");
+    });
 
+    var i = 0;
     let select = $("#tipoMasc");
     for (var i = 0; i < 6; i++) 
     {
@@ -71,14 +77,15 @@ function boxChange(type)
         return uncheckedValues;
     } else {
         return checkedValues;
-    }
+    } 
 }
 
-$(":checkbox").change(function() {
-    // boxChange();
-    alert("estoy aaca");
-    boxChange("not");
-});
+// $(":checkbox").change(function() {
+// $("#checkItems").change(function() {
+//     // boxChange();
+//     alert("estoy aaca");
+//     boxChange("not");
+// });
 
 // // Only Needed For Buttons
 
