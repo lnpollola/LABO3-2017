@@ -2,12 +2,12 @@
 // namespace Clases{
 
 $(function(){
- 
-    //prueba
+
+    //FORM MODIFICADO POR CHECKBOX
     $("#checkFORM :checkbox").change(function() {
         var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
         //     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
-        alert("estoy aaca");
+        tablaDinamica(checkedValues);
     });
 
     var i = 0;
@@ -18,6 +18,47 @@ $(function(){
     }
     mostrarMascotas();
 });
+
+function tablaDinamica(checkedValues) 
+{
+    let row_name = checkedValues;
+    let cabeceraArmada="";
+    row_name.forEach(element => 
+    {
+        if (element != "") 
+        {
+            let cabecera = $("#tCabecera");
+            let cabeceraAux = cabecera["0"].innerHTML;
+            cabecera["0"].innerHTML ="";
+
+            let cabeceraArmada = cabeceraAux+"<tr class='info'><th>"+element+"</th>";
+            
+            cabecera.append(cabeceraArmada);
+            //     let varAppend = "<tr><td>" + MascotasJson[i].split(',')[1] + "</td>"+
+            //                     "<td>" + MascotasJson[i].split(',')[0] + "</td>"+
+            //                     "<td>" + MascotasJson[i].split(',')[3] + "</td>"+
+            //                     "<td>" + Clases.tipoMascota[MascotasJson[i].split(',')[4]] + "</td>"+
+            //                     "<td>" + MascotasJson[i].split(',')[2] + "</td></tr>"       
+            //     tabla.append(varAppend); 
+            // var row = $('<tr><td>' + row_name + '</td></tr>');
+            // $('input[type="checkbox"]').each(function() 
+            // {
+            //     if ($(this).is(':checked')) 
+            //     {
+            //        row.append('<td><input class="txtfld" type="text" placeholder="edit"></td>')
+            //     } 
+            //     else 
+            //     {
+            //          row.append('<td></td>')
+            //     }
+            // })
+            // row.append('<td></td>')
+            // $("table.printer-row tbody tr:last").before(row)
+
+
+        } 
+    });
+}
 
 function limpiarLista():void
 {

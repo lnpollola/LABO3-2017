@@ -1,11 +1,11 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
 // namespace Clases{
 $(function () {
-    //prueba
+    //FORM MODIFICADO POR CHECKBOX
     $("#checkFORM :checkbox").change(function () {
         var checkedValues = $('input:checkbox:checked.checkItems').map(function () { return this.value; }).get();
         //     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
-        alert("estoy aaca");
+        tablaDinamica(checkedValues);
     });
     var i = 0;
     var select = $("#tipoMasc");
@@ -14,6 +14,39 @@ $(function () {
     }
     mostrarMascotas();
 });
+function tablaDinamica(checkedValues) {
+    var row_name = checkedValues;
+    var cabeceraArmada = "";
+    row_name.forEach(function (element) {
+        if (element != "") {
+            var cabecera = $("#tCabecera");
+            var cabeceraAux = cabecera["0"].innerHTML;
+            cabecera["0"].innerHTML = "";
+            var cabeceraArmada_1 = cabeceraAux + "<tr class='info'><th>" + element + "</th>";
+            cabecera.append(cabeceraArmada_1);
+            //     let varAppend = "<tr><td>" + MascotasJson[i].split(',')[1] + "</td>"+
+            //                     "<td>" + MascotasJson[i].split(',')[0] + "</td>"+
+            //                     "<td>" + MascotasJson[i].split(',')[3] + "</td>"+
+            //                     "<td>" + Clases.tipoMascota[MascotasJson[i].split(',')[4]] + "</td>"+
+            //                     "<td>" + MascotasJson[i].split(',')[2] + "</td></tr>"       
+            //     tabla.append(varAppend); 
+            // var row = $('<tr><td>' + row_name + '</td></tr>');
+            // $('input[type="checkbox"]').each(function() 
+            // {
+            //     if ($(this).is(':checked')) 
+            //     {
+            //        row.append('<td><input class="txtfld" type="text" placeholder="edit"></td>')
+            //     } 
+            //     else 
+            //     {
+            //          row.append('<td></td>')
+            //     }
+            // })
+            // row.append('<td></td>')
+            // $("table.printer-row tbody tr:last").before(row)
+        }
+    });
+}
 function limpiarLista() {
     localStorage.clear();
     mostrarMascotas();
