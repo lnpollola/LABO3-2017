@@ -22,42 +22,23 @@ $(function(){
 function tablaDinamica(checkedValues) 
 {
     let row_name = checkedValues;
-    let cabeceraArmada="";
+    // let estiloCabeceraAp="<tr class='info'>";
+    let cabecera = $("#tCabecera");
+    cabecera["0"].innerHTML ="";
+    // cabecera.append(estiloCabeceraAp);
+
     row_name.forEach(element => 
     {
         if (element != "") 
         {
-            let cabecera = $("#tCabecera");
-            let cabeceraAux = cabecera["0"].innerHTML;
-            cabecera["0"].innerHTML ="";
-
-            let cabeceraArmada = cabeceraAux+"<tr class='info'><th>"+element+"</th>";
-            
+            // let cabeceraArmada = "<th>"+element+"</th>";
+            let cabeceraArmada = $('<th>' + element + '</th>');
             cabecera.append(cabeceraArmada);
-            //     let varAppend = "<tr><td>" + MascotasJson[i].split(',')[1] + "</td>"+
-            //                     "<td>" + MascotasJson[i].split(',')[0] + "</td>"+
-            //                     "<td>" + MascotasJson[i].split(',')[3] + "</td>"+
-            //                     "<td>" + Clases.tipoMascota[MascotasJson[i].split(',')[4]] + "</td>"+
-            //                     "<td>" + MascotasJson[i].split(',')[2] + "</td></tr>"       
-            //     tabla.append(varAppend); 
-            // var row = $('<tr><td>' + row_name + '</td></tr>');
-            // $('input[type="checkbox"]').each(function() 
-            // {
-            //     if ($(this).is(':checked')) 
-            //     {
-            //        row.append('<td><input class="txtfld" type="text" placeholder="edit"></td>')
-            //     } 
-            //     else 
-            //     {
-            //          row.append('<td></td>')
-            //     }
-            // })
-            // row.append('<td></td>')
-            // $("table.printer-row tbody tr:last").before(row)
-
-
         } 
     });
+    // let estiloCabeceraCI="</tr>";
+    // cabecera.append(estiloCabeceraCI);
+
 }
 
 function limpiarLista():void

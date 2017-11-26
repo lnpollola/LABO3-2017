@@ -16,36 +16,19 @@ $(function () {
 });
 function tablaDinamica(checkedValues) {
     var row_name = checkedValues;
-    var cabeceraArmada = "";
+    var estiloCabeceraAp = "<tr class='info'>";
+    var cabecera = $("#tCabecera");
+    cabecera["0"].innerHTML = "";
+    cabecera.append(estiloCabeceraAp);
     row_name.forEach(function (element) {
         if (element != "") {
-            var cabecera = $("#tCabecera");
-            var cabeceraAux = cabecera["0"].innerHTML;
-            cabecera["0"].innerHTML = "";
-            var cabeceraArmada_1 = cabeceraAux + "<tr class='info'><th>" + element + "</th>";
-            cabecera.append(cabeceraArmada_1);
-            //     let varAppend = "<tr><td>" + MascotasJson[i].split(',')[1] + "</td>"+
-            //                     "<td>" + MascotasJson[i].split(',')[0] + "</td>"+
-            //                     "<td>" + MascotasJson[i].split(',')[3] + "</td>"+
-            //                     "<td>" + Clases.tipoMascota[MascotasJson[i].split(',')[4]] + "</td>"+
-            //                     "<td>" + MascotasJson[i].split(',')[2] + "</td></tr>"       
-            //     tabla.append(varAppend); 
-            // var row = $('<tr><td>' + row_name + '</td></tr>');
-            // $('input[type="checkbox"]').each(function() 
-            // {
-            //     if ($(this).is(':checked')) 
-            //     {
-            //        row.append('<td><input class="txtfld" type="text" placeholder="edit"></td>')
-            //     } 
-            //     else 
-            //     {
-            //          row.append('<td></td>')
-            //     }
-            // })
-            // row.append('<td></td>')
-            // $("table.printer-row tbody tr:last").before(row)
+            // let cabeceraArmada = "<th>"+element+"</th>";
+            var cabeceraArmada = $('<th>' + element + '</th>');
+            cabecera.append(cabeceraArmada);
         }
     });
+    var estiloCabeceraCI = "</tr>";
+    cabecera.append(estiloCabeceraCI);
 }
 function limpiarLista() {
     localStorage.clear();
