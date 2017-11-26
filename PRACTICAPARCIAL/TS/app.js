@@ -3,9 +3,9 @@
 $(function () {
     //FORM MODIFICADO POR CHECKBOX
     $("#checkFORM :checkbox").change(function () {
-        var checkboxON = $('input:checkbox:checked.checkItems').map(function () { return this.value; }).get();
-        tablaDinamica(checkboxON);
+        encabezadoCheck();
     });
+    encabezadoCheck();
     var i = 0;
     var select = $("#tipoMasc");
     for (var i = 0; i < 6; i++) {
@@ -13,12 +13,17 @@ $(function () {
     }
     mostrarMascotas();
 });
+function encabezadoCheck() {
+    var checkboxON = $('input:checkbox:checked.checkItems').map(function () { return this.value; }).get();
+    tablaDinamica(checkboxON);
+}
 function tablaDinamica(checkboxON) {
-    //CABECERA DE LA TABLA
+    //CHEQUEO SI ESTAN LOS TILDES DE CHECK O NO 
     if (checkboxON.length != 0) {
         var row_name = checkboxON;
         var cabecera_1 = $("#tCabecera");
         cabecera_1["0"].innerHTML = "";
+        // cabecera.append(`<tr class="info">`);
         row_name.forEach(function (element) {
             if (element != "") {
                 var cabeceraArmada = $('<th>' + element + '</th>');
@@ -38,17 +43,17 @@ function tablaDinamica(checkboxON) {
             checkboxON.includes("EDAD") == true ? tabla.append("<td>" + mascotaActual._edad + "</td>") : null;
             checkboxON.includes("TIPO") == true ? tabla.append("<td>" + Clases.tipoMascota[mascotaActual._tipo] + "</td>") : null;
             checkboxON.includes("CANTPATAS") == true ? tabla.append("<td>" + mascotaActual._cantPatas + "</td>") : null;
-            tabla.append("</tr>");
+            tabla.append("</tr></table>");
         }
     }
     else {
         var cabecera = $("#tCabecera");
         cabecera["0"].innerHTML = "";
         var devuelve = "<th>ID</th>" +
-            "<th>Nombre</th>" +
-            "<th>Edad</th>" +
-            "<th>Tipo</th>" +
-            "<th>Patas</th>";
+            "<th>NOMBRE</th>" +
+            "<th>EDAD</th>" +
+            "<th>TIPO</th>" +
+            "<th>CANTPATAS</th>";
         cabecera.append(devuelve);
         mostrarMascotas();
     }

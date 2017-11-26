@@ -11,6 +11,11 @@
   <script src="TS/mascota.js"></script>
   <script src="TS/enumerado.js"></script>
   <script src="TS/app.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/estilos.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- LINEA DE JQUERY -->
@@ -20,33 +25,7 @@
 
 
 <div class="container">
-    <!-- NAVBAR -->
-  <!-- <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span> 
-        </button>
-        <a class="navbar-brand" href="#">Laboratorio III</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Descripcion</a></li>
-          <li><a href="#inscripcion">Inscripcion</a></li>
-          <li><a href="#listado">Listado</a></li>
-        </ul>
-
-      </div>
-    </div>
-  </nav> -->
-
-  <!-- <body style="padding-top:65px"> -->
-
-    <!-- <section id="inscripcion" style="background-color:red;padding-top:65px;padding-bottom:45px;"> -->
-    <!-- FORMULARIOS ENTRADA -->
+   <!-- FORMULARIOS ENTRADA -->
             <!-- ID -> COMPLETAR
             NOMBRE -> COMPLETAR
             EDAD -> COMPLETAR
@@ -89,7 +68,8 @@
       </div>
         
       <!-- BOTONES -->
-      <div class="container row"> 
+      <div class="container row">
+          <div class="col-md-offset-1">
         <!-- AGREGAR -->    
                 <button class='btn btn-success btn-sm' type="button" id="btnEnviar" value="Guardar" onclick="agregarMascota();">
                     AGREGAR
@@ -114,6 +94,7 @@
                   LIMPIAR LISTA
                   <i class="glyphicon glyphicon-minus"></i>
               </button>
+          </div>
     </div>
 
       </div>
@@ -125,8 +106,10 @@
       <!-- CHECKBOX  -->
       <!-- <!— CHECKBOX —> -->
       <form id="checkFORM">
+      <div class="col-md-offset-5">
           <div class="checkbox">
-            <caption><h2>Filtrar listado por:</h2></caption>
+            
+            <caption><h3>COLUMNAS VISIBLES:</h3></caption>
             <label>
                 <input type="checkbox" class="checkItems" name="idfiltro" id="idfiltro" value="ID">ID
             </label>
@@ -146,29 +129,27 @@
               <input type="checkbox" class="checkItems" name="cantPatasfiltro" id="cantPatasfiltro" value="CANTPATAS">CANT. PATAS
           </label>
         </div>
+      </div>
       </form>
     <!-- TABLA LISTADO -->
     </div>
-    <section id="listado" class="container" style="padding-top: 45px;">
+    <section id="listado" class="container" > 
+        <div class="container">
+      <!-- style="padding-top: 45px;" -->
       <h2>Listado de Mascotas</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-hover table-condensed table-bordered" id="tabla">
-          
-            <thead id="tCabecera" class='info'>
-               <!-- <tr class="info">  -->
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Edad</th>
-              <th>Tipo</th>
-              <th>Patas</th>
+      <!-- <div class="table-responsive" class="container"> -->
+        <table class="" id="tabla">
+            <!-- CABECERA -->
+            <thead id="tCabecera">
             </thead>
-  
-          
-          <tbody id="tCuerpo">
-          </tbody>
+            <!-- CUERPO -->
+            <tbody id="tCuerpo">
+            </tbody>
         
         </table>
+
       </div>
+    </div>
     </section>
 </div>
 </body>
