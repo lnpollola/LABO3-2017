@@ -19,7 +19,7 @@ var Clases;
             return _this;
         }
         Mascota.prototype.animalCompleto = function () {
-            return _super.prototype.animalCompleto.call(this) + "," + this._id + "," + this._tipo;
+            return _super.prototype.animalCompleto.call(this) + ";" + this._id + ";" + this._tipo;
         };
         Mascota.prototype.toJson = function () {
             return JSON.stringify(this.animalCompleto());

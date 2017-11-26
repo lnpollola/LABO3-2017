@@ -14,7 +14,7 @@ namespace Clases
 
         public animalCompleto():string
         { 
-            return `${super.animalCompleto()},${this._id},${this._tipo}`;
+            return `${super.animalCompleto()};${this._id};${this._tipo}`;
         }
 
         public toJson():string

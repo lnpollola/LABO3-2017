@@ -5,8 +5,8 @@ $(function(){
 
     //FORM MODIFICADO POR CHECKBOX
     $("#checkFORM :checkbox").change(function() {
-        var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
-        tablaDinamica(checkedValues);
+        var checkboxON = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
+        tablaDinamica(checkboxON);
     });
 
     var i = 0;
@@ -18,25 +18,39 @@ $(function(){
     mostrarMascotas();
 });
 
-function tablaDinamica(checkedValues) 
+function tablaDinamica(checkboxON) 
 {
-    let row_name = checkedValues;
-    // let estiloCabeceraAp="<tr class='info'>";
+    //CABECERA DE LA TABLA
+    let row_name = checkboxON;
     let cabecera = $("#tCabecera");
     cabecera["0"].innerHTML ="";
-    // cabecera.append(estiloCabeceraAp);
 
     row_name.forEach(element => 
     {
         if (element != "") 
         {
-            // let cabeceraArmada = "<th>"+element+"</th>";
             let cabeceraArmada = $('<th>' + element + '</th>');
             cabecera.append(cabeceraArmada);
         } 
     });
-    // let estiloCabeceraCI="</tr>";
-    // cabecera.append(estiloCabeceraCI);
+
+    //CUERPO DE LA TABLA
+    let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
+    
+    let tabla = $("#tCuerpo");
+    tabla["0"].innerHTML ="";
+    for (var i = 0; i < MascotasString.length ; i++) 
+    {
+        let mascotaActual = JSON.parse(MascotasString[i]);
+        let miTipo = Clases.tipoMascota[mascotaActual._tipo];
+
+        let varAppend = "<tr><td>"  + mascotaActual._id                         + "</td>"+
+                        "<td>"      + mascotaActual._nombre                     + "</td>"+
+                        "<td>"      + mascotaActual._edad                       + "</td>"+
+                        "<td>"      + Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
+                        "<td>"      + mascotaActual._cantPatas                  + "</td></tr>"       
+        tabla.append(varAppend); 
+   }
 
 }
 
@@ -55,65 +69,33 @@ function agregarMascota():void
                                             tipo
                                             );
     
-    let MascotasString:string|null = localStorage.getItem("Mascotas");
+    let MascotasString  = JSON.parse(localStorage.getItem("Mascotas") || "[]");
     // //la primera vez no hay nada, las otras veces string
-        let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
-        MascotasJson.push( JSON.parse(nuevaMascota.toJson()));
-        localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
-    console.log(MascotasJson);
+        // let MascotasJson : JSON[] = MascotasString.length == 0 ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
+        MascotasString.push( JSON.stringify(nuevaMascota));
+        localStorage.setItem("Mascotas",JSON.stringify(MascotasString));
+        
+    console.log(MascotasString);
     alert ("Mascota guardada");
     mostrarMascotas(); 
 } 
  
 function mostrarMascotas():void
 {
-    let MascotasString:string|null = localStorage.getItem("Mascotas");
-    let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
-    // //la primera vez no hay nada, las otras veces string
-  
+    let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
+    
     let tabla = $("#tCuerpo");
     tabla["0"].innerHTML ="";
-    for (var i = 0; i < MascotasJson.length ; i++) 
+    for (var i = 0; i < MascotasString.length ; i++) 
     {
-        var miTipo = Clases.tipoMascota[MascotasJson[i].split(',')[4]];
-        var twoAsString = Clases.tipoMascota[miTipo]; // twoAsString == "two"
+        let mascotaActual = JSON.parse(MascotasString[i]);
+        let miTipo = Clases.tipoMascota[mascotaActual._tipo];
 
-        let varAppend = "<tr><td>" + MascotasJson[i].split(',')[1] + "</td>"+
-                        "<td>" + MascotasJson[i].split(',')[0] + "</td>"+
-                        "<td>" + MascotasJson[i].split(',')[3] + "</td>"+
-                        "<td>" + Clases.tipoMascota[MascotasJson[i].split(',')[4]] + "</td>"+
-                        "<td>" + MascotasJson[i].split(',')[2] + "</td></tr>"       
+        let varAppend = "<tr><td>"  + mascotaActual._id                         + "</td>"+
+                        "<td>"      + mascotaActual._nombre                     + "</td>"+
+                        "<td>"      + mascotaActual._edad                       + "</td>"+
+                        "<td>"      + Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
+                        "<td>"      + mascotaActual._cantPatas                  + "</td></tr>"       
         tabla.append(varAppend); 
    }
-
-    // "${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ${}"
 }
-
-// function boxChange(type)
-// {
-//     var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
-//     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
-
-//   if(type == "not"){
-//         return uncheckedValues;
-//     } else {
-//         return checkedValues;
-//     } 
-// }
-
-// $(":checkbox").change(function() {
-// $("#checkItems").change(function() {
-//     // boxChange();
-//     alert("estoy aaca");
-//     boxChange("not");
-// });
-
-// // Only Needed For Buttons
-
-// $("body").on("click", "button#chk1", function() {
-//     alert (boxChange());
-// });
-
-// $("body").on("click", "button#chk2", function() {
-//     alert (boxChange("not"));
-// });
