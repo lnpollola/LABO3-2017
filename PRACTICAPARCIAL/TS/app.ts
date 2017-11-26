@@ -21,37 +21,53 @@ $(function(){
 function tablaDinamica(checkboxON) 
 {
     //CABECERA DE LA TABLA
-    let row_name = checkboxON;
-    let cabecera = $("#tCabecera");
-    cabecera["0"].innerHTML ="";
-
-    row_name.forEach(element => 
+    if(checkboxON.length != 0)
     {
-        if (element != "") 
-        {
-            let cabeceraArmada = $('<th>' + element + '</th>');
-            cabecera.append(cabeceraArmada);
-        } 
-    });
+        let row_name = checkboxON;
+        let cabecera = $("#tCabecera");
+        cabecera["0"].innerHTML ="";
 
-    //CUERPO DE LA TABLA
+        row_name.forEach(element => 
+        {
+            if (element != "") 
+            {
+                let cabeceraArmada = $('<th>' + element + '</th>');
+                cabecera.append(cabeceraArmada);
+            } 
+        });
+    }
+    else
+    {  
+        let cabecera = $("#tCabecera");
+        cabecera["0"].innerHTML ="";
+        var devuelve =  "<th>ID</th>"       +
+                        "<th>Nombre</th>"   +  
+                        "<th>Edad</th>"     +
+                        "<th>Tipo</th>"     +  
+                        "<th>Patas</th>";
+        cabecera.append(devuelve);
+    }
+
+        //CUERPO DE LA TABLA
     let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
     
     let tabla = $("#tCuerpo");
     tabla["0"].innerHTML ="";
+
     for (var i = 0; i < MascotasString.length ; i++) 
     {
         let mascotaActual = JSON.parse(MascotasString[i]);
-        let miTipo = Clases.tipoMascota[mascotaActual._tipo];
+        //AGREGO LAS COLUMNAS SEGUN VAYAN O NO
+        tabla.append("<tr>");
 
-        let varAppend = "<tr><td>"  + mascotaActual._id                         + "</td>"+
-                        "<td>"      + mascotaActual._nombre                     + "</td>"+
-                        "<td>"      + mascotaActual._edad                       + "</td>"+
-                        "<td>"      + Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
-                        "<td>"      + mascotaActual._cantPatas                  + "</td></tr>"       
-        tabla.append(varAppend); 
-   }
-
+        checkboxON.includes("ID")       == true ? tabla.append("<td>"+mascotaActual._id                         + "</td>") : null ; 
+        checkboxON.includes("NOMBRE")   == true ? tabla.append("<td>"+mascotaActual._nombre                     + "</td>") : null ; 
+        checkboxON.includes("EDAD")     == true ? tabla.append("<td>"+mascotaActual._edad                       + "</td>") : null ; 
+        checkboxON.includes("TIPO")     == true ? tabla.append("<td>"+Clases.tipoMascota[mascotaActual._tipo]   + "</td>") : null ; 
+        checkboxON.includes("CANTPATAS")== true ? tabla.append("<td>"+mascotaActual._cantPatas                  + "</td>") : null ; 
+        
+        tabla.append("</tr>");
+    }
 }
 
 function limpiarLista():void
