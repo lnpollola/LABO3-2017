@@ -6,7 +6,6 @@ $(function(){
     //FORM MODIFICADO POR CHECKBOX
     $("#checkFORM :checkbox").change(function() {
         var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
-        //     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
         tablaDinamica(checkedValues);
     });
 
