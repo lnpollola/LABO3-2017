@@ -70,10 +70,8 @@ function agregarMascota():void
                                             );
     
     let MascotasString  = JSON.parse(localStorage.getItem("Mascotas") || "[]");
-    // //la primera vez no hay nada, las otras veces string
-        // let MascotasJson : JSON[] = MascotasString.length == 0 ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
-        MascotasString.push( JSON.stringify(nuevaMascota));
-        localStorage.setItem("Mascotas",JSON.stringify(MascotasString));
+    MascotasString.push( JSON.stringify(nuevaMascota));
+    localStorage.setItem("Mascotas",JSON.stringify(MascotasString));
         
     console.log(MascotasString);
     alert ("Mascota guardada");

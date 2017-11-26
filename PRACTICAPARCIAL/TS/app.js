@@ -47,8 +47,6 @@ function agregarMascota() {
     var tipo = Number($('#tipoMasc').val());
     var nuevaMascota = new Clases.Mascota(String($('#nombre').val()), Number($('#edad').val()), Number($('#patas').val()), Number($('#id').val()), tipo);
     var MascotasString = JSON.parse(localStorage.getItem("Mascotas") || "[]");
-    // //la primera vez no hay nada, las otras veces string
-    // let MascotasJson : JSON[] = MascotasString.length == 0 ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
     MascotasString.push(JSON.stringify(nuevaMascota));
     localStorage.setItem("Mascotas", JSON.stringify(MascotasString));
     console.log(MascotasString);
