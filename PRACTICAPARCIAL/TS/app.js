@@ -56,20 +56,25 @@ function tablaDinamica(checkboxON) {
             }
         });
         //CUERPO DE LA TABLA
-        var MascotasString = JSON.parse(localStorage.getItem("Mascotas") || "[]");
-        var tabla = $("#tCuerpo");
-        tabla["0"].innerHTML = "";
-        for (var i = 0; i < MascotasString.length; i++) {
-            var mascotaActual = JSON.parse(MascotasString[i]);
+        // let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
+        // let MascotasString:string|null =  $("#tCuerpo");
+        var tablaAux = $("#tCuerpoAUX");
+        tablaAux["0"].innerHTML = "";
+        for (var i = 0; i < $("#tCuerpo")[0].childNodes.length; i++) {
+            // let mascotaActual = $("#tCuerpo")[0].childNodes[i];
             //AGREGO LAS COLUMNAS SEGUN VAYAN O NO
-            tabla.append("<tr>");
-            checkboxON.includes("ID") == true ? tabla.append("<td>" + mascotaActual._id + "</td>") : null;
-            checkboxON.includes("NOMBRE") == true ? tabla.append("<td>" + mascotaActual._nombre + "</td>") : null;
-            checkboxON.includes("EDAD") == true ? tabla.append("<td>" + mascotaActual._edad + "</td>") : null;
-            checkboxON.includes("TIPO") == true ? tabla.append("<td>" + Clases.tipoMascota[mascotaActual._tipo] + "</td>") : null;
-            checkboxON.includes("CANTPATAS") == true ? tabla.append("<td>" + mascotaActual._cantPatas + "</td>") : null;
-            tabla.append("</tr></table>");
+            tablaAux.append("<tr>");
+            checkboxON.includes("ID") == true ? tablaAux.append("<td>" + $('#mascID' + i)[0].innerHTML + "</td>") : null;
+            checkboxON.includes("NOMBRE") == true ? tablaAux.append("<td>" + $("#mascNOM" + i)[0].innerHTML + "</td>") : null;
+            checkboxON.includes("EDAD") == true ? tablaAux.append("<td>" + $("#mascEDAD" + i)[0].innerHTML + "</td>") : null;
+            checkboxON.includes("TIPO") == true ? tablaAux.append("<td>" + Clases.tipoMascota[$("#mascTIPO" + i)[0].innerHTML] + "</td>") : null;
+            checkboxON.includes("CANTPATAS") == true ? tablaAux.append("<td>" + $("#mascPATAS" + i)[0].innerHTML + "</td>") : null;
+            tablaAux.append("</tr></table>");
         }
+        var tablaFinal = $("#tCuerpo");
+        tablaFinal["0"].innerHTML = "";
+        tablaFinal["0"].innerHTML = tablaAux["0"].innerHTML;
+        tablaAux["0"].innerHTML = "";
     }
     else {
         //TABLA ENTERA, VIENE POR EL LOAD DE LA PAGINA
@@ -106,18 +111,19 @@ function mostrarMascotas(valor) {
     var tabla = $("#tCuerpo");
     tabla["0"].innerHTML = "";
     for (var i = 0; i < MascotasString.length; i++) {
+        var mascotaActual = void 0;
         if (valor) {
-            var mascotaActual = MascotasString[i];
+            mascotaActual = MascotasString[i];
         }
         else {
-            var mascotaActual = JSON.parse(MascotasString[i]);
+            mascotaActual = JSON.parse(MascotasString[i]);
         }
         var miTipo = Clases.tipoMascota[mascotaActual._tipo];
-        var varAppend = "<tr><td>" + mascotaActual._id + "</td>" +
-            "<td>" + mascotaActual._nombre + "</td>" +
-            "<td>" + mascotaActual._edad + "</td>" +
-            "<td>" + Clases.tipoMascota[mascotaActual._tipo] + "</td>" +
-            "<td>" + mascotaActual._cantPatas + "</td></tr>";
+        var varAppend = "<tr><td id='mascID" + i + "'>" + mascotaActual._id + "</td>" +
+            "<td id='mascNOM" + i + "'>" + mascotaActual._nombre + "</td>" +
+            "<td id='mascEDAD" + i + "'>" + mascotaActual._edad + "</td>" +
+            "<td id='mascTIPO" + i + "'>" + Clases.tipoMascota[mascotaActual._tipo] + "</td>" +
+            "<td id='mascPATAS" + i + "'>" + mascotaActual._cantPatas + "</td></tr>";
         tabla.append(varAppend);
     }
 }
