@@ -31,7 +31,7 @@
             EDAD -> COMPLETAR
             TIPO ->ENUM TIPO
             CANTIDAD PATAS -> COMPLETAR -->
-            <form id="formCARGA">        
+    <form id="formCARGA">        
     <div class"row">   
             <!--  ID-->
               <div class="form-group">
@@ -68,9 +68,11 @@
       
       </div>
     </form>
+    
       <!-- BOTONES -->
+      <div class="col-md-offset-2">
       <div class="container row">
-          <div class="col-md-offset-1">
+          <!-- <div class="col-md-offset-1"> -->
         <!-- AGREGAR -->    
                 <button class='btn btn-success btn-sm' type="button" id="btnEnviar" value="Guardar" onclick="agregarMascota();">
                     AGREGAR
@@ -79,16 +81,16 @@
             <!-- </div> -->
         <!-- ESTOS DEBERIAN SER BOTONES DE LA LISTA -->
         <!-- MODIFICAR -->
-                <button class='btn btn- btn-warning' type="button" id="btnEnviar" value="Modificar" onclick="eliminarMascota();">
+                <!-- <button class='btn btn- btn-warning' type="button" id="btnEnviar" value="Modificar" onclick="eliminarMascota();">
                     MODIFICAR
                     <i class="glyphicon glyphicon-pencil"></i>
-                </button>
+                </button> -->
               <!-- </div> -->
         <!-- BORRAR -->
-                <button class='btn btn-danger btn-sm' type="button" id="btnEnviar" value="Eliminar" onclick="modifiarMascota();">
+                <!-- <button class='btn btn-danger btn-sm' type="button" id="btnEnviar" value="Eliminar" onclick="modifiarMascota();">
                     BORRAR
                     <i class="glyphicon glyphicon-minus"></i>
-                </button>
+                </button> -->
         <!-- LIMPIAR LISTA -->
               <!--EJEMPLO DE UN BOTON CON FUNCION Y EVENTO  -->
               <button class='btn btn-ok btn-sm' type="button" id="borrarLista" onclick="limpiarLista();">
@@ -97,7 +99,6 @@
               </button>
           </div>
     </div>
-
       </div>
 
     </section>
@@ -107,7 +108,7 @@
       <!-- CHECKBOX  -->
       <!-- <!— CHECKBOX —> -->
       <form id="checkFORM">
-      <div class="col-md-offset-1">
+      <div class="col-md-offset-5">
         <div class="checkbox">
             
             <caption><h3>COLUMNAS VISIBLES:</h3></caption>
@@ -130,7 +131,10 @@
               <input type="checkbox" class="checkItems" name="cantPatasfiltro" id="cantPatasfiltro" value="CANTPATAS">CANT. PATAS
           </label>
         </div>
-            <div class="form-group">
+      </div>
+      </form>        
+            <div class="col-md-offset-2">
+                
                 <label for="Filtro">FILTRAR POR:</label>
                 <select class="form-control" name="filtrarPor" id="filtrarPor">
                 </select>

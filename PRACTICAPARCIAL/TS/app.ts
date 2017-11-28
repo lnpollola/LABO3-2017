@@ -100,6 +100,7 @@ function tablaDinamica(checkboxON?)
             checkboxON.includes("EDAD")     == true ? tablaTXT.append("<td id='mascEDAD"    +i+"'>" +$('#mascEDAD'+i)[0].innerHTML                    + "</td>") : null ; 
             checkboxON.includes("TIPO")     == true ? tablaTXT.append("<td id='mascTIPO"    +i+"'>" +Clases.tipoMascota[$('#mascTIPO'+i)[0].innerHTML]+ "</td>") : null ; 
             checkboxON.includes("CANTPATAS")== true ? tablaTXT.append("<td id='mascPATAS"   +i+"'>" +$('#mascPATAS'+i)[0].innerHTML                    + "</td>") : null ; 
+            
             tablaTXT.append("</tr></table>");
         }
         let tablaFinal   = $("#tCuerpo");
@@ -158,7 +159,20 @@ function mostrarMascotas(valor?):void
                         "<td id='mascNOM"   +i+"'>"+ mascotaActual._nombre                     + "</td>"+
                         "<td id='mascEDAD"  +i+"'>"+ mascotaActual._edad                       + "</td>"+
                         "<td id='mascTIPO"  +i+"'>"+ Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
-                        "<td id='mascPATAS" +i+"'>"+ mascotaActual._cantPatas                  + "</td></tr>"       
+                        "<td id='mascPATAS" +i+"'>"+ mascotaActual._cantPatas                  + "</td>"+
+                        "<td>"+  
+                            "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='eliminarMascota("+i+")'>"
+                            +"MODIFICAR"+
+                            "<i class='glyphicon glyphicon-pencil'></i>"+
+                            "</button>"
+                        + "</td>"   +  
+                        "<td>"+  
+                            "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='modifiarMascota();'>"
+                            +"BORRAR"+
+                            "<i class='glyphicon glyphicon-minus'></i>"+
+                            "</button>"
+                        + "</td>"   +  
+                        "</tr>"       
         tabla.append(varAppend); 
    }    
    
@@ -183,3 +197,23 @@ function agregarMascota():void
     $('#formCARGA').trigger("reset"); 
 } 
  
+function eliminarMascota(indice):void
+{
+    var indice = indice;
+    let tipo: Clases.tipoMascota  = Number($('#tipoMasc').val()); 
+    let nuevaMascota = new Clases.Mascota(  String ($('#nombre').val()),
+                                            Number ($('#edad').val()),
+                                            Number ($('#patas').val()),
+                                            Number ($('#id').val()),
+                                            tipo
+                                            );
+    
+    let MascotasString  = JSON.parse(localStorage.getItem("Mascotas") || "[]");
+    MascotasString.push( JSON.stringify(nuevaMascota));
+    localStorage.setItem("Mascotas",JSON.stringify(MascotasString));
+        
+    console.log(MascotasString);
+    alert ("Mascota guardada");
+    mostrarMascotas(); 
+    $('#formCARGA').trigger("reset"); 
+} 

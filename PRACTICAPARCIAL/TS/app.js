@@ -134,11 +134,36 @@ function mostrarMascotas(valor) {
             "<td id='mascNOM" + i + "'>" + mascotaActual._nombre + "</td>" +
             "<td id='mascEDAD" + i + "'>" + mascotaActual._edad + "</td>" +
             "<td id='mascTIPO" + i + "'>" + Clases.tipoMascota[mascotaActual._tipo] + "</td>" +
-            "<td id='mascPATAS" + i + "'>" + mascotaActual._cantPatas + "</td></tr>";
+            "<td id='mascPATAS" + i + "'>" + mascotaActual._cantPatas + "</td>" +
+            "<td>" +
+            "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='eliminarMascota(" + i + ")'>"
+            + "MODIFICAR" +
+            "<i class='glyphicon glyphicon-pencil'></i>" +
+            "</button>"
+            + "</td>" +
+            "<td>" +
+            "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='modifiarMascota();'>"
+            + "BORRAR" +
+            "<i class='glyphicon glyphicon-minus'></i>" +
+            "</button>"
+            + "</td>" +
+            "</tr>";
         tabla.append(varAppend);
     }
 }
 function agregarMascota() {
+    var tipo = Number($('#tipoMasc').val());
+    var nuevaMascota = new Clases.Mascota(String($('#nombre').val()), Number($('#edad').val()), Number($('#patas').val()), Number($('#id').val()), tipo);
+    var MascotasString = JSON.parse(localStorage.getItem("Mascotas") || "[]");
+    MascotasString.push(JSON.stringify(nuevaMascota));
+    localStorage.setItem("Mascotas", JSON.stringify(MascotasString));
+    console.log(MascotasString);
+    alert("Mascota guardada");
+    mostrarMascotas();
+    $('#formCARGA').trigger("reset");
+}
+function eliminarMascota(indice) {
+    var indice = indice;
     var tipo = Number($('#tipoMasc').val());
     var nuevaMascota = new Clases.Mascota(String($('#nombre').val()), Number($('#edad').val()), Number($('#patas').val()), Number($('#id').val()), tipo);
     var MascotasString = JSON.parse(localStorage.getItem("Mascotas") || "[]");
