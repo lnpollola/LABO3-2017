@@ -8,7 +8,8 @@ $(function () {
     });
     //BOTON FILTRAR
     $("#filtrarPor").change(function () {
-        mostrarMascotas();
+        var valorFiltro = $('#filtrarPor').map(function () { return this.value; }).get();
+        mostrarMascotas(valorFiltro);
     });
     //CARGA DE LA PAGINA
     encabezadoCheck();
@@ -86,28 +87,38 @@ function tablaDinamica(checkboxON) {
     }
 }
 /////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
-function mostrarMascotas(listadoMascotas, metodo, valor) {
-    if (!listadoMascotas) {
-        var MascotasString = JSON.parse(localStorage.getItem("Mascotas") || "[]");
-        var tabla = $("#tCuerpo");
-        tabla["0"].innerHTML = "";
-        for (var i = 0; i < MascotasString.length; i++) {
-            var mascotaActual = JSON.parse(MascotasString[i]);
-            var miTipo = Clases.tipoMascota[mascotaActual._tipo];
-            var varAppend = "<tr><td>" + mascotaActual._id + "</td>" +
-                "<td>" + mascotaActual._nombre + "</td>" +
-                "<td>" + mascotaActual._edad + "</td>" +
-                "<td>" + Clases.tipoMascota[mascotaActual._tipo] + "</td>" +
-                "<td>" + mascotaActual._cantPatas + "</td></tr>";
-            tabla.append(varAppend);
-        }
+function mostrarMascotas(valor) {
+    var MascotasString = JSON.parse(localStorage.getItem("Mascotas") || "[]");
+    //ARMO EL ARRAY DE MASCOTAS, SEGUN SI ES TABLA FULL O FILTRADA
+    if (valor) {
+        //MUESTRO EL LISTADO DE MASCOTAS SEGUN FILTRO
+        var stringFinal = MascotasString
+            .filter(function (mascota) {
+            var mascotaRet = JSON.parse(mascota);
+            return mascotaRet._tipo == valor;
+        })
+            .map(function (mascota) {
+            var mascotaRet = JSON.parse(mascota);
+            return mascotaRet;
+        });
+        MascotasString = stringFinal;
     }
-    else {
-        //MUESTRO EL LISTADO DE MASCOTAS SEGUN EL METODO  QUE PIDA 
-        if (metodo == "filtrar") {
+    var tabla = $("#tCuerpo");
+    tabla["0"].innerHTML = "";
+    for (var i = 0; i < MascotasString.length; i++) {
+        if (valor) {
+            var mascotaActual = MascotasString[i];
         }
-        else if (metodo == "promedio") {
+        else {
+            var mascotaActual = JSON.parse(MascotasString[i]);
         }
+        var miTipo = Clases.tipoMascota[mascotaActual._tipo];
+        var varAppend = "<tr><td>" + mascotaActual._id + "</td>" +
+            "<td>" + mascotaActual._nombre + "</td>" +
+            "<td>" + mascotaActual._edad + "</td>" +
+            "<td>" + Clases.tipoMascota[mascotaActual._tipo] + "</td>" +
+            "<td>" + mascotaActual._cantPatas + "</td></tr>";
+        tabla.append(varAppend);
     }
 }
 function agregarMascota() {

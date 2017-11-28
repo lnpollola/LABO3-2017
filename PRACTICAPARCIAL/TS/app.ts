@@ -10,7 +10,8 @@ $(function(){
         });
         //BOTON FILTRAR
         $("#filtrarPor").change(function(){
-            mostrarMascotas();
+            let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
+            mostrarMascotas( valorFiltro);
         });
 
     //CARGA DE LA PAGINA
@@ -108,44 +109,43 @@ function tablaDinamica(checkboxON)
 }
 
 /////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
-function mostrarMascotas(listadoMascotas?,metodo?,valor?):void
+function mostrarMascotas(valor?):void
 {
-    if(!listadoMascotas)
+    let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");    
+    //ARMO EL ARRAY DE MASCOTAS, SEGUN SI ES TABLA FULL O FILTRADA
+    if(valor)
     {
-        let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
+    //MUESTRO EL LISTADO DE MASCOTAS SEGUN FILTRO
+       let stringFinal = MascotasString
+                                .filter(function(mascota){
+                                    let mascotaRet = JSON.parse(mascota);
+                                    return mascotaRet._tipo == valor;
+                                })
+                                .map(function(mascota){
+                                    let mascotaRet = JSON.parse(mascota);
+                                    return mascotaRet;
+                                });   
+        MascotasString= stringFinal;
+    }
+       
+    let tabla = $("#tCuerpo");
+    tabla["0"].innerHTML ="";
+    for (var i = 0; i < MascotasString.length ; i++) 
+    {
+        if(valor){let mascotaActual = MascotasString[i];}
+        else     {let mascotaActual = JSON.parse(MascotasString[i]);}
         
-        let tabla = $("#tCuerpo");
-        tabla["0"].innerHTML ="";
-        for (var i = 0; i < MascotasString.length ; i++) 
-        {
-            let mascotaActual = JSON.parse(MascotasString[i]);
-            let miTipo = Clases.tipoMascota[mascotaActual._tipo];
-    
-            let varAppend = "<tr><td>"  + mascotaActual._id                         + "</td>"+
-                            "<td>"      + mascotaActual._nombre                     + "</td>"+
-                            "<td>"      + mascotaActual._edad                       + "</td>"+
-                            "<td>"      + Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
-                            "<td>"      + mascotaActual._cantPatas                  + "</td></tr>"       
-            tabla.append(varAppend); 
-       }
-    }
-    else
-    {
-    //MUESTRO EL LISTADO DE MASCOTAS SEGUN EL METODO  QUE PIDA 
-        if(metodo=="filtrar")
-        {
-           
-            
-        }
-        else if(metodo=="promedio")
-        {
+        let miTipo = Clases.tipoMascota[mascotaActual._tipo];
 
-        }
-
-    }
+        let varAppend = "<tr><td>"  + mascotaActual._id                         + "</td>"+
+                        "<td>"      + mascotaActual._nombre                     + "</td>"+
+                        "<td>"      + mascotaActual._edad                       + "</td>"+
+                        "<td>"      + Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
+                        "<td>"      + mascotaActual._cantPatas                  + "</td></tr>"       
+        tabla.append(varAppend); 
+   }
    
 }
-
 
 
 function agregarMascota():void
