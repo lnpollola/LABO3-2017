@@ -8,33 +8,54 @@ $(function(){
         encabezadoCheck();
     });
 
+    //CARGA DE LA PAGINA
     encabezadoCheck();
+    cargoMenusEncabezado();
+    mostrarMascotas();
+});
 
+/////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
+
+//TRAIGO EN UN ARRAY LOS VALORES DEVUELTOS DE LOS CHECKBOX ON
+//ARMO LA TABLA DINAMICA PASANDO LOS ENCABEZADOS Y FILTROS A MOSTRAR COLUMNAS
+function encabezadoCheck()
+{
+    var checkboxON = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
+    tablaDinamica(checkboxON);
+}
+//BOTON DE LIMPIAR LISTA
+function limpiarLista():void
+{
+       localStorage.clear();
+       mostrarMascotas();
+}
+
+//CARGO LOS DROPDOWN QUE DEPENDEN DEL ENUMERADO
+function cargoMenusEncabezado()
+{
+    //ENCABEZADO DE FORM DE CARGA
     var i = 0;
     let select = $("#tipoMasc");
     for (var i = 0; i < 6; i++) 
     {
         select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
     }
-    mostrarMascotas();
-});
-
-function encabezadoCheck()
-{
-    var checkboxON = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
-    tablaDinamica(checkboxON);
+    //ENCABEZADO DE LA SECCION DE FILTRO
+    var filtrar = $("#filtrarPor");
+    filtrar[0].innerHTML = select[0].innerHTML ;
 }
 
+//ARMO LA TABLA  DINAMICA
 function tablaDinamica(checkboxON) 
 {
-    //CHEQUEO SI ESTAN LOS TILDES DE CHECK O NO 
+    //CHEQUEO SI ES LA CARGA INICIAL O SI ENTRA POR EL CHANGE DE CHECKBOX
     if(checkboxON.length != 0)
     {
+    //TABLA DINAMICA, ENTRA POR EVENTO
+        //CABECERA DE LA TABLA
         let row_name = checkboxON;
         let cabecera = $("#tCabecera");
         cabecera["0"].innerHTML ="";
-        // cabecera.append(`<tr class="info">`);
-
         row_name.forEach(element => 
         {
             if (element != "") 
@@ -43,8 +64,6 @@ function tablaDinamica(checkboxON)
                 cabecera.append(cabeceraArmada);
             } 
         });
-        
-       
         //CUERPO DE LA TABLA
         let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
         
@@ -68,6 +87,8 @@ function tablaDinamica(checkboxON)
     }
     else
     {  
+    //TABLA ENTERA, VIENE POR EL LOAD DE LA PAGINA
+        //CABECERA DE LA TABLA
         let cabecera = $("#tCabecera");
         cabecera["0"].innerHTML ="";
         var devuelve =  "<th>ID</th>"       +
@@ -76,35 +97,12 @@ function tablaDinamica(checkboxON)
                         "<th>TIPO</th>"     +  
                         "<th>CANTPATAS</th>";
         cabecera.append(devuelve);
-
+        //CUERPO DE LA TABLA
         mostrarMascotas();
     }
 }
 
-function limpiarLista():void
-{
-       localStorage.clear();
-       mostrarMascotas();
-}
-function agregarMascota():void
-{
-    let tipo: Clases.tipoMascota  = Number($('#tipoMasc').val()); 
-    let nuevaMascota = new Clases.Mascota(  String ($('#nombre').val()),
-                                            Number ($('#edad').val()),
-                                            Number ($('#patas').val()),
-                                            Number ($('#id').val()),
-                                            tipo
-                                            );
-    
-    let MascotasString  = JSON.parse(localStorage.getItem("Mascotas") || "[]");
-    MascotasString.push( JSON.stringify(nuevaMascota));
-    localStorage.setItem("Mascotas",JSON.stringify(MascotasString));
-        
-    console.log(MascotasString);
-    alert ("Mascota guardada");
-    mostrarMascotas(); 
-} 
- 
+/////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
 function mostrarMascotas():void
 {
     let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
@@ -124,3 +122,23 @@ function mostrarMascotas():void
         tabla.append(varAppend); 
    }
 }
+
+function agregarMascota():void
+{
+    let tipo: Clases.tipoMascota  = Number($('#tipoMasc').val()); 
+    let nuevaMascota = new Clases.Mascota(  String ($('#nombre').val()),
+                                            Number ($('#edad').val()),
+                                            Number ($('#patas').val()),
+                                            Number ($('#id').val()),
+                                            tipo
+                                            );
+    
+    let MascotasString  = JSON.parse(localStorage.getItem("Mascotas") || "[]");
+    MascotasString.push( JSON.stringify(nuevaMascota));
+    localStorage.setItem("Mascotas",JSON.stringify(MascotasString));
+        
+    console.log(MascotasString);
+    alert ("Mascota guardada");
+    mostrarMascotas(); 
+} 
+ 
