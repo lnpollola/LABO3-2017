@@ -147,4 +147,5 @@ function agregarMascota() {
     console.log(MascotasString);
     alert("Mascota guardada");
     mostrarMascotas();
+    $('#formCARGA').trigger("reset");
 }

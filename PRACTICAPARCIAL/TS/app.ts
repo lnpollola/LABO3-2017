@@ -15,6 +15,8 @@ $(function(){
             tablaAux = undefined;
         });
 
+        
+
     //CARGA DE LA PAGINA
     encabezadoCheck();
     cargoMenusEncabezado();
@@ -178,5 +180,6 @@ function agregarMascota():void
     console.log(MascotasString);
     alert ("Mascota guardada");
     mostrarMascotas(); 
+    $('#formCARGA').trigger("reset"); 
 } 
  
