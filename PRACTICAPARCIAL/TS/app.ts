@@ -92,7 +92,7 @@ function tablaDinamica(checkboxON)
         let tablaFinal  = $("#tCuerpo");
         tablaFinal["0"].innerHTML =""; 
         tablaFinal["0"].innerHTML = tablaAux["0"].innerHTML;
-        tablaAux["0"].innerHTML ="";
+        // tablaAux["0"].innerHTML ="";
 
     }
     else

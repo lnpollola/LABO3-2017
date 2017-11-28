@@ -74,7 +74,7 @@ function tablaDinamica(checkboxON) {
         var tablaFinal = $("#tCuerpo");
         tablaFinal["0"].innerHTML = "";
         tablaFinal["0"].innerHTML = tablaAux["0"].innerHTML;
-        tablaAux["0"].innerHTML = "";
+        // tablaAux["0"].innerHTML ="";
     }
     else {
         //TABLA ENTERA, VIENE POR EL LOAD DE LA PAGINA
