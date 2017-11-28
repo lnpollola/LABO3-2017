@@ -12,6 +12,7 @@ $(function(){
         $("#filtrarPor").change(function(){
             let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
             mostrarMascotas(valorFiltro);
+            tablaAux = undefined;
         });
 
     //CARGA DE LA PAGINA
@@ -51,9 +52,9 @@ function cargoMenusEncabezado()
     filtrar[0].innerHTML = select[0].innerHTML ;
 }
 var tablaAux;
-// var tablaAppend;
+
 //ARMO LA TABLA  DINAMICA
-function tablaDinamica(checkboxON) 
+function tablaDinamica(checkboxON?) 
 {
     //CHEQUEO SI ES LA CARGA INICIAL O SI ENTRA POR EL CHANGE DE CHECKBOX
     if(checkboxON.length != 0)
@@ -72,6 +73,7 @@ function tablaDinamica(checkboxON)
             } 
         }); 
         
+        //CUERPO DE  LA TABLA
         let tablaTXT = $("#tCuerpoTXT");
         var ciclo;
         if(tablaAux == null)    
@@ -86,7 +88,7 @@ function tablaDinamica(checkboxON)
             ciclo = $("#tCuerpoAUX")[0].childNodes.length ;
             tablaTXT[0].innerHTML = "";
         }
-        
+
         for (var i = 0; i < ciclo ; i++) 
         {
             //AGREGO LAS COLUMNAS SEGUN VAYAN O NO
@@ -102,8 +104,7 @@ function tablaDinamica(checkboxON)
         let innerHtmlAux = tablaFinal["0"].innerHTML;
         tablaFinal["0"].innerHTML =""; 
         tablaFinal["0"].innerHTML = tablaTXT["0"].innerHTML;
-        
-        if(primeraVez == 1)   {tablaAux["0"].innerHTML = innerHtmlAux;}
+        if(primeraVez == 1)   {tablaAux["0"].innerHTML = innerHtmlAux; }
     }
     else
     {  
@@ -121,7 +122,6 @@ function tablaDinamica(checkboxON)
         mostrarMascotas();
     }
 }
-
 /////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
 function mostrarMascotas(valor?):void
 {
@@ -161,8 +161,6 @@ function mostrarMascotas(valor?):void
    }    
    
 }
-
-
 function agregarMascota():void
 {
     let tipo: Clases.tipoMascota  = Number($('#tipoMasc').val()); 

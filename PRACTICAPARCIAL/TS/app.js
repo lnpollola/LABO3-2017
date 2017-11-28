@@ -10,6 +10,7 @@ $(function () {
     $("#filtrarPor").change(function () {
         var valorFiltro = $('#filtrarPor').map(function () { return this.value; }).get();
         mostrarMascotas(valorFiltro);
+        tablaAux = undefined;
     });
     //CARGA DE LA PAGINA
     encabezadoCheck();
@@ -41,7 +42,6 @@ function cargoMenusEncabezado() {
     filtrar[0].innerHTML = select[0].innerHTML;
 }
 var tablaAux;
-// var tablaAppend;
 //ARMO LA TABLA  DINAMICA
 function tablaDinamica(checkboxON) {
     //CHEQUEO SI ES LA CARGA INICIAL O SI ENTRA POR EL CHANGE DE CHECKBOX
@@ -57,6 +57,7 @@ function tablaDinamica(checkboxON) {
                 cabecera_1.append(cabeceraArmada);
             }
         });
+        //CUERPO DE  LA TABLA
         var tablaTXT = $("#tCuerpoTXT");
         var ciclo;
         if (tablaAux == null) {
