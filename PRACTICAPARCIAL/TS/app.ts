@@ -3,10 +3,15 @@
 
 $(function(){
 
-    //FORM MODIFICADO POR CHECKBOX
-    $("#checkFORM :checkbox").change(function() {
-        encabezadoCheck();
-    });
+    //EVENTOS
+        //FORM MODIFICADO POR CHECKBOX
+        $("#checkFORM :checkbox").change(function() {
+            encabezadoCheck();
+        });
+        //BOTON FILTRAR
+        $("#filtrarPor").change(function(){
+            mostrarMascotasFiltro();
+        });
 
     //CARGA DE LA PAGINA
     encabezadoCheck();
@@ -104,6 +109,26 @@ function tablaDinamica(checkboxON)
 
 /////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
 function mostrarMascotas():void
+{
+    let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
+    
+    let tabla = $("#tCuerpo");
+    tabla["0"].innerHTML ="";
+    for (var i = 0; i < MascotasString.length ; i++) 
+    {
+        let mascotaActual = JSON.parse(MascotasString[i]);
+        let miTipo = Clases.tipoMascota[mascotaActual._tipo];
+
+        let varAppend = "<tr><td>"  + mascotaActual._id                         + "</td>"+
+                        "<td>"      + mascotaActual._nombre                     + "</td>"+
+                        "<td>"      + mascotaActual._edad                       + "</td>"+
+                        "<td>"      + Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
+                        "<td>"      + mascotaActual._cantPatas                  + "</td></tr>"       
+        tabla.append(varAppend); 
+   }
+}
+
+function mostrarMascotasFiltro():void
 {
     let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
     
