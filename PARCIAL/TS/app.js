@@ -12,11 +12,15 @@ $(function () {
         mostrarEmpleados(valorFiltro);
         tablaAux = undefined;
     });
+    var dataImage = localStorage.getItem('imgData');
+    bannerImg = document.getElementById('tableBanner');
+    bannerImg.src = "data:image/png;base64," + dataImage;
     //CARGA DE LA PAGINA
     encabezadoCheck();
     cargoMenusEncabezado();
     mostrarEmpleados();
 });
+var bannerImg;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
 //TRAIGO EN UN ARRAY LOS VALORES DEVUELTOS DE LOS CHECKBOX ON
 //ARMO LA TABLA DINAMICA PASANDO LOS ENCABEZADOS Y FILTROS A MOSTRAR COLUMNAS
@@ -211,4 +215,24 @@ function modificarEmpleado(indice) {
             "</div>" +
             "</div>";
     cargoMenusEncabezado();
+}
+//CARGA DE IMAGEN
+function readURL(input) {
+    document.getElementById("bannerImg").style.display = "block";
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('bannerImg').src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
