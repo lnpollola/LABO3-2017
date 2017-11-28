@@ -160,37 +160,41 @@ function agregarEmpleado() {
     EmpleadosString.push(JSON.stringify(nuevoEmpleado));
     localStorage.setItem("Empleados", JSON.stringify(EmpleadosString));
     console.log(EmpleadosString);
-    alert("Empleado guardada");
+    alert("Empleado guardado");
     mostrarEmpleados();
     $('#formCARGA').trigger("reset");
 }
-function eliminarEmpleado(indice) {
+function eliminarEmpleado(indice, vienedeModif) {
     var indice = indice;
     var objJson = JSON.parse(localStorage.Empleados);
     delete objJson[indice];
     localStorage.setItem("Empleados", JSON.stringify(objJson));
-    alert("Empleado Eliminada");
+    if (!(vienedeModif)) {
+        alert("Empleado Eliminado");
+    }
     mostrarEmpleados();
 }
+var vienedeModif;
 function modificarEmpleado(indice) {
     var indice = indice;
     var objJson = JSON.parse(localStorage.Empleados);
-    var persona = objJson[indice];
+    var persona = JSON.parse(objJson[indice]);
+    eliminarEmpleado(indice, 1);
     var tcuerpo = $("#formCARGA");
     tcuerpo[0].innerHTML = "";
     tcuerpo[0].innerHTML =
         " <div class'row'>" +
             "<div class='form-group'>" +
             "<label for='id'>ID</label><br>" +
-            "<input type='text' id='id' class='sinError form-control' name='id' placeholder='ID..' autocomplete='off' autofocus><br>" +
+            "<input type='text' id='id' class='sinError form-control' name='id' placeholder=" + persona._id + " autocomplete='off' autofocus><br>" +
             "</div>" +
             "<div class='form-group'>" +
             "<label for='nombre'>Nombre</label><br>" +
-            "<input type='text' id='nombre' class='sinError form-control' name='nombre' placeholder='Nombre..' autocomplete='off' autofocus><br>" +
+            "<input type='text' id='nombre' class='sinError form-control' name='nombre' placeholder=" + persona._nombre + " autocomplete='off' autofocus><br>" +
             "</div>" +
             "<div class='form-group'>" +
             "<label for='edad'>Edad</label><br>" +
-            "<input type='text' id='edad' class='sinError form-control' name='edad' placeholder='Edad..' autocomplete='off'><br>" +
+            "<input type='text' id='edad' class='sinError form-control' name='edad' placeholder=" + persona._edad + " autocomplete='off'><br>" +
             "</div>" +
             "<div class='form-group'>" +
             "<label for='opcion'>Elige un tipo:</label>" +
@@ -206,7 +210,5 @@ function modificarEmpleado(indice) {
             "</div>" +
             "</div>" +
             "</div>";
-    localStorage.setItem("Empleados", JSON.stringify(objJson));
-    alert("Empleado Modificad");
-    mostrarEmpleados();
+    cargoMenusEncabezado();
 }
