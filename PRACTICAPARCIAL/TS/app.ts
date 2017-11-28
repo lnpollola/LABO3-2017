@@ -73,9 +73,7 @@ function tablaDinamica(checkboxON)
         }); 
         
         let tablaTXT = $("#tCuerpoTXT");
-        //DETERMINO EL CICLO
         var ciclo;
-
         if(tablaAux == null)    
         {
             var primeraVez = 1;
@@ -88,6 +86,7 @@ function tablaDinamica(checkboxON)
             ciclo = $("#tCuerpoAUX")[0].childNodes.length ;
             tablaTXT[0].innerHTML = "";
         }
+        
         for (var i = 0; i < ciclo ; i++) 
         {
             //AGREGO LAS COLUMNAS SEGUN VAYAN O NO

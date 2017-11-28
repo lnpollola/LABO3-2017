@@ -58,7 +58,6 @@ function tablaDinamica(checkboxON) {
             }
         });
         var tablaTXT = $("#tCuerpoTXT");
-        //DETERMINO EL CICLO
         var ciclo;
         if (tablaAux == null) {
             var primeraVez = 1;
