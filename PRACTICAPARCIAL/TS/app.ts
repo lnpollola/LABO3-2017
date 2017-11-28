@@ -78,6 +78,7 @@ function tablaDinamica(checkboxON)
 
         if(tablaAux == null)    
         {
+            var primeraVez = 1;
             tablaAux = $("#tCuerpoAUX");  
 
             ciclo = $("#tCuerpo")[0].childNodes.length;
@@ -102,8 +103,8 @@ function tablaDinamica(checkboxON)
         let innerHtmlAux = tablaFinal["0"].innerHTML;
         tablaFinal["0"].innerHTML =""; 
         tablaFinal["0"].innerHTML = tablaTXT["0"].innerHTML;
-        tablaAux["0"].innerHTML = innerHtmlAux;
-   
+        
+        if(primeraVez == 1)   {tablaAux["0"].innerHTML = innerHtmlAux;}
     }
     else
     {  

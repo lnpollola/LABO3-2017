@@ -61,6 +61,7 @@ function tablaDinamica(checkboxON) {
         //DETERMINO EL CICLO
         var ciclo;
         if (tablaAux == null) {
+            var primeraVez = 1;
             tablaAux = $("#tCuerpoAUX");
             ciclo = $("#tCuerpo")[0].childNodes.length;
         }
@@ -82,7 +83,9 @@ function tablaDinamica(checkboxON) {
         var innerHtmlAux = tablaFinal["0"].innerHTML;
         tablaFinal["0"].innerHTML = "";
         tablaFinal["0"].innerHTML = tablaTXT["0"].innerHTML;
-        tablaAux["0"].innerHTML = innerHtmlAux;
+        if (primeraVez == 1) {
+            tablaAux["0"].innerHTML = innerHtmlAux;
+        }
     }
     else {
         //TABLA ENTERA, VIENE POR EL LOAD DE LA PAGINA
