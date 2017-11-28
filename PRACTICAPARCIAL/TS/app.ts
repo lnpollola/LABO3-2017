@@ -153,27 +153,30 @@ function mostrarMascotas(valor?):void
         if(valor){mascotaActual = MascotasString[i];}
         else     {mascotaActual = JSON.parse(MascotasString[i]);}
         
-        let miTipo = Clases.tipoMascota[mascotaActual._tipo];
-
-        let varAppend = "<tr><td id='mascID"+i+"'>"+ mascotaActual._id                         + "</td>"+
-                        "<td id='mascNOM"   +i+"'>"+ mascotaActual._nombre                     + "</td>"+
-                        "<td id='mascEDAD"  +i+"'>"+ mascotaActual._edad                       + "</td>"+
-                        "<td id='mascTIPO"  +i+"'>"+ Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
-                        "<td id='mascPATAS" +i+"'>"+ mascotaActual._cantPatas                  + "</td>"+
-                        "<td>"+  
-                            "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='eliminarMascota("+i+")'>"
-                            +"MODIFICAR"+
-                            "<i class='glyphicon glyphicon-pencil'></i>"+
-                            "</button>"
-                        + "</td>"   +  
-                        "<td>"+  
-                            "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='modifiarMascota();'>"
-                            +"BORRAR"+
-                            "<i class='glyphicon glyphicon-minus'></i>"+
-                            "</button>"
-                        + "</td>"   +  
-                        "</tr>"       
-        tabla.append(varAppend); 
+        if (mascotaActual != null)
+        {
+            let miTipo = Clases.tipoMascota[mascotaActual._tipo];
+            
+                    let varAppend = "<tr><td id='mascID"+i+"'>"+ mascotaActual._id                         + "</td>"+
+                                    "<td id='mascNOM"   +i+"'>"+ mascotaActual._nombre                     + "</td>"+
+                                    "<td id='mascEDAD"  +i+"'>"+ mascotaActual._edad                       + "</td>"+
+                                    "<td id='mascTIPO"  +i+"'>"+ Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
+                                    "<td id='mascPATAS" +i+"'>"+ mascotaActual._cantPatas                  + "</td>"+
+                                    "<td>"+  
+                                        "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarMascota("+i+")'>"
+                                        +"MODIFICAR"+
+                                        "<i class='glyphicon glyphicon-pencil'></i>"+
+                                        "</button>"
+                                    + "</td>"   +  
+                                    "<td>"+  
+                                        "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarMascota("+i+")'>"
+                                        +"BORRAR"+
+                                        "<i class='glyphicon glyphicon-minus'></i>"+
+                                        "</button>"
+                                    + "</td>"   +  
+                                    "</tr>"       
+                    tabla.append(varAppend); 
+        }
    }    
    
 }
@@ -200,20 +203,9 @@ function agregarMascota():void
 function eliminarMascota(indice):void
 {
     var indice = indice;
-    let tipo: Clases.tipoMascota  = Number($('#tipoMasc').val()); 
-    let nuevaMascota = new Clases.Mascota(  String ($('#nombre').val()),
-                                            Number ($('#edad').val()),
-                                            Number ($('#patas').val()),
-                                            Number ($('#id').val()),
-                                            tipo
-                                            );
-    
-    let MascotasString  = JSON.parse(localStorage.getItem("Mascotas") || "[]");
-    MascotasString.push( JSON.stringify(nuevaMascota));
-    localStorage.setItem("Mascotas",JSON.stringify(MascotasString));
-        
-    console.log(MascotasString);
-    alert ("Mascota guardada");
+    var objJson: JSON = JSON.parse(localStorage.Mascotas);
+    delete objJson[indice];
+    localStorage.setItem("Mascotas",JSON.stringify(objJson));
+    alert("Mascota Eliminada");
     mostrarMascotas(); 
-    $('#formCARGA').trigger("reset"); 
 } 
