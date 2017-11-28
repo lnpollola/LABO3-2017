@@ -40,6 +40,8 @@ function cargoMenusEncabezado() {
     var filtrar = $("#filtrarPor");
     filtrar[0].innerHTML = select[0].innerHTML;
 }
+var tablaAux;
+// var tablaAppend;
 //ARMO LA TABLA  DINAMICA
 function tablaDinamica(checkboxON) {
     //CHEQUEO SI ES LA CARGA INICIAL O SI ENTRA POR EL CHANGE DE CHECKBOX
@@ -55,26 +57,32 @@ function tablaDinamica(checkboxON) {
                 cabecera_1.append(cabeceraArmada);
             }
         });
-        //CUERPO DE LA TABLA
-        // let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
-        // let MascotasString:string|null =  $("#tCuerpo");
-        var tablaAux = $("#tCuerpoAUX");
-        tablaAux["0"].innerHTML = "";
-        for (var i = 0; i < $("#tCuerpo")[0].childNodes.length; i++) {
-            // let mascotaActual = $("#tCuerpo")[0].childNodes[i];
+        var tablaTXT = $("#tCuerpoTXT");
+        //DETERMINO EL CICLO
+        var ciclo;
+        if (tablaAux == null) {
+            tablaAux = $("#tCuerpoAUX");
+            ciclo = $("#tCuerpo")[0].childNodes.length;
+        }
+        else {
+            ciclo = $("#tCuerpoAUX")[0].childNodes.length;
+            tablaTXT[0].innerHTML = "";
+        }
+        for (var i = 0; i < ciclo; i++) {
             //AGREGO LAS COLUMNAS SEGUN VAYAN O NO
-            tablaAux.append("<tr>");
-            checkboxON.includes("ID") == true ? tablaAux.append("<td>" + $('#mascID' + i)[0].innerHTML + "</td>") : null;
-            checkboxON.includes("NOMBRE") == true ? tablaAux.append("<td>" + $("#mascNOM" + i)[0].innerHTML + "</td>") : null;
-            checkboxON.includes("EDAD") == true ? tablaAux.append("<td>" + $("#mascEDAD" + i)[0].innerHTML + "</td>") : null;
-            checkboxON.includes("TIPO") == true ? tablaAux.append("<td>" + Clases.tipoMascota[$("#mascTIPO" + i)[0].innerHTML] + "</td>") : null;
-            checkboxON.includes("CANTPATAS") == true ? tablaAux.append("<td>" + $("#mascPATAS" + i)[0].innerHTML + "</td>") : null;
-            tablaAux.append("</tr></table>");
+            tablaTXT.append("<tr>");
+            checkboxON.includes("ID") == true ? tablaTXT.append("<td id='mascID" + i + "'>" + $('#mascID' + i)[0].innerHTML + "</td>") : null;
+            checkboxON.includes("NOMBRE") == true ? tablaTXT.append("<td id='mascNOM" + i + "'>" + $('#mascNOM' + i)[0].innerHTML + "</td>") : null;
+            checkboxON.includes("EDAD") == true ? tablaTXT.append("<td id='mascEDAD" + i + "'>" + $('#mascEDAD' + i)[0].innerHTML + "</td>") : null;
+            checkboxON.includes("TIPO") == true ? tablaTXT.append("<td id='mascTIPO" + i + "'>" + Clases.tipoMascota[$('#mascTIPO' + i)[0].innerHTML] + "</td>") : null;
+            checkboxON.includes("CANTPATAS") == true ? tablaTXT.append("<td id='mascPATAS" + i + "'>" + $('#mascPATAS' + i)[0].innerHTML + "</td>") : null;
+            tablaTXT.append("</tr></table>");
         }
         var tablaFinal = $("#tCuerpo");
+        var innerHtmlAux = tablaFinal["0"].innerHTML;
         tablaFinal["0"].innerHTML = "";
-        tablaFinal["0"].innerHTML = tablaAux["0"].innerHTML;
-        // tablaAux["0"].innerHTML ="";
+        tablaFinal["0"].innerHTML = tablaTXT["0"].innerHTML;
+        tablaAux["0"].innerHTML = innerHtmlAux;
     }
     else {
         //TABLA ENTERA, VIENE POR EL LOAD DE LA PAGINA
