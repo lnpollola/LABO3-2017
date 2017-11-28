@@ -1,5 +1,5 @@
 namespace Clases 
-{         
+{          
     export abstract class Animal 
     {
         private _nombre:string;

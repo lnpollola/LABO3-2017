@@ -69,7 +69,7 @@ function tablaDinamica(checkboxON)
                 let cabeceraArmada = $('<th>' + element + '</th>');
                 cabecera.append(cabeceraArmada);
             } 
-        });
+        }); 
         //CUERPO DE LA TABLA
         // let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
         // let MascotasString:string|null =  $("#tCuerpo");
