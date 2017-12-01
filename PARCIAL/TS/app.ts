@@ -14,20 +14,38 @@ $(function(){
             mostrarEmpleados(valorFiltro);
             tablaAux = undefined;
         });
-
-        var dataImage = localStorage.getItem('imgData');
-         bannerImg = document.getElementById('tableBanner');
-         bannerImg.src = "data:image/png;base64," + dataImage;    
-
     //CARGA DE LA PAGINA
     encabezadoCheck();
     cargoMenusEncabezado();
     mostrarEmpleados();
 });
 
-var bannerImg;
-
+var imagenBASE64;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
+
+function transformaImagen() {
+           
+            var filesSelected = document.getElementById('imagen').files;
+            if (filesSelected.length > 0) {
+              var fileToLoad = filesSelected[0];
+              var fileReader = new FileReader();
+
+
+                fileReader.onload = function(fileLoadedEvent):string {
+                    var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+                    var newImage = document.createElement('img');
+                    newImage.src = srcData;
+
+                    imagenBASE64 = newImage.outerHTML;
+                    return  newImage.outerHTML;
+                
+                }
+                fileReader.readAsDataURL(fileToLoad);
+            
+            }
+        }
+
 
 //TRAIGO EN UN ARRAY LOS VALORES DEVUELTOS DE LOS CHECKBOX ON
 //ARMO LA TABLA DINAMICA PASANDO LOS ENCABEZADOS Y FILTROS A MOSTRAR COLUMNAS
@@ -123,7 +141,8 @@ function tablaDinamica(checkboxON?)
                         "<th>NOMBRE</th>"   +  
                         "<th>EDAD</th>"     +
                         "<th>TIPO</th>"     +  
-                        "<th>SEXO</th>";
+                        "<th>SEXO</th>"     +
+                        "<th>Imagen</th>";
         cabecera.append(devuelve);
         //CUERPO DE LA TABLA
         mostrarEmpleados();
@@ -166,6 +185,7 @@ function mostrarEmpleados(valor?):void
                                     "<td id='mascEDAD"  +i+"'>"+ empleadoActual._edad                       + "</td>"+
                                     "<td id='mascTIPO"  +i+"'>"+ Clases.tipoEmpleado[empleadoActual._tipo]   + "</td>"+
                                     "<td id='mascSEXO" +i+"'>"+ empleadoActual._sexo                  + "</td>"+
+                                    "<td id='mascIMAGEN" +i+"'>"+ empleadoActual.imagen                  + "</td>"+
                                     "<td>"+  
                                         "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
                                         +"MODIFICAR"+
@@ -192,7 +212,8 @@ function agregarEmpleado():void
                                             Number ($('#edad').val()),
                                             String ($('#sexo').val()),
                                             Number ($('#id').val()),
-                                            tipo
+                                            tipo,
+                                            imagenBASE64
                                             );
     
     let EmpleadosString  = JSON.parse(localStorage.getItem("Empleados") || "[]");
@@ -202,7 +223,7 @@ function agregarEmpleado():void
     console.log(EmpleadosString);
     alert ("Empleado guardado");
     mostrarEmpleados(); 
-    $('#formCARGA').trigger("reset"); 
+    $('#formCARGA').trigger("reset");   
     
 } 
  
@@ -212,8 +233,8 @@ function eliminarEmpleado(indice, vienedeModif?):void
     var objJson: JSON = JSON.parse(localStorage.Empleados);
     delete objJson[indice];
     localStorage.setItem("Empleados",JSON.stringify(objJson));
-    if( !(vienedeModif)) {alert("Empleado Eliminado");} 
-    mostrarEmpleados(); 
+    if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
+
 } 
 var vienedeModif;
 function modificarEmpleado(indice):void
@@ -232,16 +253,16 @@ function modificarEmpleado(indice):void
 
                 "<div class='form-group'>"+
                 "<label for='id'>ID</label><br>"+
-                "<input type='text' id='id' class='sinError form-control' name='id' placeholder="+persona._id+" autocomplete='off' autofocus><br>"+
+                "<input type='text' id='id' class='sinError form-control' name='id' value="+persona._id+" autocomplete='off' autofocus><br>"+
                 "</div>"+
                     "<div class='form-group'>"+
                     "<label for='nombre'>Nombre</label><br>"+
-                    "<input type='text' id='nombre' class='sinError form-control' name='nombre' placeholder="+persona._nombre+" autocomplete='off' autofocus><br>"+
+                    "<input type='text' id='nombre' class='sinError form-control' name='nombre' value="+persona._nombre+" autocomplete='off' autofocus><br>"+
                     "</div>"+
                 
                     "<div class='form-group'>"+
                     "<label for='edad'>Edad</label><br>"+
-                    "<input type='text' id='edad' class='sinError form-control' name='edad' placeholder="+persona._edad+" autocomplete='off'><br>"+
+                    "<input type='text' id='edad' class='sinError form-control' name='edad' value="+persona._edad+" autocomplete='off'><br>"+
                     "</div>"+
                 
                     "<div class='form-group'>"+
@@ -257,8 +278,15 @@ function modificarEmpleado(indice):void
                             "<option value='F'>FEMENINO</option>"+
                         "</select>"+
                     "</div>"+
+                    "<div class='form-group'>"+
+                        "<label for='archivo'>Archivo:</label>"+
+                        "<input type='file' id='imagen' onchange='transformaImagen();'>"+
+                        "<p class='help-block'>Máximo 50MB</p>"+
+                    "</div>"+
                 "</div>"+
-        "</div>"
+        "</div>";
+    
+
         cargoMenusEncabezado();
 }
 

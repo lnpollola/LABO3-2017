@@ -58,11 +58,19 @@
                         <option value="F">FEMENINO</option>
                     </select>
                 </div>
+             <!-- IMAGEN -->
+                 <div class="form-group">
+                    <label for="archivo">Archivo:</label>
+                    <input type="file" id="imagen" onchange="transformaImagen();">
+                    <p class="help-block">Máximo 50MB</p>
+                </div>
+                <div id="imgTest"></div>
+                
               </div>
       
       </div>
-      <input type='file' id="bannerImg" onchange="readURL(this);" />
-      <img src="" id="tableBanner" />
+      <!-- <input type='file' id="bannerImg" onchange="readURL(this);" />
+      <img src="" id="tableBanner" /> -->
     </form>
     
       <!-- BOTONES -->

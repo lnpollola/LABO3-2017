@@ -12,10 +12,11 @@ var Clases;
 (function (Clases) {
     var Empleado = /** @class */ (function (_super) {
         __extends(Empleado, _super);
-        function Empleado(nombre, edad, sexo, id, tipo) {
+        function Empleado(nombre, edad, sexo, id, tipo, imagen) {
             var _this = _super.call(this, nombre, edad, sexo) || this;
             _this._id = id;
             _this._tipo = tipo;
+            _this.imagen = imagen;
             return _this;
         }
         Empleado.prototype.personaCompleta = function () {

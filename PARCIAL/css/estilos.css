@@ -13,6 +13,11 @@ th, td {
     /* padding: 8px; */
 }
 
+img
+{
+    width: 480px;
+    height: 200px;
+}
 
 tr:nth-child(even){background-color: #f2f2f2}
 
