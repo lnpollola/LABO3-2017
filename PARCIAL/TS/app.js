@@ -186,7 +186,8 @@ function eliminarEmpleado(indice, vienedeModif) {
     var indice = indice;
     var objJson = JSON.parse(localStorage.Empleados);
     delete objJson[indice];
-    localStorage.setItem("Empleados", JSON.stringify(objJson));
+    var objJsonResp = objJson.filter(function (x) { return x !== null; }); //borro los nulos
+    localStorage.setItem("Empleados", JSON.stringify(objJsonResp));
     if (!(vienedeModif)) {
         alert("Empleado Eliminado");
         mostrarEmpleados();
@@ -234,24 +235,4 @@ function modificarEmpleado(indice) {
             "</div>" +
             "</div>";
     cargoMenusEncabezado();
-}
-//CARGA DE IMAGEN
-function readURL(input) {
-    document.getElementById("bannerImg").style.display = "block";
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            document.getElementById('bannerImg').src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    var dataURL = canvas.toDataURL("image/png");
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
