@@ -235,8 +235,8 @@ function eliminarEmpleado(indice, vienedeModif?):void
     var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
     localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
     if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
-
 } 
+
 var vienedeModif;
 function modificarEmpleado(indice):void
 {
@@ -290,3 +290,26 @@ function modificarEmpleado(indice):void
 
         cargoMenusEncabezado();
 }
+
+function calcularPromedio()
+{
+    let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
+
+    //MUESTRO EL LISTADO DE EmpleadoS SEGUN FILTRO
+       var acumEdad = EmpleadosString
+                        .reduce(function(actual,siguiente){
+                            return actual+JSON.parse(siguiente)._edad;
+                        },0);
+
+        var cantidad = EmpleadosString
+                        .reduce (function(actual,siguiente){
+                            return actual + 1;
+                        }, 0);
+
+        var mostrarPromedio = $("labelProm").context.forms[1];
+        // mostrarPromedio[0].innerHTML = "";
+        mostrarPromedio.innerHTML = "<label for='promedio'>"+(acumEdad / cantidad).toFixed(2)+"</label><br>" ;
+        // return (acumEdad / cantidad).toFixed(2);
+    }
+
+

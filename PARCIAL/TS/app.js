@@ -236,3 +236,19 @@ function modificarEmpleado(indice) {
             "</div>";
     cargoMenusEncabezado();
 }
+function calcularPromedio() {
+    var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    //MUESTRO EL LISTADO DE EmpleadoS SEGUN FILTRO
+    var acumEdad = EmpleadosString
+        .reduce(function (actual, siguiente) {
+        return actual + JSON.parse(siguiente)._edad;
+    }, 0);
+    var cantidad = EmpleadosString
+        .reduce(function (actual, siguiente) {
+        return actual + 1;
+    }, 0);
+    var mostrarPromedio = $("labelProm").context.forms[1];
+    // mostrarPromedio[0].innerHTML = "";
+    mostrarPromedio.innerHTML = "<label for='promedio'>" + (acumEdad / cantidad).toFixed(2) + "</label><br>";
+    // return (acumEdad / cantidad).toFixed(2);
+}
