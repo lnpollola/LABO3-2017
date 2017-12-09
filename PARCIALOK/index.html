@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="js/jquery-3.2.1.js"></script>
+ 
+  <script src="TS/Persona.js"></script>
+  <script src="TS/Empleado.js"></script>
+  <script src="TS/enumerado.js"></script>
+  <script src="TS/app.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/estilos.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- LINEA DE JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+  <title>Laboratorio III - 2doPARCIAL</title>
+</head>
+
+<body>
+<div class="container">
+   <!-- FORMULARIOS ENTRADA -->
+    <form id="formCARGA">        
+    <div class"row">   
+            <!--  ID-->
+              <!-- <div class="form-group">
+              <label for="id">ID</label><br>
+              <input type="text" id="id" class="sinError form-control" name="id" placeholder="ID.." autocomplete="off" autofocus><br>
+              </div> -->
+            <!-- NOMBRE -->
+                <div class="form-group">
+                <label for="nombre">Nombre</label><br>
+                <input type="text" id="nombre" class="sinError form-control" name="nombre" placeholder="Nombre.." autocomplete="off" autofocus><br>
+                </div>
+            <!-- EDAD -->
+                <div class="form-group">
+                <label for="edad">Edad</label><br>
+                <input type="text" id="edad" class="sinError form-control" name="edad" placeholder="Edad.." autocomplete="off"><br>
+                </div>
+            <!-- TIPO - ENUM TIPO -->
+                <div class="form-group">
+                    <label for="opcion">Elige un tipo:</label>
+                    <select class="form-control" name="tipoMasc" id="tipoMasc">
+                    </select>
+                </div>
+            <!-- SEXO -->
+                <div class="form-group">
+                    <label for="opcion">Elige SEXO:</label>
+                    <select class="form-control" name="" id="sexo"> -->
+                        <!-- ACA TIENE QUE LLAMAR AL ENUM -->
+                        <option value="M">MASCULINO</option>
+                        <option value="F">FEMENINO</option>
+                    </select>
+                </div>
+             <!-- IMAGEN -->
+                 <div class="form-group">
+                    <label for="archivo">Archivo:</label>
+                    <input type="file" id="imagen" onchange="transformaImagen();">
+                    <p class="help-block">Máximo 50MB</p>
+                </div>
+                <div id="imgTest"></div>
+                
+              </div>
+      
+      </div>
+      <!-- <input type='file' id="bannerImg" onchange="readURL(this);" />
+      <img src="" id="tableBanner" /> -->
+    </form>
+    
+      <!-- BOTONES -->
+      <div class="col-md-offset-1">
+      <div class="container row">
+          <!-- <div class="col-md-offset-1"> -->
+        <!-- AGREGAR -->    
+                <button class='btn btn-success btn-sm' type="button" id="btnEnviar" value="Guardar" onclick="agregarEmpleado();">
+                    AGREGAR EMPLEADO
+                    <i class="glyphicon glyphicon-plus"></i>
+                </button>
+            <!-- </div> -->
+        <!-- LIMPIAR LISTA -->
+               <button class='btn btn-ok btn-sm' type="button" id="borrarLista" onclick="limpiarLista();">
+                  LIMPIAR LISTA LOCALSTORAGE
+                  <i class="glyphicon glyphicon-minus"></i>
+              </button>
+          </div>
+    </div>
+</form>
+      <!-- </div> -->
+
+      <!-- BOTON PROMEDIO -->
+      <br>
+      <br>
+      <br>
+    <div class="col-md-offset-1">
+      <button type="button" class="btn btn-info" onclick="calcularPromedio()">Promedio</button>
+    </div>
+    <!-- <form id="respuestaBot">
+        <div>
+        </div>
+    </form> -->
+    <form id="formPromedio">        
+            <div class="col-md-offset-1">   
+            <label for='promedio' id="labelProm">PROMEDIO</label><br>
+              </div>
+              <!-- <input type='file' id="bannerImg" onchange="readURL(this);" />
+              <img src="" id="tableBanner" /> -->
+    </form>
+            
+
+    <!-- <!— CHECKBOX —> -->
+      <form id="checkFORM">
+      <div class="col-md-offset-1">
+        <div class="checkbox">
+            
+            <caption><h3>SELECCIONAR COLUMNAS VISIBLES:</h3></caption>
+            <label>
+                <input type="checkbox" class="checkItems" name="idfiltro" id="idfiltro" value="ID">ID
+            </label>
+
+            <label>
+                <input type="checkbox" class="checkItems" name="nombrefiltro" id="nombrefiltro" value="NOMBRE">NOMBRE
+            </label>
+
+            <label>
+              <input type="checkbox" class="checkItems" name="edadfiltro" id="edadfiltro" value="EDAD">EDAD
+            </label>
+
+            <label>
+                <input type="checkbox" class="checkItems" name="tipofiltro" id="tipofiltro" value="TIPO">TIPO
+            </label>
+            <label>
+              <input type="checkbox" class="checkItems" name="sexoFiltro" id="sexoFiltro" value="SEXO">SEXO</label>
+        </div>
+      </div>
+      </form>        
+            <div class="col-md-offset-1">
+                
+                <label for="Filtro">FILTRAR POR:</label>
+                <select name="filtrarPor" id="filtrarPor">
+                </select>
+            </div>
+    </div> 
+      </form>
+    <!-- TABLA LISTADO -->
+    </div>
+    <section id="listado" class="container" > 
+        <div class="container">
+      <!-- style="padding-top: 45px;" -->
+      <h2>Listado de Mascotas</h2>
+      <!-- <div class="table-responsive" class="container"> -->
+        <table class="" id="tabla">
+            <!-- CABECERA -->
+            <thead id="tCabecera">
+            </thead>
+            <!-- CUERPO -->
+            <tbody id="tCuerpo">
+            </tbody>
+            <tbody id="tCuerpoAUX" style='visibility:hidden'>
+            </tbody>
+            <tbody id="tCuerpoTXT" style='visibility:hidden'>
+            </tbody>    
+        </table>
+        
+
+      </div>
+    </div>
+    </section>
+</div>
+</body>
+</html>
