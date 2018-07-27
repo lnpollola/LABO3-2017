@@ -179,7 +179,8 @@ function mostrarEmpleados(valor?):void
         
         if (empleadoActual != null)
         {
-            let miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
+           
+              let miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
             
                     let varAppend = "<tr><td id='mascID"+i+"'>"+ empleadoActual._id                         + "</td>"+
                                     "<td id='mascNOM"   +i+"'>"+ empleadoActual._nombre                     + "</td>"+
@@ -224,7 +225,6 @@ function agregarEmpleado():void
     alert ("Empleado guardado");
     mostrarEmpleados(); 
     $('#formCARGA').trigger("reset");   
-    
 } 
  
 function eliminarEmpleado(indice, vienedeModif?):void

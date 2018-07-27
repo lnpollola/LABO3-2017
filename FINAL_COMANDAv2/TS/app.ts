@@ -1,6 +1,6 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
-import '../node_modules/rxjs/operator/filter';
-import '../node_modules/rxjs/add/operator/filter';
+// import '../node_modules/rxjs/operator/filter';
+// import '../node_modules/rxjs/add/operator/filter';
 
 // $(function(){
 
@@ -21,31 +21,31 @@ import '../node_modules/rxjs/add/operator/filter';
     //     // mostrarEmpleados();
     // });
 
-var imagenBASE64;
+// var imagenBASE64;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
 
-function transformaImagen() {
+// function transformaImagen() {
            
-            var filesSelected = document.getElementById('imagen').files;
-            if (filesSelected.length > 0) {
-              var fileToLoad = filesSelected[0];
-              var fileReader = new FileReader();
+//             var filesSelected = document.getElementById('imagen').files;
+//             if (filesSelected.length > 0) {
+//               var fileToLoad = filesSelected[0];
+//               var fileReader = new FileReader();
 
 
-                fileReader.onload = function(fileLoadedEvent):string {
-                    var srcData = fileLoadedEvent.target.result; // <--- data: base64
+//                 fileReader.onload = function(fileLoadedEvent):string {
+//                     var srcData = fileLoadedEvent.target.result; // <--- data: base64
 
-                    var newImage = document.createElement('img');
-                    newImage.src = srcData;
+//                     var newImage = document.createElement('img');
+//                     newImage.src = srcData;
 
-                    imagenBASE64 = newImage.outerHTML;
-                    return  newImage.outerHTML;
+//                     imagenBASE64 = newImage.outerHTML;
+//                     return  newImage.outerHTML;
                 
-                }
-                fileReader.readAsDataURL(fileToLoad);
+//                 }
+//                 fileReader.readAsDataURL(fileToLoad);
             
-            }
-        }
+//             }
+//         }
 
 
 //TRAIGO EN UN ARRAY LOS VALORES DEVUELTOS DE LOS CHECKBOX ON
@@ -56,11 +56,11 @@ function transformaImagen() {
 //     tablaDinamica(checkboxON);
 // }
 //BOTON DE LIMPIAR LISTA
-function limpiarLista():void
-{
-       localStorage.clear();
-        mostrarEmpleados();
-}
+// function limpiarLista():void
+// {
+//        localStorage.clear();
+//         mostrarEmpleados();
+// }
 
 //CARGO LOS DROPDOWN QUE DEPENDEN DEL ENUMERADO
 // function cargoMenusEncabezado()
@@ -215,27 +215,32 @@ function mostrarEmpleados(valor?):void
    
 }
 
+function determinoRol (rol:string):Clases.tipoEmpleado
+{
+    var tipo:Clases.tipoEmpleado;
+    switch (rol)
+    {
+        case "BARTENDER": 
+        {
+            tipo = Clases.tipoEmpleado.BARTENDER;
+        }
+        default: 
+        {
+            tipo = Clases.tipoEmpleado.MOZO;
+        }
+    }
+    return tipo;
+}
+
 function agregarEmpleado():void
 {
-    // let tipo = 
-    // switch ($('#tipoMasc').val())
-    // {
-    //     case "BARTENDER": 
-    //     {
-    //         tipo = Clases.tipoEmpleado.BARTENDER;
-    //         break;
-    //     }
-    //     default: 
-    //     {
-    //         tipo = Clases.tipoEmpleado.MOZO;
-    //         break;
-    //     }
-    // };
+    
+    var tipoEMP = determinoRol(String ($('#tipoMasc').val())) ; 
     let nuevoEmpleado    = new Clases.Empleado(  
                                             String ($('#nombre').val()),
                                             Number ($('#edad').val()),
                                             String ($('#sexo').val()),
-                                            tipo,
+                                            tipoEMP,
                                             Clases.estadoCLIEMP.ACTIVO,
                                             String ($('#ClaveUsuario').val())
                                             );
@@ -251,97 +256,97 @@ function agregarEmpleado():void
     
 } 
  
-function eliminarEmpleado(indice, vienedeModif?):void
-{
-    var indice = indice;
-    var objJson: JSON = JSON.parse(localStorage.Empleados);
-    delete objJson[indice];
-    var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
-    localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
-    if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
-} 
+// function eliminarEmpleado(indice, vienedeModif?):void
+// {
+//     var indice = indice;
+//     var objJson: JSON = JSON.parse(localStorage.Empleados);
+//     delete objJson[indice];
+//     var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
+//     localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
+//     if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
+// } 
 
-var vienedeModif;
-function modificarEmpleado(indice):void
-{
-    var indice = indice;
-    var objJson: JSON = JSON.parse(localStorage.Empleados);
+// var vienedeModif;
+// function modificarEmpleado(indice):void
+// {
+//     var indice = indice;
+//     var objJson: JSON = JSON.parse(localStorage.Empleados);
     
     
-    var persona = JSON.parse(objJson[indice]);
-    eliminarEmpleado(indice,1);   
-    var tcuerpo = $("#formCARGA");
+//     var persona = JSON.parse(objJson[indice]);
+//     eliminarEmpleado(indice,1);   
+//     var tcuerpo = $("#formCARGA");
 
-    tcuerpo[0].innerHTML = "";
-    tcuerpo[0].innerHTML = 
-        " <div class'row'>"+
-                    "<div class='form-group'>"+
-                    "<label for='nombre'>Nombre</label>"+
-                    "<input type='text' id='nombre' class='sinError form-control' name='nombre' value="+persona._nombre+" autocomplete='off' autofocus>"+
-                    "</div>"+
+//     tcuerpo[0].innerHTML = "";
+//     tcuerpo[0].innerHTML = 
+//         " <div class'row'>"+
+//                     "<div class='form-group'>"+
+//                     "<label for='nombre'>Nombre</label>"+
+//                     "<input type='text' id='nombre' class='sinError form-control' name='nombre' value="+persona._nombre+" autocomplete='off' autofocus>"+
+//                     "</div>"+
                 
-                    "<div class='form-group'>"+
-                    "<label for='edad'>Edad</label>"+
-                    "<input type='text' id='edad' class='sinError form-control' name='edad' value="+persona._edad+" autocomplete='off'>"+
-                    "</div>"+
+//                     "<div class='form-group'>"+
+//                     "<label for='edad'>Edad</label>"+
+//                     "<input type='text' id='edad' class='sinError form-control' name='edad' value="+persona._edad+" autocomplete='off'>"+
+//                     "</div>"+
                 
-                    "<div class='form-group'>"+
-                        "<label for='opcion'>Elige un tipo:</label>"+
-                        "<select class='form-control' name='tipoMasc' id='tipoMasc'>"+
-                        "</select>"+
-                    "</div>"+
+//                     "<div class='form-group'>"+
+//                         "<label for='opcion'>Elige un tipo:</label>"+
+//                         "<select class='form-control' name='tipoMasc' id='tipoMasc'>"+
+//                         "</select>"+
+//                     "</div>"+
                 
-                    "<div class='form-group'>"+
-                        "<label for='opcion'>Elige SEXO:</label>"+
-                        "<select class='form-control' name='' id='sexo'> -->"+
-                            "<option value='M'>MASCULINO</option>"+
-                            "<option value='F'>FEMENINO</option>"+
-                        "</select>"+
-                    "</div>"+
-                    "<div class='form-group'>"+
-                        "<label for='archivo'>Archivo:</label>"+
-                        "<input type='file' id='imagen' onchange='transformaImagen();'>"+
-                        "<p class='help-block'>Máximo 50MB</p>"+
-                    "</div>"+
-                "</div>"+
-        "</div>";
+//                     "<div class='form-group'>"+
+//                         "<label for='opcion'>Elige SEXO:</label>"+
+//                         "<select class='form-control' name='' id='sexo'> -->"+
+//                             "<option value='M'>MASCULINO</option>"+
+//                             "<option value='F'>FEMENINO</option>"+
+//                         "</select>"+
+//                     "</div>"+
+//                     "<div class='form-group'>"+
+//                         "<label for='archivo'>Archivo:</label>"+
+//                         "<input type='file' id='imagen' onchange='transformaImagen();'>"+
+//                         "<p class='help-block'>Máximo 50MB</p>"+
+//                     "</div>"+
+//                 "</div>"+
+//         "</div>";
     
 
-        // cargoMenusEncabezado();
-}
+//         // cargoMenusEncabezado();
+// }
 
-function calcularPromedio()
-{
-    let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
+// function calcularPromedio()
+// {
+//     let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
 
-    //MUESTRO EL LISTADO DE EmpleadoS SEGUN FILTRO
-       var acumEdad = EmpleadosString
-                        .reduce(function(actual,siguiente){
-                            return actual+JSON.parse(siguiente)._edad;
-                        },0);
+//     //MUESTRO EL LISTADO DE EmpleadoS SEGUN FILTRO
+//        var acumEdad = EmpleadosString
+//                         .reduce(function(actual,siguiente){
+//                             return actual+JSON.parse(siguiente)._edad;
+//                         },0);
 
-        var cantidad = EmpleadosString
-                        .reduce (function(actual,siguiente){
-                            return actual + 1;
-                        }, 0);
+//         var cantidad = EmpleadosString
+//                         .reduce (function(actual,siguiente){
+//                             return actual + 1;
+//                         }, 0);
 
-        var mostrarPromedio = $("labelProm").context.forms[1];
-        mostrarPromedio.innerHTML = "<label for='promedio'class='col-md-offset-1'>"+(acumEdad / cantidad).toFixed(2)+"</label>" ;
-}
+//         var mostrarPromedio = $("labelProm").context.forms[1];
+//         mostrarPromedio.innerHTML = "<label for='promedio'class='col-md-offset-1'>"+(acumEdad / cantidad).toFixed(2)+"</label>" ;
+// }
 
-function calcularMaximo():number
-{
-    let EmpleadosString:[]|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
-    let valormax = arrayMax(EmpleadosString);
+// function calcularMaximo():number
+// {
+//     let EmpleadosString:[]|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
+//     let valormax = arrayMax(EmpleadosString);
 
-    return valormax;
-}
+//     return valormax;
+// }
 
-function arrayMax(arr) {
-    return arr.reduce(function (p, v) {
-      return ( p < JSON.parse(v)._id ? JSON.parse(v)._id: p );
-    },0);
-  }
+// function arrayMax(arr) {
+//     return arr.reduce(function (p, v) {
+//       return ( p < JSON.parse(v)._id ? JSON.parse(v)._id: p );
+//     },0);
+//   }
 
 // // // // // // // FUNCIONES DE CARGA DE PÁGINA // // // // // // //// // // // // // //
 
@@ -362,7 +367,7 @@ function muestraAgregarEmpleado():void
         </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <form role="form" id="formCARGA" onsubmit="agregarEmpleado();" data-toggle="validator">
+    <form id="formCARGA" onsubmit="agregarEmpleado();" data-toggle="validator">
       <div class="box-body">
             <!-- USUARIO -->
             <div class="form-group">
