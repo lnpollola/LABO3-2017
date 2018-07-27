@@ -2,11 +2,10 @@ var Clases;
 (function (Clases) {
     var Persona = /** @class */ (function () {
         //CONSTRUCTOR
-        function Persona(nombre, edad, sexo, estado) {
+        function Persona(nombre, edad, sexo) {
             this._nombre = nombre;
             this._edad = edad;
             this._sexo = sexo;
-            this._estado = estado;
         }
         Object.defineProperty(Persona.prototype, "Nombre", {
             // GETTERS
@@ -30,20 +29,8 @@ var Clases;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(Persona.prototype, "Estado", {
-            get: function () {
-                return this._estado;
-            },
-            enumerable: true,
-            configurable: true
-        });
         Persona.prototype.empleadoCompleto = function () {
             return this._nombre + ";" + this._edad + ";" + this._sexo;
-            $;
-            {
-                this._estado;
-            }
-            ;
         };
         //CONVERSIÓN    
         Persona.prototype.toString = function () {
