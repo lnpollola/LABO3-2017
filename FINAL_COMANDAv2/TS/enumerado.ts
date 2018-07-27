@@ -7,6 +7,12 @@ namespace Clases{
         "SOCIO"
     }
 
+    export enum estadoCLIEMP{
+        "ACTIVO",
+        "SUSPENDIDO",
+        "BAJA"
+    }
+
     //ESTO LO HACE EL MOZO
     export enum estadoMesa{
         "CON CLIENTE ESPERANDO PEDIDO",

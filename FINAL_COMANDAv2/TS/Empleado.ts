@@ -5,27 +5,29 @@ namespace Clases
         //ATRIBUTOS
             private _id:number; 
             public _tipo:tipoEmpleado;
-            private _estado:string;
+            private _estado:estadoCLIEMP;
+            private _clave:string;
 
         //CONSTRUCTOR
-        constructor(nombre:string,edad:number,sexo:string,tipo:tipoEmpleado,estado:string) 
+        constructor(nombre:string,edad:number,sexo:string,tipo:tipoEmpleado,estado:estadoCLIEMP,clave:string) 
         {
             super(nombre,edad,sexo);
             
             //CALCULO DE ID
-                var maximo = calcularMaximo();
-                maximo++;
-                this._id = maximo;
+                // var maximo = calcularMaximo();
+                // maximo++;
+                // this._id = maximo;
             
             this._tipo=tipo;  
             this._estado=estado;
+            this._clave = clave;
         }
 
 
         //GETTERS
         public empleadoCompleto():string
         { 
-            return `${super.empleadoCompleto()};${this._id};${this._tipo};${this._estado} `;
+            return `${super.empleadoCompleto()};${this._id};${this._tipo};${this._estado};${this._clave}`;
         }
 
         public estadoEmpleado():string

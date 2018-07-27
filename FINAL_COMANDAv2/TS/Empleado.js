@@ -13,19 +13,20 @@ var Clases;
     var Empleado = /** @class */ (function (_super) {
         __extends(Empleado, _super);
         //CONSTRUCTOR
-        function Empleado(nombre, edad, sexo, tipo, estado) {
+        function Empleado(nombre, edad, sexo, tipo, estado, clave) {
             var _this = _super.call(this, nombre, edad, sexo) || this;
             //CALCULO DE ID
-            var maximo = calcularMaximo();
-            maximo++;
-            _this._id = maximo;
+            // var maximo = calcularMaximo();
+            // maximo++;
+            // this._id = maximo;
             _this._tipo = tipo;
             _this._estado = estado;
+            _this._clave = clave;
             return _this;
         }
         //GETTERS
         Empleado.prototype.empleadoCompleto = function () {
-            return _super.prototype.empleadoCompleto.call(this) + ";" + this._id + ";" + this._tipo + ";" + this._estado + " ";
+            return _super.prototype.empleadoCompleto.call(this) + ";" + this._id + ";" + this._tipo + ";" + this._estado + ";" + this._clave;
         };
         Empleado.prototype.estadoEmpleado = function () {
             return JSON.stringify(this._estado);

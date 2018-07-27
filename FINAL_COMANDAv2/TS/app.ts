@@ -1,50 +1,50 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
 // namespace Clases{
 
-// $(function(){
+$(function(){
 
-//     //EVENTOS
-//         //FORM MODIFICADO POR CHECKBOX
-//         $("#checkFORM :checkbox").change(function() {
-//             encabezadoCheck();
-//         });
-//         //BOTON FILTRAR
-//         $("#filtrarPor").change(function(){
-//             let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
-//             mostrarEmpleados(valorFiltro);
-//             tablaAux = undefined;
-//         });
-//     //CARGA DE LA PAGINA
-//     encabezadoCheck();
-//     cargoMenusEncabezado();
-//     mostrarEmpleados();
-// });
+    //EVENTOS
+        //FORM MODIFICADO POR CHECKBOX
+        // $("#checkFORM :checkbox").change(function() {
+        //     encabezadoCheck();
+        // });
+        //BOTON FILTRAR
+        // $("#filtrarPor").change(function(){
+        //     let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
+        //     mostrarEmpleados(valorFiltro);
+        //     tablaAux = undefined;
+        // });
+    //CARGA DE LA PAGINA
+    // encabezadoCheck();
+    cargoMenusEncabezado();
+    // mostrarEmpleados();
+});
 
 var imagenBASE64;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
 
-// function transformaImagen() {
+function transformaImagen() {
            
-//             var filesSelected = document.getElementById('imagen').files;
-//             if (filesSelected.length > 0) {
-//               var fileToLoad = filesSelected[0];
-//               var fileReader = new FileReader();
+            var filesSelected = document.getElementById('imagen').files;
+            if (filesSelected.length > 0) {
+              var fileToLoad = filesSelected[0];
+              var fileReader = new FileReader();
 
 
-//                 fileReader.onload = function(fileLoadedEvent):string {
-//                     var srcData = fileLoadedEvent.target.result; // <--- data: base64
+                fileReader.onload = function(fileLoadedEvent):string {
+                    var srcData = fileLoadedEvent.target.result; // <--- data: base64
 
-//                     var newImage = document.createElement('img');
-//                     newImage.src = srcData;
+                    var newImage = document.createElement('img');
+                    newImage.src = srcData;
 
-//                     imagenBASE64 = newImage.outerHTML;
-//                     return  newImage.outerHTML;
+                    imagenBASE64 = newImage.outerHTML;
+                    return  newImage.outerHTML;
                 
-//                 }
-//                 fileReader.readAsDataURL(fileToLoad);
+                }
+                fileReader.readAsDataURL(fileToLoad);
             
-//             }
-//         }
+            }
+        }
 
 
 //TRAIGO EN UN ARRAY LOS VALORES DEVUELTOS DE LOS CHECKBOX ON
@@ -58,7 +58,7 @@ var imagenBASE64;
 function limpiarLista():void
 {
        localStorage.clear();
-       mostrarEmpleados();
+        mostrarEmpleados();
 }
 
 //CARGO LOS DROPDOWN QUE DEPENDEN DEL ENUMERADO
@@ -150,6 +150,13 @@ function tablaDinamica(checkboxON?)
     }
 }
 /////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
+// VALIDA LOGIN 
+function validaLogin()
+{
+    let EmpleadosString  = JSON.parse(localStorage.getItem("Empleados") || "[]");
+   
+}
+
 function mostrarEmpleados(valor?):void
 {
     let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
@@ -206,6 +213,7 @@ function mostrarEmpleados(valor?):void
    }    
    
 }
+
 function agregarEmpleado():void
 {
     let tipo: Clases.tipoEmpleado  = Number($('#tipoMasc').val()); 
@@ -213,7 +221,8 @@ function agregarEmpleado():void
                                             Number ($('#edad').val()),
                                             String ($('#sexo').val()),
                                             tipo,
-                                            imagenBASE64
+                                            imagenBASE64,
+                                            '1234'
                                             );
     
     let EmpleadosString  = JSON.parse(localStorage.getItem("Empleados") || "[]");
@@ -222,7 +231,7 @@ function agregarEmpleado():void
         
     console.log(EmpleadosString);
     alert ("Empleado guardado");
-    mostrarEmpleados(); 
+    // mostrarEmpleados(); 
     $('#formCARGA').trigger("reset");   
     
 } 
@@ -283,7 +292,7 @@ function modificarEmpleado(indice):void
         "</div>";
     
 
-        cargoMenusEncabezado();
+        // cargoMenusEncabezado();
 }
 
 function calcularPromedio()

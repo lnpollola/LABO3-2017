@@ -8,6 +8,12 @@ var Clases;
         tipoEmpleado[tipoEmpleado["MOZO"] = 3] = "MOZO";
         tipoEmpleado[tipoEmpleado["SOCIO"] = 4] = "SOCIO";
     })(tipoEmpleado = Clases.tipoEmpleado || (Clases.tipoEmpleado = {}));
+    var estadoCLIEMP;
+    (function (estadoCLIEMP) {
+        estadoCLIEMP[estadoCLIEMP["ACTIVO"] = 0] = "ACTIVO";
+        estadoCLIEMP[estadoCLIEMP["SUSPENDIDO"] = 1] = "SUSPENDIDO";
+        estadoCLIEMP[estadoCLIEMP["BAJA"] = 2] = "BAJA";
+    })(estadoCLIEMP = Clases.estadoCLIEMP || (Clases.estadoCLIEMP = {}));
     //ESTO LO HACE EL MOZO
     var estadoMesa;
     (function (estadoMesa) {
