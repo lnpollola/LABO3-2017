@@ -47,79 +47,87 @@ function limpiarLista() {
     mostrarEmpleados();
 }
 //CARGO LOS DROPDOWN QUE DEPENDEN DEL ENUMERADO
-function cargoMenusEncabezado() {
-    //ENCABEZADO DE FORM DE CARGA
-    var i = 0;
-    var select = $("#tipoMasc");
-    for (var i = 0; i < 3; i++) {
-        select.append("<option value=" + i + ">" + Clases.tipoEmpleado[i] + "</option>");
-    }
-    //ENCABEZADO DE LA SECCION DE FILTRO
-    var filtrar = $("#filtrarPor");
-    filtrar[0].innerHTML = select[0].innerHTML;
-}
-var tablaAux;
-//ARMO LA TABLA  DINAMICA
-function tablaDinamica(checkboxON) {
-    //CHEQUEO SI ES LA CARGA INICIAL O SI ENTRA POR EL CHANGE DE CHECKBOX
-    if (checkboxON.length != 0) {
-        //TABLA DINAMICA, ENTRA POR EVENTO
-        //CABECERA DE LA TABLA
-        var row_name = checkboxON;
-        var cabecera_1 = $("#tCabecera");
-        cabecera_1["0"].innerHTML = "";
-        row_name.forEach(function (element) {
-            if (element != "") {
-                var cabeceraArmada = $('<th>' + element + '</th>');
-                cabecera_1.append(cabeceraArmada);
-            }
-        });
-        //CUERPO DE  LA TABLA
-        var tablaTXT = $("#tCuerpoTXT");
-        var ciclo;
-        if (tablaAux == null) {
-            var primeraVez = 1;
-            tablaAux = $("#tCuerpoAUX");
-            ciclo = $("#tCuerpo")[0].childNodes.length;
-        }
-        else {
-            ciclo = $("#tCuerpoAUX")[0].childNodes.length;
-            tablaTXT[0].innerHTML = "";
-        }
-        for (var i = 0; i < ciclo; i++) {
-            //AGREGO LAS COLUMNAS SEGUN VAYAN O NO
-            tablaTXT.append("<tr>");
-            checkboxON.includes("ID") == true ? tablaTXT.append("<td id='mascID" + i + "'>" + $('#mascID' + i)[0].innerHTML + "</td>") : null;
-            checkboxON.includes("NOMBRE") == true ? tablaTXT.append("<td id='mascNOM" + i + "'>" + $('#mascNOM' + i)[0].innerHTML + "</td>") : null;
-            checkboxON.includes("EDAD") == true ? tablaTXT.append("<td id='mascEDAD" + i + "'>" + $('#mascEDAD' + i)[0].innerHTML + "</td>") : null;
-            checkboxON.includes("TIPO") == true ? tablaTXT.append("<td id='mascTIPO" + i + "'>" + Clases.tipoEmpleado[$('#mascTIPO' + i)[0].innerHTML] + "</td>") : null;
-            checkboxON.includes("SEX0") == true ? tablaTXT.append("<td id='mascSEXO" + i + "'>" + $('#mascSEXO' + i)[0].innerHTML + "</td>") : null;
-            tablaTXT.append("</tr></table>");
-        }
-        var tablaFinal = $("#tCuerpo");
-        var innerHtmlAux = tablaFinal["0"].innerHTML;
-        tablaFinal["0"].innerHTML = "";
-        tablaFinal["0"].innerHTML = tablaTXT["0"].innerHTML;
-        if (primeraVez == 1) {
-            tablaAux["0"].innerHTML = innerHtmlAux;
-        }
-    }
-    else {
-        //TABLA ENTERA, VIENE POR EL LOAD DE LA PAGINA
-        //CABECERA DE LA TABLA
-        var cabecera = $("#tCabecera");
-        cabecera["0"].innerHTML = "";
-        var devuelve = "<th>ID</th>" +
-            "<th>NOMBRE</th>" +
-            "<th>EDAD</th>" +
-            "<th>TIPO</th>" +
-            "<th>SEXO</th>" +
-            "<th>Imagen</th>";
-        cabecera.append(devuelve);
-        //CUERPO DE LA TABLA
-        mostrarEmpleados();
-    }
-}
+// function cargoMenusEncabezado()
+// {
+//     //ENCABEZADO DE FORM DE CARGA
+//     var i = 0;
+//     let select = $("#tipoMasc");
+//     for (var i = 0; i < 3; i++) 
+//     {
+//         select.append("<option value="+i+">"+Clases.tipoEmpleado[i]+"</option>");
+//     }
+//     //ENCABEZADO DE LA SECCION DE FILTRO
+//     var filtrar = $("#filtrarPor");
+//     filtrar[0].innerHTML = select[0].innerHTML ;
+// }
+// var tablaAux;
+// //ARMO LA TABLA  DINAMICA
+// function tablaDinamica(checkboxON?) 
+// {
+//     //CHEQUEO SI ES LA CARGA INICIAL O SI ENTRA POR EL CHANGE DE CHECKBOX
+//     if(checkboxON.length != 0)
+//     {
+//     //TABLA DINAMICA, ENTRA POR EVENTO
+//         //CABECERA DE LA TABLA
+//         let row_name = checkboxON;
+//         let cabecera = $("#tCabecera");
+//         cabecera["0"].innerHTML ="";
+//         row_name.forEach(element => 
+//         {
+//             if (element != "") 
+//             {
+//                 let cabeceraArmada = $('<th>' + element + '</th>');
+//                 cabecera.append(cabeceraArmada);
+//             } 
+//         }); 
+//         //CUERPO DE  LA TABLA
+//         let tablaTXT = $("#tCuerpoTXT");
+//         var ciclo;
+//         if(tablaAux == null)    
+//         {
+//             var primeraVez = 1;
+//             tablaAux = $("#tCuerpoAUX");  
+//             ciclo = $("#tCuerpo")[0].childNodes.length;
+//         }
+//         else 
+//         { 
+//             ciclo = $("#tCuerpoAUX")[0].childNodes.length ;
+//             tablaTXT[0].innerHTML = "";
+//         }
+//         for (var i = 0; i < ciclo ; i++) 
+//         {
+//             //AGREGO LAS COLUMNAS SEGUN VAYAN O NO
+//             tablaTXT.append("<tr>");
+//             checkboxON.includes("ID")       == true ? tablaTXT.append("<td id='mascID"      +i+"'>" +$('#mascID'+i)[0].innerHTML                    + "</td>") : null ; 
+//             checkboxON.includes("NOMBRE")   == true ? tablaTXT.append("<td id='mascNOM"     +i+"'>" +$('#mascNOM'+i)[0].innerHTML                    + "</td>") : null ; 
+//             checkboxON.includes("EDAD")     == true ? tablaTXT.append("<td id='mascEDAD"    +i+"'>" +$('#mascEDAD'+i)[0].innerHTML                    + "</td>") : null ; 
+//             checkboxON.includes("TIPO")     == true ? tablaTXT.append("<td id='mascTIPO"    +i+"'>" +Clases.tipoEmpleado[$('#mascTIPO'+i)[0].innerHTML]+ "</td>") : null ; 
+//             checkboxON.includes("SEX0")== true ? tablaTXT.append("<td id='mascSEXO"   +i+"'>" +$('#mascSEXO'+i)[0].innerHTML                    + "</td>") : null ; 
+//             tablaTXT.append("</tr></table>");
+//         }
+//         let tablaFinal   = $("#tCuerpo");
+//         let innerHtmlAux = tablaFinal["0"].innerHTML;
+//         tablaFinal["0"].innerHTML =""; 
+//         tablaFinal["0"].innerHTML = tablaTXT["0"].innerHTML;
+//         if(primeraVez == 1)   {tablaAux["0"].innerHTML = innerHtmlAux; }
+//     }
+//     else
+//     {  
+//     //TABLA ENTERA, VIENE POR EL LOAD DE LA PAGINA
+//         //CABECERA DE LA TABLA
+//         let cabecera = $("#tCabecera");
+//         cabecera["0"].innerHTML ="";
+//         var devuelve =  "<th>ID</th>"       +
+//                         "<th>NOMBRE</th>"   +  
+//                         "<th>EDAD</th>"     +
+//                         "<th>TIPO</th>"     +  
+//                         "<th>SEXO</th>"     +
+//                         "<th>Imagen</th>";
+//         cabecera.append(devuelve);
+//         //CUERPO DE LA TABLA
+//         mostrarEmpleados();
+//     }
+// }
 /////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
 // VALIDA LOGIN 
 function validaLogin() {
@@ -177,6 +185,38 @@ function mostrarEmpleados(valor) {
     }
 }
 function agregarEmpleado() {
+    var cuerpoAgregarEmpleado = "   <form id=\"formCARGA\">        \n    <div class\"row\">   \n            <!--  ID-->\n              <!-- <div class=\"form-group\">\n              <label for=\"id\">ID</label><br>\n              <input type=\"text\" id=\"id\" class=\"sinError form-control\" name=\"id\" placeholder=\"ID..\" autocomplete=\"off\" autofocus><br>\n              </div> -->\n            <!-- NOMBRE -->\n                <div class=\"form-group\">\n                <label for=\"nombre\">Nombre</label><br>\n                <input type=\"text\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" placeholder=\"Nombre..\" autocomplete=\"off\" autofocus><br>\n                </div>\n            <!-- EDAD -->\n                <div class=\"form-group\">\n                <label for=\"edad\">Edad</label><br>\n                <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" placeholder=\"Edad..\" autocomplete=\"off\"><br>\n                </div>\n            <!-- TIPO - ENUM TIPO -->\n                <div class=\"form-group\">\n                    <label for=\"opcion\">Elige un tipo de Empleado:</label>\n                    <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                        <option value=\"BARTENDER\">BARTENDER</option>\n                        <option value=\"CERVECERO\">CERVECERO</option>\n                        <option value=\"COCINERO\">COCINERO</option>\n                        <option value=\"MOZO\">MOZO</option>\n                        <option value=\"SOCIO\">SOCIO</option>\n                    </select>\n                </div>\n            <!-- SEXO -->\n                <div class=\"form-group\">\n                    <label for=\"opcion\">Elige SEXO:</label>\n                    <select class=\"form-control\" name=\"\" id=\"sexo\"> -->\n                        <!-- ACA TIENE QUE LLAMAR AL ENUM -->\n                        <option value=\"M\">MASCULINO</option>\n                        <option value=\"F\">FEMENINO</option>\n                    </select>\n                </div>\n             <!-- IMAGEN -->\n                 <!-- <div class=\"form-group\">\n                    <label for=\"archivo\">Archivo:</label>\n                    <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n                    <p class=\"help-block\">M\u00E1ximo 50MB</p>\n                </div>\n                <div id=\"imgTest\"></div>\n                \n              </div> -->\n      \n      </div>\n      <!-- <input type='file' id=\"bannerImg\" onchange=\"readURL(this);\" />\n      <img src=\"\" id=\"tableBanner\" /> -->\n    </form>";
+    // `<form method="POST" onsubmit="agregarUsuario(); return false;" data-toggle="validator">
+    // <div class="form-group">
+    //     <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control" required/>
+    // </div>
+    // <div class="form-group">
+    //     <input type="email" name="correo" id="correo" placeholder="Correo" class="form-control" required/>
+    // </div>
+    // <div class="form-group" >
+    //     <select name="turno" id="turno" class="form-control" required>
+    //     <?php 
+    //     foreach($turnos as $turno){
+    //     ?>
+    //         <option value="<?php echo $turno->getId(); ?>"><?php echo $turno->getDescripcion(); ?></option>
+    //     <?php 
+    //     } 
+    //     ?>
+    //     </select>
+    // </div>
+    // <div class="form-group">
+    //     <input type="text" name="password" id="password" placeholder="Password" class="form-control" required/>
+    // </div>
+    // <div class="form-group">
+    //     <input class="form-control" type="file" name="foto" id="foto" onchange="previsualizarFoto()">
+    // </div>
+    // <div class="form-group">
+    //     <input type="submit" class="btn btn-primary btn-block btn-sm btn-flat" value="Agregar"/>
+    // </div>
+    // <div class="help-block with-errors"></div>
+    // <div id="divFoto"></div>
+    // </form>`;   
+    $("#principal").append(cuerpoAgregarEmpleado);
     var tipo = Number($('#tipoMasc').val());
     var nuevoEmpleado = new Clases.Empleado(String($('#nombre').val()), Number($('#edad').val()), String($('#sexo').val()), tipo, imagenBASE64, '1234');
     var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
