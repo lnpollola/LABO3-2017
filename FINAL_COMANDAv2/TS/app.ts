@@ -1,24 +1,25 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
-// namespace Clases{
+import '../node_modules/rxjs/operator/filter';
+import '../node_modules/rxjs/add/operator/filter';
 
-$(function(){
+// $(function(){
 
-    //EVENTOS
-        //FORM MODIFICADO POR CHECKBOX
-        // $("#checkFORM :checkbox").change(function() {
-        //     encabezadoCheck();
-        // });
-        //BOTON FILTRAR
-        // $("#filtrarPor").change(function(){
-        //     let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
-        //     mostrarEmpleados(valorFiltro);
-        //     tablaAux = undefined;
-        // });
-    //CARGA DE LA PAGINA
-    // encabezadoCheck();
-    cargoMenusEncabezado();
-    // mostrarEmpleados();
-});
+    //     //EVENTOS
+    //         //FORM MODIFICADO POR CHECKBOX
+    //         // $("#checkFORM :checkbox").change(function() {
+    //         //     encabezadoCheck();
+    //         // });
+    //         //BOTON FILTRAR
+    //         // $("#filtrarPor").change(function(){
+    //         //     let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
+    //         //     mostrarEmpleados(valorFiltro);
+    //         //     tablaAux = undefined;
+    //         // });
+    //     //CARGA DE LA PAGINA
+    //     // encabezadoCheck();
+    //     cargoMenusEncabezado();
+    //     // mostrarEmpleados();
+    // });
 
 var imagenBASE64;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
@@ -216,101 +217,27 @@ function mostrarEmpleados(valor?):void
 
 function agregarEmpleado():void
 {
-    let cuerpoAgregarEmpleado = 
-    `   <form id="formCARGA">        
-    <div class"row">   
-            <!--  ID-->
-              <!-- <div class="form-group">
-              <label for="id">ID</label><br>
-              <input type="text" id="id" class="sinError form-control" name="id" placeholder="ID.." autocomplete="off" autofocus><br>
-              </div> -->
-            <!-- NOMBRE -->
-                <div class="form-group">
-                <label for="nombre">Nombre</label><br>
-                <input type="text" id="nombre" class="sinError form-control" name="nombre" placeholder="Nombre.." autocomplete="off" autofocus><br>
-                </div>
-            <!-- EDAD -->
-                <div class="form-group">
-                <label for="edad">Edad</label><br>
-                <input type="text" id="edad" class="sinError form-control" name="edad" placeholder="Edad.." autocomplete="off"><br>
-                </div>
-            <!-- TIPO - ENUM TIPO -->
-                <div class="form-group">
-                    <label for="opcion">Elige un tipo de Empleado:</label>
-                    <select class="form-control" name="tipoMasc" id="tipoMasc">
-                        <option value="BARTENDER">BARTENDER</option>
-                        <option value="CERVECERO">CERVECERO</option>
-                        <option value="COCINERO">COCINERO</option>
-                        <option value="MOZO">MOZO</option>
-                        <option value="SOCIO">SOCIO</option>
-                    </select>
-                </div>
-            <!-- SEXO -->
-                <div class="form-group">
-                    <label for="opcion">Elige SEXO:</label>
-                    <select class="form-control" name="" id="sexo"> -->
-                        <!-- ACA TIENE QUE LLAMAR AL ENUM -->
-                        <option value="M">MASCULINO</option>
-                        <option value="F">FEMENINO</option>
-                    </select>
-                </div>
-             <!-- IMAGEN -->
-                 <!-- <div class="form-group">
-                    <label for="archivo">Archivo:</label>
-                    <input type="file" id="imagen" onchange="transformaImagen();">
-                    <p class="help-block">Máximo 50MB</p>
-                </div>
-                <div id="imgTest"></div>
-                
-              </div> -->
-      
-      </div>
-      <!-- <input type='file' id="bannerImg" onchange="readURL(this);" />
-      <img src="" id="tableBanner" /> -->
-    </form>` 
-    // `<form method="POST" onsubmit="agregarUsuario(); return false;" data-toggle="validator">
-    // <div class="form-group">
-    //     <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control" required/>
-    // </div>
-    // <div class="form-group">
-    //     <input type="email" name="correo" id="correo" placeholder="Correo" class="form-control" required/>
-    // </div>
-    // <div class="form-group" >
-    //     <select name="turno" id="turno" class="form-control" required>
-    //     <?php 
-    //     foreach($turnos as $turno){
-    //     ?>
-    //         <option value="<?php echo $turno->getId(); ?>"><?php echo $turno->getDescripcion(); ?></option>
-    //     <?php 
-    //     } 
-    //     ?>
-    //     </select>
-    // </div>
-    // <div class="form-group">
-    //     <input type="text" name="password" id="password" placeholder="Password" class="form-control" required/>
-    // </div>
-    // <div class="form-group">
-    //     <input class="form-control" type="file" name="foto" id="foto" onchange="previsualizarFoto()">
-    // </div>
-    // <div class="form-group">
-    //     <input type="submit" class="btn btn-primary btn-block btn-sm btn-flat" value="Agregar"/>
-    // </div>
-    // <div class="help-block with-errors"></div>
-    // <div id="divFoto"></div>
-    // </form>`;   
-
-    
-    
-    $("#principal").append(cuerpoAgregarEmpleado);
-
-
-    let tipo: Clases.tipoEmpleado  = Number($('#tipoMasc').val()); 
-    let nuevoEmpleado    = new Clases.Empleado(  String ($('#nombre').val()),
+    let tipo = 
+    switch ($('#tipoMasc').val())
+    {
+        case "BARTENDER": 
+        {
+            tipo = Clases.tipoEmpleado.BARTENDER;
+            break;
+        }
+        default: 
+        {
+            tipo = Clases.tipoEmpleado.MOZO;
+            break;
+        }
+    };
+    let nuevoEmpleado    = new Clases.Empleado(  
+                                            String ($('#nombre').val()),
                                             Number ($('#edad').val()),
                                             String ($('#sexo').val()),
                                             tipo,
-                                            imagenBASE64,
-                                            '1234'
+                                            Clases.estadoCLIEMP.ACTIVO,
+                                            String ($('#ClaveUsuario').val())
                                             );
     
     let EmpleadosString  = JSON.parse(localStorage.getItem("Empleados") || "[]");
@@ -349,13 +276,13 @@ function modificarEmpleado(indice):void
     tcuerpo[0].innerHTML = 
         " <div class'row'>"+
                     "<div class='form-group'>"+
-                    "<label for='nombre'>Nombre</label><br>"+
-                    "<input type='text' id='nombre' class='sinError form-control' name='nombre' value="+persona._nombre+" autocomplete='off' autofocus><br>"+
+                    "<label for='nombre'>Nombre</label>"+
+                    "<input type='text' id='nombre' class='sinError form-control' name='nombre' value="+persona._nombre+" autocomplete='off' autofocus>"+
                     "</div>"+
                 
                     "<div class='form-group'>"+
-                    "<label for='edad'>Edad</label><br>"+
-                    "<input type='text' id='edad' class='sinError form-control' name='edad' value="+persona._edad+" autocomplete='off'><br>"+
+                    "<label for='edad'>Edad</label>"+
+                    "<input type='text' id='edad' class='sinError form-control' name='edad' value="+persona._edad+" autocomplete='off'>"+
                     "</div>"+
                 
                     "<div class='form-group'>"+
@@ -399,7 +326,7 @@ function calcularPromedio()
                         }, 0);
 
         var mostrarPromedio = $("labelProm").context.forms[1];
-        mostrarPromedio.innerHTML = "<label for='promedio'class='col-md-offset-1'>"+(acumEdad / cantidad).toFixed(2)+"</label><br>" ;
+        mostrarPromedio.innerHTML = "<label for='promedio'class='col-md-offset-1'>"+(acumEdad / cantidad).toFixed(2)+"</label>" ;
 }
 
 function calcularMaximo():number
@@ -415,3 +342,76 @@ function arrayMax(arr) {
       return ( p < JSON.parse(v)._id ? JSON.parse(v)._id: p );
     },0);
   }
+
+// // // // // // // FUNCIONES DE CARGA DE PÁGINA // // // // // // //// // // // // // //
+
+function borrarPrincipal():void
+{
+    $("#principal")[0].innerHTML="";
+}
+
+function muestraAgregarEmpleado():void
+{
+    borrarPrincipal();
+    
+    let cuerpoAgregarEmpleado = 
+    `
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">Agregar Empleado</h3>
+        </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form role="form" id="formCARGA" onsubmit="agregarUsuario();" data-toggle="validator">
+      <div class="box-body">
+        <form id="formCARGA" onsubmit="agregarUsuario();" data-toggle="validator">     
+        <!-- USUARIO -->
+            <div class="form-group">
+            <label for="nombre">Usuario</label>
+            <input type="email" id="nombre" class="sinError form-control" name="nombre" placeholder="Nombre.." autocomplete="off" class="form-control" required autofocus>
+            </div>
+        <!-- EDAD -->
+            <div class="form-group">
+            <label for="edad">Edad</label>
+            <input type="text" id="edad" class="sinError form-control" name="edad" placeholder="Edad.." autocomplete="off" class="form-control" required>
+            </div>
+        <!-- SEXO -->
+        <label for="opcion">Elige SEXO:</label>
+        <div class="form-group" >
+            <select name="sexo" id="sexo" class="form-control" required>
+                <option value="M">MASCULINO</option>
+                <option value="F">FEMENINO</option>
+            </select>
+        </div>
+
+        <!-- TIPO - ENUM TIPO -->
+            <div class="form-group">
+                <label for="opcion">Elige un tipo de Empleado:</label>
+                <select class="form-control" name="tipoMasc" id="tipoMasc">
+                    <option value="BARTENDER">Clases.tipoEmpleado.BARTENDER</option>
+                    <option value="CERVECERO">CERVECERO</option>
+                    <option value="COCINERO">COCINERO</option>
+                    <option value="MOZO">MOZO</option>
+                    <option value="SOCIO">SOCIO</option>
+                </select>
+            </div>
+        <div class="form-group">
+          <label for="password">Clave</label>
+          <input type="password" class="form-control" id="ClaveUsuario" placeholder="Password">
+        </div>
+        
+        <!-- /.box-body -->
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+        </form>
+    </div>
+    <!-- /.box -->`;
+
+    $("#principal").append(cuerpoAgregarEmpleado);
+}
+
+
+
+        

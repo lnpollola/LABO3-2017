@@ -17,6 +17,13 @@
     padding-bottom: 20px;
 }
 
+#box-primary
+{
+    text-align: center;
+    padding-bottom: 20px;
+    padding-right:  50px;
+}
+
 table{
     text-align: center;
 }
