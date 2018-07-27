@@ -217,20 +217,20 @@ function mostrarEmpleados(valor?):void
 
 function agregarEmpleado():void
 {
-    let tipo = 
-    switch ($('#tipoMasc').val())
-    {
-        case "BARTENDER": 
-        {
-            tipo = Clases.tipoEmpleado.BARTENDER;
-            break;
-        }
-        default: 
-        {
-            tipo = Clases.tipoEmpleado.MOZO;
-            break;
-        }
-    };
+    // let tipo = 
+    // switch ($('#tipoMasc').val())
+    // {
+    //     case "BARTENDER": 
+    //     {
+    //         tipo = Clases.tipoEmpleado.BARTENDER;
+    //         break;
+    //     }
+    //     default: 
+    //     {
+    //         tipo = Clases.tipoEmpleado.MOZO;
+    //         break;
+    //     }
+    // };
     let nuevoEmpleado    = new Clases.Empleado(  
                                             String ($('#nombre').val()),
                                             Number ($('#edad').val()),
@@ -362,10 +362,9 @@ function muestraAgregarEmpleado():void
         </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <form role="form" id="formCARGA" onsubmit="agregarUsuario();" data-toggle="validator">
+    <form role="form" id="formCARGA" onsubmit="agregarEmpleado();" data-toggle="validator">
       <div class="box-body">
-        <form id="formCARGA" onsubmit="agregarUsuario();" data-toggle="validator">     
-        <!-- USUARIO -->
+            <!-- USUARIO -->
             <div class="form-group">
             <label for="nombre">Usuario</label>
             <input type="email" id="nombre" class="sinError form-control" name="nombre" placeholder="Nombre.." autocomplete="off" class="form-control" required autofocus>
@@ -388,7 +387,7 @@ function muestraAgregarEmpleado():void
             <div class="form-group">
                 <label for="opcion">Elige un tipo de Empleado:</label>
                 <select class="form-control" name="tipoMasc" id="tipoMasc">
-                    <option value="BARTENDER">Clases.tipoEmpleado.BARTENDER</option>
+                    <option value="BARTENDER">BARTENDER</option>
                     <option value="CERVECERO">CERVECERO</option>
                     <option value="COCINERO">COCINERO</option>
                     <option value="MOZO">MOZO</option>
@@ -405,8 +404,7 @@ function muestraAgregarEmpleado():void
         <div class="box-footer">
             <button type="submit" class="btn btn-primary">Agregar</button>
         </div>
-        </form>
-    </div>
+    </form>
     <!-- /.box -->`;
 
     $("#principal").append(cuerpoAgregarEmpleado);

@@ -188,20 +188,20 @@ function mostrarEmpleados(valor) {
     }
 }
 function agregarEmpleado() {
-    var tipo = ;
-    switch ($('#tipoMasc').val()) {
-        case "BARTENDER":
-            {
-                tipo = Clases.tipoEmpleado.BARTENDER;
-                break;
-            }
-        default:
-            {
-                tipo = Clases.tipoEmpleado.MOZO;
-                break;
-            }
-    }
-    ;
+    // let tipo = 
+    // switch ($('#tipoMasc').val())
+    // {
+    //     case "BARTENDER": 
+    //     {
+    //         tipo = Clases.tipoEmpleado.BARTENDER;
+    //         break;
+    //     }
+    //     default: 
+    //     {
+    //         tipo = Clases.tipoEmpleado.MOZO;
+    //         break;
+    //     }
+    // };
     var nuevoEmpleado = new Clases.Empleado(String($('#nombre').val()), Number($('#edad').val()), String($('#sexo').val()), tipo, Clases.estadoCLIEMP.ACTIVO, String($('#ClaveUsuario').val()));
     var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
     EmpleadosString.push(JSON.stringify(nuevoEmpleado));
@@ -291,7 +291,7 @@ function borrarPrincipal() {
 }
 function muestraAgregarEmpleado() {
     borrarPrincipal();
-    var cuerpoAgregarEmpleado = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Agregar Empleado</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form role=\"form\" id=\"formCARGA\" onsubmit=\"agregarUsuario();\" data-toggle=\"validator\">\n      <div class=\"box-body\">\n        <form id=\"formCARGA\" onsubmit=\"agregarUsuario();\" data-toggle=\"validator\">     \n        <!-- USUARIO -->\n            <div class=\"form-group\">\n            <label for=\"nombre\">Usuario</label>\n            <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n            </div>\n        <!-- EDAD -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Edad</label>\n            <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n            </div>\n        <!-- SEXO -->\n        <label for=\"opcion\">Elige SEXO:</label>\n        <div class=\"form-group\" >\n            <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n                <option value=\"M\">MASCULINO</option>\n                <option value=\"F\">FEMENINO</option>\n            </select>\n        </div>\n\n        <!-- TIPO - ENUM TIPO -->\n            <div class=\"form-group\">\n                <label for=\"opcion\">Elige un tipo de Empleado:</label>\n                <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                    <option value=\"BARTENDER\">Clases.tipoEmpleado.BARTENDER</option>\n                    <option value=\"CERVECERO\">CERVECERO</option>\n                    <option value=\"COCINERO\">COCINERO</option>\n                    <option value=\"MOZO\">MOZO</option>\n                    <option value=\"SOCIO\">SOCIO</option>\n                </select>\n            </div>\n        <div class=\"form-group\">\n          <label for=\"password\">Clave</label>\n          <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n        </div>\n        \n        <!-- /.box-body -->\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" class=\"btn btn-primary\">Agregar</button>\n        </div>\n        </form>\n    </div>\n    <!-- /.box -->";
+    var cuerpoAgregarEmpleado = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Agregar Empleado</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form role=\"form\" id=\"formCARGA\" onsubmit=\"agregarEmpleado();\" data-toggle=\"validator\">\n      <div class=\"box-body\">\n            <!-- USUARIO -->\n            <div class=\"form-group\">\n            <label for=\"nombre\">Usuario</label>\n            <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n            </div>\n        <!-- EDAD -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Edad</label>\n            <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n            </div>\n        <!-- SEXO -->\n        <label for=\"opcion\">Elige SEXO:</label>\n        <div class=\"form-group\" >\n            <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n                <option value=\"M\">MASCULINO</option>\n                <option value=\"F\">FEMENINO</option>\n            </select>\n        </div>\n\n        <!-- TIPO - ENUM TIPO -->\n            <div class=\"form-group\">\n                <label for=\"opcion\">Elige un tipo de Empleado:</label>\n                <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                    <option value=\"BARTENDER\">BARTENDER</option>\n                    <option value=\"CERVECERO\">CERVECERO</option>\n                    <option value=\"COCINERO\">COCINERO</option>\n                    <option value=\"MOZO\">MOZO</option>\n                    <option value=\"SOCIO\">SOCIO</option>\n                </select>\n            </div>\n        <div class=\"form-group\">\n          <label for=\"password\">Clave</label>\n          <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n        </div>\n        \n        <!-- /.box-body -->\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" class=\"btn btn-primary\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
     $("#principal").append(cuerpoAgregarEmpleado);
 }
 //# sourceMappingURL=app.js.map
