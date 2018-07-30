@@ -154,7 +154,7 @@
 // VALIDA LOGIN 
 function validaLogin()
 {
-    let EmpleadosString  = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    let EmpleadosString:string|null  = JSON.parse(localStorage.getItem("Empleados") || "[]");
    
 }
 
