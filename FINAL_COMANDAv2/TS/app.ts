@@ -251,8 +251,7 @@ function agregarEmpleado():void
         
     console.log(EmpleadosString);
     alert ("Empleado guardado");
-    // mostrarEmpleados(); 
-    $('#formCARGA').trigger("reset");   
+    muestraAgregarEmpleado();  
     
 } 
  
