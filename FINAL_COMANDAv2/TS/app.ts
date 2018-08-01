@@ -166,8 +166,6 @@ function validaLogin()
       alert ("Empleado NO registrado en el sistema");
      }
     }   
-
-    
 }
 
 
@@ -383,34 +381,35 @@ function mostrarEmpleados():void
     {
         let empleadoActual = JSON.parse(EmpleadosString[i]);
         
-        // if (empleadoActual != null)
-        // {
-        //     let miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
+        if (empleadoActual != null)
+        {
+            let miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
             
-        //             let varAppend = "<tr><td id='mascID"+i+"'>"+ empleadoActual._id                         + "</td>"+
-        //                             "<td id='mascNOM"   +i+"'>"+ empleadoActual._nombre                     + "</td>"+
-        //                             "<td id='mascEDAD"  +i+"'>"+ empleadoActual._edad                       + "</td>"+
-        //                             "<td id='mascTIPO"  +i+"'>"+ Clases.tipoEmpleado[empleadoActual._tipo]   + "</td>"+
-        //                             "<td id='mascSEXO" +i+"'>"+ empleadoActual._sexo                  + "</td>"+
-        //                             "<td id='mascIMAGEN" +i+"'>"+ empleadoActual.imagen                  + "</td>"+
-        //                             "<td>"+  
-        //                                 "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
-        //                                 +"MODIFICAR"+
-        //                                 "<i class='glyphicon glyphicon-pencil'></i>"+
-        //                                 "</button>"
-        //                             + "</td>"   +  
-        //                             "<td>"+  
-        //                                 "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+i+")'>"
-        //                                 +"BORRAR"+
-        //                                 "<i class='glyphicon glyphicon-minus'></i>"+
-        //                                 "</button>"
-        //                             + "</td>"   +  
-        //                             "</tr>"       
-        //             tabla.append(varAppend); 
-        // }
+                    let varAppend = "<tr><td id='mascID"+i+"'>"+ empleadoActual._id                         + "</td>"+
+                                    "<td id='mascNOM"   +i+"'>"+ empleadoActual._nombre                     + "</td>"+
+                                    "<td id='mascEDAD"  +i+"'>"+ empleadoActual._edad                       + "</td>"+
+                                    "<td id='mascTIPO"  +i+"'>"+ Clases.tipoEmpleado[empleadoActual._tipo]   + "</td>"+
+                                    "<td id='mascSEXO" +i+"'>"+ empleadoActual._sexo                  + "</td>"+
+                                    "<td id='mascIMAGEN" +i+"'>"+ empleadoActual.imagen                  + "</td>"+
+                                    "<td>"+  
+                                        "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
+                                        +"MODIFICAR"+
+                                        "<i class='glyphicon glyphicon-pencil'></i>"+
+                                        "</button>"
+                                    + "</td>"   +  
+                                    "<td>"+  
+                                        "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+i+")'>"
+                                        +"BORRAR"+
+                                        "<i class='glyphicon glyphicon-minus'></i>"+
+                                        "</button>"
+                                    + "</td>"   +  
+                                    "</tr>"      ;
+
+                    $("#principal").append(varAppend); 
+        }
         
    }    
-//    $("#principal").append(cuerpoAgregarEmpleado);
+   
    
 }
 
