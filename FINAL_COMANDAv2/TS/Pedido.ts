@@ -4,10 +4,10 @@ namespace Clases
     export class Pedido 
     {
         //ATRIBUTOS
-            private _nroPedido:string;
-            private _estado:estadoPedido;
-            private _horaIngreso:Date; 
-            private _tiempoEstimado:Date;
+        public _nroPedido:string;
+        public _estado:estadoPedido;
+        public _horaIngreso:Date; 
+        public _tiempoEstimado:Date;
   
 
         //CONSTRUCTOR

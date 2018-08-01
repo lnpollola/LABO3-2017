@@ -4,8 +4,8 @@ namespace Clases
     export class Mesa 
     {
         //ATRIBUTOS
-            private _codAlfa:string;
-            private _estado:estadoMesa; 
+        public _codAlfa:string;
+        public _estado:estadoMesa; 
   
 
         //CONSTRUCTOR

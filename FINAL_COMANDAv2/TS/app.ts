@@ -155,7 +155,20 @@
 function validaLogin()
 {
     let EmpleadosString:string|null  = JSON.parse(localStorage.getItem("Empleados") || "[]");
-   
+    
+    for (var i = 0; i < EmpleadosString.length ; i++) 
+    {   
+        var estalogueado=0;
+        let empleadoActual= JSON.parse(EmpleadosString[i]);
+        if  
+        (empleadoActual._nombre==$('#mailingresado').val() && empleadoActual._clave == $('#passingresado').val() )
+        { estalogueado = 1; alert ("Empleado logueado OK"); break; }
+        else {
+            alert ("Empleado NO logueado");
+        }
+    }   
+
+    return estalogueado;
 }
 
 function mostrarEmpleados(valor?):void

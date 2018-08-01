@@ -3,8 +3,8 @@ namespace Clases
     export class Cliente extends Persona 
     { 
         //ATRIBUTOS
-            private _nroCliente:number; 
-            private _estadoCliente:estadoCLIEMP;
+            public _nroCliente:number; 
+            public _estadoCliente:estadoCLIEMP;
 
         //CONSTRUCTOR
         constructor(nombre:string,edad:number,sexo:string,estado:estadoCLIEMP) 

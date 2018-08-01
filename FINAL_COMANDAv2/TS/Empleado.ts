@@ -3,10 +3,10 @@ namespace Clases
     export class Empleado extends Persona 
     { 
         //ATRIBUTOS
-            private _id:number; 
+        public _id:number; 
             public _tipo:tipoEmpleado;
-            private _estado:estadoCLIEMP;
-            private _clave:string;
+            public _estado:estadoCLIEMP;
+            public _clave:string;
 
         //CONSTRUCTOR
         constructor(nombre:string,edad:number,sexo:string,tipo:tipoEmpleado,estado:estadoCLIEMP,clave:string) 

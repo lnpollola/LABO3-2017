@@ -3,9 +3,9 @@ namespace Clases
     export abstract class Persona 
     {
         //ATRIBUTOS
-            private _nombre:string;
-            private _edad:number;  
-            private _sexo:string; 
+        public _nombre:string;
+        public _edad:number;  
+        public _sexo:string; 
   
 
         //CONSTRUCTOR
