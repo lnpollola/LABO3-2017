@@ -155,78 +155,21 @@
 function validaLogin()
 {
     let EmpleadosString:string|null  = JSON.parse(localStorage.getItem("Empleados") || "[]");
-    
     for (var i = 0; i < EmpleadosString.length ; i++) 
     {   
-        var estalogueado=0;
-        let empleadoActual= JSON.parse(EmpleadosString[i]);
-        if  
-        (empleadoActual._nombre==$('#mailingresado').val() && empleadoActual._clave == $('#passingresado').val() )
-        { estalogueado = 1; alert ("Empleado logueado OK"); break; }
-        else {
-            alert ("Empleado NO logueado");
-        }
+      var estalogueado=0;
+      let empleadoActual= JSON.parse(EmpleadosString[i]);
+      if  
+      (empleadoActual._nombre==$('#mailingresado').val() && empleadoActual._clave == $('#passingresado').val() )
+      { estalogueado = 1; alert ("Empleado logueado OK"); window.location.href = 'home2.html'; }
+      else {
+      alert ("Empleado NO registrado en el sistema");
+     }
     }   
 
-    return estalogueado;
+    
 }
 
-function mostrarEmpleados(valor?):void
-{
-    let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
-    //ARMO EL ARRAY DE EmpleadoS, SEGUN SI ES TABLA FULL O FILTRADA
-    if(valor)
-    {
-    //MUESTRO EL LISTADO DE EmpleadoS SEGUN FILTRO
-       let stringFinal = EmpleadosString
-                                .filter(function(empleado){
-                                    let empleadoRet = JSON.parse(empleado);
-                                    return empleadoRet._tipo == valor;
-                                })
-                                .map(function(empleado){
-                                    let empleadoRet = JSON.parse(empleado);
-                                    return empleadoRet;
-                                });   
-        EmpleadosString= stringFinal;
-    }
-       
-    let tabla = $("#tCuerpo");
-    tabla["0"].innerHTML ="";
-    for (var i = 0; i < EmpleadosString.length ; i++) 
-    {
-        let empleadoActual;
-        if(valor){empleadoActual = EmpleadosString[i];}
-        else     {empleadoActual = JSON.parse(EmpleadosString[i]);}
-        
-        if (empleadoActual != null)
-        {
-            let miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
-            
-                    let varAppend = "<tr><td id='mascID"+i+"'>"+ empleadoActual._id                         + "</td>"+
-                                    "<td id='mascNOM"   +i+"'>"+ empleadoActual._nombre                     + "</td>"+
-                                    "<td id='mascEDAD"  +i+"'>"+ empleadoActual._edad                       + "</td>"+
-                                    "<td id='mascTIPO"  +i+"'>"+ Clases.tipoEmpleado[empleadoActual._tipo]   + "</td>"+
-                                    "<td id='mascSEXO" +i+"'>"+ empleadoActual._sexo                  + "</td>"+
-                                    "<td id='mascIMAGEN" +i+"'>"+ empleadoActual.imagen                  + "</td>"+
-                                    "<td>"+  
-                                        "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
-                                        +"MODIFICAR"+
-                                        "<i class='glyphicon glyphicon-pencil'></i>"+
-                                        "</button>"
-                                    + "</td>"   +  
-                                    "<td>"+  
-                                        "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+i+")'>"
-                                        +"BORRAR"+
-                                        "<i class='glyphicon glyphicon-minus'></i>"+
-                                        "</button>"
-                                    + "</td>"   +  
-                                    "</tr>"       
-                    tabla.append(varAppend); 
-        }
-        
-   }    
-   
-}
 
 function determinoRol (rol:string):Clases.tipoEmpleado
 {
@@ -428,5 +371,47 @@ function muestraAgregarEmpleado():void
 }
 
 
+function mostrarEmpleados():void
+{
+    borrarPrincipal();
+    
+    // let cuerpoAgregarEmpleado = 
+
+    let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
+
+    for (var i = 0; i < EmpleadosString.length ; i++) 
+    {
+        let empleadoActual = JSON.parse(EmpleadosString[i]);
+        
+        // if (empleadoActual != null)
+        // {
+        //     let miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
+            
+        //             let varAppend = "<tr><td id='mascID"+i+"'>"+ empleadoActual._id                         + "</td>"+
+        //                             "<td id='mascNOM"   +i+"'>"+ empleadoActual._nombre                     + "</td>"+
+        //                             "<td id='mascEDAD"  +i+"'>"+ empleadoActual._edad                       + "</td>"+
+        //                             "<td id='mascTIPO"  +i+"'>"+ Clases.tipoEmpleado[empleadoActual._tipo]   + "</td>"+
+        //                             "<td id='mascSEXO" +i+"'>"+ empleadoActual._sexo                  + "</td>"+
+        //                             "<td id='mascIMAGEN" +i+"'>"+ empleadoActual.imagen                  + "</td>"+
+        //                             "<td>"+  
+        //                                 "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
+        //                                 +"MODIFICAR"+
+        //                                 "<i class='glyphicon glyphicon-pencil'></i>"+
+        //                                 "</button>"
+        //                             + "</td>"   +  
+        //                             "<td>"+  
+        //                                 "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+i+")'>"
+        //                                 +"BORRAR"+
+        //                                 "<i class='glyphicon glyphicon-minus'></i>"+
+        //                                 "</button>"
+        //                             + "</td>"   +  
+        //                             "</tr>"       
+        //             tabla.append(varAppend); 
+        // }
+        
+   }    
+//    $("#principal").append(cuerpoAgregarEmpleado);
+   
+}
 
         

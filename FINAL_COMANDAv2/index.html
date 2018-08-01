@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -14,7 +14,17 @@
   <!-- <script src="TS/Mesa.js"></script> -->
   <script src="TS/Empleado.js"></script>
   <script src="TS/Pedido.js"></script>
+
+       <!-- jQuery 2.1.3 -->
+       <script src="Estilo_Bootstrap/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+     
+       <!-- AdminLTE App -->
+       <script src="Estilo_Bootstrap/dist/js/app.min.js" type="text/javascript"></script>
+        <!-- iCheck -->
+      <script src="Estilo_Bootstrap/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
   
+  <!-- Bootstrap 3.3.2 JS -->
+  <script src="Estilo_Bootstrap/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
   <!-- ESTILO EXTERNO -->
   <link href="Estilo_Bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -23,7 +33,7 @@
   <!-- Theme style -->
   <link href="Estilo_Bootstrap/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
   <!-- iCheck -->
-  <link href="Estilo_Bootstrap/plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css" />
+  <!-- <link href="Estilo_Bootstrap/plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css" /> -->
   <!-- Estilos -->
   <link href="css/estilos.css" rel="stylesheet" type="text/css" />
 </head>
@@ -41,7 +51,7 @@
       <div class="login-box-body">
         <!--<p class="login-box-msg">Sign in to start your session</p>-->
         <img id="profile-img" src="img/loginImage.png">
-        <form>
+        <form onsubmit="validaLogin();">
           <div class="form-group has-feedback">
             <input id="mailingresado" type="email" class="form-control" placeholder="Email" autocomplete="off" autofocus/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -50,30 +60,30 @@
             <input id="passingresado" type="password" class="form-control" placeholder="Password" autocomplete="off" autofocus/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-xs-8">    
               <div class="checkbox icheck">
                 <label>
                   <input type="checkbox" id="recordarme"> Recordarme
                 </label>
               </div>                        
-            </div><!-- /.col -->
-          </div>
-          <div class="form-group">
-              <button type="button" onclick="validaLogin();" class="btn btn-primary btn-block btn-flat">Ingresar</button>
-          </div>
+            </div><! /.col -->
+          <!-- </div> --> 
+
+          <!-- <div class="form-group">
+              <button type="button" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+          </div> -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </div>
+
         </form>
         <div><span class="label label-danger" id="errorLogin"></span></div>
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 
-    <!-- jQuery 2.1.3 -->
-    <script src="Estilo_Bootstrap/plugins/jQuery/jQuery-2.1.3.min.js" type="text/javascript" ></script>
-    <!-- Bootstrap 3.3.2 JS -->
-    <script src="Estilo_Bootstrap/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- iCheck -->
-    <script src="Estilo_Bootstrap/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-    <!-- <script src="js/funciones.js" type="text/javascript"></script> -->
+
+<!--    
     <script>
       $(function () {
         $('input').iCheck({
@@ -82,6 +92,6 @@
           increaseArea: '20%' // optional
         });
       });
-    </script>
+    </script> -->
   </body>
 </html>
