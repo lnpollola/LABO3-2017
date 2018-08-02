@@ -412,13 +412,14 @@ function mostrarEmpleados():void
         +'  <th>Sexo</th>'
         +'  <th>Tipo</th>'
         +'  <th>Estado</th>'
+        +'  <th>Acciones</th>'
         +'</tr>'
         +'</thead>'
         +'<tbody>';
 
         // $("#principal")[0].innerHTML = encabezadoTablaAppend; 
 
-
+    let cuerpoTablaAppend;
     //CUERPO
     for (var i = 0; i < EmpleadosString.length ; i++) 
      {
@@ -431,22 +432,27 @@ function mostrarEmpleados():void
                                     html+="<td>";html+= empleadoActual._sexo                        ;html+= "</td>";
                                     html+="<td>";html+= Clases.tipoEmpleado[empleadoActual._tipo]   ;html+= "</td>";
                                     html+="<td>";html+= Clases.estadoCLIEMP[empleadoActual._estado] ;html+= "</td>";
-                                    // "<td>"+  
-                                    //     "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
-                                    //     +"MODIFICAR"+
-                                    //     "<i class='glyphicon glyphicon-pencil'></i>"+
-                                    //     "</button>"
-                                    // + "</td>"   +  
-                                    // "<td>"+  
-                                    //     "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+i+")'>"
-                                    //     +"BORRAR"+
-                                    //     "<i class='glyphicon glyphicon-minus'></i>"+
-                                    //     "</button>"
-                                    // + "</td>"   +  
+                                    //BOTONES
+                                    html+="<td>"  
+                                    html+="<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
+                                    html+="MODIFICAR";
+                                    html+="<i class='glyphicon glyphicon-pencil'></i>";
+                                    html+="</button>";
+                                    html+="</td>";  
+                                    html+="<td>";
+                                    html+="<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+i+")'>";
+                                    html+="BORRAR";
+                                    html+="<i class='glyphicon glyphicon-minus'></i>";
+                                    html+="</button>";
+                                    html+="</td>";  
                                     html+="</tr>";
         }
+        if(i==0)
+        {cuerpoTablaAppend = html;}
+        else {cuerpoTablaAppend += html;}        
+    }
 
-        let encabezadoyCuerpo = encabezadoTablaAppend+html;
+       
 
         // $("#principal").append(encabezadoyCuerpo);
 
@@ -461,12 +467,7 @@ function mostrarEmpleados():void
         footerTablaAppend+='</div>';
         footerTablaAppend+='</div>';
 
-        let tablafinal= encabezadoyCuerpo+footerTablaAppend;
+        let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
         $("#principal").append(tablafinal); 
         
    }    
-   
-   
-
-
-}

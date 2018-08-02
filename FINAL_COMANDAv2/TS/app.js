@@ -294,10 +294,12 @@ function mostrarEmpleados() {
         + '  <th>Sexo</th>'
         + '  <th>Tipo</th>'
         + '  <th>Estado</th>'
+        + '  <th>Acciones</th>'
         + '</tr>'
         + '</thead>'
         + '<tbody>';
     // $("#principal")[0].innerHTML = encabezadoTablaAppend; 
+    var cuerpoTablaAppend;
     //CUERPO
     for (var i = 0; i < EmpleadosString.length; i++) {
         var empleadoActual = JSON.parse(EmpleadosString[i]);
@@ -318,34 +320,40 @@ function mostrarEmpleados() {
             html += "<td>";
             html += Clases.estadoCLIEMP[empleadoActual._estado];
             html += "</td>";
-            // "<td>"+  
-            //     "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
-            //     +"MODIFICAR"+
-            //     "<i class='glyphicon glyphicon-pencil'></i>"+
-            //     "</button>"
-            // + "</td>"   +  
-            // "<td>"+  
-            //     "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+i+")'>"
-            //     +"BORRAR"+
-            //     "<i class='glyphicon glyphicon-minus'></i>"+
-            //     "</button>"
-            // + "</td>"   +  
+            //BOTONES
+            html += "<td>";
+            html += "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado(" + i + ")'>";
+            html += "MODIFICAR";
+            html += "<i class='glyphicon glyphicon-pencil'></i>";
+            html += "</button>";
+            html += "</td>";
+            html += "<td>";
+            html += "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado(" + i + ")'>";
+            html += "BORRAR";
+            html += "<i class='glyphicon glyphicon-minus'></i>";
+            html += "</button>";
+            html += "</td>";
             html += "</tr>";
         }
-        var encabezadoyCuerpo = encabezadoTablaAppend + html;
-        // $("#principal").append(encabezadoyCuerpo);
-        //FOOTER
-        var footerTablaAppend = '</tbody>';
-        footerTablaAppend += '</table>';
-        footerTablaAppend += '</div><!-- /.table-responsive -->';
-        footerTablaAppend += '</div><!-- /.box-body -->';
-        footerTablaAppend += '<div class="box-footer clearfix">';
-        footerTablaAppend += '<a onclick="muestraAgregarEmpleado();" class="btn btn-sm btn-info btn-flat pull-left">Nuevo Empleado</a>';
-        footerTablaAppend += '<a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">Ver Clave</a>';
-        footerTablaAppend += '</div>';
-        footerTablaAppend += '</div>';
-        var tablafinal = encabezadoyCuerpo + footerTablaAppend;
-        $("#principal").append(tablafinal);
+        if (i == 0) {
+            cuerpoTablaAppend = html;
+        }
+        else {
+            cuerpoTablaAppend += html;
+        }
     }
+    // $("#principal").append(encabezadoyCuerpo);
+    //FOOTER
+    var footerTablaAppend = '</tbody>';
+    footerTablaAppend += '</table>';
+    footerTablaAppend += '</div><!-- /.table-responsive -->';
+    footerTablaAppend += '</div><!-- /.box-body -->';
+    footerTablaAppend += '<div class="box-footer clearfix">';
+    footerTablaAppend += '<a onclick="muestraAgregarEmpleado();" class="btn btn-sm btn-info btn-flat pull-left">Nuevo Empleado</a>';
+    footerTablaAppend += '<a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">Ver Clave</a>';
+    footerTablaAppend += '</div>';
+    footerTablaAppend += '</div>';
+    var tablafinal = encabezadoTablaAppend + cuerpoTablaAppend + footerTablaAppend;
+    $("#principal").append(tablafinal);
 }
 //# sourceMappingURL=app.js.map
