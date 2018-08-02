@@ -14,9 +14,9 @@ namespace Clases
             super(nombre,edad,sexo);
             
             //CALCULO DE ID
-                // var maximo = calcularMaximo();
-                // maximo++;
-                // this._id = maximo;
+                var maximo = calcularIdEmpleado();
+                maximo++;
+                this._id = maximo;
             
             this._tipo=tipo;  
             this._estado=estado;

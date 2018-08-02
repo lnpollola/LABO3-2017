@@ -75,20 +75,6 @@
 //         mostrarPromedio.innerHTML = "<label for='promedio'class='col-md-offset-1'>"+(acumEdad / cantidad).toFixed(2)+"</label>" ;
 // }
 
-// function calcularMaximo():number
-// {
-//     let EmpleadosString:[]|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
-//     let valormax = arrayMax(EmpleadosString);
-
-//     return valormax;
-// }
-
-// function arrayMax(arr) {
-//     return arr.reduce(function (p, v) {
-//       return ( p < JSON.parse(v)._id ? JSON.parse(v)._id: p );
-//     },0);
-//   }
-
 // // // // // // // FUNCIONES DE CARGA DE PÁGINA // // // // // // //// // // // // // //
 
 function borrarPrincipal():void
@@ -107,7 +93,8 @@ function muestraAgregarEmpleado():void
         </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <form id="formCARGA" onsubmit="agregarEmpleado();" data-toggle="validator">
+    <form id="formCARGA"  data-toggle="validator">
+    <!--onsubmit="agregarEmpleado();" -->
       <div class="box-body">
             <!-- USUARIO -->
             <div class="form-group">
@@ -148,7 +135,7 @@ function muestraAgregarEmpleado():void
         <!-- /.box-body -->
 
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Agregar</button>
+            <button type="submit" onclick="agregarEmpleado();" class="btn btn-primary">Agregar</button>
         </div>
     </form>
     <!-- /.box -->`;
@@ -163,9 +150,10 @@ function muestraModificarEmpleado(indice):void
 {
    muestraAgregarEmpleado();
     var indice = indice;
-    var objJson: JSON = JSON.parse(localStorage.Empleados);    
-    var persona = JSON.parse(objJson[indice]);
+    // var objJson: JSON = JSON.parse(localStorage.Empleados);    
+    // var persona = JSON.parse(objJson[indice]);
     // eliminarEmpleado(indice,1);   
+    var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice-1]);
     var tcuerpo = $("#formCARGA");
 
     tcuerpo[0].innerHTML = "";
@@ -210,10 +198,11 @@ function muestraModificarEmpleado(indice):void
     <!-- /.box-body -->
 
     <div class="box-footer">
-        <button type="submit" class="btn btn-primary">Modificar</button>
+        <button type="submit" onclick="modificarEmpleado(1)" class="btn btn-primary">Modificar</button>
     </div>` 
     ;
-    
+
+    // tcuerpo[0].onsubmit = `modificarEmpleado(indice)`;
 }
 
 
@@ -269,7 +258,22 @@ function determinoRol (rol:string):Clases.tipoEmpleado
     return tipo;
 }
 
-function agregarEmpleado():void
+function arrayMax(arr) {
+    return arr.reduce(function (p, v) {
+      return ( p < JSON.parse(v)._id ? JSON.parse(v)._id: p );
+    },0);
+  }
+
+///////EMPLEADO///////////
+function calcularIdEmpleado():number
+{
+    let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
+    let valormax = arrayMax(EmpleadosString);
+
+    return valormax;
+}
+
+function agregarEmpleado(vienedeModif?):void
 {
     
     var tipoEMP = determinoRol(String ($('#tipoMasc').val())) ; 
@@ -290,6 +294,11 @@ function agregarEmpleado():void
     alert ("Empleado guardado");
     muestraAgregarEmpleado();  
     
+}
+
+function modificarEmpleado(indice):void
+{
+    alert("estoy en modifEmpleado");
 }
 
 function mostrarEmpleados():void
@@ -336,13 +345,13 @@ function mostrarEmpleados():void
                 html+="<td>";html+= Clases.estadoCLIEMP[empleadoActual._estado] ;html+= "</td>";
             //BOTONES
                 html+="<td>"  
-                html+="<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='muestraModificarEmpleado("+i+")'>"
+                html+="<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='muestraModificarEmpleado("+empleadoActual._id+")'>"
                 html+="MODIFICAR ";
                 html+="<i class='glyphicon glyphicon-pencil'></i>";
                 html+="</button>";
                 html+="</td>";  
                 html+="<td>";
-                html+="<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+i+")'>";
+                html+="<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+empleadoActual._id+")'>";
                 html+="BORRAR ";
                 html+="<i class='glyphicon glyphicon-minus'></i>";
                 html+="</button>";

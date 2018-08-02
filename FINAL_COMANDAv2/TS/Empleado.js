@@ -16,9 +16,9 @@ var Clases;
         function Empleado(nombre, edad, sexo, tipo, estado, clave) {
             var _this = _super.call(this, nombre, edad, sexo) || this;
             //CALCULO DE ID
-            // var maximo = calcularMaximo();
-            // maximo++;
-            // this._id = maximo;
+            var maximo = calcularIdEmpleado();
+            maximo++;
+            _this._id = maximo;
             _this._tipo = tipo;
             _this._estado = estado;
             _this._clave = clave;
