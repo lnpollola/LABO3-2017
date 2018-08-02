@@ -34,15 +34,6 @@
 //                 }
 //                 fileReader.readAsDataURL(fileToLoad);
 //             }
-// function eliminarEmpleado(indice, vienedeModif?):void
-// {
-//     var indice = indice;
-//     var objJson: JSON = JSON.parse(localStorage.Empleados);
-//     delete objJson[indice];
-//     var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
-//     localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
-//     if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
-// } 
 // function calcularPromedio()
 // {
 //     let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
@@ -70,18 +61,14 @@ function muestraAgregarEmpleado() {
     // input.value = 'CUALQUIERA';
     $("#principal").append(cuerpoAgregarEmpleado);
 }
-function muestraModificarEmpleado(indice) {
+function muestraModificarEmpleado(idEmpleado) {
     muestraAgregarEmpleado();
-    var indice = indice;
-    // var objJson: JSON = JSON.parse(localStorage.Empleados);    
-    // var persona = JSON.parse(objJson[indice]);
-    // eliminarEmpleado(indice,1);   
-    var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice - 1]);
+    var indice = determinoIndice(idEmpleado);
+    var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice]);
     var tcuerpo = $("#formCARGA");
     tcuerpo[0].innerHTML = "";
     tcuerpo[0].innerHTML =
-        "   <div class=\"box-body\">\n        <!-- USUARIO -->\n        <div class=\"form-group\">\n        <label for=\"nombre\">Usuario</label>\n        <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" value=\"" + persona._nombre + "\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n    </div>\n    <!-- EDAD -->\n        <div class=\"form-group\">\n        <label for=\"edad\">Edad</label>\n        <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" value=\"" + persona._edad + "\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n        </div>\n    <!-- SEXO -->\n    <label for=\"opcion\">Elige SEXO:</label>\n    <div class=\"form-group\" >\n        <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n            <option value=\"MASCULINO\">MASCULINO</option>\n            <option value=\"FEMENINO\">FEMENINO</option>\n            <option value=\"OTROS\">OTROS</option>\n        </select>\n    </div>\n\n    <!-- TIPO - ENUM TIPO -->\n        <div class=\"form-group\">\n            <label for=\"opcion\">Elige un tipo de Empleado:</label>\n            <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                <option value=\"BARTENDER\">BARTENDER</option>\n                <option value=\"CERVECERO\">CERVECERO</option>\n                <option value=\"COCINERO\">COCINERO</option>\n                <option value=\"MOZO\">MOZO</option>\n                <option value=\"SOCIO\">SOCIO</option>\n            </select>\n        </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Clave</label>\n      <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n    </div>\n    \n    <!-- /.box-body -->\n\n    <div class=\"box-footer\">\n        <button type=\"submit\" onclick=\"modificarEmpleado(1)\" class=\"btn btn-primary\">Modificar</button>\n    </div>";
-    // tcuerpo[0].onsubmit = `modificarEmpleado(indice)`;
+        "   <div class=\"box-body\">\n        <!-- USUARIO -->\n        <div class=\"form-group\">\n        <label for=\"nombre\">Usuario</label>\n        <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" value=\"" + persona._nombre + "\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n    </div>\n    <!-- EDAD -->\n        <div class=\"form-group\">\n        <label for=\"edad\">Edad</label>\n        <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" value=\"" + persona._edad + "\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n        </div>\n    <!-- SEXO -->\n    <label for=\"opcion\">Elige SEXO:</label>\n    <div class=\"form-group\" >\n        <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n            <option value=\"MASCULINO\">MASCULINO</option>\n            <option value=\"FEMENINO\">FEMENINO</option>\n            <option value=\"OTROS\">OTROS</option>\n        </select>\n    </div>\n\n    <!-- TIPO - ENUM TIPO -->\n        <div class=\"form-group\">\n            <label for=\"opcion\">Elige un tipo de Empleado:</label>\n            <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                <option value=\"BARTENDER\">BARTENDER</option>\n                <option value=\"CERVECERO\">CERVECERO</option>\n                <option value=\"COCINERO\">COCINERO</option>\n                <option value=\"MOZO\">MOZO</option>\n                <option value=\"SOCIO\">SOCIO</option>\n            </select>\n        </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Clave</label>\n      <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n    </div>\n    \n    <!-- /.box-body -->\n\n    <div class=\"box-footer\">\n        <button type=\"submit\" onclick=\"modificarEmpleado(" + (indice) + ")\" class=\"btn btn-primary\">Modificar</button>\n    </div>";
 }
 // // // // // // // FUNCIONES DE CLASES DE PÁGINA // // // // // // //// // // // // // //
 function validaLogin() {
@@ -130,6 +117,17 @@ function determinoRol(rol) {
     }
     return tipo;
 }
+function determinoIndice(idEmpleado) {
+    var retorno;
+    var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    for (var i = 0; i < EmpleadosString.length; i++) {
+        var empleadoActual = JSON.parse(EmpleadosString[i]);
+        if (empleadoActual._id == idEmpleado) {
+            retorno = i;
+        }
+    }
+    return retorno;
+}
 function arrayMax(arr) {
     return arr.reduce(function (p, v) {
         return (p < JSON.parse(v)._id ? JSON.parse(v)._id : p);
@@ -152,7 +150,29 @@ function agregarEmpleado(vienedeModif) {
     muestraAgregarEmpleado();
 }
 function modificarEmpleado(indice) {
-    alert("estoy en modifEmpleado");
+    var indice = indice;
+    var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice]);
+    var tipoEMP = determinoRol(String($('#tipoMasc').val()));
+    persona._nombre = String($('#nombre').val());
+    persona._edad = Number($('#edad').val());
+    persona._sexo = String($('#sexo').val());
+    persona._tipo = tipoEMP;
+    persona._clave = String($('#ClaveUsuario').val());
+    var EmpleadosStringNew = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    delete EmpleadosStringNew[indice];
+    EmpleadosStringNew.push(JSON.stringify(persona));
+    localStorage.clear();
+    localStorage.setItem("Empleados", JSON.stringify(EmpleadosStringNew));
+    alert(indice);
+}
+function eliminarEmpleado(indice, vienedeModif) {
+    var indice = indice;
+    var objJson = JSON.parse(localStorage.Empleados);
+    delete objJson[indice];
+    // var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
+    // localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
+    // if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
 }
 function mostrarEmpleados() {
     borrarPrincipal();

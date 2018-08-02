@@ -45,15 +45,6 @@
 //                 fileReader.readAsDataURL(fileToLoad);
             
 //             }
-// function eliminarEmpleado(indice, vienedeModif?):void
-// {
-//     var indice = indice;
-//     var objJson: JSON = JSON.parse(localStorage.Empleados);
-//     delete objJson[indice];
-//     var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
-//     localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
-//     if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
-// } 
 
 
 // function calcularPromedio()
@@ -146,14 +137,11 @@ function muestraAgregarEmpleado():void
     $("#principal").append(cuerpoAgregarEmpleado);
 }
 
-function muestraModificarEmpleado(indice):void
+function muestraModificarEmpleado(idEmpleado):void
 {
    muestraAgregarEmpleado();
-    var indice = indice;
-    // var objJson: JSON = JSON.parse(localStorage.Empleados);    
-    // var persona = JSON.parse(objJson[indice]);
-    // eliminarEmpleado(indice,1);   
-    var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice-1]);
+    var indice = determinoIndice(idEmpleado);
+    var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice]);
     var tcuerpo = $("#formCARGA");
 
     tcuerpo[0].innerHTML = "";
@@ -198,11 +186,9 @@ function muestraModificarEmpleado(indice):void
     <!-- /.box-body -->
 
     <div class="box-footer">
-        <button type="submit" onclick="modificarEmpleado(1)" class="btn btn-primary">Modificar</button>
+        <button type="submit" onclick="modificarEmpleado(`+ (indice) +`)" class="btn btn-primary">Modificar</button>
     </div>` 
     ;
-
-    // tcuerpo[0].onsubmit = `modificarEmpleado(indice)`;
 }
 
 
@@ -258,6 +244,19 @@ function determinoRol (rol:string):Clases.tipoEmpleado
     return tipo;
 }
 
+function determinoIndice (idEmpleado:number):number
+{
+    var retorno;
+    let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]"); 
+    for (var i = 0; i < EmpleadosString.length ; i++) 
+    {
+       let empleadoActual = JSON.parse(EmpleadosString[i]);
+       if (empleadoActual._id == idEmpleado)
+       {retorno = i;}
+    }
+    return retorno;
+}
+
 function arrayMax(arr) {
     return arr.reduce(function (p, v) {
       return ( p < JSON.parse(v)._id ? JSON.parse(v)._id: p );
@@ -269,7 +268,6 @@ function calcularIdEmpleado():number
 {
     let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
     let valormax = arrayMax(EmpleadosString);
-
     return valormax;
 }
 
@@ -298,8 +296,39 @@ function agregarEmpleado(vienedeModif?):void
 
 function modificarEmpleado(indice):void
 {
-    alert("estoy en modifEmpleado");
+    var indice = indice;
+    let EmpleadosString:string|null  = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice]);
+
+    var tipoEMP = determinoRol(String ($('#tipoMasc').val())) ; 
+
+    persona._nombre = String ($('#nombre').val());
+    persona._edad   = Number ($('#edad').val());
+    persona._sexo   = String ($('#sexo').val());
+    persona._tipo  = tipoEMP ; 
+    persona._clave  = String ($('#ClaveUsuario').val());
+        
+
+    let EmpleadosStringNew  = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    
+    delete EmpleadosStringNew[indice];
+    EmpleadosStringNew.push( JSON.stringify(persona));
+    localStorage.clear();
+    localStorage.setItem("Empleados",JSON.stringify(EmpleadosStringNew));
+
+    alert(indice);
+
 }
+
+ function eliminarEmpleado(indice, vienedeModif?):void
+{
+    var indice = indice;
+    var objJson: JSON = JSON.parse(localStorage.Empleados);
+    delete objJson[indice];
+    // var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
+    // localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
+    // if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
+} 
 
 function mostrarEmpleados():void
 {
