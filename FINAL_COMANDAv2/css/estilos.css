@@ -151,7 +151,7 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
   pre.prettyprint { background-color: none }
   pre .str, code .str { color: #060 }
   pre .kwd, code .kwd { color: #006; font-weight: bold }
-  pre .com, code .com { color: #600; font-style: italic }
+  pre .com, code .com { color: #600;  }
   pre .typ, code .typ { color: #404; font-weight: bold }
   pre .lit, code .lit { color: #044 }
   pre .pun, code .pun { color: #440 }

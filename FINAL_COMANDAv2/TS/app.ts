@@ -177,10 +177,27 @@ function determinoRol (rol:string):Clases.tipoEmpleado
         case "BARTENDER": 
         {
             tipo = Clases.tipoEmpleado.BARTENDER;
+            break;
         }
-        default: 
+        case "CERVECERO": 
+        {
+            tipo = Clases.tipoEmpleado.CERVECERO;
+            break;
+        }
+        case "COCINERO": 
+        {
+            tipo = Clases.tipoEmpleado.COCINERO;
+            break;
+        }
+        case "MOZO": 
         {
             tipo = Clases.tipoEmpleado.MOZO;
+            break;
+        }
+        case "SOCIO": 
+        {
+            tipo = Clases.tipoEmpleado.SOCIO;
+            break;
         }
     }
     return tipo;
@@ -336,8 +353,9 @@ function muestraAgregarEmpleado():void
         <label for="opcion">Elige SEXO:</label>
         <div class="form-group" >
             <select name="sexo" id="sexo" class="form-control" required>
-                <option value="M">MASCULINO</option>
-                <option value="F">FEMENINO</option>
+                <option value="MASCULINO">MASCULINO</option>
+                <option value="FEMENINO">FEMENINO</option>
+                <option value="OTROS">OTROS</option>
             </select>
         </div>
 
@@ -372,45 +390,83 @@ function muestraAgregarEmpleado():void
 function mostrarEmpleados():void
 {
     borrarPrincipal();
-    
-    // let cuerpoAgregarEmpleado = 
 
     let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
+    //ENCABEZADO FIJO
+    let encabezadoTablaAppend = 
+        '<div class="box box-info">'
+        +'<div class="box-header with-border">'
+        +'<h3 class="box-title">Listado de Empleados</h3>'
+        +'<div class="box-tools pull-right">'
+        +'<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
+        +'<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
+        +'</div>'
+        +'</div><!-- /.box-header -->'
+        +'<div class="box-body">'
+        +'<div class="table-responsive">'
+        +'<table class="table no-margin">'
+        +'<thead>'
+        +'<tr>'
+        +'  <th>Nombre</th>'
+        +'  <th>Edad</th>'
+        +'  <th>Sexo</th>'
+        +'  <th>Tipo</th>'
+        +'  <th>Estado</th>'
+        +'</tr>'
+        +'</thead>'
+        +'<tbody>';
 
+        // $("#principal")[0].innerHTML = encabezadoTablaAppend; 
+
+
+    //CUERPO
     for (var i = 0; i < EmpleadosString.length ; i++) 
-    {
+     {
         let empleadoActual = JSON.parse(EmpleadosString[i]);
-        
         if (empleadoActual != null)
         {
-            let miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
-            
-                    let varAppend = "<tr><td id='mascID"+i+"'>"+ empleadoActual._id                         + "</td>"+
-                                    "<td id='mascNOM"   +i+"'>"+ empleadoActual._nombre                     + "</td>"+
-                                    "<td id='mascEDAD"  +i+"'>"+ empleadoActual._edad                       + "</td>"+
-                                    "<td id='mascTIPO"  +i+"'>"+ Clases.tipoEmpleado[empleadoActual._tipo]   + "</td>"+
-                                    "<td id='mascSEXO" +i+"'>"+ empleadoActual._sexo                  + "</td>"+
-                                    "<td id='mascIMAGEN" +i+"'>"+ empleadoActual.imagen                  + "</td>"+
-                                    "<td>"+  
-                                        "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
-                                        +"MODIFICAR"+
-                                        "<i class='glyphicon glyphicon-pencil'></i>"+
-                                        "</button>"
-                                    + "</td>"   +  
-                                    "<td>"+  
-                                        "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+i+")'>"
-                                        +"BORRAR"+
-                                        "<i class='glyphicon glyphicon-minus'></i>"+
-                                        "</button>"
-                                    + "</td>"   +  
-                                    "</tr>"      ;
-
-                    $("#principal").append(varAppend); 
+            var html='<tr>';
+                                    html+="<td>";html+=empleadoActual._nombre                       ;html+="</td>";
+                                    html+="<td>";html+= empleadoActual._edad                        ;html+= "</td>";
+                                    html+="<td>";html+= empleadoActual._sexo                        ;html+= "</td>";
+                                    html+="<td>";html+= Clases.tipoEmpleado[empleadoActual._tipo]   ;html+= "</td>";
+                                    html+="<td>";html+= Clases.estadoCLIEMP[empleadoActual._estado] ;html+= "</td>";
+                                    // "<td>"+  
+                                    //     "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
+                                    //     +"MODIFICAR"+
+                                    //     "<i class='glyphicon glyphicon-pencil'></i>"+
+                                    //     "</button>"
+                                    // + "</td>"   +  
+                                    // "<td>"+  
+                                    //     "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+i+")'>"
+                                    //     +"BORRAR"+
+                                    //     "<i class='glyphicon glyphicon-minus'></i>"+
+                                    //     "</button>"
+                                    // + "</td>"   +  
+                                    html+="</tr>";
         }
+
+        let encabezadoyCuerpo = encabezadoTablaAppend+html;
+
+        // $("#principal").append(encabezadoyCuerpo);
+
+        //FOOTER
+        let footerTablaAppend = '</tbody>';
+        footerTablaAppend+='</table>';
+        footerTablaAppend+='</div><!-- /.table-responsive -->';
+        footerTablaAppend+='</div><!-- /.box-body -->';
+        footerTablaAppend+='<div class="box-footer clearfix">';
+        footerTablaAppend+='<a onclick="muestraAgregarEmpleado();" class="btn btn-sm btn-info btn-flat pull-left">Nuevo Empleado</a>';
+        footerTablaAppend+='<a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">Ver Clave</a>';
+        footerTablaAppend+='</div>';
+        footerTablaAppend+='</div>';
+
+        let tablafinal= encabezadoyCuerpo+footerTablaAppend;
+        $("#principal").append(tablafinal); 
         
    }    
    
    
-}
 
-        
+
+}
