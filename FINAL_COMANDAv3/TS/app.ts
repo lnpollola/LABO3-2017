@@ -305,6 +305,7 @@ function muestraAgregarPedido():void
 function validaLogin()
 {
     var estalogueado=0;
+    var rol;
     let EmpleadosString:string|null  = JSON.parse(localStorage.getItem("Empleados") || "[]");
     for (var i = 0; i < EmpleadosString.length ; i++) 
     {   
@@ -314,22 +315,48 @@ function validaLogin()
       (empleadoActual._nombre==$('#mailingresado').val() && empleadoActual._clave == $('#passingresado').val() )
         {
              estalogueado = 1; 
+             rol = Clases.tipoEmpleado[empleadoActual._tipo];   
+             var nombEmp = empleadoActual._nombre    ;
         }
     }   
 
     if (estalogueado)
     {
-        alert ("Empleado registrado en el sistema");
-        window.location.assign("/leandrop/Documents/Facultad/Labo3/GIT/FINAL_COMANDAv3/homeSOCIO.html")
+        alert ("Bienvenido "+nombEmp);
+         switch (rol)
+        {
+            case "BARTENDER": 
+            {
+                window.location.href = "homeSERVICIO.html";
+                break;
+            }
+            case "CERVECERO": 
+            {
+                window.location.href = "homeSERVICIO.html";
+                break;
+            }
+            case "COCINERO": 
+            {
+                window.location.href = "homeSERVICIO.html";
+                break;
+            }
+            case "MOZO": 
+            {
+                window.location.href = "homeMOZO.html";
+                break;
+            }
+            case "SOCIO": 
+            {
+                window.location.href = "homeSOCIO.html";
+                break;
+            }
+        }
     }
     else 
     {
         alert ("Empleado NO registrado en el sistema");
-        // var url = "file:///E:/leandrop/Documents/Facultad/Labo3/GIT/FINAL_COMANDAv3/homeSOCIO.html";    
-        // $(location).attr('href',url);
-        window.location.href = "homeSOCIO.html"
-        // window.location.assign("/leandrop/Documents/Facultad/Labo3/GIT/FINAL_COMANDAv3/homeSOCIO.html")
-    }
+   }
+
 }
 
 function determinoRol (rol:string):Clases.tipoEmpleado
