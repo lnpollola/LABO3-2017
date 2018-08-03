@@ -1,7 +1,8 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
-// import '../node_modules/rxjs/operator/filter';
-// import '../node_modules/rxjs/add/operator/filter';
-
+//  import '../node_modules/rxjs/operator/filter';
+//  import '../node_modules/rxjs/add/operator/filter';
+namespace Clases{
+    
 // $(function(){
 
     //     //EVENTOS
@@ -210,34 +211,34 @@ function validaLogin()
     }   
 }
 
-function determinoRol (rol:string):Clases.tipoEmpleado
+function determinoRol (rol:string):tipoEmpleado
 {
-    var tipo:Clases.tipoEmpleado;
+    var tipo:tipoEmpleado;
     switch (rol)
     {
         case "BARTENDER": 
         {
-            tipo = Clases.tipoEmpleado.BARTENDER;
+            tipo = tipoEmpleado.BARTENDER;
             break;
         }
         case "CERVECERO": 
         {
-            tipo = Clases.tipoEmpleado.CERVECERO;
+            tipo = tipoEmpleado.CERVECERO;
             break;
         }
         case "COCINERO": 
         {
-            tipo = Clases.tipoEmpleado.COCINERO;
+            tipo = tipoEmpleado.COCINERO;
             break;
         }
         case "MOZO": 
         {
-            tipo = Clases.tipoEmpleado.MOZO;
+            tipo = tipoEmpleado.MOZO;
             break;
         }
         case "SOCIO": 
         {
-            tipo = Clases.tipoEmpleado.SOCIO;
+            tipo = tipoEmpleado.SOCIO;
             break;
         }
     }
@@ -275,12 +276,12 @@ function agregarEmpleado(vienedeModif?):void
 {
     
     var tipoEMP = determinoRol(String ($('#tipoMasc').val())) ; 
-    let nuevoEmpleado    = new Clases.Empleado(  
+    let nuevoEmpleado    = new Empleado(  
                                             String ($('#nombre').val()),
                                             Number ($('#edad').val()),
                                             String ($('#sexo').val()),
                                             tipoEMP,
-                                            Clases.estadoCLIEMP.ACTIVO,
+                                            estadoCLIEMP.ACTIVO,
                                             String ($('#ClaveUsuario').val())
                                             );
     
@@ -308,16 +309,23 @@ function modificarEmpleado(indice):void
     persona._tipo  = tipoEMP ; 
     persona._clave  = String ($('#ClaveUsuario').val());
         
-
+    eliminarEmpleado(indice,true);
     let EmpleadosStringNew  = JSON.parse(localStorage.getItem("Empleados") || "[]");
-    
-    delete EmpleadosStringNew[indice];
+    // delete EmpleadosStringNew[indice];
     EmpleadosStringNew.push( JSON.stringify(persona));
-    localStorage.clear();
+    // localStorage.clear();
     localStorage.setItem("Empleados",JSON.stringify(EmpleadosStringNew));
 
-    alert(indice);
+    alert(indice); 
 
+}
+
+function limpioArray(obj):any
+{
+    const removeEmpty = (obj) => {
+        Object.keys(obj).forEach((k) => (!obj[k] && obj[k] !== undefined) && delete obj[k]);
+        return obj;
+      };
 }
 
  function eliminarEmpleado(indice, vienedeModif?):void
@@ -325,9 +333,10 @@ function modificarEmpleado(indice):void
     var indice = indice;
     var objJson: JSON = JSON.parse(localStorage.Empleados);
     delete objJson[indice];
+    var objJsonResp = limpioArray(objJson);
     // var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
-    // localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
-    // if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
+    localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
+    if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
 } 
 
 function mostrarEmpleados():void
@@ -370,8 +379,8 @@ function mostrarEmpleados():void
                 html+="<td>";html+=empleadoActual._nombre                       ;html+="</td>";
                 html+="<td>";html+= empleadoActual._edad                        ;html+= "</td>";
                 html+="<td>";html+= empleadoActual._sexo                        ;html+= "</td>";
-                html+="<td>";html+= Clases.tipoEmpleado[empleadoActual._tipo]   ;html+= "</td>";
-                html+="<td>";html+= Clases.estadoCLIEMP[empleadoActual._estado] ;html+= "</td>";
+                html+="<td>";html+= tipoEmpleado[empleadoActual._tipo]   ;html+= "</td>";
+                html+="<td>";html+= estadoCLIEMP[empleadoActual._estado] ;html+= "</td>";
             //BOTONES
                 html+="<td>"  
                 html+="<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='muestraModificarEmpleado("+empleadoActual._id+")'>"
@@ -405,3 +414,5 @@ function mostrarEmpleados():void
         let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
         $("#principal").append(tablafinal);   
 }    
+
+}
