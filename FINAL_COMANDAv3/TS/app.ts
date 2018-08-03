@@ -609,7 +609,7 @@ function mostrarPedidos():void
     //ENCABEZADO FIJO
     let encabezadoTablaAppend =
     ` 
-    <div class="col-md-4">
+
     <!-- PRODUCT LIST -->
     <div class="box box-primary">
       <div class="box-header with-border">
@@ -675,7 +675,6 @@ function mostrarPedidos():void
         <a href="javascript::;" class="uppercase">View All Products</a>
       </div><!-- /.box-footer -->
     </div><!-- /.box -->
-  </div><!-- /.col -->
   `;
   let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend;
   $("#principal").append(tablafinal);   
