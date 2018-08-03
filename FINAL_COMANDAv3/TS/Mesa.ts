@@ -6,6 +6,9 @@ namespace Clases
         //ATRIBUTOS
         public _codAlfa:string;
         public _estado:estadoMesa; 
+        public _cantPedidos:number;
+        public _recaudacion:number;
+       
   
 
         //CONSTRUCTOR
@@ -13,7 +16,10 @@ namespace Clases
             {
                 this._codAlfa=codAlfa;
                 this._estado=estado; 
+                this._cantPedidos=0;
+                this._recaudacion=0;
             }
+
             
         // GETTERS
             public get CodigoMesa() : string 
@@ -31,10 +37,23 @@ namespace Clases
             return `${this._codAlfa};${this._estado}`;
             }
 
+
+        //SETTERS
+            public guardoPedido() 
+            {
+                this._cantPedidos ++;
+            }
+
+            public guardoRecaudacion(recaudacion:number) 
+            {
+                this._recaudacion += recaudacion   ;
+            }
+                
         //CONVERSIÓN    
             public toString():string
             {
                 return this.mesaCompleta(); 
             }
+
     }
 }

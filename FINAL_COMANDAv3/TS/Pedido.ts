@@ -8,6 +8,7 @@ namespace Clases
         public _estado:estadoPedido;
         public _horaIngreso:Date; 
         public _tiempoEstimado:Date;
+        public _nombreCliente:string; 
   
 
         //CONSTRUCTOR

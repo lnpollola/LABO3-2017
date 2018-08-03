@@ -5,6 +5,8 @@ var Clases;
         function Mesa(codAlfa, estado) {
             this._codAlfa = codAlfa;
             this._estado = estado;
+            this._cantPedidos = 0;
+            this._recaudacion = 0;
         }
         Object.defineProperty(Mesa.prototype, "CodigoMesa", {
             // GETTERS
@@ -23,6 +25,13 @@ var Clases;
         });
         Mesa.prototype.mesaCompleta = function () {
             return this._codAlfa + ";" + this._estado;
+        };
+        //SETTERS
+        Mesa.prototype.guardoPedido = function () {
+            this._cantPedidos++;
+        };
+        Mesa.prototype.guardoRecaudacion = function (recaudacion) {
+            this._recaudacion += recaudacion;
         };
         //CONVERSIÓN    
         Mesa.prototype.toString = function () {

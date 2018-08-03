@@ -154,6 +154,12 @@ function muestraModificarEmpleado(idEmpleado):void
 }
 
 ///////MESAS///////////
+
+function generarNuevoNum():void
+{
+    (<HTMLInputElement>document.getElementById("codAlfaBox")).value =  codigo_random(5);
+}
+
 function muestraAgregarMesa():void
 {
     borrarPrincipal();
@@ -166,13 +172,20 @@ function muestraAgregarMesa():void
     <!-- /.box-header -->
     <!-- form start -->
     <form id="formCARGA"  data-toggle="validator">
-    <!--onsubmit="agregarEmpleado();" -->
+    <!--onsubmit="agregarMesa();" -->
       <div class="box-body">
-            <!-- USUARIO -->
+            <!-- CODIGO ALFANUMERICO -->
             <div class="form-group">
-            <label for="nombre">Usuario</label>
-            <input type="email" id="nombre" class="sinError form-control" name="nombre" placeholder="Nombre.." autocomplete="off" class="form-control" required autofocus>
-        </div>
+            <label for="codAlfa">CODIGO ALFANUMERICO</label>
+
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button"  onclick="generarNuevoNum();" class="btn btn-danger">Generar Código</button>
+                </div><!-- /btn-group -->
+                <input type="text" id="codAlfaBox" value="`+codigo_random(5)+`" class="form-control">
+            </div><!-- /input-group -->
+
+       </div>
         <!-- EDAD -->
             <div class="form-group">
             <label for="edad">Edad</label>
@@ -212,9 +225,6 @@ function muestraAgregarMesa():void
     </form>
     <!-- /.box -->`;
 
-    // $("#nombre").val() = 'PONGOCUALQUIERCOSA';
-    // var input = $("#nombre");
-    // input.value = 'CUALQUIERA';
     $("#principal").append(cuerpoAgregarEmpleado);
 }
 
@@ -352,6 +362,20 @@ function armoJSON(indice,persona)
     localStorage.clear();
     localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
 }
+
+function codigo_random(longitud)
+{
+    var caracteres = "0123456789ABCDEF";
+    var code = "";
+    for (var x = 0; x < longitud; x++)
+    {
+        var rand = Math.floor(Math.random()*caracteres.length);
+        code += caracteres.substr(rand, 1);
+    }
+    return code;
+}
+
+
 ///////EMPLEADO///////////
 function calcularIdEmpleado():number
 {
@@ -399,14 +423,6 @@ function modificarEmpleado(indice,vienedeEliminar?):void
         persona._sexo   = String ($('#sexo').val());
         persona._tipo  = tipoEMP ; 
         persona._clave  = String ($('#ClaveUsuario').val());
-    
-        
-        // let EmpleadosStringNew  = JSON.parse(localStorage.getItem("Empleados") || "[]");
-        // delete EmpleadosStringNew[indice];
-        // var objJsonResp = EmpleadosStringNew.filter(function(x) { return x !== null });
-        // objJsonResp.push( JSON.stringify(persona));
-        // localStorage.clear();
-        // localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
     }
     else
     {
