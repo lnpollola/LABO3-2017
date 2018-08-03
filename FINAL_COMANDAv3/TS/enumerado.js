@@ -26,7 +26,7 @@ var Clases;
     //ESTO LO HACE EL COCINERO
     var estadoPedido;
     (function (estadoPedido) {
-        estadoPedido[estadoPedido["TOMADA ORDEN"] = 0] = "TOMADA ORDEN";
+        estadoPedido[estadoPedido["ORDEN TOMADA"] = 0] = "ORDEN TOMADA";
         estadoPedido[estadoPedido["EN PREPARACION"] = 1] = "EN PREPARACION";
         estadoPedido[estadoPedido["LISTO PARA SERVIR"] = 2] = "LISTO PARA SERVIR";
     })(estadoPedido = Clases.estadoPedido || (Clases.estadoPedido = {}));

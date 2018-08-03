@@ -8,8 +8,6 @@ var Clases;
             this._nombreCliente = nombreCliente;
             this._fechahoraIngreso = new Date().toLocaleTimeString();
             this._imagen = imagen;
-            // var minutos = (endDate.getTime() - startDate.getTime()) / (1000*60);
-            // this._fechahoraFinEstimado=tiempoEstimado;
         }
         Object.defineProperty(Pedido.prototype, "NroPedido", {
             // GETTERS
@@ -28,14 +26,17 @@ var Clases;
         });
         Object.defineProperty(Pedido.prototype, "HoraIngreso", {
             get: function () {
-                return this._horaIngreso;
+                return this._fechahoraIngreso;
             },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(Pedido.prototype, "TiempoEstimado", {
             get: function () {
-                return this._tiempoEstimado;
+                // var minutos = (endDate.getTime() - startDate.getTime()) / (1000*60);
+                // this._fechahoraFinEstimado=tiempoEstimado;
+                // return this._tiempoEstimado;
+                return 1;
             },
             enumerable: true,
             configurable: true
@@ -43,7 +44,7 @@ var Clases;
         Object.defineProperty(Pedido.prototype, "TiempoRestante", {
             //CONSTRUIR DESPUES
             get: function () {
-                return this._tiempoEstimado;
+                return 1;
             },
             enumerable: true,
             configurable: true

@@ -58,6 +58,11 @@ function muestraModificarMesa(idEmpleado) {
         "   <div class=\"box-body\">\n        <!-- USUARIO -->\n        <div class=\"form-group\">\n        <label for=\"nombre\">Usuario</label>\n        <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" value=\"" + persona._nombre + "\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n    </div>\n    <!-- EDAD -->\n        <div class=\"form-group\">\n        <label for=\"edad\">Edad</label>\n        <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" value=\"" + persona._edad + "\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n        </div>\n    <!-- SEXO -->\n    <label for=\"opcion\">Elige SEXO:</label>\n    <div class=\"form-group\" >\n        <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n            <option value=\"MASCULINO\">MASCULINO</option>\n            <option value=\"FEMENINO\">FEMENINO</option>\n            <option value=\"OTROS\">OTROS</option>\n        </select>\n    </div>\n\n    <!-- TIPO - ENUM TIPO -->\n        <div class=\"form-group\">\n            <label for=\"opcion\">Elige un tipo de Empleado:</label>\n            <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                <option value=\"BARTENDER\">BARTENDER</option>\n                <option value=\"CERVECERO\">CERVECERO</option>\n                <option value=\"COCINERO\">COCINERO</option>\n                <option value=\"MOZO\">MOZO</option>\n                <option value=\"SOCIO\">SOCIO</option>\n            </select>\n        </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Clave</label>\n      <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n    </div>\n    \n    <!-- /.box-body -->\n\n    <div class=\"box-footer\">\n        <button type=\"submit\" onclick=\"modificarEmpleado(" + (indice) + ")\" class=\"btn btn-primary\">Modificar</button>\n    </div>";
 }
 ///////PEDIDOS///////////
+function muestraAgregarPedido() {
+    borrarPrincipal();
+    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Nuevo Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n    <!--onsubmit=\"agregarPedido();\" -->\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n        <div class=\"box-footer\">\n            <button type=\"submit\" onclick=\"agregarPedido();\" class=\"btn btn-primary\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
+    $("#principal").append(cuerpoAgregarPedido);
+}
 // // // // // // // FUNCIONES DE CLASES DE PÁGINA // // // // // // //// // // // // // //
 ////////////////////////////////GENERALES////////////////////////////////
 function validaLogin() {
@@ -138,6 +143,21 @@ function codigo_random(longitud) {
         code += caracteres.substr(rand, 1);
     }
     return code;
+}
+function transformaImagen() {
+    var filesSelected = document.getElementById('imagen').files;
+    if (filesSelected.length > 0) {
+        var fileToLoad = filesSelected[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function (fileLoadedEvent) {
+            var srcData = fileLoadedEvent.target.result; // <--- data: base64
+            var newImage = document.createElement('img');
+            newImage.src = srcData;
+            imagenBASE64 = newImage.outerHTML;
+            return newImage.outerHTML;
+        };
+        fileReader.readAsDataURL(fileToLoad);
+    }
 }
 ///////EMPLEADO///////////
 function calcularIdEmpleado() {
@@ -337,6 +357,15 @@ function mostrarMesas() {
     $("#principal").append(tablafinal);
 }
 ///////PEDIDOS///////////
+function agregarPedido() {
+    var codigoPedido = String($('#codAlfaBox').val());
+    var nuevaPedido = new Clases.Pedido(codigoPedido, Clases.estadoPedido["ORDEN TOMADA"], String($('#nombClien').val()), "MODIFICARMESA", imagenBASE64);
+    var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
+    PedidosString.push(JSON.stringify(nuevaPedido));
+    localStorage.setItem("Pedidos", JSON.stringify(PedidosString));
+    alert("Pedido dada de Alta");
+    mostrarPedidos();
+}
 function mostrarPedidos() {
     borrarPrincipal();
     var Pedidos = JSON.parse(localStorage.getItem("Pedidos") || "[]");

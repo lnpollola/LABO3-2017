@@ -24,7 +24,7 @@ namespace Clases{
 
     //ESTO LO HACE EL COCINERO
     export enum estadoPedido{
-        "TOMADA ORDEN",
+        "ORDEN TOMADA",
         "EN PREPARACION",
         "LISTO PARA SERVIR"
     }

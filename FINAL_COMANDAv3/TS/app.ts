@@ -249,6 +249,54 @@ function muestraModificarMesa(idEmpleado):void
 }
 
 ///////PEDIDOS///////////
+function muestraAgregarPedido():void
+{
+    borrarPrincipal();
+    let cuerpoAgregarPedido = 
+    `
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">Nuevo Pedido</h3>
+        </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form id="formCARGA"  data-toggle="validator">
+    <!--onsubmit="agregarPedido();" -->
+      <div class="box-body">
+            <!-- CODIGO ALFANUMERICO -->
+            <div class="form-group">
+            <label for="codAlfa">CODIGO ALFANUMERICO</label>
+
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button"  onclick="generarNuevoNum();" class="btn btn-danger">Generar Código</button>
+                </div><!-- /btn-group -->
+                <input type="text" id="codAlfaBox" value="`+codigo_random(5)+`" class="form-control">
+            </div><!-- /input-group -->
+            
+            <!-- Nombre Cliente -->
+            <div class="form-group">
+            <label for="edad">Nombre del Cliente</label>
+            <input type="text" id="nombClien" class="sinError form-control" name="nombClien" placeholder="Nombre Cliente.." autocomplete="off" class="form-control" >
+            </div>
+        
+            <!-- IMAGEN -->
+            <div class="form-group">
+               <label for="archivo">Imagen Adjunta:</label>
+               <input type="file" id="imagen" onchange="transformaImagen();">
+               <p class="help-block">Máximo 50MB</p>
+           </div>
+           <div id="imgTest"></div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button type="submit" onclick="agregarPedido();" class="btn btn-primary">Agregar</button>
+        </div>
+    </form>
+    <!-- /.box -->`;
+
+    $("#principal").append(cuerpoAgregarPedido);
+}
+
 
 // // // // // // // FUNCIONES DE CLASES DE PÁGINA // // // // // // //// // // // // // //
 ////////////////////////////////GENERALES////////////////////////////////
@@ -343,6 +391,28 @@ function codigo_random(longitud)
     return code;
 }
 
+function transformaImagen() {
+           
+    var filesSelected =(<HTMLInputElement> document.getElementById('imagen')).files;
+    if (filesSelected.length > 0) {
+      var fileToLoad = filesSelected[0];
+      var fileReader = new FileReader();
+
+
+        fileReader.onload = function(fileLoadedEvent):string {
+            var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+            var newImage = document.createElement('img');
+            newImage.src = srcData;
+
+            imagenBASE64 = newImage.outerHTML;
+            return  newImage.outerHTML;
+        
+        }
+        fileReader.readAsDataURL(fileToLoad);
+    
+    }
+}
 
 ///////EMPLEADO///////////
 function calcularIdEmpleado():number
@@ -559,6 +629,25 @@ function mostrarMesas():void
 }  
 
 ///////PEDIDOS///////////
+function agregarPedido():void
+{
+    let codigoPedido =String ($('#codAlfaBox').val()) ; 
+    let nuevaPedido    = new Clases.Pedido(
+                                        codigoPedido,
+                                        Clases.estadoPedido["ORDEN TOMADA"],
+                                        String ($('#nombClien').val()),
+                                        "MODIFICARMESA",
+                                        imagenBASE64
+                                        );
+    
+    let PedidosString  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
+    PedidosString.push( JSON.stringify(nuevaPedido));
+    localStorage.setItem("Pedidos",JSON.stringify(PedidosString));
+
+    alert ("Pedido dada de Alta");
+    mostrarPedidos();  
+}
+
 function mostrarPedidos():void
 {
     borrarPrincipal();

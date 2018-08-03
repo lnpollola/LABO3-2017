@@ -7,7 +7,7 @@ namespace Clases
         public _nroPedido:string;
         public _estado:estadoPedido;
         public _fechahoraIngreso:string; 
-        public _fechahoraFinEstimado:Date;
+        public _fechahoraFinEstimado:string;
         public _nombreCliente:string; 
         public _imagen:string;
         public _mesaAsignada:string;
@@ -22,10 +22,6 @@ namespace Clases
                 this._nombreCliente = nombreCliente;
                 this._fechahoraIngreso=new Date().toLocaleTimeString();
                 this._imagen=imagen;
-
-                // var minutos = (endDate.getTime() - startDate.getTime()) / (1000*60);
-
-                // this._fechahoraFinEstimado=tiempoEstimado;
             }
             
         // GETTERS
@@ -39,24 +35,26 @@ namespace Clases
                 return this._estado;
             }
 
-            public get HoraIngreso() : Date 
+            public get HoraIngreso() : string 
             {
-                return this._horaIngreso;
+                return this._fechahoraIngreso;
             }
 
-            public get TiempoEstimado() : Date 
+            public get TiempoEstimado() : number 
             {
-                return this._tiempoEstimado;
+                      // var minutos = (endDate.getTime() - startDate.getTime()) / (1000*60);
+
+                // this._fechahoraFinEstimado=tiempoEstimado;
+                // return this._tiempoEstimado;
+                return 1;
             }
 
             //CONSTRUIR DESPUES
-            public get TiempoRestante() : Date 
+            public get TiempoRestante() : number 
             {
-                return this._tiempoEstimado;
+                return 1;
             }
-
-
-        
+            
             public pedidoCompleto() : string 
             {
             return `${this._nroPedido};${this._estado}`;
