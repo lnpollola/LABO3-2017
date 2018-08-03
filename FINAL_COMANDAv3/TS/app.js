@@ -270,15 +270,15 @@ function agregarMesa() {
     MesasString.push(JSON.stringify(nuevaMesa));
     localStorage.setItem("Mesas", JSON.stringify(MesasString));
     alert("Mesa dada de Alta");
-    muestraAgregarMesa();
+    mostrarMesas();
 }
 function mostrarMesas() {
     borrarPrincipal();
-    var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    var MesasString = JSON.parse(localStorage.getItem("Mesas") || "[]");
     //ENCABEZADO FIJO
     var encabezadoTablaAppend = '<div class="box box-info">'
         + '<div class="box-header with-border">'
-        + '<h3 class="box-title">Listado de Empleados</h3>'
+        + '<h3 class="box-title">Listado de Mesas</h3>'
         + '<div class="box-tools pull-right">'
         + '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
         + '<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
@@ -289,51 +289,32 @@ function mostrarMesas() {
         + '<table class="table no-margin">'
         + '<thead>'
         + '<tr>'
-        + '  <th>Nombre</th>'
-        + '  <th>Edad</th>'
-        + '  <th>Sexo</th>'
-        + '  <th>Tipo</th>'
-        + '  <th>Estado</th>'
-        + '<th>Acciones</th>'
+        + '  <th>Cod. Mesa</th>'
+        + '  <th>Cant. Pedidos</th>'
+        + '  <th>Recaudación Total</th>'
+        + '  <th>Estado Actual</th>'
         + '</tr>'
         + '</thead>'
         + '<tbody>';
     var cuerpoTablaAppend;
     //CUERPO
-    for (var i = 0; i < EmpleadosString.length; i++) {
-        var empleadoActual = JSON.parse(EmpleadosString[i]);
-        if (empleadoActual != null) {
+    for (var i = 0; i < MesasString.length; i++) {
+        var mesaActual = JSON.parse(MesasString[i]);
+        if (mesaActual != null) {
             var html = '<tr>';
             //DATOS
             html += "<td>";
-            html += empleadoActual._nombre;
+            html += mesaActual._codAlfa;
             html += "</td>";
             html += "<td>";
-            html += empleadoActual._edad;
+            html += mesaActual._recaudacion;
             html += "</td>";
             html += "<td>";
-            html += empleadoActual._sexo;
+            html += mesaActual._cantPedidos;
             html += "</td>";
             html += "<td>";
-            html += Clases.tipoEmpleado[empleadoActual._tipo];
+            html += Clases.estadoMesa[mesaActual._estado];
             html += "</td>";
-            html += "<td>";
-            html += Clases.estadoCLIEMP[empleadoActual._estado];
-            html += "</td>";
-            //BOTONES
-            html += "<td>";
-            html += "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='muestraModificarEmpleado(" + empleadoActual._id + ")'>";
-            html += "MODIFICAR ";
-            html += "<i class='glyphicon glyphicon-pencil'></i>";
-            html += "</button>";
-            html += "</td>";
-            html += "<td>";
-            html += "<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado(" + empleadoActual._id + ")'>";
-            html += "BORRAR ";
-            html += "<i class='glyphicon glyphicon-minus'></i>";
-            html += "</button>";
-            html += "</td>";
-            html += "</tr>";
         }
         if (i == 0) {
             cuerpoTablaAppend = html;
@@ -348,8 +329,7 @@ function mostrarMesas() {
     footerTablaAppend += '</div><!-- /.table-responsive -->';
     footerTablaAppend += '</div><!-- /.box-body -->';
     footerTablaAppend += '<div class="box-footer clearfix">';
-    footerTablaAppend += '<a onclick="muestraAgregarEmpleado();" class="btn btn-sm btn-info btn-flat pull-left">Nuevo Empleado</a>';
-    footerTablaAppend += '<a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">Ver Clave</a>';
+    footerTablaAppend += '<a onclick="muestraAgregarMesa();" class="btn btn-sm btn-info btn-flat pull-left">Agregar Mesa</a>';
     footerTablaAppend += '</div>';
     footerTablaAppend += '</div>';
     var tablafinal = encabezadoTablaAppend + cuerpoTablaAppend + footerTablaAppend;
