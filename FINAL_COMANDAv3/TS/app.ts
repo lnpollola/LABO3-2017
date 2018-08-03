@@ -184,43 +184,9 @@ function muestraAgregarMesa():void
                 </div><!-- /btn-group -->
                 <input type="text" id="codAlfaBox" value="`+codigo_random(5)+`" class="form-control">
             </div><!-- /input-group -->
-
-       </div>
-        <!-- EDAD -->
-            <div class="form-group">
-            <label for="edad">Edad</label>
-            <input type="text" id="edad" class="sinError form-control" name="edad" placeholder="Edad.." autocomplete="off" class="form-control" required>
-            </div>
-        <!-- SEXO -->
-        <label for="opcion">Elige SEXO:</label>
-        <div class="form-group" >
-            <select name="sexo" id="sexo" class="form-control" required>
-                <option value="MASCULINO">MASCULINO</option>
-                <option value="FEMENINO">FEMENINO</option>
-                <option value="OTROS">OTROS</option>
-            </select>
-        </div>
-
-        <!-- TIPO - ENUM TIPO -->
-            <div class="form-group">
-                <label for="opcion">Elige un tipo de Empleado:</label>
-                <select class="form-control" name="tipoMasc" id="tipoMasc">
-                    <option value="BARTENDER">BARTENDER</option>
-                    <option value="CERVECERO">CERVECERO</option>
-                    <option value="COCINERO">COCINERO</option>
-                    <option value="MOZO">MOZO</option>
-                    <option value="SOCIO">SOCIO</option>
-                </select>
-            </div>
-        <div class="form-group">
-          <label for="password">Clave</label>
-          <input type="password" class="form-control" id="ClaveUsuario" placeholder="Password">
-        </div>
-        
         <!-- /.box-body -->
-
         <div class="box-footer">
-            <button type="submit" onclick="agregarEmpleado();" class="btn btn-primary">Agregar</button>
+            <button type="submit" onclick="agregarMesa();" class="btn btn-primary">Agregar</button>
         </div>
     </form>
     <!-- /.box -->`;
@@ -519,26 +485,17 @@ function mostrarEmpleados():void
 
 
 ///////MESAS///////////
-function agregarMesa(vienedeModif?):void
+function agregarMesa():void
 {
-    var tipoEMP = determinoRol(String ($('#tipoMasc').val())) ; 
-    let nuevoEmpleado    = new Clases.Empleado(  
-                                            String ($('#nombre').val()),
-                                            Number ($('#edad').val()),
-                                            String ($('#sexo').val()),
-                                            tipoEMP,
-                                            Clases.estadoCLIEMP.ACTIVO,
-                                            String ($('#ClaveUsuario').val())
-                                            );
+    let codigoMesa =String ($('#codAlfaBox').val()) ; 
+    let nuevaMesa    = new Clases.Mesa(codigoMesa, Clases.estadoMesa.ABIERTA);
     
-    let EmpleadosString  = JSON.parse(localStorage.getItem("Empleados") || "[]");
-    EmpleadosString.push( JSON.stringify(nuevoEmpleado));
-    localStorage.setItem("Empleados",JSON.stringify(EmpleadosString));
-        
-    console.log(EmpleadosString);
-    alert ("Empleado guardado");
-    muestraAgregarEmpleado();  
-    
+    let MesasString  = JSON.parse(localStorage.getItem("Mesas") || "[]");
+    MesasString.push( JSON.stringify(nuevaMesa));
+    localStorage.setItem("Mesas",JSON.stringify(MesasString));
+
+    alert ("Mesa dada de Alta");
+    muestraAgregarMesa();  
 }
 
 function mostrarMesas():void
