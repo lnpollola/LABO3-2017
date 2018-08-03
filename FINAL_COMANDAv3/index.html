@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <link id="appFavicon" rel="icon" type="image/x-icon" href="img/favicon.png">
   <title>COMANDA 3.0</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
  
@@ -51,7 +52,7 @@
       <div class="login-box-body">
         <!--<p class="login-box-msg">Sign in to start your session</p>-->
         <img id="profile-img" src="img/loginImage.png">
-        <form onsubmit="validaLogin();">
+        <form onsubmit="validaLogin();return false;">
           <div class="form-group has-feedback">
             <input id="mailingresado" type="email" class="form-control" placeholder="Email" autocomplete="off" autofocus/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -69,4 +70,12 @@
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
   </body>
+  <!-- <script>
+    $("#validaLogin").submit(function()
+      {
+        window.location.href = "/homeSOCIO.html";
+      }
+    );
+
+  </script> -->
 </html>

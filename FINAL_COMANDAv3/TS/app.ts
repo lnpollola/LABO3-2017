@@ -1,5 +1,8 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
 
+
+
+
 var imagenBASE64;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
 function transformaImagen() {
@@ -301,18 +304,32 @@ function muestraAgregarPedido():void
 ////////////////////////////////GENERALES////////////////////////////////
 function validaLogin()
 {
+    var estalogueado=0;
     let EmpleadosString:string|null  = JSON.parse(localStorage.getItem("Empleados") || "[]");
     for (var i = 0; i < EmpleadosString.length ; i++) 
     {   
-      var estalogueado=0;
+      
       let empleadoActual= JSON.parse(EmpleadosString[i]);
       if  
       (empleadoActual._nombre==$('#mailingresado').val() && empleadoActual._clave == $('#passingresado').val() )
-      { estalogueado = 1; alert ("Empleado logueado OK"); window.location.href = 'home2.html'; }
-      else {
-      alert ("Empleado NO registrado en el sistema");
-     }
+        {
+             estalogueado = 1; 
+        }
     }   
+
+    if (estalogueado)
+    {
+        alert ("Empleado registrado en el sistema");
+        window.location.assign("/leandrop/Documents/Facultad/Labo3/GIT/FINAL_COMANDAv3/homeSOCIO.html")
+    }
+    else 
+    {
+        alert ("Empleado NO registrado en el sistema");
+        // var url = "file:///E:/leandrop/Documents/Facultad/Labo3/GIT/FINAL_COMANDAv3/homeSOCIO.html";    
+        // $(location).attr('href',url);
+        window.location.href = "homeSOCIO.html"
+        // window.location.assign("/leandrop/Documents/Facultad/Labo3/GIT/FINAL_COMANDAv3/homeSOCIO.html")
+    }
 }
 
 function determinoRol (rol:string):Clases.tipoEmpleado
