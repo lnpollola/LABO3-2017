@@ -1,30 +1,29 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
-// import '../node_modules/rxjs/operator/filter';
-// import '../node_modules/rxjs/add/operator/filter';
+
 var imagenBASE64;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
-
-// function transformaImagen() {
+function transformaImagen() {
            
-//             var filesSelected = document.getElementById('imagen').files;
-//             if (filesSelected.length > 0) {
-//               var fileToLoad = filesSelected[0];
-//               var fileReader = new FileReader();
+    var filesSelected =(<HTMLInputElement> document.getElementById('imagen')).files;
+    if (filesSelected.length > 0) {
+      var fileToLoad = filesSelected[0];
+      var fileReader = new FileReader();
 
 
-//                 fileReader.onload = function(fileLoadedEvent):string {
-//                     var srcData = fileLoadedEvent.target.result; // <--- data: base64
+        fileReader.onload = function(fileLoadedEvent):string {
+            var srcData = fileLoadedEvent.target.result; // <--- data: base64
 
-//                     var newImage = document.createElement('img');
-//                     newImage.src = srcData;
+            var newImage = document.createElement('img');
+            newImage.src = srcData;
 
-//                     imagenBASE64 = newImage.outerHTML;
-//                     return  newImage.outerHTML;
-                
-//                 }
-//                 fileReader.readAsDataURL(fileToLoad);
-            
-//             }
+            imagenBASE64 = newImage.outerHTML;
+            return  newImage.outerHTML;
+        
+        }
+        fileReader.readAsDataURL(fileToLoad);
+    
+    }
+}
 
 
 // // // // // // // FUNCIONES DE CARGA DE PÁGINA - HTML5 // // // // // // //// // // // // // //
@@ -391,28 +390,7 @@ function codigo_random(longitud)
     return code;
 }
 
-function transformaImagen() {
-           
-    var filesSelected =(<HTMLInputElement> document.getElementById('imagen')).files;
-    if (filesSelected.length > 0) {
-      var fileToLoad = filesSelected[0];
-      var fileReader = new FileReader();
 
-
-        fileReader.onload = function(fileLoadedEvent):string {
-            var srcData = fileLoadedEvent.target.result; // <--- data: base64
-
-            var newImage = document.createElement('img');
-            newImage.src = srcData;
-
-            imagenBASE64 = newImage.outerHTML;
-            return  newImage.outerHTML;
-        
-        }
-        fileReader.readAsDataURL(fileToLoad);
-    
-    }
-}
 
 ///////EMPLEADO///////////
 function calcularIdEmpleado():number
@@ -651,7 +629,72 @@ function agregarPedido():void
 function mostrarPedidos():void
 {
     borrarPrincipal();
-    let Pedidos:string|null =  JSON.parse(localStorage.getItem("Pedidos") || "[]");    
+    let PedidosString  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
+    //ENCABEZADO FIJO
+    let encabezadoTablaAppend = 
+        '<div class="box box-info">'
+        +'<div class="box-header with-border">'
+        +'<h3 class="box-title">Listado de Pedidos</h3>'
+        +'<div class="box-tools pull-right">'
+        +'<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
+        +'<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
+        +'</div>'
+        +'</div><!-- /.box-header -->'
+        +'<div class="box-body">'
+        +'<div class="table-responsive">'
+        +'<table class="table no-margin">'
+        +'<thead>'
+        +'<tr>'
+        +'  <th>Cod. Pedido</th>'
+        +'  <th>Nombre Cliente</th>'
+        +'  <th>Hora Ingreso</th>'
+        +'  <th>Mesa Asignada</th>'
+        +'  <th>Tiempo Restante</th>'
+        +'  <th>Estado Actual</th>'
+        +'  <th>Imagen Asociada</th>'
+        +'</tr>'
+        +'</thead>'
+        +'<tbody>';
+    let cuerpoTablaAppend;
+    //CUERPO
+    for (var i = 0; i < PedidosString.length ; i++) 
+     {
+        let PedidoActual = JSON.parse(PedidosString[i]);
+        if (PedidoActual != null)
+        {
+            var html='<tr>';
+            //DATOS
+                html+="<td>";html+=PedidoActual._nroPedido                      ;html+="</td>";
+                html+="<td>";html+= PedidoActual._nombreCliente                 ;html+= "</td>";
+                html+="<td>";html+= PedidoActual._fechahoraIngreso              ;html+= "</td>";
+                html+="<td>";html+= PedidoActual._mesaAsignada                  ;html+= "</td>";
+                html+="<td>";html+= "TpoRestante()"                   ;html+= "</td>";
+                html+="<td>";html+= Clases.estadoPedido[PedidoActual._estado]   ;html+= "</td>";
+                html+="<td>";html+= PedidoActual._imagen                        ;html+= "</td>";
+                
+        }
+        if(i==0)
+        {cuerpoTablaAppend = html;}
+        else {cuerpoTablaAppend += html;}        
+    }
+        //FOOTER
+        let footerTablaAppend = '</tbody>';
+        footerTablaAppend+='</table>';
+        footerTablaAppend+='</div><!-- /.table-responsive -->';
+        footerTablaAppend+='</div><!-- /.box-body -->';
+        footerTablaAppend+='<div class="box-footer clearfix">';
+        footerTablaAppend+='<a onclick="muestraAgregarPedido();" class="btn btn-sm btn-info btn-flat pull-left">Agregar Pedido</a>';
+        footerTablaAppend+='</div>';
+        footerTablaAppend+='</div>';
+
+        let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
+        $("#principal").append(tablafinal);   
+}  
+
+function mostrarPedidos2():void
+{
+    borrarPrincipal();
+    let PedidosString:string|null =  JSON.parse(localStorage.getItem("Pedidos") || "[]");    
     //ENCABEZADO FIJO
     let encabezadoTablaAppend =
     ` 
@@ -665,63 +708,60 @@ function mostrarPedidos():void
           <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
         </div>
       </div><!-- /.box-header -->
-      `
-    //   let cuerpoTablaAppend;
+      `;
+   let cuerpoTablaAppend;
+    //CUERPO
+    for (var i = 0; i < PedidosString.length ; i++) 
+     {
+        let PedidoActual = JSON.parse(PedidosString[i]);
+        if (PedidoActual != null)
+        {    
+        var html =`
+        <div class="box-body">
+            <ul class="products-list product-list-in-box">
+            <li class="item">
+                <!-- IMAGEN PEDIDO-->
+                    <div class="product-img">`
+                    +PedidoActual._imagen+
+                    `<!-- <img src="http://placehold.it/50x50/d2d6de/ffffff" alt="Product Image"/>-->
+                    </div>
+                <!-- INFO PEDIDO -->
+                 <div class="product-info">
+                    <a href="javascript::;" class="product-title">`
+                    +"MESA:" +PedidoActual._mesaAsignada+
+                    ` - `
+                    +"PEDIDO:"+PedidoActual._nroPedido+
+                    ` - `
+                    +"NOMBRE CLIENTE:"+PedidoActual._nombreCliente+
+                    `<span class="label label-warning pull-right">`
+                    +Clases.estadoPedido[PedidoActual._estado]+
+                    `</span></a>
+                 
+                <!--DESCIPCION PEDIDO--> 
+                
+                 <span class="product-description">`
+                 +"SECTORMESA" +` - `+PedidoActual._codAlfa+` - `+PedidoActual._nombreCliente +
+                 `
+                 </span>     
+                 </div>           
+            </li><!-- /.item -->
+                `;
+        }
+        if(i==0)
+        {cuerpoTablaAppend = html;}
+        else {cuerpoTablaAppend += html;}    
+    }
 
-      var cuerpoTablaAppend =`
-      <div class="box-body">
-        <ul class="products-list product-list-in-box">
-          <li class="item">
-            <div class="product-img">
-              <img src="http://placehold.it/50x50/d2d6de/ffffff" alt="Product Image"/>
-            </div>
-            <div class="product-info">
-              <a href="javascript::;" class="product-title">Samsung TV <span class="label label-warning pull-right">$1800</span></a>
-              <span class="product-description">
-                Samsung 32" 1080p 60Hz LED Smart HDTV.
-              </span>
-            </div>
-          </li><!-- /.item -->
-          <li class="item">
-            <div class="product-img">
-              <img src="dist/img/default-50x50.gif" alt="Product Image"/>
-            </div>
-            <div class="product-info">
-              <a href="javascript::;" class="product-title">Bicycle <span class="label label-info pull-right">$700</span></a>
-              <span class="product-description">
-                26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-              </span>
-            </div>
-          </li><!-- /.item -->
-          <li class="item">
-            <div class="product-img">
-              <img src="dist/img/default-50x50.gif" alt="Product Image"/>
-            </div>
-            <div class="product-info">
-              <a href="javascript::;" class="product-title">Xbox One <span class="label label-danger pull-right">$350</span></a>
-              <span class="product-description">
-                Xbox One Console Bundle with Halo Master Chief Collection.
-              </span>
-            </div>
-          </li><!-- /.item -->
-          <li class="item">
-            <div class="product-img">
-              <img src="dist/img/default-50x50.gif" alt="Product Image"/>
-            </div>
-            <div class="product-info">
-              <a href="javascript::;" class="product-title">PlayStation 4 <span class="label label-success pull-right">$399</span></a>
-              <span class="product-description">
-                PlayStation 4 500GB Console (PS4)
-              </span>
-            </div>
-          </li><!-- /.item -->
+    let footerTablaAppend=
+    `
         </ul>
       </div><!-- /.box-body -->
-      <div class="box-footer text-center">
+      <!-- <div class="box-footer text-center">
         <a href="javascript::;" class="uppercase">View All Products</a>
-      </div><!-- /.box-footer -->
+      </div>-->
+      <!-- /.box-footer -->
     </div><!-- /.box -->
-  `;
-  let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend;
+    `;
+  let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend
   $("#principal").append(tablafinal);   
 }
