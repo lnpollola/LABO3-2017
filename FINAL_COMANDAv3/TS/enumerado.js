@@ -17,10 +17,11 @@ var Clases;
     //ESTO LO HACE EL MOZO
     var estadoMesa;
     (function (estadoMesa) {
-        estadoMesa[estadoMesa["CON CLIENTE ESPERANDO PEDIDO"] = 0] = "CON CLIENTE ESPERANDO PEDIDO";
-        estadoMesa[estadoMesa["CON CLIENTES COMIENDO"] = 1] = "CON CLIENTES COMIENDO";
-        estadoMesa[estadoMesa["CON CLIENTES PAGANDO"] = 2] = "CON CLIENTES PAGANDO";
-        estadoMesa[estadoMesa["CERRADA"] = 3] = "CERRADA";
+        estadoMesa[estadoMesa["ABIERTA"] = 0] = "ABIERTA";
+        estadoMesa[estadoMesa["CON CLIENTE ESPERANDO PEDIDO"] = 1] = "CON CLIENTE ESPERANDO PEDIDO";
+        estadoMesa[estadoMesa["CON CLIENTES COMIENDO"] = 2] = "CON CLIENTES COMIENDO";
+        estadoMesa[estadoMesa["CON CLIENTES PAGANDO"] = 3] = "CON CLIENTES PAGANDO";
+        estadoMesa[estadoMesa["CERRADA"] = 4] = "CERRADA";
     })(estadoMesa = Clases.estadoMesa || (Clases.estadoMesa = {}));
     //ESTO LO HACE EL COCINERO
     var estadoPedido;

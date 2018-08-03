@@ -25,7 +25,7 @@
           <nav class="navbar navbar-static-top">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a href="home.html" class="navbar-brand"><b>COMANDA</b>3.0</a>
+                <a href="homeSOCIO.html" class="navbar-brand"><b>COMANDA</b>3.0</a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                   <i class="fa fa-bars"></i>
                 </button>
@@ -42,42 +42,28 @@
                       <li><a onclick="mostrarEmpleados()">Lista de Empleados</a></li>
                     </ul>
                   </li>
-                  <li><a onclick="mostrarVehiculos()">Vehiculos</a></li>
-                  <li><a onclick="mostrarCocheras()">Cocheras</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
                   <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transacciones <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a onclick="iniciarOperacion()">Nueva</a></li>
-                    <li><a onclick="traerOperaciones()">Finalizar</a></li>
-                  </ul>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estadisticas <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">    
-                      <ul class="nav navbar-nav navbar-right">
-                        <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="img/loginImage.jpg" class="user-image" alt="User Image"/>
-                            <!-- <span class="hidden-xs"><?php echo $usuarioLogueado->getNombre(); ?></span> -->
-                          </a>
-                          <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header">
-                            <img src="img/loginImage.jpg" class="img-circle" alt="User Image" />
-                            <p>
-                              <!-- <?php echo $usuarioLogueado->getNombre(). " - Turno " . $usuarioLogueado->getTurno()->getDescripcion(); ?> -->
-                              <!-- <small>Logueado desde <?php echo $login; ?></small> -->
-                            </p>
-                            </li>
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-                              <div class="center-block">
-                                <a onclick="desloguear()" class="btn btn-default btn-flat btn-block">Finalizar Sesión</a>
-                              </div>
-                            </li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mesas <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a onclick="muestraAgregarMesa()">Nueva Mesa</a></li>
+                      <li><a onclick="mostrarMesas()">Lista de Mesas</a></li>
+                    </ul>
                   </li>
                 </ul>
+                <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                    <a href="#"  onclick="mostrarPedidos();" class="dropdown-toggle" data-toggle="dropdown">Listado de Pedidos</a>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estadisticas</a>
+                    <!-- onclick="estadisticas()"  -->
+                  </li>
+                </ul>
+                   
               </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
           </nav>

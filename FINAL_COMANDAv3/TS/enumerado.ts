@@ -15,6 +15,7 @@ namespace Clases{
 
     //ESTO LO HACE EL MOZO
     export enum estadoMesa{
+        "ABIERTA",
         "CON CLIENTE ESPERANDO PEDIDO",
         "CON CLIENTES COMIENDO",
         "CON CLIENTES PAGANDO",
