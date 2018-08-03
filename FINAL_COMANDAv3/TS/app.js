@@ -1,24 +1,7 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
 // import '../node_modules/rxjs/operator/filter';
 // import '../node_modules/rxjs/add/operator/filter';
-// $(function(){
-//     //EVENTOS
-//         //FORM MODIFICADO POR CHECKBOX
-//         // $("#checkFORM :checkbox").change(function() {
-//         //     encabezadoCheck();
-//         // });
-//         //BOTON FILTRAR
-//         // $("#filtrarPor").change(function(){
-//         //     let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
-//         //     mostrarEmpleados(valorFiltro);
-//         //     tablaAux = undefined;
-//         // });
-//     //CARGA DE LA PAGINA
-//     // encabezadoCheck();
-//     cargoMenusEncabezado();
-//     // mostrarEmpleados();
-// });
-// var imagenBASE64;
+var imagenBASE64;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
 // function transformaImagen() {
 //             var filesSelected = document.getElementById('imagen').files;
@@ -34,25 +17,11 @@
 //                 }
 //                 fileReader.readAsDataURL(fileToLoad);
 //             }
-// function calcularPromedio()
-// {
-//     let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
-//     //MUESTRO EL LISTADO DE EmpleadoS SEGUN FILTRO
-//        var acumEdad = EmpleadosString
-//                         .reduce(function(actual,siguiente){
-//                             return actual+JSON.parse(siguiente)._edad;
-//                         },0);
-//         var cantidad = EmpleadosString
-//                         .reduce (function(actual,siguiente){
-//                             return actual + 1;
-//                         }, 0);
-//         var mostrarPromedio = $("labelProm").context.forms[1];
-//         mostrarPromedio.innerHTML = "<label for='promedio'class='col-md-offset-1'>"+(acumEdad / cantidad).toFixed(2)+"</label>" ;
-// }
-// // // // // // // FUNCIONES DE CARGA DE PÁGINA // // // // // // //// // // // // // //
+// // // // // // // FUNCIONES DE CARGA DE PÁGINA - HTML5 // // // // // // //// // // // // // //
 function borrarPrincipal() {
     $("#principal")[0].innerHTML = "";
 }
+///////EMPLEADO///////////
 function muestraAgregarEmpleado() {
     borrarPrincipal();
     var cuerpoAgregarEmpleado = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Agregar Empleado</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n    <!--onsubmit=\"agregarEmpleado();\" -->\n      <div class=\"box-body\">\n            <!-- USUARIO -->\n            <div class=\"form-group\">\n            <label for=\"nombre\">Usuario</label>\n            <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n        </div>\n        <!-- EDAD -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Edad</label>\n            <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n            </div>\n        <!-- SEXO -->\n        <label for=\"opcion\">Elige SEXO:</label>\n        <div class=\"form-group\" >\n            <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n                <option value=\"MASCULINO\">MASCULINO</option>\n                <option value=\"FEMENINO\">FEMENINO</option>\n                <option value=\"OTROS\">OTROS</option>\n            </select>\n        </div>\n\n        <!-- TIPO - ENUM TIPO -->\n            <div class=\"form-group\">\n                <label for=\"opcion\">Elige un tipo de Empleado:</label>\n                <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                    <option value=\"BARTENDER\">BARTENDER</option>\n                    <option value=\"CERVECERO\">CERVECERO</option>\n                    <option value=\"COCINERO\">COCINERO</option>\n                    <option value=\"MOZO\">MOZO</option>\n                    <option value=\"SOCIO\">SOCIO</option>\n                </select>\n            </div>\n        <div class=\"form-group\">\n          <label for=\"password\">Clave</label>\n          <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n        </div>\n        \n        <!-- /.box-body -->\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" onclick=\"agregarEmpleado();\" class=\"btn btn-primary\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
@@ -71,6 +40,7 @@ function muestraModificarEmpleado(idEmpleado) {
         "   <div class=\"box-body\">\n        <!-- USUARIO -->\n        <div class=\"form-group\">\n        <label for=\"nombre\">Usuario</label>\n        <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" value=\"" + persona._nombre + "\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n    </div>\n    <!-- EDAD -->\n        <div class=\"form-group\">\n        <label for=\"edad\">Edad</label>\n        <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" value=\"" + persona._edad + "\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n        </div>\n    <!-- SEXO -->\n    <label for=\"opcion\">Elige SEXO:</label>\n    <div class=\"form-group\" >\n        <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n            <option value=\"MASCULINO\">MASCULINO</option>\n            <option value=\"FEMENINO\">FEMENINO</option>\n            <option value=\"OTROS\">OTROS</option>\n        </select>\n    </div>\n\n    <!-- TIPO - ENUM TIPO -->\n        <div class=\"form-group\">\n            <label for=\"opcion\">Elige un tipo de Empleado:</label>\n            <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                <option value=\"BARTENDER\">BARTENDER</option>\n                <option value=\"CERVECERO\">CERVECERO</option>\n                <option value=\"COCINERO\">COCINERO</option>\n                <option value=\"MOZO\">MOZO</option>\n                <option value=\"SOCIO\">SOCIO</option>\n            </select>\n        </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Clave</label>\n      <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n    </div>\n    \n    <!-- /.box-body -->\n\n    <div class=\"box-footer\">\n        <button type=\"submit\" onclick=\"modificarEmpleado(" + (indice) + ")\" class=\"btn btn-primary\">Modificar</button>\n    </div>";
 }
 // // // // // // // FUNCIONES DE CLASES DE PÁGINA // // // // // // //// // // // // // //
+////////////////////////////////GENERALES////////////////////////////////
 function validaLogin() {
     var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
     for (var i = 0; i < EmpleadosString.length; i++) {
@@ -133,6 +103,14 @@ function arrayMax(arr) {
         return (p < JSON.parse(v)._id ? JSON.parse(v)._id : p);
     }, 0);
 }
+function armoJSON(indice, persona) {
+    var EmpleadosStringNew = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    delete EmpleadosStringNew[indice];
+    var objJsonResp = EmpleadosStringNew.filter(function (x) { return x !== null; });
+    objJsonResp.push(JSON.stringify(persona));
+    localStorage.clear();
+    localStorage.setItem("Empleados", JSON.stringify(objJsonResp));
+}
 ///////EMPLEADO///////////
 function calcularIdEmpleado() {
     var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
@@ -149,38 +127,36 @@ function agregarEmpleado(vienedeModif) {
     alert("Empleado guardado");
     muestraAgregarEmpleado();
 }
-function limpioArray(obj) {
-    var removeEmpty = function (obj) {
-        Object.keys(obj).forEach(function (k) { return (!obj[k] && obj[k] !== undefined) && delete obj[k]; });
-        return obj;
-    };
-}
-function modificarEmpleado(indice) {
+var vienedeEliminar;
+function modificarEmpleado(indice, vienedeEliminar) {
     var indice = indice;
     var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
     var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice]);
-    var tipoEMP = determinoRol(String($('#tipoMasc').val()));
-    persona._nombre = String($('#nombre').val());
-    persona._edad = Number($('#edad').val());
-    persona._sexo = String($('#sexo').val());
-    persona._tipo = tipoEMP;
-    persona._clave = String($('#ClaveUsuario').val());
-    var EmpleadosStringNew = JSON.parse(localStorage.getItem("Empleados") || "[]");
-    delete EmpleadosStringNew[indice];
-    // EmpleadosStringNew= Object.keys(EmpleadosStringNew).forEach((key) => (EmpleadosStringNew[key] == null) && delete EmpleadosStringNew[key]); //BORRAR NULOS
-    var objJsonResp = EmpleadosStringNew.filter(function (x) { return x !== null; });
-    objJsonResp.push(JSON.stringify(persona));
-    localStorage.clear();
-    localStorage.setItem("Empleados", JSON.stringify(objJsonResp));
-    alert(indice);
+    if (!vienedeEliminar) {
+        var tipoEMP = determinoRol(String($('#tipoMasc').val()));
+        persona._nombre = String($('#nombre').val());
+        persona._edad = Number($('#edad').val());
+        persona._sexo = String($('#sexo').val());
+        persona._tipo = tipoEMP;
+        persona._clave = String($('#ClaveUsuario').val());
+        // let EmpleadosStringNew  = JSON.parse(localStorage.getItem("Empleados") || "[]");
+        // delete EmpleadosStringNew[indice];
+        // var objJsonResp = EmpleadosStringNew.filter(function(x) { return x !== null });
+        // objJsonResp.push( JSON.stringify(persona));
+        // localStorage.clear();
+        // localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
+    }
+    else {
+        persona._estado = Clases.estadoCLIEMP.BAJA;
+        vienedeEliminar = false;
+    }
+    armoJSON(indice, persona);
+    mostrarEmpleados();
 }
-function eliminarEmpleado(indice, vienedeModif) {
-    var indice = indice;
-    var objJson = JSON.parse(localStorage.Empleados);
-    delete objJson[indice];
-    // var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
-    // localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
-    // if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
+function eliminarEmpleado(idEmpleado) {
+    vienedeEliminar = true;
+    var indice = determinoIndice(idEmpleado);
+    modificarEmpleado(indice, vienedeEliminar);
 }
 function mostrarEmpleados() {
     borrarPrincipal();

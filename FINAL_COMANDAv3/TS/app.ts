@@ -1,27 +1,7 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
 // import '../node_modules/rxjs/operator/filter';
 // import '../node_modules/rxjs/add/operator/filter';
-
-// $(function(){
-
-    //     //EVENTOS
-    //         //FORM MODIFICADO POR CHECKBOX
-    //         // $("#checkFORM :checkbox").change(function() {
-    //         //     encabezadoCheck();
-    //         // });
-    //         //BOTON FILTRAR
-    //         // $("#filtrarPor").change(function(){
-    //         //     let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
-    //         //     mostrarEmpleados(valorFiltro);
-    //         //     tablaAux = undefined;
-    //         // });
-    //     //CARGA DE LA PAGINA
-    //     // encabezadoCheck();
-    //     cargoMenusEncabezado();
-    //     // mostrarEmpleados();
-    // });
-
-// var imagenBASE64;
+var imagenBASE64;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
 
 // function transformaImagen() {
@@ -47,32 +27,14 @@
 //             }
 
 
-// function calcularPromedio()
-// {
-//     let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
-
-//     //MUESTRO EL LISTADO DE EmpleadoS SEGUN FILTRO
-//        var acumEdad = EmpleadosString
-//                         .reduce(function(actual,siguiente){
-//                             return actual+JSON.parse(siguiente)._edad;
-//                         },0);
-
-//         var cantidad = EmpleadosString
-//                         .reduce (function(actual,siguiente){
-//                             return actual + 1;
-//                         }, 0);
-
-//         var mostrarPromedio = $("labelProm").context.forms[1];
-//         mostrarPromedio.innerHTML = "<label for='promedio'class='col-md-offset-1'>"+(acumEdad / cantidad).toFixed(2)+"</label>" ;
-// }
-
-// // // // // // // FUNCIONES DE CARGA DE PÁGINA // // // // // // //// // // // // // //
+// // // // // // // FUNCIONES DE CARGA DE PÁGINA - HTML5 // // // // // // //// // // // // // //
 
 function borrarPrincipal():void
 {
     $("#principal")[0].innerHTML="";
 }
 
+///////EMPLEADO///////////
 function muestraAgregarEmpleado():void
 {
     borrarPrincipal();
@@ -191,9 +153,8 @@ function muestraModificarEmpleado(idEmpleado):void
     ;
 }
 
-
-
 // // // // // // // FUNCIONES DE CLASES DE PÁGINA // // // // // // //// // // // // // //
+////////////////////////////////GENERALES////////////////////////////////
 function validaLogin()
 {
     let EmpleadosString:string|null  = JSON.parse(localStorage.getItem("Empleados") || "[]");
@@ -263,6 +224,15 @@ function arrayMax(arr) {
     },0);
   }
 
+function armoJSON(indice,persona)
+{
+    let EmpleadosStringNew  = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    delete EmpleadosStringNew[indice];
+    var objJsonResp = EmpleadosStringNew.filter(function(x) { return x !== null });
+    objJsonResp.push( JSON.stringify(persona));
+    localStorage.clear();
+    localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
+}
 ///////EMPLEADO///////////
 function calcularIdEmpleado():number
 {
@@ -293,38 +263,47 @@ function agregarEmpleado(vienedeModif?):void
     
 }
 
-function modificarEmpleado(indice):void
+var vienedeEliminar;
+
+function modificarEmpleado(indice,vienedeEliminar?):void
 {
     var indice = indice;
     let EmpleadosString:string|null  = JSON.parse(localStorage.getItem("Empleados") || "[]");
     var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice]);
 
-    var tipoEMP = determinoRol(String ($('#tipoMasc').val())) ; 
+    if (!vienedeEliminar)
+    {
+        var tipoEMP = determinoRol(String ($('#tipoMasc').val())) ; 
 
-    persona._nombre = String ($('#nombre').val());
-    persona._edad   = Number ($('#edad').val());
-    persona._sexo   = String ($('#sexo').val());
-    persona._tipo  = tipoEMP ; 
-    persona._clave  = String ($('#ClaveUsuario').val());
+        persona._nombre = String ($('#nombre').val());
+        persona._edad   = Number ($('#edad').val());
+        persona._sexo   = String ($('#sexo').val());
+        persona._tipo  = tipoEMP ; 
+        persona._clave  = String ($('#ClaveUsuario').val());
+    
         
-
-    let EmpleadosStringNew  = JSON.parse(localStorage.getItem("Empleados") || "[]");
-    delete EmpleadosStringNew[indice];
-    var objJsonResp = EmpleadosStringNew.filter(function(x) { return x !== null });
-    objJsonResp.push( JSON.stringify(persona));
-    localStorage.clear();
-    localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
-    alert(indice);
+        // let EmpleadosStringNew  = JSON.parse(localStorage.getItem("Empleados") || "[]");
+        // delete EmpleadosStringNew[indice];
+        // var objJsonResp = EmpleadosStringNew.filter(function(x) { return x !== null });
+        // objJsonResp.push( JSON.stringify(persona));
+        // localStorage.clear();
+        // localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
+    }
+    else
+    {
+        persona._estado= Clases.estadoCLIEMP.BAJA;
+        vienedeEliminar=false;
+    }
+    
+    armoJSON(indice,persona);
+    mostrarEmpleados();
 }
 
- function eliminarEmpleado(indice, vienedeModif?):void
+ function eliminarEmpleado(idEmpleado):void
 {
-    var indice = indice;
-    var objJson: JSON = JSON.parse(localStorage.Empleados);
-    delete objJson[indice];
-    // var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
-    // localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
-    // if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
+    vienedeEliminar=true;
+    var indice = determinoIndice(idEmpleado);
+    modificarEmpleado(indice,vienedeEliminar);
 } 
 
 function mostrarEmpleados():void
