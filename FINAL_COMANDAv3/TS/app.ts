@@ -15,7 +15,7 @@ function transformaImagen() {
 
             var newImage = document.createElement('img');
             newImage.src = srcData;
-
+            newImage.id  = "imgPedido";
             imagenBASE64 = newImage.outerHTML;
             return  newImage.outerHTML;
         
@@ -623,10 +623,10 @@ function agregarPedido():void
     localStorage.setItem("Pedidos",JSON.stringify(PedidosString));
 
     alert ("Pedido dada de Alta");
-    mostrarPedidos();  
+    mostrarPedidosMozo();  
 }
 
-function mostrarPedidos():void
+function mostrarPedidosJefe():void
 {
     borrarPrincipal();
     let PedidosString  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
@@ -668,10 +668,11 @@ function mostrarPedidos():void
                 html+="<td>";html+= PedidoActual._nombreCliente                 ;html+= "</td>";
                 html+="<td>";html+= PedidoActual._fechahoraIngreso              ;html+= "</td>";
                 html+="<td>";html+= PedidoActual._mesaAsignada                  ;html+= "</td>";
-                html+="<td>";html+= "TpoRestante()"                   ;html+= "</td>";
+                html+="<td>";html+= "TpoRestante()"                             ;html+= "</td>";
                 html+="<td>";html+= Clases.estadoPedido[PedidoActual._estado]   ;html+= "</td>";
-                html+="<td>";html+= PedidoActual._imagen                        ;html+= "</td>";
-                
+                html+=`<td style="width:150px; height:150px; text-align:center; vertical-align:middle" >`;
+                html+= PedidoActual._imagen;
+                html+= "</td>";
         }
         if(i==0)
         {cuerpoTablaAppend = html;}
@@ -691,7 +692,7 @@ function mostrarPedidos():void
         $("#principal").append(tablafinal);   
 }  
 
-function mostrarPedidos2():void
+function mostrarPedidosMozo():void
 {
     borrarPrincipal();
     let PedidosString:string|null =  JSON.parse(localStorage.getItem("Pedidos") || "[]");    
@@ -708,6 +709,7 @@ function mostrarPedidos2():void
           <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
         </div>
       </div><!-- /.box-header -->
+      <div class="box-body">
       `;
    let cuerpoTablaAppend;
     //CUERPO
@@ -717,7 +719,7 @@ function mostrarPedidos2():void
         if (PedidoActual != null)
         {    
         var html =`
-        <div class="box-body">
+        
             <ul class="products-list product-list-in-box">
             <li class="item">
                 <!-- IMAGEN PEDIDO-->
@@ -736,12 +738,9 @@ function mostrarPedidos2():void
                     `<span class="label label-warning pull-right">`
                     +Clases.estadoPedido[PedidoActual._estado]+
                     `</span></a>
-                 
                 <!--DESCIPCION PEDIDO--> 
-                
-                 <span class="product-description">`
-                 +"SECTORMESA" +` - `+PedidoActual._codAlfa+` - `+PedidoActual._nombreCliente +
-                 `
+                 <span class="product-description">
+                 `+"SECTORMESA" +` - `+PedidoActual._codAlfa+` - `+PedidoActual._nombreCliente +`
                  </span>     
                  </div>           
             </li><!-- /.item -->

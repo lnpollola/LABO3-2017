@@ -10,6 +10,7 @@ function transformaImagen() {
             var srcData = fileLoadedEvent.target.result; // <--- data: base64
             var newImage = document.createElement('img');
             newImage.src = srcData;
+            newImage.id = "imgPedido";
             imagenBASE64 = newImage.outerHTML;
             return newImage.outerHTML;
         };
@@ -348,9 +349,9 @@ function agregarPedido() {
     PedidosString.push(JSON.stringify(nuevaPedido));
     localStorage.setItem("Pedidos", JSON.stringify(PedidosString));
     alert("Pedido dada de Alta");
-    mostrarPedidos();
+    mostrarPedidosMozo();
 }
-function mostrarPedidos() {
+function mostrarPedidosJefe() {
     borrarPrincipal();
     var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
     //ENCABEZADO FIJO
@@ -402,7 +403,7 @@ function mostrarPedidos() {
             html += "<td>";
             html += Clases.estadoPedido[PedidoActual._estado];
             html += "</td>";
-            html += "<td>";
+            html += "<td style=\"width:150px; height:150px; text-align:center; vertical-align:middle\" >";
             html += PedidoActual._imagen;
             html += "</td>";
         }
@@ -425,17 +426,17 @@ function mostrarPedidos() {
     var tablafinal = encabezadoTablaAppend + cuerpoTablaAppend + footerTablaAppend;
     $("#principal").append(tablafinal);
 }
-function mostrarPedidos2() {
+function mostrarPedidosMozo() {
     borrarPrincipal();
     var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
     //ENCABEZADO FIJO
-    var encabezadoTablaAppend = " \n\n    <!-- PRODUCT LIST -->\n    <div class=\"box box-primary\">\n      <div class=\"box-header with-border\">\n        <h3 class=\"box-title\">Pedidos Recientes</h3>\n        <div class=\"box-tools pull-right\">\n          <button class=\"btn btn-box-tool\" data-widget=\"collapse\"><i class=\"fa fa-minus\"></i></button>\n          <button class=\"btn btn-box-tool\" data-widget=\"remove\"><i class=\"fa fa-times\"></i></button>\n        </div>\n      </div><!-- /.box-header -->\n      ";
+    var encabezadoTablaAppend = " \n\n    <!-- PRODUCT LIST -->\n    <div class=\"box box-primary\">\n      <div class=\"box-header with-border\">\n        <h3 class=\"box-title\">Pedidos Recientes</h3>\n        <div class=\"box-tools pull-right\">\n          <button class=\"btn btn-box-tool\" data-widget=\"collapse\"><i class=\"fa fa-minus\"></i></button>\n          <button class=\"btn btn-box-tool\" data-widget=\"remove\"><i class=\"fa fa-times\"></i></button>\n        </div>\n      </div><!-- /.box-header -->\n      <div class=\"box-body\">\n      ";
     var cuerpoTablaAppend;
     //CUERPO
     for (var i = 0; i < PedidosString.length; i++) {
         var PedidoActual = JSON.parse(PedidosString[i]);
         if (PedidoActual != null) {
-            var html = "\n        <div class=\"box-body\">\n            <ul class=\"products-list product-list-in-box\">\n            <li class=\"item\">\n                <!-- IMAGEN PEDIDO-->\n                    <div class=\"product-img\">"
+            var html = "\n        \n            <ul class=\"products-list product-list-in-box\">\n            <li class=\"item\">\n                <!-- IMAGEN PEDIDO-->\n                    <div class=\"product-img\">"
                 + PedidoActual._imagen +
                 "<!-- <img src=\"http://placehold.it/50x50/d2d6de/ffffff\" alt=\"Product Image\"/>-->\n                    </div>\n                <!-- INFO PEDIDO -->\n                 <div class=\"product-info\">\n                    <a href=\"javascript::;\" class=\"product-title\">"
                 + "MESA:" + PedidoActual._mesaAsignada +
@@ -445,9 +446,7 @@ function mostrarPedidos2() {
                 + "NOMBRE CLIENTE:" + PedidoActual._nombreCliente +
                 "<span class=\"label label-warning pull-right\">"
                 + Clases.estadoPedido[PedidoActual._estado] +
-                "</span></a>\n                 \n                <!--DESCIPCION PEDIDO--> \n                \n                 <span class=\"product-description\">"
-                + "SECTORMESA" + " - " + PedidoActual._codAlfa + " - " + PedidoActual._nombreCliente +
-                "\n                 </span>     \n                 </div>           \n            </li><!-- /.item -->\n                ";
+                "</span></a>\n                <!--DESCIPCION PEDIDO--> \n                 <span class=\"product-description\">\n                 " + "SECTORMESA" + " - " + PedidoActual._codAlfa + " - " + PedidoActual._nombreCliente + "\n                 </span>     \n                 </div>           \n            </li><!-- /.item -->\n                ";
         }
         if (i == 0) {
             cuerpoTablaAppend = html;

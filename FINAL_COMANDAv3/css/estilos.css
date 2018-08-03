@@ -18,6 +18,11 @@
     padding-bottom: 20px;
 }
 
+#imgPedido
+{
+  max-height: 100%;
+  max-width: 100%;
+}
 
 #box-primary
 {
