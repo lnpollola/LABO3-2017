@@ -6,18 +6,26 @@ namespace Clases
         //ATRIBUTOS
         public _nroPedido:string;
         public _estado:estadoPedido;
-        public _horaIngreso:Date; 
-        public _tiempoEstimado:Date;
+        public _fechahoraIngreso:string; 
+        public _fechahoraFinEstimado:Date;
         public _nombreCliente:string; 
+        public _imagen:string;
+        public _mesaAsignada:string;
   
 
         //CONSTRUCTOR
-            constructor(nroPedido:string,estado:estadoPedido,horaIngreso:Date,tiempoEstimado:Date) 
+            constructor(codAlfa:string,estado:estadoPedido,nombreCliente:string,mesaAsignada:string,imagen:string) 
             {
-                this._nroPedido=nroPedido;
+                
+                this._nroPedido=codAlfa;
                 this._estado=estado; 
-                this._horaIngreso=horaIngreso;
-                this._tiempoEstimado=tiempoEstimado;
+                this._nombreCliente = nombreCliente;
+                this._fechahoraIngreso=new Date().toLocaleTimeString();
+                this._imagen=imagen;
+
+                // var minutos = (endDate.getTime() - startDate.getTime()) / (1000*60);
+
+                // this._fechahoraFinEstimado=tiempoEstimado;
             }
             
         // GETTERS

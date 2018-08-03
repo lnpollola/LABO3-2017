@@ -7,6 +7,7 @@ namespace Clases
             public _tipo:tipoEmpleado;
             public _estado:estadoCLIEMP;
             public _clave:string;
+            public _imagen:string; 
 
         //CONSTRUCTOR
         constructor(nombre:string,edad:number,sexo:string,tipo:tipoEmpleado,estado:estadoCLIEMP,clave:string) 

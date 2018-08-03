@@ -14,7 +14,7 @@ namespace Clases
             constructor(codAlfa:string,estado:estadoMesa) 
             {
                 this._codAlfa=codAlfa;
-                this._estado=estado; 
+                this._estado=Clases.estadoMesa.ABIERTA; 
                 this._cantPedidos=0;
                 this._recaudacion=0;
             }

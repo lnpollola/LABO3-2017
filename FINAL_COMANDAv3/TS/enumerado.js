@@ -26,8 +26,9 @@ var Clases;
     //ESTO LO HACE EL COCINERO
     var estadoPedido;
     (function (estadoPedido) {
-        estadoPedido[estadoPedido["EN PREPARACION"] = 0] = "EN PREPARACION";
-        estadoPedido[estadoPedido["LISTO PARA SERVIR"] = 1] = "LISTO PARA SERVIR";
+        estadoPedido[estadoPedido["TOMADA ORDEN"] = 0] = "TOMADA ORDEN";
+        estadoPedido[estadoPedido["EN PREPARACION"] = 1] = "EN PREPARACION";
+        estadoPedido[estadoPedido["LISTO PARA SERVIR"] = 2] = "LISTO PARA SERVIR";
     })(estadoPedido = Clases.estadoPedido || (Clases.estadoPedido = {}));
 })(Clases || (Clases = {}));
 //# sourceMappingURL=enumerado.js.map
