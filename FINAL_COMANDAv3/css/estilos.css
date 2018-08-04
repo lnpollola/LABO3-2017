@@ -22,6 +22,18 @@
 {
   max-height: 100%;
   max-width: 100%;
+  padding: 8px 10px;
+}
+
+#btnAgregarEmpleado,#botonNuevoEmp,#botonModificar
+{
+  font-size: 15px;
+}
+
+#btnGenerarCod
+{
+  max-height: 100%;
+  max-width: 100%;
 }
 
 #box-primary

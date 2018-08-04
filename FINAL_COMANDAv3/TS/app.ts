@@ -90,7 +90,7 @@ function muestraAgregarEmpleado():void
         <!-- /.box-body -->
 
         <div class="box-footer">
-            <button type="submit" onclick="agregarEmpleado();" class="btn btn-primary">Agregar</button>
+            <button type="submit" onclick="agregarEmpleado();" class="btn btn-primary btn-block btn-flat" id="btnAgregarEmpleado" >Agregar</button>
         </div>
     </form>
     <!-- /.box -->`;
@@ -150,7 +150,7 @@ function muestraModificarEmpleado(idEmpleado):void
     <!-- /.box-body -->
 
     <div class="box-footer">
-        <button type="submit" onclick="modificarEmpleado(`+ (indice) +`)" class="btn btn-primary">Modificar</button>
+        <button type="submit" onclick="modificarEmpleado(`+ (indice) +`)" id="botonModificar" class="btn btn-primary btn-block btn-flat">Modificar</button>
     </div>` 
     ;
 }
@@ -182,7 +182,7 @@ function muestraAgregarMesa():void
 
             <div class="input-group">
                 <div class="input-group-btn">
-                    <button type="button"  onclick="generarNuevoNum();" class="btn btn-danger">Generar Código</button>
+                    <button id="btnGenerarCod" type="button"  onclick="generarNuevoNum();" class="btn btn-danger">Generar Código</button>
                 </div><!-- /btn-group -->
                 <input type="text" id="codAlfaBox" value="`+codigo_random(5)+`" class="form-control">
             </div><!-- /input-group -->
@@ -545,13 +545,13 @@ function mostrarEmpleados():void
                 html+="<td>";html+= Clases.estadoCLIEMP[empleadoActual._estado] ;html+= "</td>";
             //BOTONES
                 html+="<td>"  
-                html+="<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='muestraModificarEmpleado("+empleadoActual._id+")'>"
+                html+="<button class='btn btn-block btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='muestraModificarEmpleado("+empleadoActual._id+")'>"
                 html+="MODIFICAR ";
                 html+="<i class='glyphicon glyphicon-pencil'></i>";
                 html+="</button>";
                 html+="</td>";  
                 html+="<td>";
-                html+="<button class='btn btn-danger btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+empleadoActual._id+")'>";
+                html+="<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+empleadoActual._id+")'>";
                 html+="BORRAR ";
                 html+="<i class='glyphicon glyphicon-minus'></i>";
                 html+="</button>";
@@ -568,8 +568,7 @@ function mostrarEmpleados():void
         footerTablaAppend+='</div><!-- /.table-responsive -->';
         footerTablaAppend+='</div><!-- /.box-body -->';
         footerTablaAppend+='<div class="box-footer clearfix">';
-        footerTablaAppend+='<a onclick="muestraAgregarEmpleado();" class="btn btn-sm btn-info btn-flat pull-left">Nuevo Empleado</a>';
-        footerTablaAppend+='<a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">Ver Clave</a>';
+        footerTablaAppend+='<a onclick="muestraAgregarEmpleado();" id="botonNuevoEmp" class="btn btn-sm btn-info btn-flat pull-left">Nuevo Empleado</a>';
         footerTablaAppend+='</div>';
         footerTablaAppend+='</div>';
 
