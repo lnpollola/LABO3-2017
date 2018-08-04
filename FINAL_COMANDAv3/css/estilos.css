@@ -25,15 +25,16 @@
   padding: 8px 10px;
 }
 
-#btnAgregarEmpleado,#botonNuevoEmp,#botonModificar
+#btnAgregarEmpleado,#botonNuevoEmp,#botonModificar,#btnAgregarMesa,#botonAgregarPed,#btnNuevaMesa
 {
   font-size: 15px;
 }
 
-#btnGenerarCod
+#btnGenerarCodPed,#btnGenerarCodMesa
 {
   max-height: 100%;
   max-width: 100%;
+  padding: 8px 10px;
 }
 
 #box-primary

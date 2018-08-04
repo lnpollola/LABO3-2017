@@ -182,13 +182,13 @@ function muestraAgregarMesa():void
 
             <div class="input-group">
                 <div class="input-group-btn">
-                    <button id="btnGenerarCod" type="button"  onclick="generarNuevoNum();" class="btn btn-danger">Generar Código</button>
+                    <button id="btnGenerarCodMesa" type="button"  onclick="generarNuevoNum();" class="btn btn-danger">Generar Código</button>
                 </div><!-- /btn-group -->
                 <input type="text" id="codAlfaBox" value="`+codigo_random(5)+`" class="form-control">
             </div><!-- /input-group -->
         <!-- /.box-body -->
         <div class="box-footer">
-            <button type="submit" onclick="agregarMesa();" class="btn btn-primary">Agregar</button>
+            <button type="submit" onclick="agregarMesa();" id="btnAgregarMesa" class="btn btn-primary btn-block btn-flat">Agregar</button>
         </div>
     </form>
     <!-- /.box -->`;
@@ -271,7 +271,7 @@ function muestraAgregarPedido():void
 
             <div class="input-group">
                 <div class="input-group-btn">
-                    <button type="button"  onclick="generarNuevoNum();" class="btn btn-danger">Generar Código</button>
+                    <button type="button" id="btnGenerarCodPed"  onclick="generarNuevoNum();" class="btn btn-danger">Generar Código</button>
                 </div><!-- /btn-group -->
                 <input type="text" id="codAlfaBox" value="`+codigo_random(5)+`" class="form-control">
             </div><!-- /input-group -->
@@ -291,7 +291,7 @@ function muestraAgregarPedido():void
            <div id="imgTest"></div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <button type="submit" onclick="agregarPedido();" class="btn btn-primary">Agregar</button>
+            <button type="submit" id="botonAgregarPed" onclick="agregarPedido();" class="btn btn-primary btn-block btn-flat">Agregar</button>
         </div>
     </form>
     <!-- /.box -->`;
@@ -641,7 +641,7 @@ function mostrarMesas():void
         footerTablaAppend+='</div><!-- /.table-responsive -->';
         footerTablaAppend+='</div><!-- /.box-body -->';
         footerTablaAppend+='<div class="box-footer clearfix">';
-        footerTablaAppend+='<a onclick="muestraAgregarMesa();" class="btn btn-sm btn-info btn-flat pull-left">Agregar Mesa</a>';
+        footerTablaAppend+='<a onclick="muestraAgregarMesa();" id="btnNuevaMesa" class="btn btn-sm btn-info btn-flat pull-left">Agregar Mesa</a>';
         footerTablaAppend+='</div>';
         footerTablaAppend+='</div>';
 
