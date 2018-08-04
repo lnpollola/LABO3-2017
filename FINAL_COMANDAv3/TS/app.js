@@ -450,7 +450,7 @@ function mostrarPedidosJefe() {
     footerTablaAppend += '</div><!-- /.table-responsive -->';
     footerTablaAppend += '</div><!-- /.box-body -->';
     footerTablaAppend += '<div class="box-footer clearfix">';
-    footerTablaAppend += '<a onclick="muestraAgregarPedido();" class="btn btn-sm btn-info btn-flat pull-left">Agregar Pedido</a>';
+    footerTablaAppend += '<a onclick="muestraAgregarPedido();" id="btnAgregarPedMoZ class="btn btn-sm btn-info btn-flat pull-left">Agregar Pedido</a>';
     footerTablaAppend += '</div>';
     footerTablaAppend += '</div>';
     var tablafinal = encabezadoTablaAppend + cuerpoTablaAppend + footerTablaAppend;
