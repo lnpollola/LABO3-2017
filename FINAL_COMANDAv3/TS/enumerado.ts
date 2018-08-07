@@ -10,7 +10,8 @@ namespace Clases{
     export enum estadoCLIEMP{
         "ACTIVO",
         "SUSPENDIDO",
-        "BAJA"
+        "BAJA",
+        "MODIFICAR"
     }
 
     //ESTO LO HACE EL MOZO

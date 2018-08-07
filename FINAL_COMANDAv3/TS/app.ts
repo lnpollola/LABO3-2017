@@ -95,9 +95,6 @@ function muestraAgregarEmpleado():void
     </form>
     <!-- /.box -->`;
 
-    // $("#nombre").val() = 'PONGOCUALQUIERCOSA';
-    // var input = $("#nombre");
-    // input.value = 'CUALQUIERA';
     $("#principal").append(cuerpoAgregarEmpleado);
 }
 
@@ -150,7 +147,7 @@ function muestraModificarEmpleado(idEmpleado):void
     <!-- /.box-body -->
 
     <div class="box-footer">
-        <button type="submit" onclick="modificarEmpleado(`+ (indice) +`)" id="botonModificar" class="btn btn-primary btn-block btn-flat">Modificar</button>
+        <button type="submit" onclick="modificarEmpleado(`+(indice)+`,Clases.estadoCLIEMP.MODIFICAR)" id="botonModificar" class="btn btn-primary btn-block btn-flat">Modificar</button>
     </div>` 
     ;
 }
@@ -245,7 +242,7 @@ function muestraModificarMesa(idEmpleado):void
     <!-- /.box-body -->
 
     <div class="box-footer">
-        <button type="submit" onclick="modificarEmpleado(`+ (indice) +`)" class="btn btn-primary">Modificar</button>
+        <button type="submit" onclick="modificarEmpleado(`+ (indice) +` ,"MODIFICAR")" class="btn btn-primary">Modificar</button>
     </div>` 
     ;
 }
@@ -434,8 +431,6 @@ function codigo_random(longitud)
     return code;
 }
 
-
-
 ///////EMPLEADO///////////
 function calcularIdEmpleado():number
 {
@@ -466,15 +461,15 @@ function agregarEmpleado(vienedeModif?):void
     
 }
 
-var vienedeEliminar;
 
-function modificarEmpleado(indice,vienedeEliminar?):void
+var auxEmpleado;
+function modificarEmpleado(indice , auxEmpleado):void
 {
     var indice = indice;
     let EmpleadosString:string|null  = JSON.parse(localStorage.getItem("Empleados") || "[]");
     var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice]);
 
-    if (!vienedeEliminar)
+    if (auxEmpleado == Clases.estadoCLIEMP.MODIFICAR)
     {
         var tipoEMP = determinoRol(String ($('#tipoMasc').val())) ; 
 
@@ -484,21 +479,32 @@ function modificarEmpleado(indice,vienedeEliminar?):void
         persona._tipo  = tipoEMP ; 
         persona._clave  = String ($('#ClaveUsuario').val());
     }
-    else
+    else 
     {
-        persona._estado= Clases.estadoCLIEMP.BAJA;
-        vienedeEliminar=false;
+        persona._estado = auxEmpleado;
     }
     
     armoJSON(indice,persona);
     mostrarEmpleados();
 }
 
+//FUNCIONES QUE LLAMAN A MODIFICAR CON DISTINTOS PARAMETROS
  function eliminarEmpleado(idEmpleado):void
 {
-    vienedeEliminar=true;
     var indice = determinoIndice(idEmpleado);
-    modificarEmpleado(indice,vienedeEliminar);
+    modificarEmpleado(indice,Clases.estadoCLIEMP.BAJA);
+} 
+
+function habilitarEmpleado(idEmpleado):void
+{
+    var indice = determinoIndice(idEmpleado);
+    modificarEmpleado(indice,Clases.estadoCLIEMP.ACTIVO);
+} 
+
+function suspenderEmpleado(idEmpleado):void
+{
+    var indice = determinoIndice(idEmpleado);
+    modificarEmpleado(indice,Clases.estadoCLIEMP.SUSPENDIDO);
 } 
 
 function mostrarEmpleados():void
@@ -550,16 +556,17 @@ function mostrarEmpleados():void
                 html+="</td>";  
                
                 //CONDICION PARA AGREGAR O BORRAR
-            if(empleadoActual._estado == Clases.estadoCLIEMP.SUSPENDIDO)
+            if(empleadoActual._estado == Clases.estadoCLIEMP.SUSPENDIDO ||empleadoActual._estado == Clases.estadoCLIEMP.BAJA )
             {
                 html+="<td>";
-                html+="<button class='btn btn-block btn-success btn-sm' type='button' id='btnEnviar' value='Habilitar' onclick='habilitarEmpleado("+empleadoActual._id+")'>";
+                html+="<button class='btn btn-block btn-success btn-sm' type='button' id='btnHabilitar' value='Habilitar' onclick='habilitarEmpleado("+empleadoActual._id+")'>";
                 html+="HABILITAR ";
                 html+="<i class='glyphicon glyphicon-plus'></i>";
                 html+="</button>";
                 html+="</td>"; 
+
                 html+="<td>"  ;
-                html+="<button class='btn btn-block btn-warning btn-flat disabled' type='button' id='btnEnviar' value='Suspender' onclick='suspenderEmpleado("+empleadoActual._id+")'>";
+                html+="<button class='btn btn-block btn-warning btn-flat disabled' type='button' id='btnSuspender' value='Suspender' onclick='suspenderEmpleado("+empleadoActual._id+")'>";
                 html+="SUSPENDER ";
                 html+="<i class='fa fa-ban'></i>";
                 html+="</button>";
@@ -569,27 +576,26 @@ function mostrarEmpleados():void
             else 
             {
                 html+="<td>";
-                html+="<button class='btn btn-block btn-success btn-sm disabled' type='button' id='btnEnviar' value='Habilitar' onclick='habilitarEmpleado("+empleadoActual._id+")'>";
+                html+="<button class='btn btn-block btn-success btn-sm disabled' type='button' id='btnHabilitar' value='Habilitar' onclick='habilitarEmpleado("+empleadoActual._id+")'>";
                 html+="HABILITAR ";
                 html+="<i class='glyphicon glyphicon-plus'></i>";
                 html+="</button>";
                 html+="</td>";  
                 html+="<td>"  ;
-                html+="<button class='btn btn-block btn-warning btn-flat ' type='button' id='btnEnviar' value='Suspender' onclick='suspenderEmpleado("+empleadoActual._id+")'>";
+                html+="<button class='btn btn-block btn-warning btn-flat ' type='button' id='btnSuspender' value='Suspender' onclick='suspenderEmpleado("+empleadoActual._id+")'>";
                 html+="SUSPENDER ";
                 html+="<i class='fa fa-ban'></i>";
                 html+="</button>";
                 html+="</td>";  
             }
+
             html+="<td>";
             html+="<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+empleadoActual._id+")'>";
             html+="BORRAR ";
             html+="<i class='glyphicon glyphicon-minus'></i>";
             html+="</button>";
             html+="</td>";  
-            html+="</tr>";
-               
-            
+            html+="</tr>";    
         }
         if(i==0)
         {cuerpoTablaAppend = html;}

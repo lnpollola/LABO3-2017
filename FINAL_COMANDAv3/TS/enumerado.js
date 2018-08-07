@@ -13,6 +13,7 @@ var Clases;
         estadoCLIEMP[estadoCLIEMP["ACTIVO"] = 0] = "ACTIVO";
         estadoCLIEMP[estadoCLIEMP["SUSPENDIDO"] = 1] = "SUSPENDIDO";
         estadoCLIEMP[estadoCLIEMP["BAJA"] = 2] = "BAJA";
+        estadoCLIEMP[estadoCLIEMP["MODIFICAR"] = 3] = "MODIFICAR";
     })(estadoCLIEMP = Clases.estadoCLIEMP || (Clases.estadoCLIEMP = {}));
     //ESTO LO HACE EL MOZO
     var estadoMesa;

@@ -25,9 +25,6 @@ function borrarPrincipal() {
 function muestraAgregarEmpleado() {
     borrarPrincipal();
     var cuerpoAgregarEmpleado = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Agregar Empleado</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n    <!--onsubmit=\"agregarEmpleado();\" -->\n      <div class=\"box-body\">\n            <!-- USUARIO -->\n            <div class=\"form-group\">\n            <label for=\"nombre\">Usuario</label>\n            <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n        </div>\n        <!-- EDAD -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Edad</label>\n            <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n            </div>\n        <!-- SEXO -->\n        <label for=\"opcion\">Elige SEXO:</label>\n        <div class=\"form-group\" >\n            <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n                <option value=\"MASCULINO\">MASCULINO</option>\n                <option value=\"FEMENINO\">FEMENINO</option>\n                <option value=\"OTROS\">OTROS</option>\n            </select>\n        </div>\n\n        <!-- TIPO - ENUM TIPO -->\n            <div class=\"form-group\">\n                <label for=\"opcion\">Elige un tipo de Empleado:</label>\n                <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                    <option value=\"BARTENDER\">BARTENDER</option>\n                    <option value=\"CERVECERO\">CERVECERO</option>\n                    <option value=\"COCINERO\">COCINERO</option>\n                    <option value=\"MOZO\">MOZO</option>\n                    <option value=\"SOCIO\">SOCIO</option>\n                </select>\n            </div>\n        <div class=\"form-group\">\n          <label for=\"password\">Clave</label>\n          <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n        </div>\n        \n        <!-- /.box-body -->\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" onclick=\"agregarEmpleado();\" class=\"btn btn-primary btn-block btn-flat\" id=\"btnAgregarEmpleado\" >Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
-    // $("#nombre").val() = 'PONGOCUALQUIERCOSA';
-    // var input = $("#nombre");
-    // input.value = 'CUALQUIERA';
     $("#principal").append(cuerpoAgregarEmpleado);
 }
 function muestraModificarEmpleado(idEmpleado) {
@@ -37,7 +34,7 @@ function muestraModificarEmpleado(idEmpleado) {
     var tcuerpo = $("#formCARGA");
     tcuerpo[0].innerHTML = "";
     tcuerpo[0].innerHTML =
-        "   <div class=\"box-body\">\n        <!-- USUARIO -->\n        <div class=\"form-group\">\n        <label for=\"nombre\">Usuario</label>\n        <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" value=\"" + persona._nombre + "\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n    </div>\n    <!-- EDAD -->\n        <div class=\"form-group\">\n        <label for=\"edad\">Edad</label>\n        <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" value=\"" + persona._edad + "\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n        </div>\n    <!-- SEXO -->\n    <label for=\"opcion\">Elige SEXO:</label>\n    <div class=\"form-group\" >\n        <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n            <option value=\"MASCULINO\">MASCULINO</option>\n            <option value=\"FEMENINO\">FEMENINO</option>\n            <option value=\"OTROS\">OTROS</option>\n        </select>\n    </div>\n\n    <!-- TIPO - ENUM TIPO -->\n        <div class=\"form-group\">\n            <label for=\"opcion\">Elige un tipo de Empleado:</label>\n            <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                <option value=\"BARTENDER\">BARTENDER</option>\n                <option value=\"CERVECERO\">CERVECERO</option>\n                <option value=\"COCINERO\">COCINERO</option>\n                <option value=\"MOZO\">MOZO</option>\n                <option value=\"SOCIO\">SOCIO</option>\n            </select>\n        </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Clave</label>\n      <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n    </div>\n    \n    <!-- /.box-body -->\n\n    <div class=\"box-footer\">\n        <button type=\"submit\" onclick=\"modificarEmpleado(" + (indice) + ")\" id=\"botonModificar\" class=\"btn btn-primary btn-block btn-flat\">Modificar</button>\n    </div>";
+        "   <div class=\"box-body\">\n        <!-- USUARIO -->\n        <div class=\"form-group\">\n        <label for=\"nombre\">Usuario</label>\n        <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" value=\"" + persona._nombre + "\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n    </div>\n    <!-- EDAD -->\n        <div class=\"form-group\">\n        <label for=\"edad\">Edad</label>\n        <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" value=\"" + persona._edad + "\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n        </div>\n    <!-- SEXO -->\n    <label for=\"opcion\">Elige SEXO:</label>\n    <div class=\"form-group\" >\n        <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n            <option value=\"MASCULINO\">MASCULINO</option>\n            <option value=\"FEMENINO\">FEMENINO</option>\n            <option value=\"OTROS\">OTROS</option>\n        </select>\n    </div>\n\n    <!-- TIPO - ENUM TIPO -->\n        <div class=\"form-group\">\n            <label for=\"opcion\">Elige un tipo de Empleado:</label>\n            <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                <option value=\"BARTENDER\">BARTENDER</option>\n                <option value=\"CERVECERO\">CERVECERO</option>\n                <option value=\"COCINERO\">COCINERO</option>\n                <option value=\"MOZO\">MOZO</option>\n                <option value=\"SOCIO\">SOCIO</option>\n            </select>\n        </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Clave</label>\n      <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n    </div>\n    \n    <!-- /.box-body -->\n\n    <div class=\"box-footer\">\n        <button type=\"submit\" onclick=\"modificarEmpleado(" + (indice) + ",Clases.estadoCLIEMP.MODIFICAR)\" id=\"botonModificar\" class=\"btn btn-primary btn-block btn-flat\">Modificar</button>\n    </div>";
 }
 ///////MESAS///////////
 function generarNuevoNum() {
@@ -55,7 +52,7 @@ function muestraModificarMesa(idEmpleado) {
     var tcuerpo = $("#formCARGA");
     tcuerpo[0].innerHTML = "";
     tcuerpo[0].innerHTML =
-        "   <div class=\"box-body\">\n        <!-- USUARIO -->\n        <div class=\"form-group\">\n        <label for=\"nombre\">Usuario</label>\n        <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" value=\"" + persona._nombre + "\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n    </div>\n    <!-- EDAD -->\n        <div class=\"form-group\">\n        <label for=\"edad\">Edad</label>\n        <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" value=\"" + persona._edad + "\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n        </div>\n    <!-- SEXO -->\n    <label for=\"opcion\">Elige SEXO:</label>\n    <div class=\"form-group\" >\n        <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n            <option value=\"MASCULINO\">MASCULINO</option>\n            <option value=\"FEMENINO\">FEMENINO</option>\n            <option value=\"OTROS\">OTROS</option>\n        </select>\n    </div>\n\n    <!-- TIPO - ENUM TIPO -->\n        <div class=\"form-group\">\n            <label for=\"opcion\">Elige un tipo de Empleado:</label>\n            <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                <option value=\"BARTENDER\">BARTENDER</option>\n                <option value=\"CERVECERO\">CERVECERO</option>\n                <option value=\"COCINERO\">COCINERO</option>\n                <option value=\"MOZO\">MOZO</option>\n                <option value=\"SOCIO\">SOCIO</option>\n            </select>\n        </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Clave</label>\n      <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n    </div>\n    \n    <!-- /.box-body -->\n\n    <div class=\"box-footer\">\n        <button type=\"submit\" onclick=\"modificarEmpleado(" + (indice) + ")\" class=\"btn btn-primary\">Modificar</button>\n    </div>";
+        "   <div class=\"box-body\">\n        <!-- USUARIO -->\n        <div class=\"form-group\">\n        <label for=\"nombre\">Usuario</label>\n        <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" value=\"" + persona._nombre + "\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n    </div>\n    <!-- EDAD -->\n        <div class=\"form-group\">\n        <label for=\"edad\">Edad</label>\n        <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" value=\"" + persona._edad + "\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n        </div>\n    <!-- SEXO -->\n    <label for=\"opcion\">Elige SEXO:</label>\n    <div class=\"form-group\" >\n        <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n            <option value=\"MASCULINO\">MASCULINO</option>\n            <option value=\"FEMENINO\">FEMENINO</option>\n            <option value=\"OTROS\">OTROS</option>\n        </select>\n    </div>\n\n    <!-- TIPO - ENUM TIPO -->\n        <div class=\"form-group\">\n            <label for=\"opcion\">Elige un tipo de Empleado:</label>\n            <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                <option value=\"BARTENDER\">BARTENDER</option>\n                <option value=\"CERVECERO\">CERVECERO</option>\n                <option value=\"COCINERO\">COCINERO</option>\n                <option value=\"MOZO\">MOZO</option>\n                <option value=\"SOCIO\">SOCIO</option>\n            </select>\n        </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Clave</label>\n      <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n    </div>\n    \n    <!-- /.box-body -->\n\n    <div class=\"box-footer\">\n        <button type=\"submit\" onclick=\"modificarEmpleado(" + (indice) + " ,\"MODIFICAR\")\" class=\"btn btn-primary\">Modificar</button>\n    </div>";
 }
 ///////PEDIDOS///////////
 function muestraAgregarPedido() {
@@ -191,12 +188,12 @@ function agregarEmpleado(vienedeModif) {
     alert("Empleado guardado");
     muestraAgregarEmpleado();
 }
-var vienedeEliminar;
-function modificarEmpleado(indice, vienedeEliminar) {
+var auxEmpleado;
+function modificarEmpleado(indice, auxEmpleado) {
     var indice = indice;
     var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
     var persona = JSON.parse(JSON.parse(localStorage.Empleados)[indice]);
-    if (!vienedeEliminar) {
+    if (auxEmpleado == Clases.estadoCLIEMP.MODIFICAR) {
         var tipoEMP = determinoRol(String($('#tipoMasc').val()));
         persona._nombre = String($('#nombre').val());
         persona._edad = Number($('#edad').val());
@@ -205,16 +202,23 @@ function modificarEmpleado(indice, vienedeEliminar) {
         persona._clave = String($('#ClaveUsuario').val());
     }
     else {
-        persona._estado = Clases.estadoCLIEMP.BAJA;
-        vienedeEliminar = false;
+        persona._estado = auxEmpleado;
     }
     armoJSON(indice, persona);
     mostrarEmpleados();
 }
+//FUNCIONES QUE LLAMAN A MODIFICAR CON DISTINTOS PARAMETROS
 function eliminarEmpleado(idEmpleado) {
-    vienedeEliminar = true;
     var indice = determinoIndice(idEmpleado);
-    modificarEmpleado(indice, vienedeEliminar);
+    modificarEmpleado(indice, Clases.estadoCLIEMP.BAJA);
+}
+function habilitarEmpleado(idEmpleado) {
+    var indice = determinoIndice(idEmpleado);
+    modificarEmpleado(indice, Clases.estadoCLIEMP.ACTIVO);
+}
+function suspenderEmpleado(idEmpleado) {
+    var indice = determinoIndice(idEmpleado);
+    modificarEmpleado(indice, Clases.estadoCLIEMP.SUSPENDIDO);
 }
 function mostrarEmpleados() {
     borrarPrincipal();
@@ -270,15 +274,15 @@ function mostrarEmpleados() {
             html += "</button>";
             html += "</td>";
             //CONDICION PARA AGREGAR O BORRAR
-            if (empleadoActual._estado == Clases.estadoCLIEMP.SUSPENDIDO) {
+            if (empleadoActual._estado == Clases.estadoCLIEMP.SUSPENDIDO || empleadoActual._estado == Clases.estadoCLIEMP.BAJA) {
                 html += "<td>";
-                html += "<button class='btn btn-block btn-success btn-sm' type='button' id='btnEnviar' value='Habilitar' onclick='habilitarEmpleado(" + empleadoActual._id + ")'>";
+                html += "<button class='btn btn-block btn-success btn-sm' type='button' id='btnHabilitar' value='Habilitar' onclick='habilitarEmpleado(" + empleadoActual._id + ")'>";
                 html += "HABILITAR ";
                 html += "<i class='glyphicon glyphicon-plus'></i>";
                 html += "</button>";
                 html += "</td>";
                 html += "<td>";
-                html += "<button class='btn btn-block btn-warning btn-flat disabled' type='button' id='btnEnviar' value='Suspender' onclick='suspenderEmpleado(" + empleadoActual._id + ")'>";
+                html += "<button class='btn btn-block btn-warning btn-flat disabled' type='button' id='btnSuspender' value='Suspender' onclick='suspenderEmpleado(" + empleadoActual._id + ")'>";
                 html += "SUSPENDER ";
                 html += "<i class='fa fa-ban'></i>";
                 html += "</button>";
@@ -286,13 +290,13 @@ function mostrarEmpleados() {
             }
             else {
                 html += "<td>";
-                html += "<button class='btn btn-block btn-success btn-sm disabled' type='button' id='btnEnviar' value='Habilitar' onclick='habilitarEmpleado(" + empleadoActual._id + ")'>";
+                html += "<button class='btn btn-block btn-success btn-sm disabled' type='button' id='btnHabilitar' value='Habilitar' onclick='habilitarEmpleado(" + empleadoActual._id + ")'>";
                 html += "HABILITAR ";
                 html += "<i class='glyphicon glyphicon-plus'></i>";
                 html += "</button>";
                 html += "</td>";
                 html += "<td>";
-                html += "<button class='btn btn-block btn-warning btn-flat ' type='button' id='btnEnviar' value='Suspender' onclick='suspenderEmpleado(" + empleadoActual._id + ")'>";
+                html += "<button class='btn btn-block btn-warning btn-flat ' type='button' id='btnSuspender' value='Suspender' onclick='suspenderEmpleado(" + empleadoActual._id + ")'>";
                 html += "SUSPENDER ";
                 html += "<i class='fa fa-ban'></i>";
                 html += "</button>";
