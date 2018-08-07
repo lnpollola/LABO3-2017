@@ -511,8 +511,6 @@ function mostrarEmpleados():void
         +'<div class="box-header with-border">'
         +'<h3 class="box-title">Listado de Empleados</h3>'
         +'<div class="box-tools pull-right">'
-        +'<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
-        +'<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
         +'</div>'
         +'</div><!-- /.box-header -->'
         +'<div class="box-body">'
@@ -545,18 +543,53 @@ function mostrarEmpleados():void
                 html+="<td>";html+= Clases.estadoCLIEMP[empleadoActual._estado] ;html+= "</td>";
             //BOTONES
                 html+="<td>"  
-                html+="<button class='btn btn-block btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='muestraModificarEmpleado("+empleadoActual._id+")'>"
+                html+="<button class='btn btn-block btn-default btn-flat' type='button' id='btnEnviar' value='Modificar' onclick='muestraModificarEmpleado("+empleadoActual._id+")'>"
                 html+="MODIFICAR ";
                 html+="<i class='glyphicon glyphicon-pencil'></i>";
                 html+="</button>";
                 html+="</td>";  
+               
+                //CONDICION PARA AGREGAR O BORRAR
+            if(empleadoActual._estado == Clases.estadoCLIEMP.SUSPENDIDO)
+            {
                 html+="<td>";
-                html+="<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+empleadoActual._id+")'>";
-                html+="BORRAR ";
-                html+="<i class='glyphicon glyphicon-minus'></i>";
+                html+="<button class='btn btn-block btn-success btn-sm' type='button' id='btnEnviar' value='Habilitar' onclick='habilitarEmpleado("+empleadoActual._id+")'>";
+                html+="HABILITAR ";
+                html+="<i class='glyphicon glyphicon-plus'></i>";
+                html+="</button>";
+                html+="</td>"; 
+                html+="<td>"  ;
+                html+="<button class='btn btn-block btn-warning btn-flat disabled' type='button' id='btnEnviar' value='Suspender' onclick='suspenderEmpleado("+empleadoActual._id+")'>";
+                html+="SUSPENDER ";
+                html+="<i class='fa fa-ban'></i>";
                 html+="</button>";
                 html+="</td>";  
-                html+="</tr>";
+                
+            }
+            else 
+            {
+                html+="<td>";
+                html+="<button class='btn btn-block btn-success btn-sm disabled' type='button' id='btnEnviar' value='Habilitar' onclick='habilitarEmpleado("+empleadoActual._id+")'>";
+                html+="HABILITAR ";
+                html+="<i class='glyphicon glyphicon-plus'></i>";
+                html+="</button>";
+                html+="</td>";  
+                html+="<td>"  ;
+                html+="<button class='btn btn-block btn-warning btn-flat ' type='button' id='btnEnviar' value='Suspender' onclick='suspenderEmpleado("+empleadoActual._id+")'>";
+                html+="SUSPENDER ";
+                html+="<i class='fa fa-ban'></i>";
+                html+="</button>";
+                html+="</td>";  
+            }
+            html+="<td>";
+            html+="<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+empleadoActual._id+")'>";
+            html+="BORRAR ";
+            html+="<i class='glyphicon glyphicon-minus'></i>";
+            html+="</button>";
+            html+="</td>";  
+            html+="</tr>";
+               
+            
         }
         if(i==0)
         {cuerpoTablaAppend = html;}
