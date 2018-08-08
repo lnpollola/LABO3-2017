@@ -13,7 +13,7 @@ var Clases;
     var Empleado = /** @class */ (function (_super) {
         __extends(Empleado, _super);
         //CONSTRUCTOR
-        function Empleado(nombre, edad, sexo, tipo, estado, clave) {
+        function Empleado(nombre, edad, sexo, tipo, estado, clave, fechaFincontrato) {
             var _this = _super.call(this, nombre, edad, sexo) || this;
             //CALCULO DE ID
             var maximo = calcularIdEmpleado();
@@ -23,8 +23,7 @@ var Clases;
             _this._estado = estado;
             _this._clave = clave;
             _this._fechaDesde = new Date().toLocaleDateString();
-            _this._fechaHasta =
-            ;
+            _this._fechaHasta = fechaFincontrato;
             return _this;
         }
         //GETTERS

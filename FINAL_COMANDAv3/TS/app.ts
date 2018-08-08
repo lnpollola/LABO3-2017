@@ -470,7 +470,8 @@ function agregarEmpleado(vienedeModif?):void
                                             String ($('#sexo').val()),
                                             tipoEMP,
                                             Clases.estadoCLIEMP.ACTIVO,
-                                            String ($('#ClaveUsuario').val())
+                                            String ($('#ClaveUsuario').val()),
+                                            String ($('#fechaHasta').val()),
                                             );
     
     let EmpleadosString  = JSON.parse(localStorage.getItem("Empleados") || "[]");

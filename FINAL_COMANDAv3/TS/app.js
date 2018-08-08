@@ -182,7 +182,7 @@ function calcularIdEmpleado() {
 }
 function agregarEmpleado(vienedeModif) {
     var tipoEMP = determinoRol(String($('#tipoMasc').val()));
-    var nuevoEmpleado = new Clases.Empleado(String($('#nombre').val()), Number($('#edad').val()), String($('#sexo').val()), tipoEMP, Clases.estadoCLIEMP.ACTIVO, String($('#ClaveUsuario').val()));
+    var nuevoEmpleado = new Clases.Empleado(String($('#nombre').val()), Number($('#edad').val()), String($('#sexo').val()), tipoEMP, Clases.estadoCLIEMP.ACTIVO, String($('#ClaveUsuario').val()), String($('#fechaHasta').val()));
     var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
     EmpleadosString.push(JSON.stringify(nuevoEmpleado));
     localStorage.setItem("Empleados", JSON.stringify(EmpleadosString));
