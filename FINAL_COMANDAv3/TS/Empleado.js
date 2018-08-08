@@ -22,6 +22,9 @@ var Clases;
             _this._tipo = tipo;
             _this._estado = estado;
             _this._clave = clave;
+            _this._fechaDesde = new Date().toLocaleDateString();
+            _this._fechaHasta =
+            ;
             return _this;
         }
         //GETTERS

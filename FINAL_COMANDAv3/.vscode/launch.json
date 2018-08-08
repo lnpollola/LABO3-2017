@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Lanzar Chrome contra localhost",
-            "url": "file:///E:/leandrop/Documents/Facultad/Labo3/GIT/FINAL_COMANDAv2/index.html",
+            "url": "file:///E:/leandrop/Documents/Facultad/Labo3/GIT/FINAL_COMANDAv3/index.html",
             // "url": "file:///E:/leandrop/Documents/Facultad/Labo3/GIT/FINAL_COMANDAv2/main.html",
             // "url": "file:///E:/leandrop/Documents/Facultad/Labo3/GIT/FINAL_COMANDAv2/home.html",
             "webRoot": "${workspaceFolder}"

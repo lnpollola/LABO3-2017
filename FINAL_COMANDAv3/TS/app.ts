@@ -88,7 +88,27 @@ function muestraAgregarEmpleado():void
           <label for="password">Clave</label>
           <input type="password" class="form-control" id="ClaveUsuario" placeholder="Password">
         </div>
-        
+        <!-- FECHA DESDE dd/mm/aaaa -->
+        <div class="form-group">
+          <label>Fecha Desde:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" id="fechaDesde" class="col-xs-4" placeholder="dd/mm/aaaa" data-mask"/></input>
+          </div><!-- /.input group -->
+        </div><!-- /.form group -->
+        <!-- /.box-body -->
+        <!-- FECHA Hasta dd/mm/aaaa -->
+        <div class="form-group">
+          <label>Fecha Hasta:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" id="fechaHasta" class="col-xs-4" placeholder="dd/mm/aaaa" data-mask"/></input>
+          </div><!-- /.input group -->
+        </div><!-- /.form group -->
         <!-- /.box-body -->
 
         <div class="box-footer">
