@@ -36,7 +36,7 @@ function muestraModificarEmpleado(idEmpleado) {
     var tcuerpo = $("#formCARGA");
     tcuerpo[0].innerHTML = "";
     tcuerpo[0].innerHTML =
-        "   <div class=\"box-body\">\n        <!-- USUARIO -->\n        <div class=\"form-group\">\n        <label for=\"nombre\">Usuario</label>\n        <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" value=\"" + persona._nombre + "\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n    </div>\n    <!-- EDAD -->\n        <div class=\"form-group\">\n        <label for=\"edad\">Edad</label>\n        <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" value=\"" + persona._edad + "\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n        </div>\n    <!-- SEXO -->\n    <label for=\"opcion\">Elige SEXO:</label>\n    <div class=\"form-group\" >\n        <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n            <option value=\"MASCULINO\">MASCULINO</option>\n            <option value=\"FEMENINO\">FEMENINO</option>\n            <option value=\"OTROS\">OTROS</option>\n        </select>\n    </div>\n\n    <!-- TIPO - ENUM TIPO -->\n        <div class=\"form-group\">\n            <label for=\"opcion\">Elige un tipo de Empleado:</label>\n            <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                <option value=\"BARTENDER\">BARTENDER</option>\n                <option value=\"CERVECERO\">CERVECERO</option>\n                <option value=\"COCINERO\">COCINERO</option>\n                <option value=\"MOZO\">MOZO</option>\n                <option value=\"SOCIO\">SOCIO</option>\n            </select>\n        </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Clave</label>\n      <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n    </div>\n    \n    <!-- /.box-body -->\n\n    <div class=\"box-footer\">\n        <button type=\"submit\" onclick=\"modificarEmpleado(" + (indice) + ",Clases.estadoCLIEMP.MODIFICAR)\" id=\"botonModificar\" class=\"btn btn-primary btn-block btn-flat\">Modificar</button>\n    </div>";
+        "   <div class=\"box-body\">\n        <!-- USUARIO -->\n        <div class=\"form-group\">\n        <label for=\"nombre\">Usuario</label>\n        <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" value=\"" + persona._nombre + "\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n    </div>\n    <!-- EDAD -->\n        <div class=\"form-group\">\n        <label for=\"edad\">Edad</label>\n        <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" value=\"" + persona._edad + "\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n        </div>\n    <!-- SEXO -->\n    <label for=\"opcion\">Elige SEXO:</label>\n    <div class=\"form-group\" >\n        <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n            <option value=\"MASCULINO\">MASCULINO</option>\n            <option value=\"FEMENINO\">FEMENINO</option>\n            <option value=\"OTROS\">OTROS</option>\n        </select>\n    </div>\n\n    <!-- TIPO - ENUM TIPO -->\n        <div class=\"form-group\">\n            <label for=\"opcion\">Elige un tipo de Empleado:</label>\n            <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                <option value=\"BARTENDER\">BARTENDER</option>\n                <option value=\"CERVECERO\">CERVECERO</option>\n                <option value=\"COCINERO\">COCINERO</option>\n                <option value=\"MOZO\">MOZO</option>\n                <option value=\"SOCIO\">SOCIO</option>\n            </select>\n        </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Clave</label>\n      <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n    </div>\n    \n    <!-- /.box-body -->\n    <!-- FECHA DESDE dd/mm/aaaa -->\n    <div class=\"form-group\">\n      <label>Fecha Desde:</label>\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"fa fa-calendar\"></i>\n        </div>\n        <input type=\"text\" id=\"fechaDesde\" class=\"col-xs-4\" placeholder=\"dd/mm/aaaa\" data-mask\"/></input>\n      </div><!-- /.input group -->\n    </div><!-- /.form group -->\n    <!-- /.box-body -->\n    <!-- FECHA Hasta dd/mm/aaaa -->\n    <div class=\"form-group\">\n      <label>Fecha Hasta:</label>\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"fa fa-calendar\"></i>\n        </div>\n        <input type=\"text\" id=\"fechaHasta\" class=\"col-xs-4\" placeholder=\"dd/mm/aaaa\" data-mask\"/></input>\n      </div><!-- /.input group -->\n    </div><!-- /.form group -->\n    <!-- /.box-body -->\n    <div class=\"box-footer\">\n        <button type=\"submit\" onclick=\"modificarEmpleado(" + (indice) + ",Clases.estadoCLIEMP.MODIFICAR)\" id=\"botonModificar\" class=\"btn btn-primary btn-block btn-flat\">Modificar</button>\n    </div>";
 }
 ///////MESAS///////////
 function generarNuevoNum() {
@@ -162,7 +162,7 @@ function armoJSON(indice, persona) {
     delete EmpleadosStringNew[indice];
     var objJsonResp = EmpleadosStringNew.filter(function (x) { return x !== null; });
     objJsonResp.push(JSON.stringify(persona));
-    localStorage.clear();
+    localStorage.Empleados.clear();
     localStorage.setItem("Empleados", JSON.stringify(objJsonResp));
 }
 function codigo_random(longitud) {
@@ -242,6 +242,8 @@ function mostrarEmpleados() {
         + '  <th>Sexo</th>'
         + '  <th>Tipo</th>'
         + '  <th>Estado</th>'
+        + '  <th>Fecha Desde</th>'
+        + '  <th>Fecha Hasta</th>'
         + '<th>Acciones</th>'
         + '</tr>'
         + '</thead>'
@@ -268,6 +270,12 @@ function mostrarEmpleados() {
             html += "<td>";
             html += Clases.estadoCLIEMP[empleadoActual._estado];
             html += "</td>";
+            html += "<td>";
+            html += empleadoActual._fechaDesde;
+            html += "</td>";
+            html += "<td>";
+            html += empleadoActual._fechaHasta;
+            html += "</td>";
             //BOTONES
             html += "<td>";
             html += "<button class='btn btn-block btn-default btn-flat' type='button' id='btnEnviar' value='Modificar' onclick='muestraModificarEmpleado(" + empleadoActual._id + ")'>";
@@ -289,6 +297,13 @@ function mostrarEmpleados() {
                 html += "<i class='fa fa-ban'></i>";
                 html += "</button>";
                 html += "</td>";
+                html += "<td>";
+                html += "<button class='btn btn-block btn-danger disabled' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado(" + empleadoActual._id + ")'>";
+                html += "BORRAR ";
+                html += "<i class='glyphicon glyphicon-minus'></i>";
+                html += "</button>";
+                html += "</td>";
+                html += "</tr>";
             }
             else {
                 html += "<td>";
@@ -303,14 +318,14 @@ function mostrarEmpleados() {
                 html += "<i class='fa fa-ban'></i>";
                 html += "</button>";
                 html += "</td>";
+                html += "<td>";
+                html += "<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado(" + empleadoActual._id + ")'>";
+                html += "BORRAR ";
+                html += "<i class='glyphicon glyphicon-minus'></i>";
+                html += "</button>";
+                html += "</td>";
+                html += "</tr>";
             }
-            html += "<td>";
-            html += "<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado(" + empleadoActual._id + ")'>";
-            html += "BORRAR ";
-            html += "<i class='glyphicon glyphicon-minus'></i>";
-            html += "</button>";
-            html += "</td>";
-            html += "</tr>";
         }
         if (i == 0) {
             cuerpoTablaAppend = html;

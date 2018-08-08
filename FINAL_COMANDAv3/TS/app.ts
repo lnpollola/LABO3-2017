@@ -167,7 +167,28 @@ function muestraModificarEmpleado(idEmpleado):void
     </div>
     
     <!-- /.box-body -->
-
+    <!-- FECHA DESDE dd/mm/aaaa -->
+    <div class="form-group">
+      <label>Fecha Desde:</label>
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </div>
+        <input type="text" id="fechaDesde" class="col-xs-4" placeholder="dd/mm/aaaa" data-mask"/></input>
+      </div><!-- /.input group -->
+    </div><!-- /.form group -->
+    <!-- /.box-body -->
+    <!-- FECHA Hasta dd/mm/aaaa -->
+    <div class="form-group">
+      <label>Fecha Hasta:</label>
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </div>
+        <input type="text" id="fechaHasta" class="col-xs-4" placeholder="dd/mm/aaaa" data-mask"/></input>
+      </div><!-- /.input group -->
+    </div><!-- /.form group -->
+    <!-- /.box-body -->
     <div class="box-footer">
         <button type="submit" onclick="modificarEmpleado(`+(indice)+`,Clases.estadoCLIEMP.MODIFICAR)" id="botonModificar" class="btn btn-primary btn-block btn-flat">Modificar</button>
     </div>` 
@@ -437,7 +458,7 @@ function armoJSON(indice,persona)
     delete EmpleadosStringNew[indice];
     var objJsonResp = EmpleadosStringNew.filter(function(x) { return x !== null });
     objJsonResp.push( JSON.stringify(persona));
-    localStorage.clear();
+    localStorage.Empleados.clear();
     localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
 }
 
@@ -552,6 +573,8 @@ function mostrarEmpleados():void
         +'  <th>Sexo</th>'
         +'  <th>Tipo</th>'
         +'  <th>Estado</th>'
+        +'  <th>Fecha Desde</th>'
+        +'  <th>Fecha Hasta</th>'
         +'<th>Acciones</th>'
         +'</tr>'
         +'</thead>'
@@ -570,7 +593,10 @@ function mostrarEmpleados():void
                 html+="<td>";html+= empleadoActual._sexo                        ;html+= "</td>";
                 html+="<td>";html+= Clases.tipoEmpleado[empleadoActual._tipo]   ;html+= "</td>";
                 html+="<td>";html+= Clases.estadoCLIEMP[empleadoActual._estado] ;html+= "</td>";
-            //BOTONES
+                html+="<td>";html+= empleadoActual._fechaDesde ;html+= "</td>";
+                html+="<td>";html+= empleadoActual._fechaHasta ;html+= "</td>";
+            
+                //BOTONES
                 html+="<td>"  
                 html+="<button class='btn btn-block btn-default btn-flat' type='button' id='btnEnviar' value='Modificar' onclick='muestraModificarEmpleado("+empleadoActual._id+")'>"
                 html+="MODIFICAR ";
@@ -594,6 +620,14 @@ function mostrarEmpleados():void
                 html+="<i class='fa fa-ban'></i>";
                 html+="</button>";
                 html+="</td>";  
+
+                html+="<td>";
+                html+="<button class='btn btn-block btn-danger disabled' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+empleadoActual._id+")'>";
+                html+="BORRAR ";
+                html+="<i class='glyphicon glyphicon-minus'></i>";
+                html+="</button>";
+                html+="</td>";  
+                html+="</tr>";    
                 
             }
             else 
@@ -610,15 +644,14 @@ function mostrarEmpleados():void
                 html+="<i class='fa fa-ban'></i>";
                 html+="</button>";
                 html+="</td>";  
+                html+="<td>";
+                html+="<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+empleadoActual._id+")'>";
+                html+="BORRAR ";
+                html+="<i class='glyphicon glyphicon-minus'></i>";
+                html+="</button>";
+                html+="</td>";  
+                html+="</tr>";    
             }
-
-            html+="<td>";
-            html+="<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='eliminarEmpleado("+empleadoActual._id+")'>";
-            html+="BORRAR ";
-            html+="<i class='glyphicon glyphicon-minus'></i>";
-            html+="</button>";
-            html+="</td>";  
-            html+="</tr>";    
         }
         if(i==0)
         {cuerpoTablaAppend = html;}
