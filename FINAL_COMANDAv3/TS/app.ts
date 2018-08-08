@@ -88,25 +88,25 @@ function muestraAgregarEmpleado():void
           <label for="password">Clave</label>
           <input type="password" class="form-control" id="ClaveUsuario" placeholder="Password">
         </div>
-        <!-- FECHA DESDE dd/mm/aaaa -->
+        <!-- FECHA DESDE dd/m/aaaa -->
         <div class="form-group">
           <label>Fecha Desde:</label>
           <div class="input-group">
             <div class="input-group-addon">
               <i class="fa fa-calendar"></i>
             </div>
-            <input type="text" id="fechaDesde" class="col-xs-4" placeholder="dd/mm/aaaa" data-mask"/></input>
+            <input type="text" id="fechaDesde" class="col-xs-4" placeholder="dd/m/aaaa" data-mask"/></input>
           </div><!-- /.input group -->
         </div><!-- /.form group -->
         <!-- /.box-body -->
-        <!-- FECHA Hasta dd/mm/aaaa -->
+        <!-- FECHA Hasta dd/m/aaaa -->
         <div class="form-group">
           <label>Fecha Hasta:</label>
           <div class="input-group">
             <div class="input-group-addon">
               <i class="fa fa-calendar"></i>
             </div>
-            <input type="text" id="fechaHasta" class="col-xs-4" placeholder="dd/mm/aaaa" data-mask"/></input>
+            <input type="text" id="fechaHasta" class="col-xs-4" placeholder="dd/m/aaaa" data-mask"/></input>
           </div><!-- /.input group -->
         </div><!-- /.form group -->
         <!-- /.box-body -->
@@ -167,25 +167,25 @@ function muestraModificarEmpleado(idEmpleado):void
     </div>
     
     <!-- /.box-body -->
-    <!-- FECHA DESDE dd/mm/aaaa -->
+    <!-- FECHA DESDE dd/m/aaaa -->
     <div class="form-group">
       <label>Fecha Desde:</label>
       <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-        <input type="text" id="fechaDesde" class="col-xs-4" placeholder="dd/mm/aaaa" data-mask"/></input>
+        <input type="text" id="fechaDesde" class="col-xs-4" placeholder="dd/m/aaaa" data-mask"/></input>
       </div><!-- /.input group -->
     </div><!-- /.form group -->
     <!-- /.box-body -->
-    <!-- FECHA Hasta dd/mm/aaaa -->
+    <!-- FECHA Hasta dd/m/aaaa -->
     <div class="form-group">
       <label>Fecha Hasta:</label>
       <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-        <input type="text" id="fechaHasta" class="col-xs-4" placeholder="dd/mm/aaaa" data-mask"/></input>
+        <input type="text" id="fechaHasta" class="col-xs-4" placeholder="dd/m/aaaa" data-mask"/></input>
       </div><!-- /.input group -->
     </div><!-- /.form group -->
     <!-- /.box-body -->
@@ -458,9 +458,9 @@ function armoJSON(indice,persona)
     delete EmpleadosStringNew[indice];
     var objJsonResp = EmpleadosStringNew.filter(function(x) { return x !== null });
     objJsonResp.push( JSON.stringify(persona));
-    localStorage.Empleados.clear();
+    localStorage.Empleados = "";
     localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
-}
+} 
 
 function codigo_random(longitud)
 {
@@ -492,7 +492,8 @@ function agregarEmpleado(vienedeModif?):void
                                             tipoEMP,
                                             Clases.estadoCLIEMP.ACTIVO,
                                             String ($('#ClaveUsuario').val()),
-                                            String ($('#fechaHasta').val()),
+                                            String ($('#fechaDesde').val()),
+                                            String ($('#fechaHasta').val())
                                             );
     
     let EmpleadosString  = JSON.parse(localStorage.getItem("Empleados") || "[]");
@@ -522,6 +523,16 @@ function modificarEmpleado(indice , auxEmpleado):void
         persona._sexo   = String ($('#sexo').val());
         persona._tipo  = tipoEMP ; 
         persona._clave  = String ($('#ClaveUsuario').val());
+        var fechaIniciocontrato =  String ($('#fechaDesde').val());
+        if(fechaIniciocontrato=="")
+        {
+            persona._fechaDesde = new Date().toLocaleDateString();
+        }
+        else
+        {
+            persona._fechaDesde = fechaIniciocontrato;
+        }
+        persona._fechaHasta = String ($('#fechaHasta').val());;
     }
     else 
     {

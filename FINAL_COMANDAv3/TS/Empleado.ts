@@ -12,7 +12,7 @@ namespace Clases
             public _fechaHasta:string;
 
         //CONSTRUCTOR
-        constructor(nombre:string,edad:number,sexo:string,tipo:tipoEmpleado,estado:estadoCLIEMP,clave:string,fechaFincontrato:string) 
+        constructor(nombre:string,edad:number,sexo:string,tipo:tipoEmpleado,estado:estadoCLIEMP,clave:string,fechaIniciocontrato:string,fechaFincontrato:string) 
         {
             super(nombre,edad,sexo);
             
@@ -24,7 +24,15 @@ namespace Clases
             this._tipo=tipo;  
             this._estado=estado;
             this._clave = clave;
-            this._fechaDesde = new Date().toLocaleDateString();
+            if(fechaIniciocontrato=="")
+            {
+                this._fechaDesde = new Date().toLocaleDateString();
+            }
+            else
+            {
+                this._fechaDesde = fechaIniciocontrato;
+            }
+            
             this._fechaHasta = fechaFincontrato;
         }
 
