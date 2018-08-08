@@ -34,6 +34,8 @@ function transformaImagen() {
 function borrarPrincipal():void
 {
     $("#principal")[0].innerHTML="";
+    $("#agregar")[0].innerHTML="";
+    $("#listar")[0].innerHTML="";
 }
 
 ///////EMPLEADO///////////
@@ -54,7 +56,7 @@ function muestraAgregarEmpleado():void
             <!-- USUARIO -->
             <div class="form-group">
             <label for="nombre">Usuario</label>
-            <input type="email" id="nombre" class="sinError form-control" name="nombre" placeholder="Nombre.." autocomplete="off" class="form-control" required autofocus>
+            <input type="email" id="nombre" class="sinError form-control" name="nombre" placeholder="Nombre@COMANDA.COM" value=@COMANDA.COM autocomplete="off" class="form-control" required autofocus>
         </div>
         <!-- EDAD -->
             <div class="form-group">
@@ -95,7 +97,7 @@ function muestraAgregarEmpleado():void
     </form>
     <!-- /.box -->`;
 
-    $("#principal").append(cuerpoAgregarEmpleado);
+    $("#agregar").append(cuerpoAgregarEmpleado);
 }
 
 function muestraModificarEmpleado(idEmpleado):void
@@ -190,7 +192,7 @@ function muestraAgregarMesa():void
     </form>
     <!-- /.box -->`;
 
-    $("#principal").append(cuerpoAgregarEmpleado);
+    $("#agregar").append(cuerpoAgregarEmpleado);
 }
 
 function muestraModificarMesa(idEmpleado):void
@@ -293,7 +295,7 @@ function muestraAgregarPedido():void
     </form>
     <!-- /.box -->`;
 
-    $("#principal").append(cuerpoAgregarPedido);
+    $("#agregar").append(cuerpoAgregarPedido);
 }
 
 
@@ -612,7 +614,7 @@ function mostrarEmpleados():void
         footerTablaAppend+='</div>';
 
         let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
-        $("#principal").append(tablafinal);   
+        $("#listar").append(tablafinal);   
 }    
 
 
@@ -685,7 +687,7 @@ function mostrarMesas():void
         footerTablaAppend+='</div>';
 
         let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
-        $("#principal").append(tablafinal);   
+        $("#listar").append(tablafinal);   
 }  
 
 ///////PEDIDOS///////////
@@ -771,7 +773,7 @@ function mostrarPedidosJefe():void
         footerTablaAppend+='</div>';
 
         let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
-        $("#principal").append(tablafinal);   
+        $("#listar").append(tablafinal);   
 }  
 
 function mostrarPedidosMozo():void
@@ -844,5 +846,5 @@ function mostrarPedidosMozo():void
     </div><!-- /.box -->
     `;
   let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend
-  $("#principal").append(tablafinal);   
+  $("#listar").append(tablafinal);   
 }

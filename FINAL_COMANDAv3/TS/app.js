@@ -20,12 +20,14 @@ function transformaImagen() {
 // // // // // // // FUNCIONES DE CARGA DE PÁGINA - HTML5 // // // // // // //// // // // // // //
 function borrarPrincipal() {
     $("#principal")[0].innerHTML = "";
+    $("#agregar")[0].innerHTML = "";
+    $("#listar")[0].innerHTML = "";
 }
 ///////EMPLEADO///////////
 function muestraAgregarEmpleado() {
     borrarPrincipal();
-    var cuerpoAgregarEmpleado = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Agregar Empleado</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n    <!--onsubmit=\"agregarEmpleado();\" -->\n      <div class=\"box-body\">\n            <!-- USUARIO -->\n            <div class=\"form-group\">\n            <label for=\"nombre\">Usuario</label>\n            <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" placeholder=\"Nombre..\" autocomplete=\"off\" class=\"form-control\" required autofocus>\n        </div>\n        <!-- EDAD -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Edad</label>\n            <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n            </div>\n        <!-- SEXO -->\n        <label for=\"opcion\">Elige SEXO:</label>\n        <div class=\"form-group\" >\n            <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n                <option value=\"MASCULINO\">MASCULINO</option>\n                <option value=\"FEMENINO\">FEMENINO</option>\n                <option value=\"OTROS\">OTROS</option>\n            </select>\n        </div>\n\n        <!-- TIPO - ENUM TIPO -->\n            <div class=\"form-group\">\n                <label for=\"opcion\">Elige un tipo de Empleado:</label>\n                <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                    <option value=\"BARTENDER\">BARTENDER</option>\n                    <option value=\"CERVECERO\">CERVECERO</option>\n                    <option value=\"COCINERO\">COCINERO</option>\n                    <option value=\"MOZO\">MOZO</option>\n                    <option value=\"SOCIO\">SOCIO</option>\n                </select>\n            </div>\n        <div class=\"form-group\">\n          <label for=\"password\">Clave</label>\n          <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n        </div>\n        \n        <!-- /.box-body -->\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" onclick=\"agregarEmpleado();\" class=\"btn btn-primary btn-block btn-flat\" id=\"btnAgregarEmpleado\" >Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
-    $("#principal").append(cuerpoAgregarEmpleado);
+    var cuerpoAgregarEmpleado = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Agregar Empleado</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n    <!--onsubmit=\"agregarEmpleado();\" -->\n      <div class=\"box-body\">\n            <!-- USUARIO -->\n            <div class=\"form-group\">\n            <label for=\"nombre\">Usuario</label>\n            <input type=\"email\" id=\"nombre\" class=\"sinError form-control\" name=\"nombre\" placeholder=\"Nombre@COMANDA.COM\" value=@COMANDA.COM autocomplete=\"off\" class=\"form-control\" required autofocus>\n        </div>\n        <!-- EDAD -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Edad</label>\n            <input type=\"text\" id=\"edad\" class=\"sinError form-control\" name=\"edad\" placeholder=\"Edad..\" autocomplete=\"off\" class=\"form-control\" required>\n            </div>\n        <!-- SEXO -->\n        <label for=\"opcion\">Elige SEXO:</label>\n        <div class=\"form-group\" >\n            <select name=\"sexo\" id=\"sexo\" class=\"form-control\" required>\n                <option value=\"MASCULINO\">MASCULINO</option>\n                <option value=\"FEMENINO\">FEMENINO</option>\n                <option value=\"OTROS\">OTROS</option>\n            </select>\n        </div>\n\n        <!-- TIPO - ENUM TIPO -->\n            <div class=\"form-group\">\n                <label for=\"opcion\">Elige un tipo de Empleado:</label>\n                <select class=\"form-control\" name=\"tipoMasc\" id=\"tipoMasc\">\n                    <option value=\"BARTENDER\">BARTENDER</option>\n                    <option value=\"CERVECERO\">CERVECERO</option>\n                    <option value=\"COCINERO\">COCINERO</option>\n                    <option value=\"MOZO\">MOZO</option>\n                    <option value=\"SOCIO\">SOCIO</option>\n                </select>\n            </div>\n        <div class=\"form-group\">\n          <label for=\"password\">Clave</label>\n          <input type=\"password\" class=\"form-control\" id=\"ClaveUsuario\" placeholder=\"Password\">\n        </div>\n        \n        <!-- /.box-body -->\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" onclick=\"agregarEmpleado();\" class=\"btn btn-primary btn-block btn-flat\" id=\"btnAgregarEmpleado\" >Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
+    $("#agregar").append(cuerpoAgregarEmpleado);
 }
 function muestraModificarEmpleado(idEmpleado) {
     muestraAgregarEmpleado();
@@ -43,7 +45,7 @@ function generarNuevoNum() {
 function muestraAgregarMesa() {
     borrarPrincipal();
     var cuerpoAgregarEmpleado = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Alta de Mesas</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n    <!--onsubmit=\"agregarMesa();\" -->\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button id=\"btnGenerarCodMesa\" type=\"button\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n        <!-- /.box-body -->\n        <div class=\"box-footer\">\n            <button type=\"submit\" onclick=\"agregarMesa();\" id=\"btnAgregarMesa\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
-    $("#principal").append(cuerpoAgregarEmpleado);
+    $("#agregar").append(cuerpoAgregarEmpleado);
 }
 function muestraModificarMesa(idEmpleado) {
     muestraAgregarMesa();
@@ -58,7 +60,7 @@ function muestraModificarMesa(idEmpleado) {
 function muestraAgregarPedido() {
     borrarPrincipal();
     var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Nuevo Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n    <!--onsubmit=\"agregarPedido();\" -->\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"agregarPedido();\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
-    $("#principal").append(cuerpoAgregarPedido);
+    $("#agregar").append(cuerpoAgregarPedido);
 }
 // // // // // // // FUNCIONES DE CLASES DE PÁGINA // // // // // // //// // // // // // //
 ////////////////////////////////GENERALES////////////////////////////////
@@ -327,7 +329,7 @@ function mostrarEmpleados() {
     footerTablaAppend += '</div>';
     footerTablaAppend += '</div>';
     var tablafinal = encabezadoTablaAppend + cuerpoTablaAppend + footerTablaAppend;
-    $("#principal").append(tablafinal);
+    $("#listar").append(tablafinal);
 }
 ///////MESAS///////////
 function agregarMesa() {
@@ -400,7 +402,7 @@ function mostrarMesas() {
     footerTablaAppend += '</div>';
     footerTablaAppend += '</div>';
     var tablafinal = encabezadoTablaAppend + cuerpoTablaAppend + footerTablaAppend;
-    $("#principal").append(tablafinal);
+    $("#listar").append(tablafinal);
 }
 ///////PEDIDOS///////////
 function agregarPedido() {
@@ -485,7 +487,7 @@ function mostrarPedidosJefe() {
     footerTablaAppend += '</div>';
     footerTablaAppend += '</div>';
     var tablafinal = encabezadoTablaAppend + cuerpoTablaAppend + footerTablaAppend;
-    $("#principal").append(tablafinal);
+    $("#listar").append(tablafinal);
 }
 function mostrarPedidosMozo() {
     borrarPrincipal();
@@ -518,6 +520,6 @@ function mostrarPedidosMozo() {
     }
     var footerTablaAppend = "\n        </ul>\n      </div><!-- /.box-body -->\n      <!-- <div class=\"box-footer text-center\">\n        <a href=\"javascript::;\" class=\"uppercase\">View All Products</a>\n      </div>-->\n      <!-- /.box-footer -->\n    </div><!-- /.box -->\n    ";
     var tablafinal = encabezadoTablaAppend + cuerpoTablaAppend + footerTablaAppend;
-    $("#principal").append(tablafinal);
+    $("#listar").append(tablafinal);
 }
 //# sourceMappingURL=app.js.map

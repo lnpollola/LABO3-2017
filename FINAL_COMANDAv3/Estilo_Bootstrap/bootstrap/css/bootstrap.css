@@ -2059,12 +2059,14 @@ pre code {
   }
   .col-md-offset-3 {
     margin-left: 25%;
+    margin-right: 8.33333333%;
   }
   .col-md-offset-2 {
     margin-left: 16.66666667%;
   }
   .col-md-offset-1 {
     margin-left: 8.33333333%;
+    margin-right: 8.33333333%;
   }
   .col-md-offset-0 {
     margin-left: 0;
@@ -2223,6 +2225,7 @@ pre code {
   }
   .col-lg-offset-1 {
     margin-left: 8.33333333%;
+    margin-right: 8.33333333%;
   }
   .col-lg-offset-0 {
     margin-left: 0;
