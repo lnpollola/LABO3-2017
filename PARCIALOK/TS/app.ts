@@ -1,24 +1,24 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
 // namespace Clases{
 
-// $(function(){
+$(function(){
 
-//     //EVENTOS
-//         //FORM MODIFICADO POR CHECKBOX
-//         $("#checkFORM :checkbox").change(function() {
-//             encabezadoCheck();
-//         });
-//         //BOTON FILTRAR
-//         $("#filtrarPor").change(function(){
-//             let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
-//             mostrarEmpleados(valorFiltro);
-//             tablaAux = undefined;
-//         });
-//     //CARGA DE LA PAGINA
-//     encabezadoCheck();
-//     cargoMenusEncabezado();
-//     mostrarEmpleados();
-// });
+    //EVENTOS
+        //FORM MODIFICADO POR CHECKBOX
+        $("#checkFORM :checkbox").change(function() {
+            encabezadoCheck();
+        });
+        //BOTON FILTRAR
+        $("#filtrarPor").change(function(){
+            let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
+            mostrarEmpleados(valorFiltro);
+            tablaAux = undefined;
+        });
+    //CARGA DE LA PAGINA
+    encabezadoCheck();
+    cargoMenusEncabezado();
+    mostrarEmpleados();
+});
 
 var imagenBASE64;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////

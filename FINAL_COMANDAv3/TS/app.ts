@@ -1,6 +1,19 @@
 ///<reference path="../node_modules/@types/jquery/index.d.ts" />
 
+// $(function(){
 
+//     //EVENTOS
+//         //BOTON FILTRAR
+//         $("#filtrarPor").change(function(){
+//             let valorFiltro = $('#filtrarPor').map(function() { return ; }).get();
+//             mostrarEmpleados(valorFiltro);
+//             tablaAux = undefined;
+//         });
+//     //CARGA DE LA PAGINA
+//     encabezadoCheck();
+//     cargoMenusEncabezado();
+//     mostrarEmpleados();
+// });
 
 
 var imagenBASE64;
@@ -110,6 +123,10 @@ function muestraAgregarEmpleado():void
           </div><!-- /.input group -->
         </div><!-- /.form group -->
         <!-- /.box-body -->
+
+        <div class="box-footer">
+            <button type="submit" onclick="filtroMesasActivas();" class="btn btn-primary btn-block btn-flat" id="mesasActivas" >Mesas</button>
+        </div>
 
         <div class="box-footer">
             <button type="submit" onclick="agregarEmpleado();" class="btn btn-primary btn-block btn-flat" id="btnAgregarEmpleado" >Agregar</button>
@@ -227,6 +244,13 @@ function muestraAgregarMesa():void
                 <input type="text" id="codAlfaBox" value="`+codigo_random(5)+`" class="form-control">
             </div><!-- /input-group -->
         <!-- /.box-body -->
+
+        <div class="col-md-offset-1">        
+        <label for="Filtro">Elegir Mesa:</label>
+        <select name="filtrarPor" id="filtrarPor">
+        </select>
+        </div>
+        
         <div class="box-footer">
             <button type="submit" onclick="agregarMesa();" id="btnAgregarMesa" class="btn btn-primary btn-block btn-flat">Agregar</button>
         </div>
@@ -759,6 +783,27 @@ function mostrarMesas():void
         let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
         $("#listar").append(tablafinal);   
 }  
+
+function filtroMesasActivas()
+{
+    let valor = Clases.estadoMesa["CON CLIENTES PAGANDO"];
+    let MesasString=  JSON.parse(localStorage.getItem("Mesas") || "[]");    
+    
+    let stringFinal = MesasString
+                                .filter(function(mesa){
+                                    let mesaRet = JSON.parse(mesa);
+                                    return mesaRet._estado == valor;
+                                })
+                                .map(function(mesa){
+                                    let mesaRet = JSON.parse(mesa);
+                                    return mesaRet;
+                                });   
+    
+    MesasString= stringFinal;
+    
+       
+}
+//             mostrarEmpleados(valorFiltro);
 
 ///////PEDIDOS///////////
 function agregarPedido():void
