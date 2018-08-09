@@ -537,7 +537,7 @@ function modificarEmpleado(indice , auxEmpleado):void
     else 
     {
         persona._estado = auxEmpleado;
-        if(auxEmpleado == Clases.estadoCLIEMP.BAJA)
+        if(auxEmpleado == Clases.estadoCLIEMP.BAJA ||auxEmpleado == Clases.estadoCLIEMP.SUSPENDIDO )
         {persona._fechaHasta =  new Date().toLocaleDateString();}
         else if(auxEmpleado == Clases.estadoCLIEMP.ACTIVO)
         {persona._fechaDesde= new Date().toLocaleDateString();
