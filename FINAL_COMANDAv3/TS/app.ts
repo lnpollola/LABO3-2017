@@ -527,9 +527,9 @@ function modificarEmpleado(indice , auxEmpleado):void
         if(fechaIniciocontrato=="")
         {
             persona._fechaDesde = new Date().toLocaleDateString();
-        }
+        } 
         else
-        {
+        { 
             persona._fechaDesde = fechaIniciocontrato;
         }
         persona._fechaHasta = String ($('#fechaHasta').val());;
