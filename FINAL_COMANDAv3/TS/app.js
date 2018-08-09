@@ -214,6 +214,13 @@ function modificarEmpleado(indice, auxEmpleado) {
     }
     else {
         persona._estado = auxEmpleado;
+        if (auxEmpleado == Clases.estadoCLIEMP.BAJA) {
+            persona._fechaHasta = new Date().toLocaleDateString();
+        }
+        else if (auxEmpleado == Clases.estadoCLIEMP.ACTIVO) {
+            persona._fechaDesde = new Date().toLocaleDateString();
+            persona._fechaHasta = "";
+        }
     }
     armoJSON(indice, persona);
     mostrarEmpleados();
