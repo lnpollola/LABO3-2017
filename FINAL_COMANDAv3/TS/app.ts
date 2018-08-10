@@ -343,11 +343,11 @@ function muestraAgregarPedido():void
 
         <!-- checkbox -->
         <div class="form-group">
-          <label><input type="checkbox" class="minimal"/> Tragos</label><input type="text" class="form-control">
-          <label><input type="checkbox" class="minimal"/> Vinos</label><input type="text" class="form-control">
-          <label><input type="checkbox" class="minimal"/> Cerveza Artesanal</label><input type="text" class="form-control">
-          <label><input type="checkbox" class="minimal" disabled/> Cocina</label><input type="text" class="form-control">
-          <label><input type="checkbox" class="minimal" disabled/> Candy Bar</label><input type="text" class="form-control">
+          <label><input type="checkbox" id="checkTragos"  class="iCheck-helper"/>Tragos</label>             <input type="text" id="checkTragosForm" class="form-control">
+          <label><input type="checkbox" id="checkVinos"   class="iCheck-helper"/>Vinos</label>              <input type="text" id="checkVinosForm"  class="form-control">
+          <label><input type="checkbox" id="checkCerveza" class="iCheck-helper"/>Cerveza Artesanal</label>  <input type="text" id="checkCervezaForm"class="form-control">
+          <label><input type="checkbox" id="checkCocina"  class="iCheck-helper"/>Cocina</label>             <input type="text" id="checkCocinaForm" class="form-control">
+          <label><input type="checkbox" id="checkCandy"   class="iCheck-helper"/>Candy Bar</label>          <input type="text" id="checkCandyForm"  class="form-control">
         </div>
 
 
@@ -852,6 +852,9 @@ function agregarPedido():void
                                         imagenBASE64
                                         );
     
+
+
+                                        
     let PedidosString  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
     PedidosString.push( JSON.stringify(nuevaPedido));
     localStorage.setItem("Pedidos",JSON.stringify(PedidosString));

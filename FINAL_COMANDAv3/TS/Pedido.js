@@ -3,6 +3,11 @@ var Clases;
     var Pedido = /** @class */ (function () {
         //CONSTRUCTOR
         function Pedido(codAlfa, estado, nombreCliente, mesaAsignada, imagen) {
+            this._sectorTragos = false;
+            this._sectorVinos = false;
+            this._sectorCerveza = false;
+            this._sectorCocina = false;
+            this._sectorCandy = false;
             this._nroPedido = codAlfa;
             this._estado = estado;
             this._nombreCliente = nombreCliente;

@@ -11,7 +11,16 @@ namespace Clases
         public _nombreCliente:string; 
         public _imagen:string;
         public _mesaAsignada:string;
-        public _productos:string;
+        public _sectorTragos:boolean = false;
+        public _sectorVinos:boolean= false;
+        public _sectorCerveza:boolean= false;
+        public _sectorCocina:boolean= false;
+        public _sectorCandy:boolean= false;
+        public _productosTragos:string;
+        public _productosVinos:string;
+        public _productosCerveza:string;
+        public _productosCocina:string;
+        public _productosCandy:string;
 
         //CONSTRUCTOR
             constructor(codAlfa:string,estado:estadoPedido,nombreCliente:string,mesaAsignada:string,imagen:string) 
