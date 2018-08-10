@@ -1087,7 +1087,7 @@ function agregarPedido():void
     var Mesa = JSON.parse(JSON.parse(localStorage.Mesas)[indice]);
     Mesa._estado = Clases.estadoMesa["CON CLIENTE ESPERANDO PEDIDO"];
     Mesa._cantPedidos++;
-    Mesa._recaudacion +=  Number ($('#precioPedido').val());
+    Mesa._recaudacion =Mesa._recaudacion +  Number ($('#precioPedido').val());
      
     armoJSONMesa(indice,Mesa);
     alert ("Pedido dada de Alta");
