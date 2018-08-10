@@ -47,7 +47,7 @@ function generarNuevoNum() {
 }
 function muestraAgregarMesa() {
     borrarPrincipal();
-    var cuerpoAgregarEmpleado = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Alta de Mesas</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n    <!--onsubmit=\"agregarMesa();\" -->\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button id=\"btnGenerarCodMesa\" type=\"button\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n        <!-- /.box-body -->\n\n        <div class=\"col-md-offset-1\">        \n        <label for=\"Filtro\">Elegir Mesa:</label>\n        <select name=\"filtrarPor\" id=\"filtrarPor\">\n        </select>\n        </div>\n        \n        <div class=\"box-footer\">\n            <button type=\"submit\" onclick=\"agregarMesa();\" id=\"btnAgregarMesa\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
+    var cuerpoAgregarEmpleado = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Alta de Mesas</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n    <!--onsubmit=\"agregarMesa();\" -->\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button id=\"btnGenerarCodMesa\" type=\"button\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n        <!-- /.box-body -->\n\n        \n        <div class=\"box-footer\">\n            <button type=\"submit\" onclick=\"agregarMesa();\" id=\"btnAgregarMesa\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
     $("#agregar").append(cuerpoAgregarEmpleado);
 }
 function muestraModificarMesa(idEmpleado) {
@@ -62,7 +62,7 @@ function muestraModificarMesa(idEmpleado) {
 ///////PEDIDOS///////////
 function muestraAgregarPedido() {
     borrarPrincipal();
-    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Nuevo Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n    <!--onsubmit=\"agregarPedido();\" -->\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n\n        <!-- Mesas Disponibles-->\n        <div class=\"form-group\">\n          <label for=\"opcion\">Mesas Disponibles:</label>\n            <select class=\"form-control\" name=\"mesaDisp\" id=\"mesaDisp\">\n            </select>\n        </div>\n        \n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"agregarPedido();\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
+    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Nuevo Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n\n        <!-- Mesas Disponibles-->\n        <div class=\"form-group\">\n          <label for=\"opcion\">Mesas Disponibles:</label>\n            <select class=\"form-control\" name=\"mesaDisp\" id=\"mesaDisp\">\n            </select>\n        </div>\n        \n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"agregarPedido();\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
     $("#agregar").append(cuerpoAgregarPedido);
 }
 function filtroMesasActivas() {
@@ -82,7 +82,7 @@ function filtroMesasActivas() {
     var i = 0;
     var select = $("#mesaDisp");
     for (var i = 0; i < MesasString.length; i++) {
-        select.append("<option value=" + i + ">" + MesasString[i]._codAlfa + "</option>");
+        select.append("<option value=" + MesasString[i]._codAlfa + ">" + MesasString[i]._codAlfa + "</option>");
     }
 }
 // // // // // // // FUNCIONES DE CLASES DE PÁGINA // // // // // // //// // // // // // //
@@ -188,6 +188,14 @@ function armoJSON(indice, persona) {
     localStorage.Empleados = "";
     localStorage.setItem("Empleados", JSON.stringify(objJsonResp));
 }
+function armoJSONMesa(indice, mesa) {
+    var MesasStringNew = JSON.parse(localStorage.getItem("Mesas") || "[]");
+    delete MesasStringNew[indice];
+    var objJsonResp = MesasStringNew.filter(function (x) { return x !== null; });
+    objJsonResp.push(JSON.stringify(mesa));
+    localStorage.Mesas = "";
+    localStorage.setItem("Mesas", JSON.stringify(objJsonResp));
+}
 function codigo_random(longitud) {
     var caracteres = "0123456789ABCDEF";
     var code = "";
@@ -249,10 +257,18 @@ function modificarEmpleado(indice, auxEmpleado) {
     mostrarEmpleados();
 }
 ///////MESA///////////
-function calcularIdMesa(indice) {
-    var Mesa = JSON.parse(localStorage.getItem("Mesas") || "[]")[indice];
-    var codAlfa = JSON.parse(Mesa)._codAlfa;
-    return codAlfa;
+function calcularIdMesa(codAlfa) {
+    var indice;
+    var MesasString = JSON.parse(localStorage.getItem("Mesas") || "[]");
+    for (var i = 0; i < MesasString.length; i++) {
+        var mesaActual = JSON.parse(MesasString[i]);
+        if (mesaActual != null) {
+            if (mesaActual._codAlfa == codAlfa) {
+                indice = i;
+            }
+        }
+    }
+    return indice;
 }
 //FUNCIONES QUE LLAMAN A MODIFICAR CON DISTINTOS PARAMETROS
 function eliminarEmpleado(idEmpleado) {
@@ -419,8 +435,8 @@ function mostrarMesas() {
         + '<thead>'
         + '<tr>'
         + '  <th>Cod. Mesa</th>'
-        + '  <th>Cant. Pedidos</th>'
         + '  <th>Recaudación Total</th>'
+        + '  <th>Cant. Pedidos</th>'
         + '  <th>Estado Actual</th>'
         + '</tr>'
         + '</thead>'
@@ -467,11 +483,16 @@ function mostrarMesas() {
 ///////PEDIDOS///////////
 function agregarPedido() {
     var codigoPedido = String($('#codAlfaBox').val());
-    var codAlfaMesa = calcularIdMesa(Number($("#mesaDisp").val()));
+    var codAlfaMesa = String($("#mesaDisp").val());
     var nuevaPedido = new Clases.Pedido(codigoPedido, Clases.estadoPedido["ORDEN TOMADA"], String($('#nombClien').val()), codAlfaMesa, imagenBASE64);
     var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
     PedidosString.push(JSON.stringify(nuevaPedido));
     localStorage.setItem("Pedidos", JSON.stringify(PedidosString));
+    var indice = calcularIdMesa(codAlfaMesa);
+    var Mesa = JSON.parse(JSON.parse(localStorage.Mesas)[indice]);
+    Mesa._estado = Clases.estadoMesa["CON CLIENTE ESPERANDO PEDIDO"];
+    Mesa._cantPedidos++;
+    armoJSONMesa(indice, Mesa);
     alert("Pedido dada de Alta");
     mostrarPedidosMozo();
 }
@@ -569,7 +590,7 @@ function mostrarPedidosMozo() {
                 + "NOMBRE CLIENTE:" + PedidoActual._nombreCliente +
                 "<span class=\"label label-warning pull-right\">"
                 + Clases.estadoPedido[PedidoActual._estado] +
-                "</span></a>\n                <!--DESCIPCION PEDIDO--> \n                 <span class=\"product-description\">\n                 " + "SECTORMESA" + " - " + PedidoActual._codAlfa + " - " + PedidoActual._nombreCliente + "\n                 </span>     \n                 </div>           \n            </li><!-- /.item -->\n                ";
+                "</span></a>\n                <!--DESCIPCION PEDIDO--> \n                 <span class=\"product-description\">\n                 " + "SECTORMESA" + " - " + PedidoActual._nombreCliente + "\n                 </span>     \n                 </div>           \n            </li><!-- /.item -->\n                ";
         }
         if (i == 0) {
             cuerpoTablaAppend = html;

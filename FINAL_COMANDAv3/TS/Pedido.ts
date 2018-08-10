@@ -11,7 +11,7 @@ namespace Clases
         public _nombreCliente:string; 
         public _imagen:string;
         public _mesaAsignada:string;
-  
+        public _productos:string;
 
         //CONSTRUCTOR
             constructor(codAlfa:string,estado:estadoPedido,nombreCliente:string,mesaAsignada:string,imagen:string) 

@@ -230,11 +230,6 @@ function muestraAgregarMesa():void
             </div><!-- /input-group -->
         <!-- /.box-body -->
 
-        <div class="col-md-offset-1">        
-        <label for="Filtro">Elegir Mesa:</label>
-        <select name="filtrarPor" id="filtrarPor">
-        </select>
-        </div>
         
         <div class="box-footer">
             <button type="submit" onclick="agregarMesa();" id="btnAgregarMesa" class="btn btn-primary btn-block btn-flat">Agregar</button>
@@ -312,7 +307,6 @@ function muestraAgregarPedido():void
     <!-- /.box-header -->
     <!-- form start -->
     <form id="formCARGA"  data-toggle="validator">
-    <!--onsubmit="agregarPedido();" -->
       <div class="box-body">
             <!-- CODIGO ALFANUMERICO -->
             <div class="form-group">
@@ -359,7 +353,8 @@ function muestraAgregarPedido():void
 function filtroMesasActivas():void
 {
     let valor = Clases.estadoMesa.ABIERTA;
-    let MesasString=  JSON.parse(localStorage.getItem("Mesas") || "[]");    
+    let MesasString=  JSON.parse(localStorage.getItem("Mesas") || "[]"); 
+       
     
     let stringFinal = MesasString
                                 .filter(function(Mesa){
@@ -378,7 +373,7 @@ function filtroMesasActivas():void
     let select = $("#mesaDisp");
     for (var i = 0; i < MesasString.length; i++) 
     {
-        select.append("<option value="+i+">"+MesasString[i]._codAlfa+"</option>");
+        select.append("<option value="+MesasString[i]._codAlfa+">"+MesasString[i]._codAlfa+"</option>");
     }
 }
 
@@ -505,6 +500,16 @@ function armoJSON(indice,persona)
     localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
 } 
 
+function armoJSONMesa(indice,mesa)
+{
+    let MesasStringNew  = JSON.parse(localStorage.getItem("Mesas") || "[]");
+    delete MesasStringNew[indice];
+    var objJsonResp = MesasStringNew.filter(function(x) { return x !== null });
+    objJsonResp.push( JSON.stringify(mesa));
+    localStorage.Mesas = "";
+    localStorage.setItem("Mesas",JSON.stringify(objJsonResp));
+} 
+
 function codigo_random(longitud)
 {
     var caracteres = "0123456789ABCDEF";
@@ -592,13 +597,26 @@ function modificarEmpleado(indice , auxEmpleado):void
 }
 
 ///////MESA///////////
-function calcularIdMesa(indice):string
+
+function calcularIdMesa(codAlfa):number
 {
-    let Mesa=  JSON.parse(localStorage.getItem("Mesas") || "[]")[indice];    
-    
-    let codAlfa = JSON.parse(Mesa)._codAlfa;
-    return codAlfa;
+    let indice;
+    let MesasString=  JSON.parse(localStorage.getItem("Mesas") || "[]");    
+    for (var i = 0; i < MesasString.length ; i++) 
+     {
+        let mesaActual = JSON.parse(MesasString[i]);
+        if (mesaActual != null)
+        {
+            if(mesaActual._codAlfa==codAlfa)
+            {
+                indice = i;
+            }
+        } 
+    }
+    return indice;
 }
+
+
 
 //FUNCIONES QUE LLAMAN A MODIFICAR CON DISTINTOS PARAMETROS
  function eliminarEmpleado(idEmpleado):void
@@ -774,8 +792,8 @@ function mostrarMesas():void
         +'<thead>'
         +'<tr>'
         +'  <th>Cod. Mesa</th>'
-        +'  <th>Cant. Pedidos</th>'
         +'  <th>Recaudación Total</th>'
+        +'  <th>Cant. Pedidos</th>'
         +'  <th>Estado Actual</th>'
         +'</tr>'
         +'</thead>'
@@ -815,7 +833,7 @@ function mostrarMesas():void
 function agregarPedido():void
 {
     let codigoPedido =String ($('#codAlfaBox').val()) ; 
-    let codAlfaMesa =  calcularIdMesa(Number ($("#mesaDisp").val())  );
+    let codAlfaMesa =  String ($("#mesaDisp").val())  ;
     let nuevaPedido    = new Clases.Pedido(
                                         codigoPedido,
                                         Clases.estadoPedido["ORDEN TOMADA"],
@@ -828,6 +846,13 @@ function agregarPedido():void
     PedidosString.push( JSON.stringify(nuevaPedido));
     localStorage.setItem("Pedidos",JSON.stringify(PedidosString));
 
+    
+    var indice = calcularIdMesa(codAlfaMesa);
+    var Mesa = JSON.parse(JSON.parse(localStorage.Mesas)[indice]);
+    Mesa._estado = Clases.estadoMesa["CON CLIENTE ESPERANDO PEDIDO"];
+    Mesa._cantPedidos++;
+     
+    armoJSONMesa(indice,Mesa);
     alert ("Pedido dada de Alta");
     mostrarPedidosMozo();  
 }
@@ -945,7 +970,7 @@ function mostrarPedidosMozo():void
                     `</span></a>
                 <!--DESCIPCION PEDIDO--> 
                  <span class="product-description">
-                 `+"SECTORMESA" +` - `+PedidoActual._codAlfa+` - `+PedidoActual._nombreCliente +`
+                 `+"SECTORMESA" +` - `+PedidoActual._nombreCliente +`
                  </span>     
                  </div>           
             </li><!-- /.item -->
