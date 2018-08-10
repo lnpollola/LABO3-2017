@@ -394,6 +394,20 @@ function muestraModificarPedido(idPedido):void
     var indice = determinoIndicePedido(idPedido);
     var pedido = JSON.parse(JSON.parse(localStorage.Pedidos)[indice]);
 
+
+    var productosTragos="";
+    var productosVinos ="";
+    var productosCerveza = "";
+    var productosCocina = "";
+    var productosCandy = "";
+
+    if ( pedido._sectorTragos == true ) { productosTragos = pedido._productosTragos;  } 
+    if ( pedido._sectorVinos == true ) { productosVinos = pedido._productosVinos;  } 
+    if ( pedido._sectorCerveza == true ) { productosCerveza = pedido._productosCerveza ;  } 
+    if ( pedido._sectorCocina == true ) { productosCocina =  pedido._productosCocina;  } 
+    if ( pedido._sectorCandy == true ) { productosCandy = pedido._productosCandy;  } 
+
+
     let cuerpoAgregarPedido = 
     `
     <div class="box box-primary">
@@ -440,16 +454,16 @@ function muestraModificarPedido(idPedido):void
 
         <!-- checkbox -->
         <div class="form-group">
-          <label><input type="checkbox" id="checkTragos" class="iCheck-helper"/>Tragos</label>             <input type="text" placeholder="Ingrese detalle de Tragos..." id="checkTragosForm"   value="`+pedido._productosTragos+`"  class="form-control">
-          <label><input type="checkbox" id="checkVinos"  class="iCheck-helper"/>Vinos</label>              <input type="text" placeholder="Ingrese detalle de Vinos..." id="checkVinosForm"     value="`+pedido._productosVinos+`"   class="form-control">
-          <label><input type="checkbox" id="checkCerveza"class="iCheck-helper"/>Cerveza Artesanal</label>  <input type="text" placeholder="Ingrese detalle de Cerveza..." id="checkCervezaForm" value="`+pedido._productosCerveza+`" class="form-control">
-          <label><input type="checkbox" id="checkCocina" class="iCheck-helper"/>Cocina</label>             <input type="text" placeholder="Ingrese detalle de Cocina..." id="checkCocinaForm"   value="`+pedido._productosCocina+`"  class="form-control">
-          <label><input type="checkbox" id="checkCandy"  class="iCheck-helper"/>Candy Bar</label>          <input type="text" placeholder="Ingrese detalle de CandyBar..." id="checkCandyForm"  value="`+pedido._productosCandy+`"   class="form-control">
+          <label><input type="checkbox" id="checkTragos" class="iCheck-helper"/>Tragos</label>             <input type="text" placeholder="Ingrese detalle de Tragos..." id="checkTragosForm"   value="`+productosTragos+`"  class="form-control">
+          <label><input type="checkbox" id="checkVinos"  class="iCheck-helper"/>Vinos</label>              <input type="text" placeholder="Ingrese detalle de Vinos..." id="checkVinosForm"     value="`+productosVinos+`"   class="form-control">
+          <label><input type="checkbox" id="checkCerveza"class="iCheck-helper"/>Cerveza Artesanal</label>  <input type="text" placeholder="Ingrese detalle de Cerveza..." id="checkCervezaForm" value="`+productosCerveza+`" class="form-control">
+          <label><input type="checkbox" id="checkCocina" class="iCheck-helper"/>Cocina</label>             <input type="text" placeholder="Ingrese detalle de Cocina..." id="checkCocinaForm"   value="`+productosCocina+`"  class="form-control">
+          <label><input type="checkbox" id="checkCandy"  class="iCheck-helper"/>Candy Bar</label>          <input type="text" placeholder="Ingrese detalle de CandyBar..." id="checkCandyForm"  value="`+productosCandy+`"   class="form-control">
         </div>
 
 
         <div class="box-footer">
-            <button type="submit" id="botonAgregarPed" onclick="modificarPedido(`+(indice)+`,Clases.estadoPedido.MODIFICAR);" class="btn btn-primary btn-block btn-flat">Agregar</button>
+            <button type="submit" id="botonAgregarPed" onclick="modificarPedido(`+(indice)+`,Clases.estadoPedido.MODIFICAR);" class="btn btn-primary btn-block btn-flat">Modificar Pedido</button>
         </div>
     </form>
     <!-- /.box -->`;
@@ -469,7 +483,7 @@ function validaLogin()
       
       let empleadoActual= JSON.parse(EmpleadosString[i]);
       if  
-      (empleadoActual._nombre==$('#mailingresado').val() && empleadoActual._clave == $('#passingresado').val() )
+      (empleadoActual._nombre==$('#mailingresado').val() && empleadoActual._clave == $('#passingresado').val() && empleadoActual._estado == Clases.estadoCLIEMP.ACTIVO )
         {
              estalogueado = 1; 
              rol = Clases.tipoEmpleado[empleadoActual._tipo];   
