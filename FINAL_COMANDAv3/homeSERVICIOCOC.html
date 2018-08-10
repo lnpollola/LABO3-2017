@@ -4,32 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link id="appFavicon" rel="icon" type="image/x-icon" href="img/favicon.png">
-    <title>MOZO</title>
+    <title>SERVICIOS</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="Estilo_Bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-     <!-- jQuery 2.1.3 -->
-     <script src="Estilo_Bootstrap/plugins/jQuery/jQuery-2.1.3.min.js"></script>
   <!-- Font Awesome Icons -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    
     <!-- Ionicons -->
-   <!-- Theme style -->
-   <link href="Estilo_Bootstrap/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-   <link href="Estilo_Bootstrap/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" />
-   <link href="css\estilos.css" rel="stylesheet" type="text/css" />
-   <script src="TS/Persona.js"></script>
-   <script src="TS/Mesa.js"></script>
-   <script src="TS/Empleado.js"></script>
-   <script src="TS/enumerado.js"></script>
-   <script src="TS/app.js"></script>
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+       <!-- Theme style -->
+       <link href="Estilo_Bootstrap/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+       <link href="Estilo_Bootstrap/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" />
+       <link href="css\estilos.css" rel="stylesheet" type="text/css" />
+       <script src="TS/Persona.js"></script>
+       <script src="TS/Mesa.js"></script>
+       <script src="TS/Empleado.js"></script>
+       <script src="TS/enumerado.js"></script>
+       <script src="TS/app.js"></script>
+    
   </head>
   <body class="skin-blue fixed" data-spy="scroll" data-target="#scrollspy">
         <header class="main-header">               
           <nav class="navbar navbar-static-top">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a href="homeMOZO.html" class="navbar-brand"><b>COMANDA</b>3.0</a>
+                <a href="homeSERVICIO.html" class="navbar-brand"><b>COMANDA</b>3.0</a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                   <i class="fa fa-bars"></i>
                 </button>
@@ -40,14 +39,8 @@
               <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pedidos <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a onclick="muestraAgregarPedido();filtroMesasActivas();">Nuevo Pedido</a></li>
-                      <li><a onclick="mostrarPedidosMozo()">Lista de Pedidos</a></li>
-                    </ul>
+                    <li><a onclick="mostrarPedidosServicioCOC();">Lista de Pendientes</a></li>
                   </li>
-                  <li><a onclick="mostrarMesas(true)">Lista de Mesas</a></li>
-                  
                 </ul>
               </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

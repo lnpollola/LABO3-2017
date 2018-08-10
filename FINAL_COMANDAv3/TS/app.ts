@@ -511,17 +511,17 @@ function validaLogin()
         {
             case "BARTENDER": 
             {
-                window.location.href = "homeSERVICIO.html";
+                window.location.href = "homeSERVICIOBAR.html";
                 break;
             }
             case "CERVECERO": 
             {
-                window.location.href = "homeSERVICIO.html";
+                window.location.href = "homeSERVICIOCER.html";
                 break;
             }
             case "COCINERO": 
             {
-                window.location.href = "homeSERVICIO.html";
+                window.location.href = "homeSERVICIOCOC.html";
                 break;
             }
             case "MOZO": 
@@ -1228,11 +1228,9 @@ function terminadoPedido(idPedido):void
 
 
 
-function mostrarPedidosServicio(rol?):void
+function mostrarPedidosServicioBAR():void
 {
     borrarPrincipal();
-    // let PedidosString  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
-    
     
     let valor = Clases.sectoresProd.TRAGOS;
     let PedidosString=  JSON.parse(localStorage.getItem("Pedidos") || "[]"); 
@@ -1241,7 +1239,7 @@ function mostrarPedidosServicio(rol?):void
     let stringFinal = PedidosString
                                 .filter(function(Pedido){
                                     let PedidoRet = JSON.parse(Pedido);
-                                    return PedidoRet._sectorVinos == true;
+                                    return PedidoRet._sectorTragos == true ||PedidoRet._sectorVinos == true  ;
                                 })
                                 .map(function(Pedido){
                                     let PedidoRet = JSON.parse(Pedido);
@@ -1310,6 +1308,170 @@ function mostrarPedidosServicio(rol?):void
         $("#listar").append(tablafinal);   
 }  
 
+
+function mostrarPedidosServicioCOC():void
+{
+    borrarPrincipal();
+    // let PedidosString  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
+    
+    
+    let valor = Clases.sectoresProd.TRAGOS;
+    let PedidosString=  JSON.parse(localStorage.getItem("Pedidos") || "[]"); 
+       
+    
+    let stringFinal = PedidosString
+                                .filter(function(Pedido){
+                                    let PedidoRet = JSON.parse(Pedido);
+                                    return PedidoRet._sectorCocina == true;
+                                })
+                                .map(function(Pedido){
+                                    let PedidoRet = JSON.parse(Pedido);
+                                    return PedidoRet;
+                                });   
+    
+    PedidosString= stringFinal; 
+    
+    //ENCABEZADO FIJO
+    let encabezadoTablaAppend = 
+        '<div class="box box-info">'
+        +'<div class="box-header with-border">'
+        +'<h3 class="box-title">Listado de Pedidos</h3>'
+        +'<div class="box-tools pull-right">'
+        +'<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
+        +'<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
+        +'</div>'
+        +'</div><!-- /.box-header -->'
+        +'<div class="box-body">'
+        +'<div class="table-responsive">'
+        +'<table class="table no-margin">'
+        +'<thead>'
+        +'<tr>'
+        +'  <th>Cod. Pedido</th>'
+        +'  <th>Nombre Cliente</th>'
+        +'  <th>Hora Ingreso</th>'
+        +'  <th>Mesa Asignada</th>'
+        +'  <th>Tiempo Restante</th>'
+        +'  <th>Estado Actual</th>'
+        +'  <th>Imagen Asociada</th>'
+        +'</tr>'
+        +'</thead>'
+        +'<tbody>';
+    let cuerpoTablaAppend;
+    //CUERPO
+    for (var i = 0; i < PedidosString.length ; i++) 
+     {
+        let PedidoActual = PedidosString[i];
+        if (PedidoActual != null)
+        {
+            var html='<tr>';
+            //DATOS
+                html+="<td>";html+=PedidoActual._nroPedido                      ;html+="</td>";
+                html+="<td>";html+= PedidoActual._nombreCliente                 ;html+= "</td>";
+                html+="<td>";html+= PedidoActual._fechahoraIngreso              ;html+= "</td>";
+                html+="<td>";html+= PedidoActual._mesaAsignada                  ;html+= "</td>";
+                html+="<td>";html+= "TpoRestante()"                             ;html+= "</td>";
+                html+="<td>";html+= Clases.estadoPedido[PedidoActual._estado]   ;html+= "</td>";
+                html+=`<td style="width:150px; height:150px; text-align:center; vertical-align:middle" >`;
+                html+= PedidoActual._imagen;
+                html+= "</td>";
+        }
+        if(i==0)
+        {cuerpoTablaAppend = html;}
+        else {cuerpoTablaAppend += html;}        
+    }
+        //FOOTER
+        let footerTablaAppend = '</tbody>';
+        footerTablaAppend+='</table>';
+        footerTablaAppend+='</div><!-- /.table-responsive -->';
+        footerTablaAppend+='</div><!-- /.box-body -->';
+        footerTablaAppend+='<div class="box-footer clearfix">';
+        footerTablaAppend+='</div>';
+        footerTablaAppend+='</div>';
+        let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
+        $("#listar").append(tablafinal);   
+}  
+
+
+
+function mostrarPedidosServicioCER():void
+{
+    borrarPrincipal();
+    
+    let valor = Clases.sectoresProd.TRAGOS;
+    let PedidosString=  JSON.parse(localStorage.getItem("Pedidos") || "[]"); 
+       
+    
+    let stringFinal = PedidosString
+                                .filter(function(Pedido){
+                                    let PedidoRet = JSON.parse(Pedido);
+                                    return PedidoRet._sectorCerveza == true;
+                                })
+                                .map(function(Pedido){
+                                    let PedidoRet = JSON.parse(Pedido);
+                                    return PedidoRet;
+                                });   
+    
+    PedidosString= stringFinal; 
+    
+    //ENCABEZADO FIJO
+    let encabezadoTablaAppend = 
+        '<div class="box box-info">'
+        +'<div class="box-header with-border">'
+        +'<h3 class="box-title">Listado de Pedidos</h3>'
+        +'<div class="box-tools pull-right">'
+        +'<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
+        +'<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
+        +'</div>'
+        +'</div><!-- /.box-header -->'
+        +'<div class="box-body">'
+        +'<div class="table-responsive">'
+        +'<table class="table no-margin">'
+        +'<thead>'
+        +'<tr>'
+        +'  <th>Cod. Pedido</th>'
+        +'  <th>Nombre Cliente</th>'
+        +'  <th>Hora Ingreso</th>'
+        +'  <th>Mesa Asignada</th>'
+        +'  <th>Tiempo Restante</th>'
+        +'  <th>Estado Actual</th>'
+        +'  <th>Imagen Asociada</th>'
+        +'</tr>'
+        +'</thead>'
+        +'<tbody>';
+    let cuerpoTablaAppend;
+    //CUERPO
+    for (var i = 0; i < PedidosString.length ; i++) 
+     {
+        let PedidoActual = PedidosString[i];
+        if (PedidoActual != null)
+        {
+            var html='<tr>';
+            //DATOS
+                html+="<td>";html+=PedidoActual._nroPedido                      ;html+="</td>";
+                html+="<td>";html+= PedidoActual._nombreCliente                 ;html+= "</td>";
+                html+="<td>";html+= PedidoActual._fechahoraIngreso              ;html+= "</td>";
+                html+="<td>";html+= PedidoActual._mesaAsignada                  ;html+= "</td>";
+                html+="<td>";html+= "TpoRestante()"                             ;html+= "</td>";
+                html+="<td>";html+= Clases.estadoPedido[PedidoActual._estado]   ;html+= "</td>";
+                html+=`<td style="width:150px; height:150px; text-align:center; vertical-align:middle" >`;
+                html+= PedidoActual._imagen;
+                html+= "</td>";
+        }
+        if(i==0)
+        {cuerpoTablaAppend = html;}
+        else {cuerpoTablaAppend += html;}        
+    }
+        //FOOTER
+        let footerTablaAppend = '</tbody>';
+        footerTablaAppend+='</table>';
+        footerTablaAppend+='</div><!-- /.table-responsive -->';
+        footerTablaAppend+='</div><!-- /.box-body -->';
+        footerTablaAppend+='<div class="box-footer clearfix">';
+        footerTablaAppend+='</div>';
+        footerTablaAppend+='</div>';
+        let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
+        $("#listar").append(tablafinal);   
+}  
 
 
 function mostrarPedidosJefe():void
