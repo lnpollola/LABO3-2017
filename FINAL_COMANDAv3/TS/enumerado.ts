@@ -39,7 +39,8 @@ namespace Clases{
         "EN PREPARACION",
         "LISTO PARA SERVIR",
         "SERVIDO",
-        "MODIFICAR"
+        "MODIFICAR",
+        "SIGUIENTE"
     }
 
   }

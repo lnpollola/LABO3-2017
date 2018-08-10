@@ -579,6 +579,11 @@ function siguienteEstadoMesa(idMesa) {
     modificarMesa(indice, Clases.estadoMesa.SIGUIENTE);
     mostrarMesas(true);
 }
+function siguienteEstadoPedido(idPedido) {
+    var indice = determinoIndicePedido(idPedido);
+    modificarPedido(indice, Clases.estadoPedido.SIGUIENTE);
+    window.location.reload();
+}
 var auxMesa;
 function modificarMesa(indice, auxMesa) {
     var indice = indice;
@@ -779,6 +784,9 @@ function modificarPedido(indice, auxPedido) {
             pedido._productosCandy = String($('#checkCandyForm').val());
         }
     }
+    else if (auxPedido = Clases.estadoPedido.SIGUIENTE) {
+        pedido._estado++;
+    }
     else {
         pedido._estado = auxPedido;
     }
@@ -888,7 +896,6 @@ function mostrarPedidosServicioBAR() {
 }
 function mostrarPedidosServicioCOC() {
     borrarPrincipal();
-    // let PedidosString  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
     var valor = Clases.sectoresProd.TRAGOS;
     var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
     var stringFinal = PedidosString
@@ -922,6 +929,7 @@ function mostrarPedidosServicioCOC() {
         + '  <th>Tiempo Restante</th>'
         + '  <th>Estado Actual</th>'
         + '  <th>Imagen Asociada</th>'
+        + '  <th>Acciones</th>'
         + '</tr>'
         + '</thead>'
         + '<tbody>';
@@ -952,6 +960,22 @@ function mostrarPedidosServicioCOC() {
             html += "</td>";
             html += "<td style=\"width:150px; height:150px; text-align:center; vertical-align:middle\" >";
             html += PedidoActual._imagen;
+            html += "</td>";
+        }
+        if (Clases.estadoPedido[PedidoActual._estado + 1] != "MODIFICAR" && Clases.estadoPedido[PedidoActual._estado + 1] != "SIGUIENTE") {
+            html += "<td>";
+            html += "<button class='btn btn-block btn-success btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='siguienteEstadoPedido(`" + PedidoActual._nroPedido + "`)' >";
+            html += Clases.estadoPedido[PedidoActual._estado + 1];
+            html += " <i class='glyphicon glyphicon-fast-forward'></i>";
+            html += "</button>";
+            html += "</td>";
+        }
+        else {
+            html += "<td>";
+            html += "<button class='btn btn-block btn-danger btn-sm disabled' type='button' id='btnEnviar' value='Eliminar' onclick='siguienteEstadoPedido(`" + PedidoActual._nroPedido + "`)' >";
+            html += Clases.estadoMesa[PedidoActual._estado + 1];
+            html += " <i class='glyphicon glyphicon-fast-forward'></i>";
+            html += "</button>";
             html += "</td>";
         }
         if (i == 0) {

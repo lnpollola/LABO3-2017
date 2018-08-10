@@ -1049,6 +1049,12 @@ function siguienteEstadoMesa(idMesa):void
     mostrarMesas(true);
 }
 
+function siguienteEstadoPedido(idPedido):void
+{
+    var indice = determinoIndicePedido(idPedido);
+    modificarPedido(indice,Clases.estadoPedido.SIGUIENTE);
+    window.location.reload();
+}
 
 var auxMesa;
 function modificarMesa(indice , auxMesa?):void
@@ -1303,6 +1309,10 @@ function modificarPedido(indice , auxPedido):void
             pedido._productosCandy = String ($('#checkCandyForm').val()) ; 
         }
     }
+    else if(auxPedido= Clases.estadoPedido.SIGUIENTE)
+    {
+        pedido._estado ++;
+    }
     else 
     {
         pedido._estado = auxPedido;    
@@ -1422,9 +1432,6 @@ function mostrarPedidosServicioBAR():void
 function mostrarPedidosServicioCOC():void
 {
     borrarPrincipal();
-    // let PedidosString  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
-    
-    
     let valor = Clases.sectoresProd.TRAGOS;
     let PedidosString=  JSON.parse(localStorage.getItem("Pedidos") || "[]"); 
        
@@ -1463,6 +1470,7 @@ function mostrarPedidosServicioCOC():void
         +'  <th>Tiempo Restante</th>'
         +'  <th>Estado Actual</th>'
         +'  <th>Imagen Asociada</th>'
+        +'  <th>Acciones</th>'
         +'</tr>'
         +'</thead>'
         +'<tbody>';
@@ -1485,6 +1493,28 @@ function mostrarPedidosServicioCOC():void
                 html+= PedidoActual._imagen;
                 html+= "</td>";
         }
+
+
+        if( Clases.estadoPedido[PedidoActual._estado+1] != "MODIFICAR" && Clases.estadoPedido[PedidoActual._estado+1] != "SIGUIENTE" )
+        {
+            html+="<td>";
+            html+="<button class='btn btn-block btn-success btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='siguienteEstadoPedido(`"+PedidoActual._nroPedido+"`)' >";
+            html+=Clases.estadoPedido[PedidoActual._estado+1];
+            html+=" <i class='glyphicon glyphicon-fast-forward'></i>";
+            html+="</button>";
+            html+="</td>";  
+        }
+        else
+        {
+            html+="<td>";
+            html+="<button class='btn btn-block btn-danger btn-sm disabled' type='button' id='btnEnviar' value='Eliminar' onclick='siguienteEstadoPedido(`"+PedidoActual._nroPedido+"`)' >";
+            html+=Clases.estadoMesa[PedidoActual._estado+1];
+            html+=" <i class='glyphicon glyphicon-fast-forward'></i>";
+            html+="</button>";
+            html+="</td>";  
+        }
+
+
         if(i==0)
         {cuerpoTablaAppend = html;}
         else {cuerpoTablaAppend += html;}        

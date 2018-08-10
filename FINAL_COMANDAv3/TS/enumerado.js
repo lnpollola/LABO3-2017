@@ -42,6 +42,7 @@ var Clases;
         estadoPedido[estadoPedido["LISTO PARA SERVIR"] = 2] = "LISTO PARA SERVIR";
         estadoPedido[estadoPedido["SERVIDO"] = 3] = "SERVIDO";
         estadoPedido[estadoPedido["MODIFICAR"] = 4] = "MODIFICAR";
+        estadoPedido[estadoPedido["SIGUIENTE"] = 5] = "SIGUIENTE";
     })(estadoPedido = Clases.estadoPedido || (Clases.estadoPedido = {}));
 })(Clases || (Clases = {}));
 //# sourceMappingURL=enumerado.js.map
