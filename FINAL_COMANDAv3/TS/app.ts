@@ -893,7 +893,7 @@ function agregarMesa():void
     mostrarMesas();  
 }
 
-function mostrarMesas():void
+function mostrarMesas(vienedeMozo?):void
 {
     borrarPrincipal();
     let MesasString  = JSON.parse(localStorage.getItem("Mesas") || "[]");
@@ -903,9 +903,7 @@ function mostrarMesas():void
         +'<div class="box-header with-border">'
         +'<h3 class="box-title">Listado de Mesas</h3>'
         +'<div class="box-tools pull-right">'
-        +'<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
-        +'<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
-        +'</div>'
+       +'</div>'
         +'</div><!-- /.box-header -->'
         +'<div class="box-body">'
         +'<div class="table-responsive">'
@@ -916,7 +914,11 @@ function mostrarMesas():void
         +'  <th>Recaudación Total</th>'
         +'  <th>Cant. Pedidos</th>'
         +'  <th>Estado Actual</th>'
-        +'</tr>'
+        if(!vienedeMozo)
+        {
+            +'  <th>Acciones</th>'
+        }
+        +'</tr>'        
         +'</thead>'
         +'<tbody>';
     let cuerpoTablaAppend;
@@ -932,7 +934,29 @@ function mostrarMesas():void
                 html+="<td>";html+= mesaActual._recaudacion               ;html+= "</td>";
                 html+="<td>";html+= mesaActual._cantPedidos               ;html+= "</td>";
                 html+="<td>";html+= Clases.estadoMesa[mesaActual._estado] ;html+= "</td>";
-        }
+                
+                if(!vienedeMozo)
+                {
+                    if(mesaActual._estado == Clases.estadoMesa["CON CLIENTES PAGANDO"] )
+                    {
+                        html+="<td>";
+                        html+="<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa("+mesaActual._codAlfa+")'>";
+                        html+="CERRAR ";
+                        html+="<i class='glyphicon glyphicon-minus'></i>";
+                        html+="</button>";
+                        html+="</td>";   
+                    }
+                    else 
+                    {
+                        html+="<td>";
+                        html+="<button class='btn btn-block btn-danger disabled' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa("+mesaActual._codAlfa+")'>";
+                        html+="CERRAR ";
+                        html+="<i class='glyphicon glyphicon-minus'></i>";
+                        html+="</button>";
+                        html+="</td>";  
+                    }
+                }
+            }
         if(i==0)
         {cuerpoTablaAppend = html;}
         else {cuerpoTablaAppend += html;}        

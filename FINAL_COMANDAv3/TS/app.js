@@ -465,7 +465,7 @@ function agregarMesa() {
     alert("Mesa dada de Alta");
     mostrarMesas();
 }
-function mostrarMesas() {
+function mostrarMesas(vienedeMozo) {
     borrarPrincipal();
     var MesasString = JSON.parse(localStorage.getItem("Mesas") || "[]");
     //ENCABEZADO FIJO
@@ -473,8 +473,6 @@ function mostrarMesas() {
         + '<div class="box-header with-border">'
         + '<h3 class="box-title">Listado de Mesas</h3>'
         + '<div class="box-tools pull-right">'
-        + '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
-        + '<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
         + '</div>'
         + '</div><!-- /.box-header -->'
         + '<div class="box-body">'
@@ -485,8 +483,11 @@ function mostrarMesas() {
         + '  <th>Cod. Mesa</th>'
         + '  <th>Recaudación Total</th>'
         + '  <th>Cant. Pedidos</th>'
-        + '  <th>Estado Actual</th>'
-        + '</tr>'
+        + '  <th>Estado Actual</th>';
+    if (!vienedeMozo) {
+        +'  <th>Acciones</th>';
+    }
+    +'</tr>'
         + '</thead>'
         + '<tbody>';
     var cuerpoTablaAppend;
@@ -508,6 +509,24 @@ function mostrarMesas() {
             html += "<td>";
             html += Clases.estadoMesa[mesaActual._estado];
             html += "</td>";
+            if (!vienedeMozo) {
+                if (mesaActual._estado == Clases.estadoMesa["CON CLIENTES PAGANDO"]) {
+                    html += "<td>";
+                    html += "<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(" + mesaActual._codAlfa + ")'>";
+                    html += "CERRAR ";
+                    html += "<i class='glyphicon glyphicon-minus'></i>";
+                    html += "</button>";
+                    html += "</td>";
+                }
+                else {
+                    html += "<td>";
+                    html += "<button class='btn btn-block btn-danger disabled' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(" + mesaActual._codAlfa + ")'>";
+                    html += "CERRAR ";
+                    html += "<i class='glyphicon glyphicon-minus'></i>";
+                    html += "</button>";
+                    html += "</td>";
+                }
+            }
         }
         if (i == 0) {
             cuerpoTablaAppend = html;
