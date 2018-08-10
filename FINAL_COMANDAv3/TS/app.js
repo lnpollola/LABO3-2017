@@ -711,6 +711,92 @@ function terminadoPedido(idPedido) {
     var indice = determinoIndice(idPedido);
     modificarPedido(indice, Clases.estadoPedido["LISTO PARA SERVIR"]);
 }
+function mostrarPedidosServicio(rol) {
+    borrarPrincipal();
+    // let PedidosString  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
+    var valor = Clases.sectoresProd.TRAGOS;
+    var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
+    var stringFinal = PedidosString
+        .filter(function (Pedido) {
+        var PedidoRet = JSON.parse(Pedido);
+        return PedidoRet._sectorVinos == true;
+    })
+        .map(function (Pedido) {
+        var PedidoRet = JSON.parse(Pedido);
+        return PedidoRet;
+    });
+    PedidosString = stringFinal;
+    //ENCABEZADO FIJO
+    var encabezadoTablaAppend = '<div class="box box-info">'
+        + '<div class="box-header with-border">'
+        + '<h3 class="box-title">Listado de Pedidos</h3>'
+        + '<div class="box-tools pull-right">'
+        + '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
+        + '<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
+        + '</div>'
+        + '</div><!-- /.box-header -->'
+        + '<div class="box-body">'
+        + '<div class="table-responsive">'
+        + '<table class="table no-margin">'
+        + '<thead>'
+        + '<tr>'
+        + '  <th>Cod. Pedido</th>'
+        + '  <th>Nombre Cliente</th>'
+        + '  <th>Hora Ingreso</th>'
+        + '  <th>Mesa Asignada</th>'
+        + '  <th>Tiempo Restante</th>'
+        + '  <th>Estado Actual</th>'
+        + '  <th>Imagen Asociada</th>'
+        + '</tr>'
+        + '</thead>'
+        + '<tbody>';
+    var cuerpoTablaAppend;
+    //CUERPO
+    for (var i = 0; i < PedidosString.length; i++) {
+        var PedidoActual = PedidosString[i];
+        if (PedidoActual != null) {
+            var html = '<tr>';
+            //DATOS
+            html += "<td>";
+            html += PedidoActual._nroPedido;
+            html += "</td>";
+            html += "<td>";
+            html += PedidoActual._nombreCliente;
+            html += "</td>";
+            html += "<td>";
+            html += PedidoActual._fechahoraIngreso;
+            html += "</td>";
+            html += "<td>";
+            html += PedidoActual._mesaAsignada;
+            html += "</td>";
+            html += "<td>";
+            html += "TpoRestante()";
+            html += "</td>";
+            html += "<td>";
+            html += Clases.estadoPedido[PedidoActual._estado];
+            html += "</td>";
+            html += "<td style=\"width:150px; height:150px; text-align:center; vertical-align:middle\" >";
+            html += PedidoActual._imagen;
+            html += "</td>";
+        }
+        if (i == 0) {
+            cuerpoTablaAppend = html;
+        }
+        else {
+            cuerpoTablaAppend += html;
+        }
+    }
+    //FOOTER
+    var footerTablaAppend = '</tbody>';
+    footerTablaAppend += '</table>';
+    footerTablaAppend += '</div><!-- /.table-responsive -->';
+    footerTablaAppend += '</div><!-- /.box-body -->';
+    footerTablaAppend += '<div class="box-footer clearfix">';
+    footerTablaAppend += '</div>';
+    footerTablaAppend += '</div>';
+    var tablafinal = encabezadoTablaAppend + cuerpoTablaAppend + footerTablaAppend;
+    $("#listar").append(tablafinal);
+}
 function mostrarPedidosJefe() {
     borrarPrincipal();
     var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
@@ -719,8 +805,6 @@ function mostrarPedidosJefe() {
         + '<div class="box-header with-border">'
         + '<h3 class="box-title">Listado de Pedidos</h3>'
         + '<div class="box-tools pull-right">'
-        + '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
-        + '<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
         + '</div>'
         + '</div><!-- /.box-header -->'
         + '<div class="box-body">'
