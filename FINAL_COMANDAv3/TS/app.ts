@@ -4,17 +4,18 @@
 
 //     //EVENTOS
 //         //BOTON FILTRAR
-//         $("#filtrarPor").change(function(){
+//         $("#mesasDisp").change(function(){
 //             let valorFiltro = $('#filtrarPor').map(function() { return ; }).get();
-//             mostrarEmpleados(valorFiltro);
+//             // mostrarEmpleados(valorFiltro);
 //             tablaAux = undefined;
 //         });
 //     //CARGA DE LA PAGINA
-//     encabezadoCheck();
+//     // encabezadoCheck();
 //     cargoMenusEncabezado();
-//     mostrarEmpleados();
+//     // mostrarEmpleados();
 // });
 
+//CARGO LOS DROPDOWN QUE DEPENDEN DEL ENUMERADO
 
 var imagenBASE64;
 /////////////////////////////////////////FUNCIONES DEL SISTEMA/////////////////////////////////////////
@@ -123,11 +124,6 @@ function muestraAgregarEmpleado():void
           </div><!-- /.input group -->
         </div><!-- /.form group -->
         <!-- /.box-body -->
-
-        <div class="box-footer">
-            <button type="submit" onclick="filtroMesasActivas();" class="btn btn-primary btn-block btn-flat" id="mesasActivas" >Mesas</button>
-        </div>
-
         <div class="box-footer">
             <button type="submit" onclick="agregarEmpleado();" class="btn btn-primary btn-block btn-flat" id="btnAgregarEmpleado" >Agregar</button>
         </div>
@@ -354,6 +350,14 @@ function muestraAgregarPedido():void
            </div>
            <div id="imgTest"></div>
         <!-- /.box-body -->
+
+        <!-- Mesas Disponibles-->
+        <div class="form-group">
+          <label for="opcion">Mesas Disponibles:</label>
+            <select class="form-control" name="mesaDisp" id="mesaDisp">
+            </select>
+        </div>
+        
         <div class="box-footer">
             <button type="submit" id="botonAgregarPed" onclick="agregarPedido();" class="btn btn-primary btn-block btn-flat">Agregar</button>
         </div>
@@ -361,6 +365,32 @@ function muestraAgregarPedido():void
     <!-- /.box -->`;
 
     $("#agregar").append(cuerpoAgregarPedido);
+}
+
+function filtroMesasActivas():void
+{
+    let valor = Clases.estadoMesa.ABIERTA;
+    let MesasString=  JSON.parse(localStorage.getItem("Mesas") || "[]");    
+    
+    let stringFinal = MesasString
+                                .filter(function(mesa){
+                                    let mesaRet = JSON.parse(mesa);
+                                    return mesaRet._estado == valor;
+                                })
+                                .map(function(mesa){
+                                    let mesaRet = JSON.parse(mesa);
+                                    return mesaRet;
+                                });   
+    
+    MesasString= stringFinal; 
+
+    //ENCABEZADO DE FORM DE CARGA
+    var i = 0;
+    let select = $("#mesaDisp");
+    for (var i = 0; i < MesasString.length; i++) 
+    {
+        select.append("<option value="+i+">"+MesasString[i]._codAlfa+"</option>");
+    }
 }
 
 
@@ -784,26 +814,24 @@ function mostrarMesas():void
         $("#listar").append(tablafinal);   
 }  
 
-function filtroMesasActivas()
-{
-    let valor = Clases.estadoMesa["CON CLIENTES PAGANDO"];
-    let MesasString=  JSON.parse(localStorage.getItem("Mesas") || "[]");    
+// function filtroMesasActivas()
+// {
+//     let valor = Clases.estadoMesa["CON CLIENTES PAGANDO"];
+//     let MesasString=  JSON.parse(localStorage.getItem("Mesas") || "[]");    
     
-    let stringFinal = MesasString
-                                .filter(function(mesa){
-                                    let mesaRet = JSON.parse(mesa);
-                                    return mesaRet._estado == valor;
-                                })
-                                .map(function(mesa){
-                                    let mesaRet = JSON.parse(mesa);
-                                    return mesaRet;
-                                });   
+//     let stringFinal = MesasString
+//                                 .filter(function(mesa){
+//                                     let mesaRet = JSON.parse(mesa);
+//                                     return mesaRet._estado == valor;
+//                                 })
+//                                 .map(function(mesa){
+//                                     let mesaRet = JSON.parse(mesa);
+//                                     return mesaRet;
+//                                 });   
     
-    MesasString= stringFinal;
-    
-       
-}
-//             mostrarEmpleados(valorFiltro);
+//     MesasString= stringFinal;   
+// }
+// //             mostrarEmpleados(valorFiltro);
 
 ///////PEDIDOS///////////
 function agregarPedido():void
