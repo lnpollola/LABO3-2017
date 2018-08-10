@@ -7,11 +7,12 @@ namespace Clases{
         "SOCIO"
     }
 
-    export enum sectores{
-        "BARRA DE TRAGOS Y VINOS",
-        "BARRA DE CERVEZA",
+    export enum sectoresProd{
+        "TRAGOS",
+        "VINOS",
+        "CERVEZA ARTESANAL",
         "COCINA",
-        "CANDY BAR"
+        "CANDY BAR",
     }
 
     export enum estadoCLIEMP{

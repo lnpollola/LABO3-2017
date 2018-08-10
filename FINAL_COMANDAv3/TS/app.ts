@@ -340,7 +340,17 @@ function muestraAgregarPedido():void
             <select class="form-control" name="mesaDisp" id="mesaDisp">
             </select>
         </div>
-        
+
+        <!-- checkbox -->
+        <div class="form-group">
+          <label><input type="checkbox" class="minimal"/> Tragos</label><input type="text" class="form-control">
+          <label><input type="checkbox" class="minimal"/> Vinos</label><input type="text" class="form-control">
+          <label><input type="checkbox" class="minimal"/> Cerveza Artesanal</label><input type="text" class="form-control">
+          <label><input type="checkbox" class="minimal" disabled/> Cocina</label><input type="text" class="form-control">
+          <label><input type="checkbox" class="minimal" disabled/> Candy Bar</label><input type="text" class="form-control">
+        </div>
+
+
         <div class="box-footer">
             <button type="submit" id="botonAgregarPed" onclick="agregarPedido();" class="btn btn-primary btn-block btn-flat">Agregar</button>
         </div>
@@ -970,7 +980,7 @@ function mostrarPedidosMozo():void
                     `</span></a>
                 <!--DESCIPCION PEDIDO--> 
                  <span class="product-description">
-                 `+"SECTORMESA" +` - `+PedidoActual._nombreCliente +`
+                 `+"SECTOR:" +` - `+PedidoActual._+` - `+PedidoActual._nombreCliente +`
                  </span>     
                  </div>           
             </li><!-- /.item -->

@@ -8,13 +8,14 @@ var Clases;
         tipoEmpleado[tipoEmpleado["MOZO"] = 3] = "MOZO";
         tipoEmpleado[tipoEmpleado["SOCIO"] = 4] = "SOCIO";
     })(tipoEmpleado = Clases.tipoEmpleado || (Clases.tipoEmpleado = {}));
-    var sectores;
-    (function (sectores) {
-        sectores[sectores["BARRA DE TRAGOS Y VINOS"] = 0] = "BARRA DE TRAGOS Y VINOS";
-        sectores[sectores["BARRA DE CERVEZA"] = 1] = "BARRA DE CERVEZA";
-        sectores[sectores["COCINA"] = 2] = "COCINA";
-        sectores[sectores["CANDY BAR"] = 3] = "CANDY BAR";
-    })(sectores = Clases.sectores || (Clases.sectores = {}));
+    var sectoresProd;
+    (function (sectoresProd) {
+        sectoresProd[sectoresProd["TRAGOS"] = 0] = "TRAGOS";
+        sectoresProd[sectoresProd["VINOS"] = 1] = "VINOS";
+        sectoresProd[sectoresProd["CERVEZA ARTESANAL"] = 2] = "CERVEZA ARTESANAL";
+        sectoresProd[sectoresProd["COCINA"] = 3] = "COCINA";
+        sectoresProd[sectoresProd["CANDY BAR"] = 4] = "CANDY BAR";
+    })(sectoresProd = Clases.sectoresProd || (Clases.sectoresProd = {}));
     var estadoCLIEMP;
     (function (estadoCLIEMP) {
         estadoCLIEMP[estadoCLIEMP["ACTIVO"] = 0] = "ACTIVO";
