@@ -989,10 +989,10 @@ function mostrarPedidosMozo():void
         let varSectoresProd ="";
 
          if ( PedidoActual._sectorTragos == true ) { varSectoresProd = "<br></br> TRAGOS: "+PedidoActual._productosTragos;  } 
-         if ( PedidoActual._sectorVinos == true ) { varSectoresProd = varSectoresProd+ " VINOS:"+PedidoActual._productosVinos+"<br></br>";  } 
+         if ( PedidoActual._sectorVinos == true ) { varSectoresProd = varSectoresProd+ " / VINOS:"+PedidoActual._productosVinos+"<br></br>";  } 
          if ( PedidoActual._sectorCerveza == true ) { varSectoresProd = varSectoresProd+ " CERVEZA:"+PedidoActual._productosCerveza ;  } 
-         if ( PedidoActual._sectorCocina == true ) { varSectoresProd = varSectoresProd+ " COCINA:"+PedidoActual._productosCocina;  } 
-         if ( PedidoActual._sectorCandy == true ) { varSectoresProd = varSectoresProd+ " CANDYBAR "+PedidoActual._productosCandy;  } 
+         if ( PedidoActual._sectorCocina == true ) { varSectoresProd = varSectoresProd+ " / COCINA:"+PedidoActual._productosCocina;  } 
+         if ( PedidoActual._sectorCandy == true ) { varSectoresProd = varSectoresProd+ " / CANDYBAR "+PedidoActual._productosCandy;  } 
 
 
         if (PedidoActual != null)
@@ -1019,7 +1019,7 @@ function mostrarPedidosMozo():void
                     `</span></a>
                 <!--DESCIPCION PEDIDO--> 
                  <span class="product-description">
-                 `+"DETALLE PEDIDO:" +` - `+
+                 `+" DETALLE DEL PEDIDO" +
                  varSectoresProd
                  +`
                  </span>     

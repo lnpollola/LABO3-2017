@@ -604,16 +604,16 @@ function mostrarPedidosMozo() {
             varSectoresProd = "<br></br> TRAGOS: " + PedidoActual._productosTragos;
         }
         if (PedidoActual._sectorVinos == true) {
-            varSectoresProd = varSectoresProd + " VINOS:" + PedidoActual._productosVinos + "<br></br>";
+            varSectoresProd = varSectoresProd + " / VINOS:" + PedidoActual._productosVinos + "<br></br>";
         }
         if (PedidoActual._sectorCerveza == true) {
             varSectoresProd = varSectoresProd + " CERVEZA:" + PedidoActual._productosCerveza;
         }
         if (PedidoActual._sectorCocina == true) {
-            varSectoresProd = varSectoresProd + " COCINA:" + PedidoActual._productosCocina;
+            varSectoresProd = varSectoresProd + " / COCINA:" + PedidoActual._productosCocina;
         }
         if (PedidoActual._sectorCandy == true) {
-            varSectoresProd = varSectoresProd + " CANDYBAR " + PedidoActual._productosCandy;
+            varSectoresProd = varSectoresProd + " / CANDYBAR " + PedidoActual._productosCandy;
         }
         if (PedidoActual != null) {
             var html = "\n        \n            <ul class=\"products-list product-list-in-box\">\n            <li class=\"item\">\n                <!-- IMAGEN PEDIDO-->\n                    <div class=\"product-img\">"
@@ -626,7 +626,7 @@ function mostrarPedidosMozo() {
                 + "NOMBRE CLIENTE:" + PedidoActual._nombreCliente +
                 "<span class=\"label label-warning pull-right\">"
                 + Clases.estadoPedido[PedidoActual._estado] +
-                "</span></a>\n                <!--DESCIPCION PEDIDO--> \n                 <span class=\"product-description\">\n                 " + "DETALLE PEDIDO:" + " - " +
+                "</span></a>\n                <!--DESCIPCION PEDIDO--> \n                 <span class=\"product-description\">\n                 " + " DETALLE DEL PEDIDO" +
                 varSectoresProd
                 + "\n                 </span>     \n                 </div>           \n            </li><!-- /.item -->\n                ";
         }
