@@ -352,7 +352,7 @@ function muestraAgregarPedido():void
 
 
         <div class="box-footer">
-            <button type="submit" id="botonAgregarPed" onclick="agregarPedido();" class="btn btn-primary btn-block btn-flat">Agregar</button>
+            <button type="submit" id="botonAgregarPed" onclick="modificarPedido();" class="btn btn-primary btn-block btn-flat">Agregar</button>
         </div>
     </form>
     <!-- /.box -->`;
@@ -387,7 +387,76 @@ function filtroMesasActivas():void
     }
 }
 
+function muestraModificarPedido(idPedido):void
+{
+   muestraAgregarPedido();
+   borrarPrincipal();
+    var indice = determinoIndicePedido(idPedido);
+    var pedido = JSON.parse(JSON.parse(localStorage.Pedidos)[indice]);
 
+    let cuerpoAgregarPedido = 
+    `
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">Modificar Pedido</h3>
+        </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form id="formCARGA"  data-toggle="validator">
+      <div class="box-body">
+            <!-- CODIGO ALFANUMERICO -->
+            <div class="form-group">
+            <label for="codAlfa">CODIGO ALFANUMERICO</label>
+
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" id="btnGenerarCodPed"  onclick="generarNuevoNum();" class="btn btn-danger">Generar Código</button>
+                </div><!-- /btn-group -->
+                <input type="text" id="codAlfaBox" value="`+pedido._nroPedido+`" class="form-control">
+            </div><!-- /input-group -->
+            
+            <!-- Nombre Cliente -->
+            <div class="form-group">
+            <label for="edad">Nombre del Cliente</label>
+            <input type="text" id="nombClien" value="`+pedido._nombreCliente+`"class="sinError form-control" name="nombClien" placeholder="Nombre Cliente.." autocomplete="off" class="form-control" >
+            </div>
+        
+            <!-- IMAGEN -->
+            <div class="form-group">
+               <label for="archivo">Imagen Adjunta:</label>
+               <input type="file" id="imagen" onchange="transformaImagen();">
+               <p class="help-block">Máximo 50MB</p>
+           </div>
+           <div id="imgTest"></div>
+        <!-- /.box-body -->
+
+        <!-- Mesas Disponibles-->
+        <div class="form-group">
+          <label for="opcion">Mesas Disponibles:</label>
+            <select class="form-control" name="mesaDisp" value="`+pedido._mesaAsignada+`"id="mesaDisp">
+            <option value="`+pedido._mesaAsignada+`">`+pedido._mesaAsignada+`</option>
+            </select>
+        </div>
+
+        <!-- checkbox -->
+        <div class="form-group">
+          <label><input type="checkbox" id="checkTragos" class="iCheck-helper"/>Tragos</label>             <input type="text" placeholder="Ingrese detalle de Tragos..." id="checkTragosForm"   value="`+pedido._productosTragos+`"  class="form-control">
+          <label><input type="checkbox" id="checkVinos"  class="iCheck-helper"/>Vinos</label>              <input type="text" placeholder="Ingrese detalle de Vinos..." id="checkVinosForm"     value="`+pedido._productosVinos+`"   class="form-control">
+          <label><input type="checkbox" id="checkCerveza"class="iCheck-helper"/>Cerveza Artesanal</label>  <input type="text" placeholder="Ingrese detalle de Cerveza..." id="checkCervezaForm" value="`+pedido._productosCerveza+`" class="form-control">
+          <label><input type="checkbox" id="checkCocina" class="iCheck-helper"/>Cocina</label>             <input type="text" placeholder="Ingrese detalle de Cocina..." id="checkCocinaForm"   value="`+pedido._productosCocina+`"  class="form-control">
+          <label><input type="checkbox" id="checkCandy"  class="iCheck-helper"/>Candy Bar</label>          <input type="text" placeholder="Ingrese detalle de CandyBar..." id="checkCandyForm"  value="`+pedido._productosCandy+`"   class="form-control">
+        </div>
+
+
+        <div class="box-footer">
+            <button type="submit" id="botonAgregarPed" onclick="modificarPedido(`+(indice)+`,Clases.estadoPedido.MODIFICAR);" class="btn btn-primary btn-block btn-flat">Agregar</button>
+        </div>
+    </form>
+    <!-- /.box -->`;
+
+ 
+    $("#agregar").append(cuerpoAgregarPedido);
+}
 // // // // // // // FUNCIONES DE CLASES DE PÁGINA // // // // // // //// // // // // // //
 ////////////////////////////////GENERALES////////////////////////////////
 function validaLogin()
@@ -494,6 +563,21 @@ function determinoIndice (idEmpleado:number):number
     return retorno;
 }
 
+function determinoIndicePedido (idPedido:number):number
+{
+    var retorno;
+    let PedidosString:string|null =  JSON.parse(localStorage.getItem("Pedidos") || "[]"); 
+    for (var i = 0; i < PedidosString.length ; i++) 
+    {
+       let PedidoActual = JSON.parse(PedidosString[i]);
+       if (PedidoActual._nroPedido == idPedido)
+       {retorno = i;}
+    }
+    return retorno;
+}
+
+determinoIndicePedido
+
 function arrayMax(arr) {
     return arr.reduce(function (p, v) {
       return ( p < JSON.parse(v)._id ? JSON.parse(v)._id: p );
@@ -519,6 +603,19 @@ function armoJSONMesa(indice,mesa)
     localStorage.Mesas = "";
     localStorage.setItem("Mesas",JSON.stringify(objJsonResp));
 } 
+
+function armoJSONPedido(indice,pedido)
+{
+    let PedidosStringNew  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
+    delete PedidosStringNew[indice];
+    var objJsonResp = PedidosStringNew.filter(function(x) { return x !== null });
+    objJsonResp.push( JSON.stringify(pedido));
+    localStorage.Pedidos = "";
+    localStorage.setItem("Pedidos",JSON.stringify(objJsonResp));
+} 
+
+
+
 
 function codigo_random(longitud)
 {
@@ -896,6 +993,86 @@ function agregarPedido():void
     mostrarPedidosMozo();  
 }
 
+
+var auxPedido;
+function modificarPedido(indice , auxPedido):void
+{
+                  
+    var indice = indice;
+    let PedidosString:string|null  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
+    var pedido = JSON.parse(JSON.parse(localStorage.Pedidos)[indice]);
+
+    if (auxPedido == Clases.estadoPedido.MODIFICAR)
+    {
+        pedido._nroPedido = String ($('#codAlfaBox').val());
+        pedido._nombreCliente   = String ($('#nombClien').val());
+        pedido._imagen   = imagenBASE64;
+        pedido._fechahoraIngreso =   new Date().toLocaleDateString();
+
+        if( $('#checkTragos').val() == "on"  )
+        {
+            pedido._sectorTragos = true;
+            pedido._productosTragos = String ($('#checkTragosForm').val()) ; 
+        }
+        
+        if( $('#checkVinos').val() == "on"  )
+        {
+            pedido._sectorVinos = true;
+            pedido._productosVinos = String ($('#checkVinosForm').val()) ; 
+        }
+        if( $('#checkCerveza').val() == "on"  )
+        {
+            pedido._sectorCerveza = true;
+            pedido._productosCerveza = String ($('#checkCervezaForm').val()) ; 
+        }
+        
+        if( $('#checkCocina').val() == "on"  )
+        {
+            pedido._sectorCocina = true;
+            pedido._productosCocina = String ($('#checkCocinaForm').val()) ; 
+        }
+        
+        if( $('#checkCandy').val() == "on"  )
+        {
+            pedido._sectorCandy = true;
+            pedido._productosCandy = String ($('#checkCandyForm').val()) ; 
+        }
+    }
+    else 
+    {
+        pedido._estado = auxPedido;
+        // if(auxPedido == Clases.estadoCLIEMP.BAJA ||auxPedido == Clases.estadoCLIEMP.SUSPENDIDO )
+        // {pedido._fechaHasta =  new Date().toLocaleDateString();}
+        // else if(auxPedido == Clases.estadoCLIEMP.ACTIVO)
+        // {pedido._fechaDesde= new Date().toLocaleDateString();
+        //     pedido._fechaHasta =  "";}        
+    }
+    
+    armoJSONPedido(indice,pedido);
+    mostrarPedidosMozo();
+}
+
+
+//FUNCIONES QUE USAN MODIFICAR
+function eliminarPedido(idPedido):void
+{
+    var indice = determinoIndice(idPedido);
+    modificarPedido(indice,Clases.estadoPedido.SERVIDO);
+} 
+
+function enpreparacionPedido(idPedido):void
+{
+    var indice = determinoIndice(idPedido);
+    modificarPedido(indice,Clases.estadoPedido["EN PREPARACION"]);
+} 
+
+function terminadoPedido(idPedido):void
+{
+    var indice = determinoIndice(idPedido);
+    modificarPedido(indice,Clases.estadoPedido["LISTO PARA SERVIR"]);
+} 
+
+
 function mostrarPedidosJefe():void
 {
     borrarPrincipal();
@@ -1008,7 +1185,7 @@ function mostrarPedidosMozo():void
                     </div>
                 <!-- INFO PEDIDO -->
                  <div class="product-info">
-                    <a href="javascript::;" class="product-title">`
+                    <a onclick="muestraModificarPedido('`+PedidoActual._nroPedido+`')" class="product-title">`
                     +"MESA:" +PedidoActual._mesaAsignada+
                     ` - `
                     +"PEDIDO:"+PedidoActual._nroPedido+

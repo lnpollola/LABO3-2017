@@ -35,7 +35,9 @@ namespace Clases{
     export enum estadoPedido{
         "ORDEN TOMADA",
         "EN PREPARACION",
-        "LISTO PARA SERVIR"
+        "LISTO PARA SERVIR",
+        "SERVIDO",
+        "MODIFICAR"
     }
 
   }

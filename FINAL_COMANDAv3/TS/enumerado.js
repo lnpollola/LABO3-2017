@@ -38,6 +38,8 @@ var Clases;
         estadoPedido[estadoPedido["ORDEN TOMADA"] = 0] = "ORDEN TOMADA";
         estadoPedido[estadoPedido["EN PREPARACION"] = 1] = "EN PREPARACION";
         estadoPedido[estadoPedido["LISTO PARA SERVIR"] = 2] = "LISTO PARA SERVIR";
+        estadoPedido[estadoPedido["SERVIDO"] = 3] = "SERVIDO";
+        estadoPedido[estadoPedido["MODIFICAR"] = 4] = "MODIFICAR";
     })(estadoPedido = Clases.estadoPedido || (Clases.estadoPedido = {}));
 })(Clases || (Clases = {}));
 //# sourceMappingURL=enumerado.js.map
