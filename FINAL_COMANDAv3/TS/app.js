@@ -484,6 +484,11 @@ function cerrarMesa(idMesa) {
     modificarMesa(indice, Clases.estadoMesa.CERRADA);
     cerrarPedido(idMesa);
 }
+function siguienteEstadoMesa(idMesa) {
+    var indice = calcularIdMesa(idMesa);
+    modificarMesa(indice, Clases.estadoMesa.SIGUIENTE);
+    mostrarMesas(true);
+}
 var auxMesa;
 function modificarMesa(indice, auxMesa) {
     var indice = indice;
@@ -491,11 +496,24 @@ function modificarMesa(indice, auxMesa) {
     if (auxMesa == Clases.estadoMesa.CERRADA) {
         mesa._estado = Clases.estadoMesa.ABIERTA;
     }
+    else if (auxMesa == Clases.estadoMesa.SIGUIENTE) {
+        mesa._estado += 1;
+    }
+    else {
+        mesa._estado = auxMesa;
+    }
     armoJSONMesa(indice, mesa);
     mostrarMesas();
 }
 function mostrarMesas(vienedeMozo) {
     borrarPrincipal();
+    var varUltimaColumna;
+    if (!vienedeMozo) {
+        varUltimaColumna = '  <th>Acciones</th>';
+    }
+    else {
+        varUltimaColumna = '  <th>Próximo Estado </th>';
+    }
     var MesasString = JSON.parse(localStorage.getItem("Mesas") || "[]");
     //ENCABEZADO FIJO
     var encabezadoTablaAppend = '<div class="box box-info">'
@@ -512,11 +530,9 @@ function mostrarMesas(vienedeMozo) {
         + '  <th>Cod. Mesa</th>'
         + '  <th>Recaudación Total</th>'
         + '  <th>Cant. Pedidos</th>'
-        + '  <th>Estado Actual</th>';
-    if (!vienedeMozo) {
-        +'  <th>Acciones</th>';
-    }
-    +'</tr>'
+        + '  <th>Estado Actual</th>'
+        + varUltimaColumna
+        + '</tr>'
         + '</thead>'
         + '<tbody>';
     var cuerpoTablaAppend;
@@ -552,6 +568,24 @@ function mostrarMesas(vienedeMozo) {
                     html += "<button class='btn btn-block btn-danger disabled' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(`" + mesaActual._codAlfa + "`)' >";
                     html += "CERRAR ";
                     html += "<i class='glyphicon glyphicon-minus'></i>";
+                    html += "</button>";
+                    html += "</td>";
+                }
+            }
+            else {
+                if (Clases.estadoMesa[mesaActual._estado + 1] != "CERRADA") {
+                    html += "<td>";
+                    html += "<button class='btn btn-block btn-success btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='siguienteEstadoMesa(`" + mesaActual._codAlfa + "`)' >";
+                    html += Clases.estadoMesa[mesaActual._estado + 1];
+                    html += " <i class='glyphicon glyphicon-fast-forward'></i>";
+                    html += "</button>";
+                    html += "</td>";
+                }
+                else {
+                    html += "<td>";
+                    html += "<button class='btn btn-block btn-danger btn-sm disabled' type='button' id='btnEnviar' value='Eliminar' onclick='siguienteEstadoMesa(`" + mesaActual._codAlfa + "`)' >";
+                    html += Clases.estadoMesa[mesaActual._estado + 1];
+                    html += " <i class='glyphicon glyphicon-fast-forward'></i>";
                     html += "</button>";
                     html += "</td>";
                 }

@@ -932,15 +932,32 @@ function cerrarMesa(idMesa):void
     cerrarPedido(idMesa);
 } 
 
-var auxMesa;
-function modificarMesa(indice , auxMesa):void
+function siguienteEstadoMesa(idMesa):void
 {
+    var indice = calcularIdMesa(idMesa);
+    modificarMesa(indice,Clases.estadoMesa.SIGUIENTE);
+    mostrarMesas(true);
+}
+
+
+var auxMesa;
+function modificarMesa(indice , auxMesa?):void
+{
+
     var indice = indice;
     var mesa = JSON.parse(JSON.parse(localStorage.Mesas)[indice]);
 
     if (auxMesa == Clases.estadoMesa.CERRADA)
     {
         mesa._estado = Clases.estadoMesa.ABIERTA;
+    }
+    else if (auxMesa == Clases.estadoMesa.SIGUIENTE)
+    {
+        mesa._estado += 1;
+    }
+    else
+    {
+        mesa._estado = auxMesa;
     }
     
     armoJSONMesa(indice,mesa);
@@ -950,6 +967,15 @@ function modificarMesa(indice , auxMesa):void
 function mostrarMesas(vienedeMozo?):void
 {
     borrarPrincipal();
+    let  varUltimaColumna ;
+    if(!vienedeMozo)
+    {
+        varUltimaColumna = '  <th>Acciones</th>';
+    }
+    else 
+    {
+        varUltimaColumna = '  <th>Próximo Estado </th>';
+    }
     let MesasString  = JSON.parse(localStorage.getItem("Mesas") || "[]");
     //ENCABEZADO FIJO
     let encabezadoTablaAppend = 
@@ -968,10 +994,7 @@ function mostrarMesas(vienedeMozo?):void
         +'  <th>Recaudación Total</th>'
         +'  <th>Cant. Pedidos</th>'
         +'  <th>Estado Actual</th>'
-        if(!vienedeMozo)
-        {
-            +'  <th>Acciones</th>'
-        }
+        +varUltimaColumna
         +'</tr>'        
         +'</thead>'
         +'<tbody>';
@@ -1010,6 +1033,28 @@ function mostrarMesas(vienedeMozo?):void
                         html+="</button>";
                         html+="</td>";  
                     }
+                }
+                else 
+                {
+                    if( Clases.estadoMesa[mesaActual._estado+1] != "CERRADA" )
+                    {
+                        html+="<td>";
+                        html+="<button class='btn btn-block btn-success btn-sm' type='button' id='btnEnviar' value='Eliminar' onclick='siguienteEstadoMesa(`"+mesaActual._codAlfa+"`)' >";
+                        html+=Clases.estadoMesa[mesaActual._estado+1];
+                        html+=" <i class='glyphicon glyphicon-fast-forward'></i>";
+                        html+="</button>";
+                        html+="</td>";  
+                    }
+                    else
+                    {
+                        html+="<td>";
+                        html+="<button class='btn btn-block btn-danger btn-sm disabled' type='button' id='btnEnviar' value='Eliminar' onclick='siguienteEstadoMesa(`"+mesaActual._codAlfa+"`)' >";
+                        html+=Clases.estadoMesa[mesaActual._estado+1];
+                        html+=" <i class='glyphicon glyphicon-fast-forward'></i>";
+                        html+="</button>";
+                        html+="</td>";  
+                    }
+                   
                 }
             }
         if(i==0)

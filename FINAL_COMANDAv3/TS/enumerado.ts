@@ -29,7 +29,8 @@ namespace Clases{
         "CON CLIENTES COMIENDO",
         "CON CLIENTES PAGANDO",
         "CERRADA",
-        "MODIFICAR"
+        "MODIFICAR",
+        "SIGUIENTE"
     }
 
     //ESTO LO HACE EL COCINERO
