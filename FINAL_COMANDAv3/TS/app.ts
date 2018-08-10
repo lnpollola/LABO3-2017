@@ -352,7 +352,7 @@ function muestraAgregarPedido():void
 
 
         <div class="box-footer">
-            <button type="submit" id="botonAgregarPed" onclick="modificarPedido();" class="btn btn-primary btn-block btn-flat">Agregar</button>
+            <button type="submit" id="botonAgregarPed" onclick="agregarPedido();" class="btn btn-primary btn-block btn-flat">Agregar</button>
         </div>
     </form>
     <!-- /.box -->`;
@@ -737,7 +737,25 @@ function calcularIdMesa(codAlfa):number
     return indice;
 }
 
+///////MESA///////////
 
+function calcularIndXMesa(codAlfa):number
+{
+    let indice;
+    let PedidosString=  JSON.parse(localStorage.getItem("Pedidos") || "[]");    
+    for (var i = 0; i < PedidosString.length ; i++) 
+     {
+        let PedidoActual = JSON.parse(PedidosString[i]);
+        if (PedidoActual != null)
+        {
+            if(PedidoActual._mesaAsignada==codAlfa)
+            {
+                indice = i;
+            }
+        } 
+    }
+    return indice;
+}
 
 //FUNCIONES QUE LLAMAN A MODIFICAR CON DISTINTOS PARAMETROS
  function eliminarEmpleado(idEmpleado):void
@@ -893,6 +911,29 @@ function agregarMesa():void
     mostrarMesas();  
 }
 
+function cerrarMesa(idMesa):void
+{
+    var indice = calcularIdMesa(idMesa);
+    modificarMesa(indice,Clases.estadoMesa.CERRADA);
+
+    cerrarPedido(idMesa);
+} 
+
+var auxMesa;
+function modificarMesa(indice , auxMesa):void
+{
+    var indice = indice;
+    var mesa = JSON.parse(JSON.parse(localStorage.Mesas)[indice]);
+
+    if (auxMesa == Clases.estadoMesa.CERRADA)
+    {
+        mesa._estado = Clases.estadoMesa.ABIERTA;
+    }
+    
+    armoJSONMesa(indice,mesa);
+    mostrarMesas();
+}
+
 function mostrarMesas(vienedeMozo?):void
 {
     borrarPrincipal();
@@ -937,10 +978,12 @@ function mostrarMesas(vienedeMozo?):void
                 
                 if(!vienedeMozo)
                 {
-                    if(mesaActual._estado == Clases.estadoMesa["CON CLIENTES PAGANDO"] )
+                    // if(mesaActual._estado == Clases.estadoMesa["CON CLIENTES PAGANDO"] )
+                    if(mesaActual._estado == Clases.estadoMesa["CON CLIENTE ESPERANDO PEDIDO"] )
+                    
                     {
                         html+="<td>";
-                        html+="<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa("+mesaActual._codAlfa+")'>";
+                        html+="<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(`"+mesaActual._codAlfa+"`)' >" ; 
                         html+="CERRAR ";
                         html+="<i class='glyphicon glyphicon-minus'></i>";
                         html+="</button>";
@@ -949,7 +992,7 @@ function mostrarMesas(vienedeMozo?):void
                     else 
                     {
                         html+="<td>";
-                        html+="<button class='btn btn-block btn-danger disabled' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa("+mesaActual._codAlfa+")'>";
+                        html+="<button class='btn btn-block btn-danger disabled' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(`"+mesaActual._codAlfa+"`)' >";
                         html+="CERRAR ";
                         html+="<i class='glyphicon glyphicon-minus'></i>";
                         html+="</button>";
@@ -1092,10 +1135,14 @@ function modificarPedido(indice , auxPedido):void
 
 
 //FUNCIONES QUE USAN MODIFICAR
-function eliminarPedido(idPedido):void
+function cerrarPedido(idMesa):void
 {
-    var indice = determinoIndice(idPedido);
-    modificarPedido(indice,Clases.estadoPedido.SERVIDO);
+    var indicePedido = calcularIndXMesa(idMesa);
+    var pedido = JSON.parse(JSON.parse(localStorage.Pedidos)[indicePedido]);
+    pedido._estado = Clases.estadoPedido.SERVIDO;
+    
+    armoJSONPedido(indicePedido,pedido);
+    mostrarMesas();
 } 
 
 function enpreparacionPedido(idPedido):void
@@ -1189,9 +1236,7 @@ function mostrarPedidosMozo():void
       <div class="box-header with-border">
         <h3 class="box-title">Pedidos Recientes</h3>
         <div class="box-tools pull-right">
-          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
+       </div>
       </div><!-- /.box-header -->
       <div class="box-body">
       `;

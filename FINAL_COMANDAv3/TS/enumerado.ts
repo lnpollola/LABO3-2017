@@ -28,7 +28,8 @@ namespace Clases{
         "CON CLIENTE ESPERANDO PEDIDO",
         "CON CLIENTES COMIENDO",
         "CON CLIENTES PAGANDO",
-        "CERRADA"
+        "CERRADA",
+        "MODIFICAR"
     }
 
     //ESTO LO HACE EL COCINERO

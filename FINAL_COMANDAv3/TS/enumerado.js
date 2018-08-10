@@ -31,6 +31,7 @@ var Clases;
         estadoMesa[estadoMesa["CON CLIENTES COMIENDO"] = 2] = "CON CLIENTES COMIENDO";
         estadoMesa[estadoMesa["CON CLIENTES PAGANDO"] = 3] = "CON CLIENTES PAGANDO";
         estadoMesa[estadoMesa["CERRADA"] = 4] = "CERRADA";
+        estadoMesa[estadoMesa["MODIFICAR"] = 5] = "MODIFICAR";
     })(estadoMesa = Clases.estadoMesa || (Clases.estadoMesa = {}));
     //ESTO LO HACE EL COCINERO
     var estadoPedido;

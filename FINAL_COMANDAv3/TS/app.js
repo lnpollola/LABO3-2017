@@ -62,7 +62,7 @@ function muestraModificarMesa(idEmpleado) {
 ///////PEDIDOS///////////
 function muestraAgregarPedido() {
     borrarPrincipal();
-    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Nuevo Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n\n        <!-- Mesas Disponibles-->\n        <div class=\"form-group\">\n          <label for=\"opcion\">Mesas Disponibles:</label>\n            <select class=\"form-control\" name=\"mesaDisp\" id=\"mesaDisp\">\n            </select>\n        </div>\n\n        <!-- checkbox -->\n        <div class=\"form-group\">\n          <label><input type=\"checkbox\" id=\"checkTragos\"  class=\"iCheck-helper\"/>Tragos</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Tragos...\" id=\"checkTragosForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkVinos\"   class=\"iCheck-helper\"/>Vinos</label>              <input type=\"text\" placeholder=\"Ingrese detalle de Vinos...\" id=\"checkVinosForm\"  class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCerveza\" class=\"iCheck-helper\"/>Cerveza Artesanal</label>  <input type=\"text\" placeholder=\"Ingrese detalle de Cerveza...\" id=\"checkCervezaForm\"class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCocina\"  class=\"iCheck-helper\"/>Cocina</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Cocina...\" id=\"checkCocinaForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCandy\"   class=\"iCheck-helper\"/>Candy Bar</label>          <input type=\"text\" placeholder=\"Ingrese detalle de CandyBar...\" id=\"checkCandyForm\"  class=\"form-control\">\n        </div>\n\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"modificarPedido();\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
+    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Nuevo Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n\n        <!-- Mesas Disponibles-->\n        <div class=\"form-group\">\n          <label for=\"opcion\">Mesas Disponibles:</label>\n            <select class=\"form-control\" name=\"mesaDisp\" id=\"mesaDisp\">\n            </select>\n        </div>\n\n        <!-- checkbox -->\n        <div class=\"form-group\">\n          <label><input type=\"checkbox\" id=\"checkTragos\"  class=\"iCheck-helper\"/>Tragos</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Tragos...\" id=\"checkTragosForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkVinos\"   class=\"iCheck-helper\"/>Vinos</label>              <input type=\"text\" placeholder=\"Ingrese detalle de Vinos...\" id=\"checkVinosForm\"  class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCerveza\" class=\"iCheck-helper\"/>Cerveza Artesanal</label>  <input type=\"text\" placeholder=\"Ingrese detalle de Cerveza...\" id=\"checkCervezaForm\"class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCocina\"  class=\"iCheck-helper\"/>Cocina</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Cocina...\" id=\"checkCocinaForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCandy\"   class=\"iCheck-helper\"/>Candy Bar</label>          <input type=\"text\" placeholder=\"Ingrese detalle de CandyBar...\" id=\"checkCandyForm\"  class=\"form-control\">\n        </div>\n\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"agregarPedido();\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
     $("#agregar").append(cuerpoAgregarPedido);
 }
 function filtroMesasActivas() {
@@ -318,6 +318,20 @@ function calcularIdMesa(codAlfa) {
     }
     return indice;
 }
+///////MESA///////////
+function calcularIndXMesa(codAlfa) {
+    var indice;
+    var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
+    for (var i = 0; i < PedidosString.length; i++) {
+        var PedidoActual = JSON.parse(PedidosString[i]);
+        if (PedidoActual != null) {
+            if (PedidoActual._mesaAsignada == codAlfa) {
+                indice = i;
+            }
+        }
+    }
+    return indice;
+}
 //FUNCIONES QUE LLAMAN A MODIFICAR CON DISTINTOS PARAMETROS
 function eliminarEmpleado(idEmpleado) {
     var indice = determinoIndice(idEmpleado);
@@ -465,6 +479,21 @@ function agregarMesa() {
     alert("Mesa dada de Alta");
     mostrarMesas();
 }
+function cerrarMesa(idMesa) {
+    var indice = calcularIdMesa(idMesa);
+    modificarMesa(indice, Clases.estadoMesa.CERRADA);
+    cerrarPedido(idMesa);
+}
+var auxMesa;
+function modificarMesa(indice, auxMesa) {
+    var indice = indice;
+    var mesa = JSON.parse(JSON.parse(localStorage.Mesas)[indice]);
+    if (auxMesa == Clases.estadoMesa.CERRADA) {
+        mesa._estado = Clases.estadoMesa.ABIERTA;
+    }
+    armoJSONMesa(indice, mesa);
+    mostrarMesas();
+}
 function mostrarMesas(vienedeMozo) {
     borrarPrincipal();
     var MesasString = JSON.parse(localStorage.getItem("Mesas") || "[]");
@@ -510,9 +539,10 @@ function mostrarMesas(vienedeMozo) {
             html += Clases.estadoMesa[mesaActual._estado];
             html += "</td>";
             if (!vienedeMozo) {
-                if (mesaActual._estado == Clases.estadoMesa["CON CLIENTES PAGANDO"]) {
+                // if(mesaActual._estado == Clases.estadoMesa["CON CLIENTES PAGANDO"] )
+                if (mesaActual._estado == Clases.estadoMesa["CON CLIENTE ESPERANDO PEDIDO"]) {
                     html += "<td>";
-                    html += "<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(" + mesaActual._codAlfa + ")'>";
+                    html += "<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(`" + mesaActual._codAlfa + "`)' >";
                     html += "CERRAR ";
                     html += "<i class='glyphicon glyphicon-minus'></i>";
                     html += "</button>";
@@ -520,7 +550,7 @@ function mostrarMesas(vienedeMozo) {
                 }
                 else {
                     html += "<td>";
-                    html += "<button class='btn btn-block btn-danger disabled' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(" + mesaActual._codAlfa + ")'>";
+                    html += "<button class='btn btn-block btn-danger disabled' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(`" + mesaActual._codAlfa + "`)' >";
                     html += "CERRAR ";
                     html += "<i class='glyphicon glyphicon-minus'></i>";
                     html += "</button>";
@@ -626,9 +656,12 @@ function modificarPedido(indice, auxPedido) {
     mostrarPedidosMozo();
 }
 //FUNCIONES QUE USAN MODIFICAR
-function eliminarPedido(idPedido) {
-    var indice = determinoIndice(idPedido);
-    modificarPedido(indice, Clases.estadoPedido.SERVIDO);
+function cerrarPedido(idMesa) {
+    var indicePedido = calcularIndXMesa(idMesa);
+    var pedido = JSON.parse(JSON.parse(localStorage.Pedidos)[indicePedido]);
+    pedido._estado = Clases.estadoPedido.SERVIDO;
+    armoJSONPedido(indicePedido, pedido);
+    mostrarMesas();
 }
 function enpreparacionPedido(idPedido) {
     var indice = determinoIndice(idPedido);
@@ -716,7 +749,7 @@ function mostrarPedidosMozo() {
     borrarPrincipal();
     var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
     //ENCABEZADO FIJO
-    var encabezadoTablaAppend = " \n\n    <!-- PRODUCT LIST -->\n    <div class=\"box box-primary\">\n      <div class=\"box-header with-border\">\n        <h3 class=\"box-title\">Pedidos Recientes</h3>\n        <div class=\"box-tools pull-right\">\n          <button class=\"btn btn-box-tool\" data-widget=\"collapse\"><i class=\"fa fa-minus\"></i></button>\n          <button class=\"btn btn-box-tool\" data-widget=\"remove\"><i class=\"fa fa-times\"></i></button>\n        </div>\n      </div><!-- /.box-header -->\n      <div class=\"box-body\">\n      ";
+    var encabezadoTablaAppend = " \n\n    <!-- PRODUCT LIST -->\n    <div class=\"box box-primary\">\n      <div class=\"box-header with-border\">\n        <h3 class=\"box-title\">Pedidos Recientes</h3>\n        <div class=\"box-tools pull-right\">\n       </div>\n      </div><!-- /.box-header -->\n      <div class=\"box-body\">\n      ";
     var cuerpoTablaAppend;
     //CUERPO
     for (var i = 0; i < PedidosString.length; i++) {
