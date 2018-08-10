@@ -62,7 +62,7 @@ function muestraModificarMesa(idEmpleado) {
 ///////PEDIDOS///////////
 function muestraAgregarPedido() {
     borrarPrincipal();
-    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Nuevo Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n\n        <!-- Mesas Disponibles-->\n        <div class=\"form-group\">\n          <label for=\"opcion\">Mesas Disponibles:</label>\n            <select class=\"form-control\" name=\"mesaDisp\" id=\"mesaDisp\">\n            </select>\n        </div>\n\n        <!-- checkbox -->\n        <div class=\"form-group\">\n          <label><input type=\"checkbox\" id=\"checkTragos\"  class=\"iCheck-helper\"/>Tragos</label>             <input type=\"text\" id=\"checkTragosForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkVinos\"   class=\"iCheck-helper\"/>Vinos</label>              <input type=\"text\" id=\"checkVinosForm\"  class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCerveza\" class=\"iCheck-helper\"/>Cerveza Artesanal</label>  <input type=\"text\" id=\"checkCervezaForm\"class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCocina\"  class=\"iCheck-helper\"/>Cocina</label>             <input type=\"text\" id=\"checkCocinaForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCandy\"   class=\"iCheck-helper\"/>Candy Bar</label>          <input type=\"text\" id=\"checkCandyForm\"  class=\"form-control\">\n        </div>\n\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"agregarPedido();\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
+    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Nuevo Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n\n        <!-- Mesas Disponibles-->\n        <div class=\"form-group\">\n          <label for=\"opcion\">Mesas Disponibles:</label>\n            <select class=\"form-control\" name=\"mesaDisp\" id=\"mesaDisp\">\n            </select>\n        </div>\n\n        <!-- checkbox -->\n        <div class=\"form-group\">\n          <label><input type=\"checkbox\" id=\"checkTragos\"  class=\"iCheck-helper\"/>Tragos</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Tragos...\" id=\"checkTragosForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkVinos\"   class=\"iCheck-helper\"/>Vinos</label>              <input type=\"text\" placeholder=\"Ingrese detalle de Vinos...\" id=\"checkVinosForm\"  class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCerveza\" class=\"iCheck-helper\"/>Cerveza Artesanal</label>  <input type=\"text\" placeholder=\"Ingrese detalle de Cerveza...\" id=\"checkCervezaForm\"class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCocina\"  class=\"iCheck-helper\"/>Cocina</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Cocina...\" id=\"checkCocinaForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCandy\"   class=\"iCheck-helper\"/>Candy Bar</label>          <input type=\"text\" placeholder=\"Ingrese detalle de CandyBar...\" id=\"checkCandyForm\"  class=\"form-control\">\n        </div>\n\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"agregarPedido();\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
     $("#agregar").append(cuerpoAgregarPedido);
 }
 function filtroMesasActivas() {
@@ -485,6 +485,26 @@ function agregarPedido() {
     var codigoPedido = String($('#codAlfaBox').val());
     var codAlfaMesa = String($("#mesaDisp").val());
     var nuevaPedido = new Clases.Pedido(codigoPedido, Clases.estadoPedido["ORDEN TOMADA"], String($('#nombClien').val()), codAlfaMesa, imagenBASE64);
+    if ($('#checkTragos').val() == "on") {
+        nuevaPedido._sectorTragos = true;
+        nuevaPedido._productosTragos = String($('#checkTragosForm').val());
+    }
+    if ($('#checkVinos').val() == "on") {
+        nuevaPedido._sectorVinos = true;
+        nuevaPedido._productosVinos = String($('#checkVinosForm').val());
+    }
+    if ($('#checkCerveza').val() == "on") {
+        nuevaPedido._sectorCerveza = true;
+        nuevaPedido._productosCerveza = String($('#checkCervezaForm').val());
+    }
+    if ($('#checkCocina').val() == "on") {
+        nuevaPedido._sectorCocina = true;
+        nuevaPedido._productosCocina = String($('#checkCocinaForm').val());
+    }
+    if ($('#checkCandy').val() == "on") {
+        nuevaPedido._sectorCandy = true;
+        nuevaPedido._productosCandy = String($('#checkCandyForm').val());
+    }
     var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
     PedidosString.push(JSON.stringify(nuevaPedido));
     localStorage.setItem("Pedidos", JSON.stringify(PedidosString));
@@ -579,6 +599,22 @@ function mostrarPedidosMozo() {
     //CUERPO
     for (var i = 0; i < PedidosString.length; i++) {
         var PedidoActual = JSON.parse(PedidosString[i]);
+        var varSectoresProd = "";
+        if (PedidoActual._sectorTragos == true) {
+            varSectoresProd = "<br></br> TRAGOS: " + PedidoActual._productosTragos;
+        }
+        if (PedidoActual._sectorVinos == true) {
+            varSectoresProd = varSectoresProd + " VINOS:" + PedidoActual._productosVinos + "<br></br>";
+        }
+        if (PedidoActual._sectorCerveza == true) {
+            varSectoresProd = varSectoresProd + " CERVEZA:" + PedidoActual._productosCerveza;
+        }
+        if (PedidoActual._sectorCocina == true) {
+            varSectoresProd = varSectoresProd + " COCINA:" + PedidoActual._productosCocina;
+        }
+        if (PedidoActual._sectorCandy == true) {
+            varSectoresProd = varSectoresProd + " CANDYBAR " + PedidoActual._productosCandy;
+        }
         if (PedidoActual != null) {
             var html = "\n        \n            <ul class=\"products-list product-list-in-box\">\n            <li class=\"item\">\n                <!-- IMAGEN PEDIDO-->\n                    <div class=\"product-img\">"
                 + PedidoActual._imagen +
@@ -590,7 +626,9 @@ function mostrarPedidosMozo() {
                 + "NOMBRE CLIENTE:" + PedidoActual._nombreCliente +
                 "<span class=\"label label-warning pull-right\">"
                 + Clases.estadoPedido[PedidoActual._estado] +
-                "</span></a>\n                <!--DESCIPCION PEDIDO--> \n                 <span class=\"product-description\">\n                 " + "SECTOR:" + " - " + PedidoActual._ + " - " + PedidoActual._nombreCliente + "\n                 </span>     \n                 </div>           \n            </li><!-- /.item -->\n                ";
+                "</span></a>\n                <!--DESCIPCION PEDIDO--> \n                 <span class=\"product-description\">\n                 " + "DETALLE PEDIDO:" + " - " +
+                varSectoresProd
+                + "\n                 </span>     \n                 </div>           \n            </li><!-- /.item -->\n                ";
         }
         if (i == 0) {
             cuerpoTablaAppend = html;

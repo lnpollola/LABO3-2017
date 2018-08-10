@@ -343,11 +343,11 @@ function muestraAgregarPedido():void
 
         <!-- checkbox -->
         <div class="form-group">
-          <label><input type="checkbox" id="checkTragos"  class="iCheck-helper"/>Tragos</label>             <input type="text" id="checkTragosForm" class="form-control">
-          <label><input type="checkbox" id="checkVinos"   class="iCheck-helper"/>Vinos</label>              <input type="text" id="checkVinosForm"  class="form-control">
-          <label><input type="checkbox" id="checkCerveza" class="iCheck-helper"/>Cerveza Artesanal</label>  <input type="text" id="checkCervezaForm"class="form-control">
-          <label><input type="checkbox" id="checkCocina"  class="iCheck-helper"/>Cocina</label>             <input type="text" id="checkCocinaForm" class="form-control">
-          <label><input type="checkbox" id="checkCandy"   class="iCheck-helper"/>Candy Bar</label>          <input type="text" id="checkCandyForm"  class="form-control">
+          <label><input type="checkbox" id="checkTragos"  class="iCheck-helper"/>Tragos</label>             <input type="text" placeholder="Ingrese detalle de Tragos..." id="checkTragosForm" class="form-control">
+          <label><input type="checkbox" id="checkVinos"   class="iCheck-helper"/>Vinos</label>              <input type="text" placeholder="Ingrese detalle de Vinos..." id="checkVinosForm"  class="form-control">
+          <label><input type="checkbox" id="checkCerveza" class="iCheck-helper"/>Cerveza Artesanal</label>  <input type="text" placeholder="Ingrese detalle de Cerveza..." id="checkCervezaForm"class="form-control">
+          <label><input type="checkbox" id="checkCocina"  class="iCheck-helper"/>Cocina</label>             <input type="text" placeholder="Ingrese detalle de Cocina..." id="checkCocinaForm" class="form-control">
+          <label><input type="checkbox" id="checkCandy"   class="iCheck-helper"/>Candy Bar</label>          <input type="text" placeholder="Ingrese detalle de CandyBar..." id="checkCandyForm"  class="form-control">
         </div>
 
 
@@ -852,9 +852,35 @@ function agregarPedido():void
                                         imagenBASE64
                                         );
     
+    if( $('#checkTragos').val() == "on"  )
+    {
+        nuevaPedido._sectorTragos = true;
+        nuevaPedido._productosTragos = String ($('#checkTragosForm').val()) ; 
+    }
+    
+    if( $('#checkVinos').val() == "on"  )
+    {
+        nuevaPedido._sectorVinos = true;
+        nuevaPedido._productosVinos = String ($('#checkVinosForm').val()) ; 
+    }
+    if( $('#checkCerveza').val() == "on"  )
+    {
+        nuevaPedido._sectorCerveza = true;
+        nuevaPedido._productosCerveza = String ($('#checkCervezaForm').val()) ; 
+    }
+    
+    if( $('#checkCocina').val() == "on"  )
+    {
+        nuevaPedido._sectorCocina = true;
+        nuevaPedido._productosCocina = String ($('#checkCocinaForm').val()) ; 
+    }
+    
+    if( $('#checkCandy').val() == "on"  )
+    {
+        nuevaPedido._sectorCandy = true;
+        nuevaPedido._productosCandy = String ($('#checkCandyForm').val()) ; 
+    }
 
-
-                                        
     let PedidosString  = JSON.parse(localStorage.getItem("Pedidos") || "[]");
     PedidosString.push( JSON.stringify(nuevaPedido));
     localStorage.setItem("Pedidos",JSON.stringify(PedidosString));
@@ -959,6 +985,16 @@ function mostrarPedidosMozo():void
     for (var i = 0; i < PedidosString.length ; i++) 
      {
         let PedidoActual = JSON.parse(PedidosString[i]);
+
+        let varSectoresProd ="";
+
+         if ( PedidoActual._sectorTragos == true ) { varSectoresProd = "<br></br> TRAGOS: "+PedidoActual._productosTragos;  } 
+         if ( PedidoActual._sectorVinos == true ) { varSectoresProd = varSectoresProd+ " VINOS:"+PedidoActual._productosVinos+"<br></br>";  } 
+         if ( PedidoActual._sectorCerveza == true ) { varSectoresProd = varSectoresProd+ " CERVEZA:"+PedidoActual._productosCerveza ;  } 
+         if ( PedidoActual._sectorCocina == true ) { varSectoresProd = varSectoresProd+ " COCINA:"+PedidoActual._productosCocina;  } 
+         if ( PedidoActual._sectorCandy == true ) { varSectoresProd = varSectoresProd+ " CANDYBAR "+PedidoActual._productosCandy;  } 
+
+
         if (PedidoActual != null)
         {    
         var html =`
@@ -983,7 +1019,9 @@ function mostrarPedidosMozo():void
                     `</span></a>
                 <!--DESCIPCION PEDIDO--> 
                  <span class="product-description">
-                 `+"SECTOR:" +` - `+PedidoActual._+` - `+PedidoActual._nombreCliente +`
+                 `+"DETALLE PEDIDO:" +` - `+
+                 varSectoresProd
+                 +`
                  </span>     
                  </div>           
             </li><!-- /.item -->
