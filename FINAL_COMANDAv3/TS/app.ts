@@ -393,6 +393,119 @@ function filtroMesasActivas():void
     }
 }
 
+
+
+function muestraBuscarPedido():void
+{
+    borrarPrincipal();
+    let principal = $("#principal");
+    principal.append(   
+    `
+    <div class="login-box-body">
+    <!--<p class="login-box-msg">Sign in to start your session</p>-->
+    <img id="profile-img" src="img/busquedaCliente.png">
+    <form onsubmit="buscarPedido();return false;">
+      <div class="form-group has-feedback">
+        <input id="numeroPedido" type="text" class="form-control" placeholder="Ingrese el número de PEDIDO Alfánumerico que fue brindado por el Mozo" autocomplete="off" autofocus/>
+        <span class="glyphicon glyphicon-gift form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input id="numeroMesa" type="text" class="form-control" placeholder="Ingrese el número de MesA Alfánumerico que fue brindado por el Mozo" autocomplete="off" autofocus/>
+        <span class="glyphicon glyphicon-cutlery form-control-feedback"></span>
+      </div>
+      <div class="box-footer">
+        <button type="submit" class="btn btn-primary">Buscar Pedido</button>
+    </div>`
+    );
+
+}
+
+
+function buscarPedido():void
+{
+
+    let mesa = String ($("#numeroMesa").val()) ;
+    let pedido = String ($("#numeroPedido").val()) ;
+    borrarPrincipal();
+
+    let PedidosString=  JSON.parse(localStorage.getItem("Pedidos") || "[]"); 
+       
+    
+    let stringFinal = PedidosString
+                                .filter(function(Pedido){
+                                    let PedidoRet = JSON.parse(Pedido);
+                                    return PedidoRet._mesaAsignada == mesa && PedidoRet._nroPedido == pedido;
+                                })
+                                .map(function(Pedido){
+                                    let PedidoRet = JSON.parse(Pedido);
+                                    return PedidoRet;
+                                });   
+    
+    PedidosString= stringFinal; 
+
+
+
+    let encabezadoTablaAppend = 
+    '<div class="box box-info">'
+    +'<div class="box-header with-border">'
+    +'<h3 class="box-title">Listado de Pedidos</h3>'
+    +'<div class="box-tools pull-right">'
+    +'<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
+    +'<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
+    +'</div>'
+    +'</div><!-- /.box-header -->'
+    +'<div class="box-body">'
+    +'<div class="table-responsive">'
+    +'<table class="table no-margin">'
+    +'<thead>'
+    +'<tr>'
+    +'  <th>Cod. Pedido</th>'
+    +'  <th>Nombre Cliente</th>'
+    +'  <th>Hora Ingreso</th>'
+    +'  <th>Mesa Asignada</th>'
+    +'  <th>Tiempo Restante</th>'
+    +'  <th>Estado Actual</th>'
+    +'  <th>Imagen Asociada</th>'
+    +'</tr>'
+    +'</thead>'
+    +'<tbody>';
+    let cuerpoTablaAppend;
+    //CUERPO
+    for (var i = 0; i < PedidosString.length ; i++) 
+    {
+        let PedidoActual = PedidosString[i];
+        if (PedidoActual != null)
+        {
+            var html='<tr>';
+            //DATOS
+                html+="<td>";html+=PedidoActual._nroPedido                      ;html+="</td>";
+                html+="<td>";html+= PedidoActual._nombreCliente                 ;html+= "</td>";
+                html+="<td>";html+= PedidoActual._fechahoraIngreso              ;html+= "</td>";
+                html+="<td>";html+= PedidoActual._mesaAsignada                  ;html+= "</td>";
+                html+="<td>";html+= "TpoRestante()"                             ;html+= "</td>";
+                html+="<td>";html+= Clases.estadoPedido[PedidoActual._estado]   ;html+= "</td>";
+                html+=`<td style="width:150px; height:150px; text-align:center; vertical-align:middle" >`;
+                html+= PedidoActual._imagen;
+                html+= "</td>";
+        }
+        if(i==0)
+        {cuerpoTablaAppend = html;}
+        else {cuerpoTablaAppend += html;}        
+    }
+        //FOOTER
+        let footerTablaAppend = '</tbody>';
+        footerTablaAppend+='</table>';
+        footerTablaAppend+='</div><!-- /.table-responsive -->';
+        footerTablaAppend+='</div><!-- /.box-body -->';
+        footerTablaAppend+='<div class="box-footer clearfix">';
+        footerTablaAppend+='</div>';
+        footerTablaAppend+='</div>';
+        let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
+        $("#listar").append(tablafinal);   
+}
+
+
+
 function muestraModificarPedido(idPedido):void
 {
    muestraAgregarPedido();
@@ -640,9 +753,6 @@ function armoJSONPedido(indice,pedido)
     localStorage.Pedidos = "";
     localStorage.setItem("Pedidos",JSON.stringify(objJsonResp));
 } 
-
-
-
 
 function codigo_random(longitud)
 {

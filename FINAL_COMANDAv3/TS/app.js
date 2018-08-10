@@ -85,6 +85,96 @@ function filtroMesasActivas() {
         select.append("<option value=" + MesasString[i]._codAlfa + ">" + MesasString[i]._codAlfa + "</option>");
     }
 }
+function muestraBuscarPedido() {
+    borrarPrincipal();
+    var principal = $("#principal");
+    principal.append("\n    <div class=\"login-box-body\">\n    <!--<p class=\"login-box-msg\">Sign in to start your session</p>-->\n    <img id=\"profile-img\" src=\"img/busquedaCliente.png\">\n    <form onsubmit=\"buscarPedido();return false;\">\n      <div class=\"form-group has-feedback\">\n        <input id=\"numeroPedido\" type=\"text\" class=\"form-control\" placeholder=\"Ingrese el n\u00FAmero de PEDIDO Alf\u00E1numerico que fue brindado por el Mozo\" autocomplete=\"off\" autofocus/>\n        <span class=\"glyphicon glyphicon-gift form-control-feedback\"></span>\n      </div>\n      <div class=\"form-group has-feedback\">\n        <input id=\"numeroMesa\" type=\"text\" class=\"form-control\" placeholder=\"Ingrese el n\u00FAmero de MesA Alf\u00E1numerico que fue brindado por el Mozo\" autocomplete=\"off\" autofocus/>\n        <span class=\"glyphicon glyphicon-cutlery form-control-feedback\"></span>\n      </div>\n      <div class=\"box-footer\">\n        <button type=\"submit\" class=\"btn btn-primary\">Buscar Pedido</button>\n    </div>");
+}
+function buscarPedido() {
+    var mesa = String($("#numeroMesa").val());
+    var pedido = String($("#numeroPedido").val());
+    borrarPrincipal();
+    var PedidosString = JSON.parse(localStorage.getItem("Pedidos") || "[]");
+    var stringFinal = PedidosString
+        .filter(function (Pedido) {
+        var PedidoRet = JSON.parse(Pedido);
+        return PedidoRet._mesaAsignada == mesa && PedidoRet._nroPedido == pedido;
+    })
+        .map(function (Pedido) {
+        var PedidoRet = JSON.parse(Pedido);
+        return PedidoRet;
+    });
+    PedidosString = stringFinal;
+    var encabezadoTablaAppend = '<div class="box box-info">'
+        + '<div class="box-header with-border">'
+        + '<h3 class="box-title">Listado de Pedidos</h3>'
+        + '<div class="box-tools pull-right">'
+        + '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'
+        + '<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>'
+        + '</div>'
+        + '</div><!-- /.box-header -->'
+        + '<div class="box-body">'
+        + '<div class="table-responsive">'
+        + '<table class="table no-margin">'
+        + '<thead>'
+        + '<tr>'
+        + '  <th>Cod. Pedido</th>'
+        + '  <th>Nombre Cliente</th>'
+        + '  <th>Hora Ingreso</th>'
+        + '  <th>Mesa Asignada</th>'
+        + '  <th>Tiempo Restante</th>'
+        + '  <th>Estado Actual</th>'
+        + '  <th>Imagen Asociada</th>'
+        + '</tr>'
+        + '</thead>'
+        + '<tbody>';
+    var cuerpoTablaAppend;
+    //CUERPO
+    for (var i = 0; i < PedidosString.length; i++) {
+        var PedidoActual = PedidosString[i];
+        if (PedidoActual != null) {
+            var html = '<tr>';
+            //DATOS
+            html += "<td>";
+            html += PedidoActual._nroPedido;
+            html += "</td>";
+            html += "<td>";
+            html += PedidoActual._nombreCliente;
+            html += "</td>";
+            html += "<td>";
+            html += PedidoActual._fechahoraIngreso;
+            html += "</td>";
+            html += "<td>";
+            html += PedidoActual._mesaAsignada;
+            html += "</td>";
+            html += "<td>";
+            html += "TpoRestante()";
+            html += "</td>";
+            html += "<td>";
+            html += Clases.estadoPedido[PedidoActual._estado];
+            html += "</td>";
+            html += "<td style=\"width:150px; height:150px; text-align:center; vertical-align:middle\" >";
+            html += PedidoActual._imagen;
+            html += "</td>";
+        }
+        if (i == 0) {
+            cuerpoTablaAppend = html;
+        }
+        else {
+            cuerpoTablaAppend += html;
+        }
+    }
+    //FOOTER
+    var footerTablaAppend = '</tbody>';
+    footerTablaAppend += '</table>';
+    footerTablaAppend += '</div><!-- /.table-responsive -->';
+    footerTablaAppend += '</div><!-- /.box-body -->';
+    footerTablaAppend += '<div class="box-footer clearfix">';
+    footerTablaAppend += '</div>';
+    footerTablaAppend += '</div>';
+    var tablafinal = encabezadoTablaAppend + cuerpoTablaAppend + footerTablaAppend;
+    $("#listar").append(tablafinal);
+}
 function muestraModificarPedido(idPedido) {
     muestraAgregarPedido();
     borrarPrincipal();
