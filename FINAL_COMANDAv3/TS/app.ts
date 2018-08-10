@@ -988,8 +988,8 @@ function mostrarPedidosMozo():void
 
         let varSectoresProd ="";
 
-         if ( PedidoActual._sectorTragos == true ) { varSectoresProd = "<br></br> TRAGOS: "+PedidoActual._productosTragos;  } 
-         if ( PedidoActual._sectorVinos == true ) { varSectoresProd = varSectoresProd+ " / VINOS:"+PedidoActual._productosVinos+"<br></br>";  } 
+         if ( PedidoActual._sectorTragos == true ) { varSectoresProd = "<p></p> TRAGOS: "+PedidoActual._productosTragos;  } 
+         if ( PedidoActual._sectorVinos == true ) { varSectoresProd = varSectoresProd+ " / VINOS:"+PedidoActual._productosVinos+"<p></p>";  } 
          if ( PedidoActual._sectorCerveza == true ) { varSectoresProd = varSectoresProd+ " CERVEZA:"+PedidoActual._productosCerveza ;  } 
          if ( PedidoActual._sectorCocina == true ) { varSectoresProd = varSectoresProd+ " / COCINA:"+PedidoActual._productosCocina;  } 
          if ( PedidoActual._sectorCandy == true ) { varSectoresProd = varSectoresProd+ " / CANDYBAR "+PedidoActual._productosCandy;  } 
@@ -1018,11 +1018,15 @@ function mostrarPedidosMozo():void
                     +Clases.estadoPedido[PedidoActual._estado]+
                     `</span></a>
                 <!--DESCIPCION PEDIDO--> 
-                 <span class="product-description">
-                 `+" DETALLE DEL PEDIDO" +
-                 varSectoresProd
-                 +`
-                 </span>     
+                 <span class="product-description">`
+                 +" HORA PEDIDO: " 
+                 +PedidoActual._fechahoraIngreso
+                 +"/ HORA FIN ESTIMADA: " 
+                 +PedidoActual._fechahoraFinEstimado
+                 +"<p></p> DETALLE DEL PEDIDO" 
+                 +varSectoresProd
+                 +
+                 `</span>     
                  </div>           
             </li><!-- /.item -->
                 `;

@@ -601,10 +601,10 @@ function mostrarPedidosMozo() {
         var PedidoActual = JSON.parse(PedidosString[i]);
         var varSectoresProd = "";
         if (PedidoActual._sectorTragos == true) {
-            varSectoresProd = "<br></br> TRAGOS: " + PedidoActual._productosTragos;
+            varSectoresProd = "<p></p> TRAGOS: " + PedidoActual._productosTragos;
         }
         if (PedidoActual._sectorVinos == true) {
-            varSectoresProd = varSectoresProd + " / VINOS:" + PedidoActual._productosVinos + "<br></br>";
+            varSectoresProd = varSectoresProd + " / VINOS:" + PedidoActual._productosVinos + "<p></p>";
         }
         if (PedidoActual._sectorCerveza == true) {
             varSectoresProd = varSectoresProd + " CERVEZA:" + PedidoActual._productosCerveza;
@@ -626,9 +626,15 @@ function mostrarPedidosMozo() {
                 + "NOMBRE CLIENTE:" + PedidoActual._nombreCliente +
                 "<span class=\"label label-warning pull-right\">"
                 + Clases.estadoPedido[PedidoActual._estado] +
-                "</span></a>\n                <!--DESCIPCION PEDIDO--> \n                 <span class=\"product-description\">\n                 " + " DETALLE DEL PEDIDO" +
-                varSectoresProd
-                + "\n                 </span>     \n                 </div>           \n            </li><!-- /.item -->\n                ";
+                "</span></a>\n                <!--DESCIPCION PEDIDO--> \n                 <span class=\"product-description\">"
+                + " HORA PEDIDO: "
+                + PedidoActual._fechahoraIngreso
+                + "/ HORA FIN ESTIMADA: "
+                + PedidoActual._fechahoraFinEstimado
+                + "<p></p> DETALLE DEL PEDIDO"
+                + varSectoresProd
+                +
+                    "</span>     \n                 </div>           \n            </li><!-- /.item -->\n                ";
         }
         if (i == 0) {
             cuerpoTablaAppend = html;
