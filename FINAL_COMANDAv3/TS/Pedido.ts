@@ -22,6 +22,7 @@ namespace Clases
                 this._nombreCliente = nombreCliente;
                 this._fechahoraIngreso=new Date().toLocaleTimeString();
                 this._imagen=imagen;
+                this._mesaAsignada = mesaAsignada;
             }
             
         // GETTERS

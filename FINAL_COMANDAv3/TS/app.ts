@@ -2,17 +2,6 @@
 
 // $(function(){
 
-//     //EVENTOS
-//         //BOTON FILTRAR
-//         $("#mesasDisp").change(function(){
-//             let valorFiltro = $('#filtrarPor').map(function() { return ; }).get();
-//             // mostrarEmpleados(valorFiltro);
-//             tablaAux = undefined;
-//         });
-//     //CARGA DE LA PAGINA
-//     // encabezadoCheck();
-//     cargoMenusEncabezado();
-//     // mostrarEmpleados();
 // });
 
 //CARGO LOS DROPDOWN QUE DEPENDEN DEL ENUMERADO
@@ -373,12 +362,12 @@ function filtroMesasActivas():void
     let MesasString=  JSON.parse(localStorage.getItem("Mesas") || "[]");    
     
     let stringFinal = MesasString
-                                .filter(function(mesa){
-                                    let mesaRet = JSON.parse(mesa);
+                                .filter(function(Mesa){
+                                    let mesaRet = JSON.parse(Mesa);
                                     return mesaRet._estado == valor;
                                 })
-                                .map(function(mesa){
-                                    let mesaRet = JSON.parse(mesa);
+                                .map(function(Mesa){
+                                    let mesaRet = JSON.parse(Mesa);
                                     return mesaRet;
                                 });   
     
@@ -602,6 +591,15 @@ function modificarEmpleado(indice , auxEmpleado):void
     mostrarEmpleados();
 }
 
+///////MESA///////////
+function calcularIdMesa(indice):string
+{
+    let Mesa=  JSON.parse(localStorage.getItem("Mesas") || "[]")[indice];    
+    
+    let codAlfa = JSON.parse(Mesa)._codAlfa;
+    return codAlfa;
+}
+
 //FUNCIONES QUE LLAMAN A MODIFICAR CON DISTINTOS PARAMETROS
  function eliminarEmpleado(idEmpleado):void
 {
@@ -813,35 +811,16 @@ function mostrarMesas():void
         let tablafinal= encabezadoTablaAppend+cuerpoTablaAppend+footerTablaAppend;
         $("#listar").append(tablafinal);   
 }  
-
-// function filtroMesasActivas()
-// {
-//     let valor = Clases.estadoMesa["CON CLIENTES PAGANDO"];
-//     let MesasString=  JSON.parse(localStorage.getItem("Mesas") || "[]");    
-    
-//     let stringFinal = MesasString
-//                                 .filter(function(mesa){
-//                                     let mesaRet = JSON.parse(mesa);
-//                                     return mesaRet._estado == valor;
-//                                 })
-//                                 .map(function(mesa){
-//                                     let mesaRet = JSON.parse(mesa);
-//                                     return mesaRet;
-//                                 });   
-    
-//     MesasString= stringFinal;   
-// }
-// //             mostrarEmpleados(valorFiltro);
-
 ///////PEDIDOS///////////
 function agregarPedido():void
 {
     let codigoPedido =String ($('#codAlfaBox').val()) ; 
+    let codAlfaMesa =  calcularIdMesa(Number ($("#mesaDisp").val())  );
     let nuevaPedido    = new Clases.Pedido(
                                         codigoPedido,
                                         Clases.estadoPedido["ORDEN TOMADA"],
                                         String ($('#nombClien').val()),
-                                        "MODIFICARMESA",
+                                        codAlfaMesa ,
                                         imagenBASE64
                                         );
     
