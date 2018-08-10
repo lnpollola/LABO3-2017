@@ -2,7 +2,7 @@ var Clases;
 (function (Clases) {
     var Pedido = /** @class */ (function () {
         //CONSTRUCTOR
-        function Pedido(codAlfa, estado, nombreCliente, mesaAsignada, imagen) {
+        function Pedido(codAlfa, estado, nombreCliente, mesaAsignada, imagen, precioPedido) {
             this._sectorTragos = false;
             this._sectorVinos = false;
             this._sectorCerveza = false;
@@ -19,6 +19,7 @@ var Clases;
             this._fechahoraIngreso = new Date().toLocaleTimeString();
             this._imagen = imagen;
             this._mesaAsignada = mesaAsignada;
+            this._precioPedido = precioPedido;
         }
         Object.defineProperty(Pedido.prototype, "NroPedido", {
             // GETTERS

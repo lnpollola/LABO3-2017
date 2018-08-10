@@ -343,13 +343,19 @@ function muestraAgregarPedido():void
 
         <!-- checkbox -->
         <div class="form-group">
-          <label><input type="checkbox" id="checkTragos"  class="iCheck-helper"/>Tragos</label>             <input type="text" placeholder="Ingrese detalle de Tragos..." id="checkTragosForm" class="form-control">
-          <label><input type="checkbox" id="checkVinos"   class="iCheck-helper"/>Vinos</label>              <input type="text" placeholder="Ingrese detalle de Vinos..." id="checkVinosForm"  class="form-control">
-          <label><input type="checkbox" id="checkCerveza" class="iCheck-helper"/>Cerveza Artesanal</label>  <input type="text" placeholder="Ingrese detalle de Cerveza..." id="checkCervezaForm"class="form-control">
-          <label><input type="checkbox" id="checkCocina"  class="iCheck-helper"/>Cocina</label>             <input type="text" placeholder="Ingrese detalle de Cocina..." id="checkCocinaForm" class="form-control">
-          <label><input type="checkbox" id="checkCandy"   class="iCheck-helper"/>Candy Bar</label>          <input type="text" placeholder="Ingrese detalle de CandyBar..." id="checkCandyForm"  class="form-control">
+          <input type="checkbox" id="checkTragos"  /><label>Tragos</label>             <input type="text" placeholder="Ingrese detalle de Tragos..." id="checkTragosForm" class="form-control">
+          <label><input type="checkbox" id="checkVinos"   />Vinos</label>              <input type="text" placeholder="Ingrese detalle de Vinos..." id="checkVinosForm"  class="form-control">
+          <label><input type="checkbox" id="checkCerveza" />Cerveza Artesanal</label>  <input type="text" placeholder="Ingrese detalle de Cerveza..." id="checkCervezaForm"class="form-control">
+          <label><input type="checkbox" id="checkCocina"  />Cocina</label>             <input type="text" placeholder="Ingrese detalle de Cocina..." id="checkCocinaForm" class="form-control">
+          <label><input type="checkbox" id="checkCandy"   />Candy Bar</label>          <input type="text" placeholder="Ingrese detalle de CandyBar..." id="checkCandyForm"  class="form-control">
         </div>
 
+        <!-- Precio Pedido -->
+        <div class="input-group col-xs-4">
+        <span class="input-group-addon"><b>PRECIO</b> $</span>
+        <input type="text" id="precioPedido" class="form-control">
+        <span class="input-group-addon">.00</span>
+        </div>
 
         <div class="box-footer">
             <button type="submit" id="botonAgregarPed" onclick="agregarPedido();" class="btn btn-primary btn-block btn-flat">Agregar</button>
@@ -459,6 +465,13 @@ function muestraModificarPedido(idPedido):void
           <label><input type="checkbox" id="checkCerveza"class="iCheck-helper"/>Cerveza Artesanal</label>  <input type="text" placeholder="Ingrese detalle de Cerveza..." id="checkCervezaForm" value="`+productosCerveza+`" class="form-control">
           <label><input type="checkbox" id="checkCocina" class="iCheck-helper"/>Cocina</label>             <input type="text" placeholder="Ingrese detalle de Cocina..." id="checkCocinaForm"   value="`+productosCocina+`"  class="form-control">
           <label><input type="checkbox" id="checkCandy"  class="iCheck-helper"/>Candy Bar</label>          <input type="text" placeholder="Ingrese detalle de CandyBar..." id="checkCandyForm"  value="`+productosCandy+`"   class="form-control">
+        </div>
+
+        <!-- Precio Pedido -->
+        <div class="input-group col-xs-4">
+        <span class="input-group-addon"><b>PRECIO</b> $</span>
+        <input type="text" id="precioPedido" class="form-control">
+        <span class="input-group-addon">.00</span>
         </div>
 
 
@@ -978,9 +991,8 @@ function mostrarMesas(vienedeMozo?):void
                 
                 if(!vienedeMozo)
                 {
-                    // if(mesaActual._estado == Clases.estadoMesa["CON CLIENTES PAGANDO"] )
-                    if(mesaActual._estado == Clases.estadoMesa["CON CLIENTE ESPERANDO PEDIDO"] )
-                    
+                    if(mesaActual._estado == Clases.estadoMesa["CON CLIENTES PAGANDO"] )
+
                     {
                         html+="<td>";
                         html+="<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(`"+mesaActual._codAlfa+"`)' >" ; 
@@ -1027,33 +1039,40 @@ function agregarPedido():void
                                         Clases.estadoPedido["ORDEN TOMADA"],
                                         String ($('#nombClien').val()),
                                         codAlfaMesa ,
-                                        imagenBASE64
+                                        imagenBASE64,
+                                        Number ($('#precioPedido').val())  
                                         );
     
-    if( $('#checkTragos').val() == "on"  )
+    const checkTragos =$('#checkTragos')[0] as HTMLInputElement ; 
+    const checkVinos =$('#checkVinos')[0] as HTMLInputElement ; 
+    const checkCerveza =$('#checkCerveza')[0] as HTMLInputElement ; 
+    const checkCocina =$('#checkCocina')[0] as HTMLInputElement ; 
+    const checkCandy =$('#checkCandy')[0] as HTMLInputElement ; 
+
+    if(  checkTragos.checked  )
     {
         nuevaPedido._sectorTragos = true;
         nuevaPedido._productosTragos = String ($('#checkTragosForm').val()) ; 
     }
     
-    if( $('#checkVinos').val() == "on"  )
+    if( checkVinos.checked  )
     {
         nuevaPedido._sectorVinos = true;
         nuevaPedido._productosVinos = String ($('#checkVinosForm').val()) ; 
     }
-    if( $('#checkCerveza').val() == "on"  )
+    if( checkCerveza.checked )
     {
         nuevaPedido._sectorCerveza = true;
         nuevaPedido._productosCerveza = String ($('#checkCervezaForm').val()) ; 
     }
     
-    if( $('#checkCocina').val() == "on"  )
+    if( checkCocina.checked )
     {
         nuevaPedido._sectorCocina = true;
         nuevaPedido._productosCocina = String ($('#checkCocinaForm').val()) ; 
     }
     
-    if( $('#checkCandy').val() == "on"  )
+    if( checkCandy.checked )
     {
         nuevaPedido._sectorCandy = true;
         nuevaPedido._productosCandy = String ($('#checkCandyForm').val()) ; 
@@ -1068,6 +1087,7 @@ function agregarPedido():void
     var Mesa = JSON.parse(JSON.parse(localStorage.Mesas)[indice]);
     Mesa._estado = Clases.estadoMesa["CON CLIENTE ESPERANDO PEDIDO"];
     Mesa._cantPedidos++;
+    Mesa._recaudacion +=  Number ($('#precioPedido').val());
      
     armoJSONMesa(indice,Mesa);
     alert ("Pedido dada de Alta");
@@ -1089,31 +1109,40 @@ function modificarPedido(indice , auxPedido):void
         pedido._nombreCliente   = String ($('#nombClien').val());
         pedido._imagen   = imagenBASE64;
         pedido._fechahoraIngreso =   new Date().toLocaleDateString();
+        pedido._precioPedido =  Number ($('#precioPedido').val()) ;
 
-        if( $('#checkTragos').val() == "on"  )
+
+        const checkTragos =$('#checkTragos')[0] as HTMLInputElement ; 
+        const checkVinos =$('#checkVinos')[0] as HTMLInputElement ; 
+        const checkCerveza =$('#checkCerveza')[0] as HTMLInputElement ; 
+        const checkCocina =$('#checkCocina')[0] as HTMLInputElement ; 
+        const checkCandy =$('#checkCandy')[0] as HTMLInputElement ; 
+
+
+        if( checkTragos.checked  )
         {
             pedido._sectorTragos = true;
             pedido._productosTragos = String ($('#checkTragosForm').val()) ; 
         }
         
-        if( $('#checkVinos').val() == "on"  )
+        if( checkVinos.checked  )
         {
             pedido._sectorVinos = true;
             pedido._productosVinos = String ($('#checkVinosForm').val()) ; 
         }
-        if( $('#checkCerveza').val() == "on"  )
+        if( checkCerveza.checked  )
         {
             pedido._sectorCerveza = true;
             pedido._productosCerveza = String ($('#checkCervezaForm').val()) ; 
         }
         
-        if( $('#checkCocina').val() == "on"  )
+        if( checkCocina.checked  )
         {
             pedido._sectorCocina = true;
             pedido._productosCocina = String ($('#checkCocinaForm').val()) ; 
         }
         
-        if( $('#checkCandy').val() == "on"  )
+        if( checkCandy.checked  )
         {
             pedido._sectorCandy = true;
             pedido._productosCandy = String ($('#checkCandyForm').val()) ; 
@@ -1121,12 +1150,7 @@ function modificarPedido(indice , auxPedido):void
     }
     else 
     {
-        pedido._estado = auxPedido;
-        // if(auxPedido == Clases.estadoCLIEMP.BAJA ||auxPedido == Clases.estadoCLIEMP.SUSPENDIDO )
-        // {pedido._fechaHasta =  new Date().toLocaleDateString();}
-        // else if(auxPedido == Clases.estadoCLIEMP.ACTIVO)
-        // {pedido._fechaDesde= new Date().toLocaleDateString();
-        //     pedido._fechaHasta =  "";}        
+        pedido._estado = auxPedido;    
     }
     
     armoJSONPedido(indice,pedido);
@@ -1274,6 +1298,8 @@ function mostrarPedidosMozo():void
                     +"PEDIDO:"+PedidoActual._nroPedido+
                     ` - `
                     +"NOMBRE CLIENTE:"+PedidoActual._nombreCliente+
+                    ` - `
+                    +"PRECIO:"+PedidoActual._precioPedido+
                     `<span class="label label-warning pull-right">`
                     +Clases.estadoPedido[PedidoActual._estado]+
                     `</span></a>

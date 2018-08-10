@@ -11,6 +11,7 @@ namespace Clases
         public _nombreCliente:string; 
         public _imagen:string;
         public _mesaAsignada:string;
+        public _precioPedido:number;
         public _sectorTragos:boolean = false;
         public _sectorVinos:boolean= false;
         public _sectorCerveza:boolean= false;
@@ -23,7 +24,7 @@ namespace Clases
         public _productosCandy:string="";
 
         //CONSTRUCTOR
-            constructor(codAlfa:string,estado:estadoPedido,nombreCliente:string,mesaAsignada:string,imagen:string) 
+            constructor(codAlfa:string,estado:estadoPedido,nombreCliente:string,mesaAsignada:string,imagen:string,precioPedido:number) 
             {
                 
                 this._nroPedido=codAlfa;
@@ -32,6 +33,7 @@ namespace Clases
                 this._fechahoraIngreso=new Date().toLocaleTimeString();
                 this._imagen=imagen;
                 this._mesaAsignada = mesaAsignada;
+                this._precioPedido = precioPedido;
             }
             
         // GETTERS

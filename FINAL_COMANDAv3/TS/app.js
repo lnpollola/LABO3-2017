@@ -62,7 +62,7 @@ function muestraModificarMesa(idEmpleado) {
 ///////PEDIDOS///////////
 function muestraAgregarPedido() {
     borrarPrincipal();
-    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Nuevo Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n\n        <!-- Mesas Disponibles-->\n        <div class=\"form-group\">\n          <label for=\"opcion\">Mesas Disponibles:</label>\n            <select class=\"form-control\" name=\"mesaDisp\" id=\"mesaDisp\">\n            </select>\n        </div>\n\n        <!-- checkbox -->\n        <div class=\"form-group\">\n          <label><input type=\"checkbox\" id=\"checkTragos\"  class=\"iCheck-helper\"/>Tragos</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Tragos...\" id=\"checkTragosForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkVinos\"   class=\"iCheck-helper\"/>Vinos</label>              <input type=\"text\" placeholder=\"Ingrese detalle de Vinos...\" id=\"checkVinosForm\"  class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCerveza\" class=\"iCheck-helper\"/>Cerveza Artesanal</label>  <input type=\"text\" placeholder=\"Ingrese detalle de Cerveza...\" id=\"checkCervezaForm\"class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCocina\"  class=\"iCheck-helper\"/>Cocina</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Cocina...\" id=\"checkCocinaForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCandy\"   class=\"iCheck-helper\"/>Candy Bar</label>          <input type=\"text\" placeholder=\"Ingrese detalle de CandyBar...\" id=\"checkCandyForm\"  class=\"form-control\">\n        </div>\n\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"agregarPedido();\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
+    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Nuevo Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + codigo_random(5) + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n\n        <!-- Mesas Disponibles-->\n        <div class=\"form-group\">\n          <label for=\"opcion\">Mesas Disponibles:</label>\n            <select class=\"form-control\" name=\"mesaDisp\" id=\"mesaDisp\">\n            </select>\n        </div>\n\n        <!-- checkbox -->\n        <div class=\"form-group\">\n          <input type=\"checkbox\" id=\"checkTragos\"  /><label>Tragos</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Tragos...\" id=\"checkTragosForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkVinos\"   />Vinos</label>              <input type=\"text\" placeholder=\"Ingrese detalle de Vinos...\" id=\"checkVinosForm\"  class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCerveza\" />Cerveza Artesanal</label>  <input type=\"text\" placeholder=\"Ingrese detalle de Cerveza...\" id=\"checkCervezaForm\"class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCocina\"  />Cocina</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Cocina...\" id=\"checkCocinaForm\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCandy\"   />Candy Bar</label>          <input type=\"text\" placeholder=\"Ingrese detalle de CandyBar...\" id=\"checkCandyForm\"  class=\"form-control\">\n        </div>\n\n        <!-- Precio Pedido -->\n        <div class=\"input-group col-xs-4\">\n        <span class=\"input-group-addon\"><b>PRECIO</b> $</span>\n        <input type=\"text\" id=\"precioPedido\" class=\"form-control\">\n        <span class=\"input-group-addon\">.00</span>\n        </div>\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"agregarPedido();\" class=\"btn btn-primary btn-block btn-flat\">Agregar</button>\n        </div>\n    </form>\n    <!-- /.box -->";
     $("#agregar").append(cuerpoAgregarPedido);
 }
 function filtroMesasActivas() {
@@ -110,7 +110,7 @@ function muestraModificarPedido(idPedido) {
     if (pedido._sectorCandy == true) {
         productosCandy = pedido._productosCandy;
     }
-    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Modificar Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + pedido._nroPedido + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" value=\"" + pedido._nombreCliente + "\"class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n\n        <!-- Mesas Disponibles-->\n        <div class=\"form-group\">\n          <label for=\"opcion\">Mesas Disponibles:</label>\n            <select class=\"form-control\" name=\"mesaDisp\" value=\"" + pedido._mesaAsignada + "\"id=\"mesaDisp\">\n            <option value=\"" + pedido._mesaAsignada + "\">" + pedido._mesaAsignada + "</option>\n            </select>\n        </div>\n\n        <!-- checkbox -->\n        <div class=\"form-group\">\n          <label><input type=\"checkbox\" id=\"checkTragos\" class=\"iCheck-helper\"/>Tragos</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Tragos...\" id=\"checkTragosForm\"   value=\"" + productosTragos + "\"  class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkVinos\"  class=\"iCheck-helper\"/>Vinos</label>              <input type=\"text\" placeholder=\"Ingrese detalle de Vinos...\" id=\"checkVinosForm\"     value=\"" + productosVinos + "\"   class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCerveza\"class=\"iCheck-helper\"/>Cerveza Artesanal</label>  <input type=\"text\" placeholder=\"Ingrese detalle de Cerveza...\" id=\"checkCervezaForm\" value=\"" + productosCerveza + "\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCocina\" class=\"iCheck-helper\"/>Cocina</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Cocina...\" id=\"checkCocinaForm\"   value=\"" + productosCocina + "\"  class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCandy\"  class=\"iCheck-helper\"/>Candy Bar</label>          <input type=\"text\" placeholder=\"Ingrese detalle de CandyBar...\" id=\"checkCandyForm\"  value=\"" + productosCandy + "\"   class=\"form-control\">\n        </div>\n\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"modificarPedido(" + (indice) + ",Clases.estadoPedido.MODIFICAR);\" class=\"btn btn-primary btn-block btn-flat\">Modificar Pedido</button>\n        </div>\n    </form>\n    <!-- /.box -->";
+    var cuerpoAgregarPedido = "\n    <div class=\"box box-primary\">\n        <div class=\"box-header\">\n            <h3 class=\"box-title\">Modificar Pedido</h3>\n        </div>\n    <!-- /.box-header -->\n    <!-- form start -->\n    <form id=\"formCARGA\"  data-toggle=\"validator\">\n      <div class=\"box-body\">\n            <!-- CODIGO ALFANUMERICO -->\n            <div class=\"form-group\">\n            <label for=\"codAlfa\">CODIGO ALFANUMERICO</label>\n\n            <div class=\"input-group\">\n                <div class=\"input-group-btn\">\n                    <button type=\"button\" id=\"btnGenerarCodPed\"  onclick=\"generarNuevoNum();\" class=\"btn btn-danger\">Generar C\u00F3digo</button>\n                </div><!-- /btn-group -->\n                <input type=\"text\" id=\"codAlfaBox\" value=\"" + pedido._nroPedido + "\" class=\"form-control\">\n            </div><!-- /input-group -->\n            \n            <!-- Nombre Cliente -->\n            <div class=\"form-group\">\n            <label for=\"edad\">Nombre del Cliente</label>\n            <input type=\"text\" id=\"nombClien\" value=\"" + pedido._nombreCliente + "\"class=\"sinError form-control\" name=\"nombClien\" placeholder=\"Nombre Cliente..\" autocomplete=\"off\" class=\"form-control\" >\n            </div>\n        \n            <!-- IMAGEN -->\n            <div class=\"form-group\">\n               <label for=\"archivo\">Imagen Adjunta:</label>\n               <input type=\"file\" id=\"imagen\" onchange=\"transformaImagen();\">\n               <p class=\"help-block\">M\u00E1ximo 50MB</p>\n           </div>\n           <div id=\"imgTest\"></div>\n        <!-- /.box-body -->\n\n        <!-- Mesas Disponibles-->\n        <div class=\"form-group\">\n          <label for=\"opcion\">Mesas Disponibles:</label>\n            <select class=\"form-control\" name=\"mesaDisp\" value=\"" + pedido._mesaAsignada + "\"id=\"mesaDisp\">\n            <option value=\"" + pedido._mesaAsignada + "\">" + pedido._mesaAsignada + "</option>\n            </select>\n        </div>\n\n        <!-- checkbox -->\n        <div class=\"form-group\">\n          <label><input type=\"checkbox\" id=\"checkTragos\" class=\"iCheck-helper\"/>Tragos</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Tragos...\" id=\"checkTragosForm\"   value=\"" + productosTragos + "\"  class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkVinos\"  class=\"iCheck-helper\"/>Vinos</label>              <input type=\"text\" placeholder=\"Ingrese detalle de Vinos...\" id=\"checkVinosForm\"     value=\"" + productosVinos + "\"   class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCerveza\"class=\"iCheck-helper\"/>Cerveza Artesanal</label>  <input type=\"text\" placeholder=\"Ingrese detalle de Cerveza...\" id=\"checkCervezaForm\" value=\"" + productosCerveza + "\" class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCocina\" class=\"iCheck-helper\"/>Cocina</label>             <input type=\"text\" placeholder=\"Ingrese detalle de Cocina...\" id=\"checkCocinaForm\"   value=\"" + productosCocina + "\"  class=\"form-control\">\n          <label><input type=\"checkbox\" id=\"checkCandy\"  class=\"iCheck-helper\"/>Candy Bar</label>          <input type=\"text\" placeholder=\"Ingrese detalle de CandyBar...\" id=\"checkCandyForm\"  value=\"" + productosCandy + "\"   class=\"form-control\">\n        </div>\n\n        <!-- Precio Pedido -->\n        <div class=\"input-group col-xs-4\">\n        <span class=\"input-group-addon\"><b>PRECIO</b> $</span>\n        <input type=\"text\" id=\"precioPedido\" class=\"form-control\">\n        <span class=\"input-group-addon\">.00</span>\n        </div>\n\n\n        <div class=\"box-footer\">\n            <button type=\"submit\" id=\"botonAgregarPed\" onclick=\"modificarPedido(" + (indice) + ",Clases.estadoPedido.MODIFICAR);\" class=\"btn btn-primary btn-block btn-flat\">Modificar Pedido</button>\n        </div>\n    </form>\n    <!-- /.box -->";
     $("#agregar").append(cuerpoAgregarPedido);
 }
 // // // // // // // FUNCIONES DE CLASES DE PÁGINA // // // // // // //// // // // // // //
@@ -539,8 +539,7 @@ function mostrarMesas(vienedeMozo) {
             html += Clases.estadoMesa[mesaActual._estado];
             html += "</td>";
             if (!vienedeMozo) {
-                // if(mesaActual._estado == Clases.estadoMesa["CON CLIENTES PAGANDO"] )
-                if (mesaActual._estado == Clases.estadoMesa["CON CLIENTE ESPERANDO PEDIDO"]) {
+                if (mesaActual._estado == Clases.estadoMesa["CON CLIENTES PAGANDO"]) {
                     html += "<td>";
                     html += "<button class='btn btn-block btn-danger' type='button' id='btnEnviar' value='Eliminar' onclick='cerrarMesa(`" + mesaActual._codAlfa + "`)' >";
                     html += "CERRAR ";
@@ -581,24 +580,29 @@ function mostrarMesas(vienedeMozo) {
 function agregarPedido() {
     var codigoPedido = String($('#codAlfaBox').val());
     var codAlfaMesa = String($("#mesaDisp").val());
-    var nuevaPedido = new Clases.Pedido(codigoPedido, Clases.estadoPedido["ORDEN TOMADA"], String($('#nombClien').val()), codAlfaMesa, imagenBASE64);
-    if ($('#checkTragos').val() == "on") {
+    var nuevaPedido = new Clases.Pedido(codigoPedido, Clases.estadoPedido["ORDEN TOMADA"], String($('#nombClien').val()), codAlfaMesa, imagenBASE64, Number($('#precioPedido').val()));
+    var checkTragos = $('#checkTragos')[0];
+    var checkVinos = $('#checkVinos')[0];
+    var checkCerveza = $('#checkCerveza')[0];
+    var checkCocina = $('#checkCocina')[0];
+    var checkCandy = $('#checkCandy')[0];
+    if (checkTragos.checked) {
         nuevaPedido._sectorTragos = true;
         nuevaPedido._productosTragos = String($('#checkTragosForm').val());
     }
-    if ($('#checkVinos').val() == "on") {
+    if (checkVinos.checked) {
         nuevaPedido._sectorVinos = true;
         nuevaPedido._productosVinos = String($('#checkVinosForm').val());
     }
-    if ($('#checkCerveza').val() == "on") {
+    if (checkCerveza.checked) {
         nuevaPedido._sectorCerveza = true;
         nuevaPedido._productosCerveza = String($('#checkCervezaForm').val());
     }
-    if ($('#checkCocina').val() == "on") {
+    if (checkCocina.checked) {
         nuevaPedido._sectorCocina = true;
         nuevaPedido._productosCocina = String($('#checkCocinaForm').val());
     }
-    if ($('#checkCandy').val() == "on") {
+    if (checkCandy.checked) {
         nuevaPedido._sectorCandy = true;
         nuevaPedido._productosCandy = String($('#checkCandyForm').val());
     }
@@ -609,6 +613,7 @@ function agregarPedido() {
     var Mesa = JSON.parse(JSON.parse(localStorage.Mesas)[indice]);
     Mesa._estado = Clases.estadoMesa["CON CLIENTE ESPERANDO PEDIDO"];
     Mesa._cantPedidos++;
+    Mesa._recaudacion += Number($('#precioPedido').val());
     armoJSONMesa(indice, Mesa);
     alert("Pedido dada de Alta");
     mostrarPedidosMozo();
@@ -623,34 +628,35 @@ function modificarPedido(indice, auxPedido) {
         pedido._nombreCliente = String($('#nombClien').val());
         pedido._imagen = imagenBASE64;
         pedido._fechahoraIngreso = new Date().toLocaleDateString();
-        if ($('#checkTragos').val() == "on") {
+        pedido._precioPedido = Number($('#precioPedido').val());
+        var checkTragos = $('#checkTragos')[0];
+        var checkVinos = $('#checkVinos')[0];
+        var checkCerveza = $('#checkCerveza')[0];
+        var checkCocina = $('#checkCocina')[0];
+        var checkCandy = $('#checkCandy')[0];
+        if (checkTragos.checked) {
             pedido._sectorTragos = true;
             pedido._productosTragos = String($('#checkTragosForm').val());
         }
-        if ($('#checkVinos').val() == "on") {
+        if (checkVinos.checked) {
             pedido._sectorVinos = true;
             pedido._productosVinos = String($('#checkVinosForm').val());
         }
-        if ($('#checkCerveza').val() == "on") {
+        if (checkCerveza.checked) {
             pedido._sectorCerveza = true;
             pedido._productosCerveza = String($('#checkCervezaForm').val());
         }
-        if ($('#checkCocina').val() == "on") {
+        if (checkCocina.checked) {
             pedido._sectorCocina = true;
             pedido._productosCocina = String($('#checkCocinaForm').val());
         }
-        if ($('#checkCandy').val() == "on") {
+        if (checkCandy.checked) {
             pedido._sectorCandy = true;
             pedido._productosCandy = String($('#checkCandyForm').val());
         }
     }
     else {
         pedido._estado = auxPedido;
-        // if(auxPedido == Clases.estadoCLIEMP.BAJA ||auxPedido == Clases.estadoCLIEMP.SUSPENDIDO )
-        // {pedido._fechaHasta =  new Date().toLocaleDateString();}
-        // else if(auxPedido == Clases.estadoCLIEMP.ACTIVO)
-        // {pedido._fechaDesde= new Date().toLocaleDateString();
-        //     pedido._fechaHasta =  "";}        
     }
     armoJSONPedido(indice, pedido);
     mostrarPedidosMozo();
@@ -779,6 +785,8 @@ function mostrarPedidosMozo() {
                 + "PEDIDO:" + PedidoActual._nroPedido +
                 " - "
                 + "NOMBRE CLIENTE:" + PedidoActual._nombreCliente +
+                " - "
+                + "PRECIO:" + PedidoActual._precioPedido +
                 "<span class=\"label label-warning pull-right\">"
                 + Clases.estadoPedido[PedidoActual._estado] +
                 "</span></a>\n                <!--DESCIPCION PEDIDO--> \n                 <span class=\"product-description\">"
